@@ -1,0 +1,14 @@
+<Story name="CharacterSpeak">
+  <StoryData>
+    <id>0</id>
+    <State>0</State>
+    <name>村民</name>
+    <index>0</index>
+    <cout>3</cout>
+    <Speak>
+    <speak1>可恶的妖怪，竟然跑到村子里偷东西!</speak1>
+    <speak2>就这样打死它吧。</speak2>
+    <speak3>哦，是博丽大人。博丽大人，这个妖怪潜入村子里偷东西，被我们发现了，既然博丽大人来了，请博丽大人处理这个妖怪吧。</speak3>
+    </Speak>
+</StoryData>
+</Story>

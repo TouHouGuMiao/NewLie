@@ -1,0 +1,15 @@
+<Item>
+  <ItemData>
+    <id>0</id>
+    <name>楼观剑</name>
+    <sprite></sprite>
+    <atlas></atlas>
+    <Des></Des>
+    
+    <bulletPower></bulletPower>
+    <CRT></CRT>
+    <CRTPower></CRTPower>  
+    <Power_bu>B</Power_bu>
+    <DEX_bu>S</DEX_bu>
+</ItemData>
+</Item>

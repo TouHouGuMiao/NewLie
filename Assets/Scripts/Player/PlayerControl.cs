@@ -60,7 +60,7 @@ public class PlayerControl : CharacterPropBase {
             }
             if (stateInfo.IsName("Base Layer.idle") || stateInfo.IsName("Base Layer.Move.MoveLoop") || stateInfo.IsName("Base Layer.Move.MoveBegin"))
             {
-                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed*0.5f,Space.Self);
+                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed,Space.Self);
             }
 
 
@@ -93,7 +93,7 @@ public class PlayerControl : CharacterPropBase {
             }
          
        
-                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed*0.5f,Space.Self);
+                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed,Space.Self);
             
          
         }
@@ -242,7 +242,7 @@ public class PlayerControl : CharacterPropBase {
 
     private void OnParticleCollision(GameObject other)
     {
-   
+        Debug.LogError(1);
     }
 
 }

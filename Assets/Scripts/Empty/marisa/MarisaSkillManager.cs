@@ -32,6 +32,7 @@ public class MarisaSkillManager
     private MarisaXiaoSan xiaoSanBullet;
     private MarisaHeiDongBianYuan heiDongBianYuanBullet;
     private MarisaHeiDongIn heiDongInBullet;
+    private MarisaLockStarBoom lockBullet;
     public void InitMarisaSkills()
     {
         marisaPro = CharacterPropManager.Instance.GetCharcaterDataByName("marisa");
@@ -47,6 +48,7 @@ public class MarisaSkillManager
         xiaoSanBullet = new global::MarisaXiaoSan();
         heiDongBianYuanBullet = new global::MarisaHeiDongBianYuan();
         heiDongInBullet = new global::MarisaHeiDongIn();
+        lockBullet = new global::MarisaLockStarBoom();
         PuGong.Init();
         SphereBullets.InitSkill();
         NormalStar.InitSkill();
@@ -58,6 +60,7 @@ public class MarisaSkillManager
         xiaoSanBullet.Init();
         heiDongBianYuanBullet.Init();
         heiDongInBullet.Init();
+        lockBullet.Init();
     }
 
     public void ShowPuGong(Transform target,Transform point)
@@ -113,6 +116,11 @@ public class MarisaSkillManager
     public void ShowHeiDongInBullet(Vector3 marisaVec)
     {
         heiDongInBullet.ShowSkill(marisaVec);
+    }
+
+    public void ShowLockBoomBullet(Transform point,Transform target)
+    {
+        lockBullet.ShowSkill(point, target);
     }
 }
 

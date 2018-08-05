@@ -30,7 +30,8 @@ public class MarisaControl : CharacterPropBase {
         MarisaSkillManager.Instance.InitMarisaSkills();
         m_HP = HP;
 
-        StartCoroutine(UseHeiDongBianYuan_WanZheng());
+        StartCoroutine(UseMarisaLockBullet());
+        //StartCoroutine(UseHeiDongBianYuan_WanZheng());
 
         //StartCoroutine(UseHeiDongBianYuan());
         //StartCoroutine(UseHeiDongInBullet());
@@ -259,6 +260,14 @@ public class MarisaControl : CharacterPropBase {
         MarisaSkillManager.Instance.ShowMixBullet(transform);
         yield return new WaitForSeconds(5);
         StartCoroutine(UseMarisaMix());
+    }
+
+    IEnumerator UseMarisaLockBullet()
+    {
+        yield return new WaitForSeconds(1);
+        MarisaSkillManager.Instance.ShowLockBoomBullet(point, target);
+        yield return new WaitForSeconds(15);
+        StartCoroutine(UseMarisaLockBullet());
     }
 
  

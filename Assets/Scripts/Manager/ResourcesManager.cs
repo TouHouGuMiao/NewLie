@@ -24,6 +24,18 @@ public class ResourcesManager
       return LoadPrefab(name,path);
     }
 
+    public Texture2D LoadTexture2D(string name)
+    {
+        string path = "Texture" + "/" + name;
+        Texture2D texture = Resources.Load(path, typeof(Texture2D)) as Texture2D;
+        if (texture == null)
+        {
+            Debug.LogError("texture is null");
+            return null;
+        }
+        return texture;
+    }
+
 
     private string bulletPath = "BulletPrefab";
     public GameObject LoadBullet(string name)
@@ -47,7 +59,7 @@ public class ResourcesManager
     string atlasPath = "Atlas";
 
 
-
+    
    public UIAtlas LoadAtlas(string name)
     {
         GameObject atlasGO = LoadPrefab(name, atlasPath);
@@ -70,6 +82,7 @@ public class ResourcesManager
         }
         return heroGo;
     }
+
 
     public AudioClip LoadAudioClip(string name)
     {
@@ -98,19 +111,49 @@ public class ResourcesManager
         return effect;
     }
 
-    public Sprite LoadSpriteBullet(string name)
+    public Sprite LoadSpriteBullet(string name,int width=128,int heigt=128)
     {
         string path = "BulletSprite" + "/" + name;
 
         Texture2D texture = Resources.Load(path) as Texture2D;
 
-        Sprite sprite = Sprite.Create(texture, new Rect(0,0, 128, 128),new Vector2 (0.5f,0.5f));
+        Sprite sprite = Sprite.Create(texture, new Rect(0,0, width, heigt),new Vector2 (0.5f,0.5f));
         if (sprite == null)
         {
             Debug.LogError("sprite is null"+name);
             return null;
         }
         return sprite;
+    }
+
+    public Sprite LoadWingmanSprite(string name,int width = 128,int heigt= 128)
+    {
+        string path = "wingmanSprite" + "/" + name;
+
+        Texture2D texture = Resources.Load(path) as Texture2D;
+
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, width, heigt), new Vector2(0.5f, 0.5f));
+        if (sprite == null)
+        {
+            Debug.LogError("sprite is null" + name);
+            return null;
+        }
+        return sprite;
+    }
+
+    public Texture LoadTexture(string name)
+    {
+        string path = "BulletSprite" + "/" + name;
+
+        Texture2D texture = Resources.Load(path) as Texture2D;
+
+
+        if (texture == null)
+        {
+            Debug.LogError("texture is null" + name);
+            return null;
+        }
+        return texture;
     }
     public GameObject LoadParticleBullet(string name)
     {

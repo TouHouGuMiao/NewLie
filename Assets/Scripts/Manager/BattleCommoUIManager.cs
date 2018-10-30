@@ -28,6 +28,9 @@ public class BattleCommoUIManager
     private UIWidget playerHPBGWiget;
     private CharacterPropBase playerBaseData;
 
+    private UISprite bulletIcon;
+    private UILabel bulletNum;
+
     public void InitUI(GameObject panel)
     {
         HPSlider = panel.transform.FindRecursively("PlayerHPSlider").GetComponent<UISlider>();
@@ -37,6 +40,10 @@ public class BattleCommoUIManager
         BossSlider = panel.transform.FindRecursively("BossHPSlider").GetComponent<UISlider>();
         BossNameLabel = panel.transform.FindRecursively("BossName").GetComponent<UILabel>();
         speakLabelAlpha = panel.transform.FindRecursively("SpeakLabel").GetComponent<TweenAlpha>();
+
+
+        bulletIcon = panel.transform.FindRecursively("bulletIcon").GetComponent<UISprite>();
+        bulletNum = panel.transform.FindRecursively("bulletNum").GetComponent<UILabel>();
 
 
     }
@@ -95,5 +102,13 @@ public class BattleCommoUIManager
         return HPcount;
     }
 
+
+    public void ChangeBulletType(int id,string num)
+    {
+        ItemData data = ItemDataManager.Instance.GetItemDataByID(id);
+        bulletIcon.spriteName = data.icon;
+        bulletIcon.MakePixelPerfect();
+        bulletNum.text = "x" + num;
+    }
 
 }

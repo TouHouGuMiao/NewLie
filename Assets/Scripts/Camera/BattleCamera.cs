@@ -33,13 +33,13 @@ public class BattleCamera : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
+        //if (Input.GetKeyDown(KeyCode.Y))
+        //{
 
-            CameraIsLock = !CameraIsLock;
-        }
+        //    CameraIsLock = !CameraIsLock;
+        //}
         UpdataPlayerOffest();
-        CameraMoveAndLock();
+        //CameraMoveAndLock();
     }
 
     void CameraMoveAndLock()

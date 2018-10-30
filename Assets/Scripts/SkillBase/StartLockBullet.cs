@@ -7,7 +7,9 @@ public class StartLockBullet : BulletBase
     public float speed;
     public Vector3 target;
     private bool isRotateOver;
+
     // Use this for initialization
+ 
     void Start()
     {
 
@@ -34,13 +36,39 @@ public class StartLockBullet : BulletBase
 
         if (!isRotateOver)
         {
-            transform.Rotate(new Vector3(0, 0, 1) * angle * Time.deltaTime * speed);
+            transform.Rotate(new Vector3(0, 0, 1) * angle * Time.deltaTime*30);
         }
 
 
 
 
-        transform.Translate(new Vector2(1, 0) * Time.deltaTime * 20); 
+        transform.Translate(new Vector2(1, 0) * Time.deltaTime *speed); 
     }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        BulletBase m_base = other.transform.GetComponent<BulletBase>();
+        if (m_base == null)
+        {
+
+            return;
+        }
+
+        if (m_base.m_Type != this.m_Type)
+        {
+            this.HP -= m_base.injured;
+            Destroy(gameObject);
+
+        }
+
+        if (this.HP <= 0)
+        {
+            GameObject.Destroy(this.gameObject);
+        }
+
+    }
+
+
+
 }
 

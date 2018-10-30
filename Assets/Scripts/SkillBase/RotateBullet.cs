@@ -5,11 +5,11 @@ using UnityEngine;
 public class RotateBullet : BulletBase
 {
     public Vector3 targetVec;
-    private float speed=10;
+    private float speed=2;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Destroy(gameObject, 10);
+        base.Awake();
     }
     private void Start()
     {
@@ -23,4 +23,5 @@ public class RotateBullet : BulletBase
         transform.Rotate(new Vector3(0, 0, 360) * Time.deltaTime);
 
     }
+
 }

@@ -23,7 +23,7 @@ public class MarisaNormalStar
             GameObject go = GameObject.Instantiate(prefab);
             go.transform.position = point.position;
             StarBullet starBullet = go.GetComponent<StarBullet>();
-            starBullet.target = target;
+            //starBullet.target = target;
             starBullet.m_Type = BulletBase.BulletTpye.emptyBullet;
             starBullet.HP = 50;
             yield return new WaitForSeconds(0.15f);

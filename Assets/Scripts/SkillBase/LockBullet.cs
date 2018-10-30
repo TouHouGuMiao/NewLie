@@ -7,7 +7,7 @@ public class LockBullet : BulletBase
     
     public Transform target;
     public float speed;
-
+    /// <summary>
 	void Start () {
         
 	}
@@ -23,8 +23,9 @@ public class LockBullet : BulletBase
         }
         Vector3 vecPos = transform.InverseTransformPoint(target.position);
         float angle = Mathf.Atan2(vecPos.y, vecPos.x) * Mathf.Rad2Deg;
-        transform.Rotate(new Vector3 (0,0,1) * angle*Time.deltaTime*speed);
-        transform.Translate(new Vector2(1, 0) * Time.deltaTime * 7);
+
+        transform.Rotate(new Vector3(0, 0, 1) * angle * Time.deltaTime); 
+        transform.Translate(new Vector2(1, 0) * Time.deltaTime * speed);
 
        
     }

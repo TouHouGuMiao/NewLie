@@ -51,7 +51,7 @@ public class AudioManager:MonoBehaviour
     }
 
 
-    public void PlayBg_Source(string name, bool reStart = false)
+    public void PlayBg_Source(string name)
     {
         AudioClip clip = ResourcesManager.Instance.LoadAudioClip(name);
         if (clip == null)
@@ -59,26 +59,17 @@ public class AudioManager:MonoBehaviour
             Debug.LogError("clip is null");
             return;
         }
-        string curBgName = string.Empty;
-        if (bg_Source.clip.name != null)
-        {
-            curBgName = bg_Source.clip.name;
-        }
+
 
         if (clip != null)
         {
-            if (clip.name == curBgName && !reStart)
-            {
-                return;
-            }
-
             bg_Source.clip = clip;
             bg_Source.Play();
         }
     }
 
 
-    public void PlayEffect_Source(string name,float volume)
+    public void PlayEffect_Source(string name)
     {
         AudioClip clip = ResourcesManager.Instance.LoadAudioClip(name);
 
@@ -87,7 +78,8 @@ public class AudioManager:MonoBehaviour
             Debug.LogError("clip is null");
             return;
         }
-        effect_Source.PlayOneShot(clip, volume);
+
+        effect_Source.PlayOneShot(clip,effect_Source.volume);
     }
 
     public void PlayEffect_Source(string name,Vector3 position, float volume)

@@ -11,13 +11,14 @@ public class MarisaDrawFiveStars
         wuPrefab = ResourcesManager.Instance.LoadParticleBullet("WuParitcle");
     }
 
-    public void ShowSkill(Transform centerTF)
+    public void ShowSkill(Vector3 centerVec, float radius)
     {
         Vector3 centerPoint;
-        centerPoint = centerTF.position;
+        centerPoint = centerVec;
 
         GameObject go = GameObject.Instantiate(wuPrefab);
         WuMoveBullet wuBullet = go.GetComponent<WuMoveBullet>();
         wuBullet.centerPoint = centerPoint;
+        wuBullet.radius = radius;
     }
 }

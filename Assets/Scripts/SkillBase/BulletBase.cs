@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletBase:MonoBehaviour
 {
+    [HideInInspector]
+    public GameObject explosionEffect;
     public enum BulletTpye
     {
         playerBullet=0,
@@ -37,8 +39,17 @@ public class BulletBase:MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        Destroy(transform.gameObject, 4);
+        explosionEffect = ResourcesManager.Instance.LoadEffect("explosionEffect");
+        Destroy(transform.gameObject, 15);
     }
+
+    private void OnDestroy()
+    {
+        GameObject go = Instantiate(explosionEffect);
+        go.transform.position = transform.position;
+    }
+
+    
 }

@@ -164,11 +164,22 @@ public abstract class UITweener : MonoBehaviour
 	protected void Update () { if (!useFixedUpdate) DoUpdate(); }
 	protected void FixedUpdate () { if (useFixedUpdate) DoUpdate(); }
 
-    public delegate void OnPingPangOneStop();
-    public delegate void OnPingPangTwoStop();
+    public delegate void OnPingPangOneStop(TweenPosition tp);
 
-    public OnPingPangOneStop PingPangOneStop ;
+    public delegate void OnPingPangTwoStop(TweenPosition tp);
+
+    public delegate void OnPingPangOneCoutSet(WingmanData data,int cout,TweenPosition tp);
+
+    public TweenPosition tp;
+    public WingmanData data;
+    public int cout;
+    public OnPingPangOneStop PingPangOneStop;
+
     public OnPingPangTwoStop PingPangTwoStop;
+    /// <summary>
+    /// 使用前 请先把 data，cout，tp 设置好
+    /// </summary>
+    public OnPingPangOneCoutSet PingPangCoutSet;
 
     /// <summary>
     /// Update the tweening factor and call the virtual update function.
@@ -208,7 +219,9 @@ public abstract class UITweener : MonoBehaviour
 				mAmountPerDelta = -mAmountPerDelta;
                 if(PingPangOneStop != null)
                 {
-                    PingPangOneStop();
+                    PingPangOneStop(tp);
+
+               
                 }
                 
 			}
@@ -219,7 +232,11 @@ public abstract class UITweener : MonoBehaviour
 				mAmountPerDelta = -mAmountPerDelta;
                 if (PingPangTwoStop != null)
                 {
-                    PingPangTwoStop();
+                    PingPangTwoStop(tp);
+                    if (PingPangCoutSet != null)
+                    {
+                        PingPangCoutSet(data, cout, tp);
+                    }
                 }
             }
 

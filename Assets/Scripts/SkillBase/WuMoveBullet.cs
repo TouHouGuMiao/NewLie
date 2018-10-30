@@ -6,17 +6,17 @@ public class WuMoveBullet:BulletBase
 {
 
     List<Vector3> MoveList;
-    private float radius=6;
+    [HideInInspector]
+    public float radius=12;
     private GameObject bulletPrefab;
     public Vector3 centerPoint;
 
-	void Awake ()
+    protected override void Awake()
     {
-       
+        base.Awake();
         MoveList = new List<Vector3>();
         bulletPrefab = ResourcesManager.Instance.LoadBullet("pointTarget");
-    
-	}
+    }
 
     private void Start()
     {

@@ -2,47 +2,97 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : CharacterPropBase {
-    public Animator m_Animator;
-    public float rate=0;
-    private float tempTime;
+public enum PlayerState
+{
+    attack=10,
+    talk=20,
+}
 
-    private TweenPosition m_TP1;
-    private TweenPosition m_TP2;
+
+public class PlayerControl : CharacterPropBase {
+
+    public static PlayerState state = PlayerState.talk;
+
+    public static PlayerControl Instace;
+
+
+    public GameObject bulletPrefab;
+
+    private Animator m_Animator;
+    private float rate_Z=0.5f;
+    private float rate_X = 0.5f;
+
+    private float tempTime_Z;
+    private float tempTime_X;
+ 
+
+
+    //private TweenPosition m_TP1;
+    //private TweenPosition m_TP2;
 
     private UISlider m_Slider;
     private float m_HP;  //表示血条现有HP,而不是HP属性
 
-
+    private void Awake()
+    {
+        Instace = this;
+        //HandWithPlayer.Instance.Init(transform);
+    }
 
     void Start ()
     {
+        WingmanManager.Instance.Init();
         m_Animator = this.GetComponent<Animator>();
-        GameObject yinYangYu1 = transform.FindRecursively("YinYangYu1").gameObject;
-        GameObject yinYangYu2 = transform.FindRecursively("YinYangYu2").gameObject;
-        m_TP1 = yinYangYu1.GetComponent<TweenPosition>();
-        m_TP2 = yinYangYu2.GetComponent<TweenPosition>();
+        bulletPrefab = ResourcesManager.Instance.LoadBullet("initBullet");
+        //GameObject yinYangYu1 = transform.FindRecursively("YinYangYu1").gameObject;
+        //GameObject yinYangYu2 = transform.FindRecursively("YinYangYu2").gameObject;
+        //m_TP1 = yinYangYu1.GetComponent<TweenPosition>();
+        //m_TP2 = yinYangYu2.GetComponent<TweenPosition>();
         m_HP = HP;
-        TPEffectSet();
+        //TPEffectSet();
         PlayerSkillManager.Instance.InitPlayerSkillManager();
-
+        WingmanData data = new WingmanData();
+        data.bulletName = "StarBullet";
+        data.tempTime = 0.5f;
+        WingmanManager.Instance.ShowWingman(data, 6);
         UpDataPlayerPro();
     }
 	
 	void Update ()
     {
         CharacterControl();
-        YinYangYuControl();
-
+        //YinYangYuControl();
         //UpDataPlayerPro();//测试用
     }
 
     float deltaTime = 0;
     void CharacterControl()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (Input.GetKey(KeyCode.A))
+            if (state == PlayerState.talk)
+            {
+                state = PlayerState.attack;
+            }
+
+            else
+            {
+                state = PlayerState.talk;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GUIManager.ShowView("SystemPanel");
+        }
+
+        if (StoryManager.Instacne.isSpeak)
+        {
+            return;
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 return;
             }
@@ -67,16 +117,16 @@ public class PlayerControl : CharacterPropBase {
 
         }
 
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             m_Animator.SetBool("Move", false);
             m_Animator.SetBool("move", false);
             deltaTime = 0; 
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.RightArrow))
             {
                 return;
             }
@@ -98,37 +148,108 @@ public class PlayerControl : CharacterPropBase {
          
         }
 
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             m_Animator.SetBool("Move", false);
             m_Animator.SetBool("move", false);
             deltaTime = 0;
         }
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * speed * 0.5f); ;
+        if (Input.GetKey(KeyCode.UpArrow))
+        { 
+            transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * speed ); ;
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * speed*0.5f);
+            transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * speed);
         }
 
-        if (tempTime < Time.time)
+        if (tempTime_Z < Time.time)
         {
-            tempTime = Time.time;
+            tempTime_Z = Time.time;
+            tempTime_X = Time.time;
         }
        
-        if (Input.GetKey(KeyCode.Mouse0)&&Time.time>=tempTime)
+        if (Input.GetKey(KeyCode.X))
         {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos); 
-            PlayerSkillManager.Instance.ShowPuGong(mousePos, m_TP1.transform, m_TP2.transform);
-            tempTime += rate;
+      
+
+            AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
+            if(stateInfo.IsName("Base Layer.Move")||stateInfo.IsName("Base Layer.idle"))
+            {    
+                m_Animator.SetBool("Move", false);
+                m_Animator.SetBool("move", false);
+                m_Animator.SetBool("Attack", true);
+            }
+        }
+
+     
+
+
+        if (Input.GetKey(KeyCode.Z) && Time.time >= tempTime_Z)
+        {
+            GameObject go = transform.Find("wingman").gameObject;
+            GameObject item = go.transform.GetChild(0).gameObject;
+            TweenPosition tp = item.GetComponent<TweenPosition>();
+            tp.enabled = false;
+            tp.transform.SetParent(null);
+            tp.GetComponent<WingmanInfo>().enabled = false;
+
+
+            item.AddComponent<Rigidbody>();
+            item.GetComponent<Rigidbody>().useGravity = false;
+            tp.GetComponent<Rigidbody>().AddForce(new Vector3(1, 0, 0) * 1500);
+
+            tempTime_Z += rate_Z;
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            WingmanData data = WingmanManager.Instance.GetDataById(0);
+            WingmanManager.Instance.CreatWingmanReturnCout(data, 6);
         }
 
     }
+
+
+    #region 动画帧事件
+
+
+    public void UseAttack()
+    {
+        string name = bulletPrefab.name;
+        ItemData data = ItemDataManager.Instance.GetItemDataByBulletName(name);
+        if (name != "initBullet")
+        {
+           
+            if (data.num <= 0)
+            {
+                m_Animator.SetBool("Attack", false);
+                return;
+            }
+        }
+ 
+        if (bulletPrefab == null)
+        {
+            Debug.LogError("bulletPrefab is null");
+            return;
+        }
+ 
+        if (name != "initBullet")
+        {  
+            ItemDataManager.Instance.CutMaterialToHasMaterialList(data);
+            BattleCommoUIManager.Instance.ChangeBulletType(data.id,data.num.ToString());
+        }
+        GameObject go = Instantiate(bulletPrefab);
+        go.transform.position = this.transform.Find("firePoint").transform.position;
+        m_Animator.SetBool("Attack", false);
+    }
+
+
+
+
+    #endregion
 
     private void UpDataPlayerPro()
     {
@@ -146,48 +267,48 @@ public class PlayerControl : CharacterPropBase {
 
     }
    
-    void YinYangYuControl()
-    {
-        m_TP1.transform.Rotate(new Vector3(0, 0, -1) * Time.deltaTime, 10);
-        m_TP2.transform.Rotate(new Vector3(0, 0, -1) * Time.deltaTime, 10);
-    }
+    //void YinYangYuControl()
+    //{
+    //    m_TP1.transform.Rotate(new Vector3(0, 0, -1) * Time.deltaTime, 10);
+    //    m_TP2.transform.Rotate(new Vector3(0, 0, -1) * Time.deltaTime, 10);
+    //}
 
-    #region   阴阳玉循环特效;
-    private void TP1PingPangOneStop()
-    {
-        SpriteRenderer m_Render = m_TP1.GetComponent<SpriteRenderer>();
-        m_Render.sortingLayerName = "Bounds";
-    }
+    //#region   阴阳玉循环特效;
+    //private void TP1PingPangOneStop()
+    //{
+    //    SpriteRenderer m_Render = m_TP1.GetComponent<SpriteRenderer>();
+    //    m_Render.sortingLayerName = "Bounds";
+    //}
 
-    private void TP1PingPangTwoStop()
-    {
-        SpriteRenderer m_Render = m_TP1.GetComponent<SpriteRenderer>();
-        m_Render.sortingLayerName = "warriorCenter";
-    }
+    //private void TP1PingPangTwoStop()
+    //{
+    //    SpriteRenderer m_Render = m_TP1.GetComponent<SpriteRenderer>();
+    //    m_Render.sortingLayerName = "warriorCenter";
+    //}
 
-    private void TP2PingPangOneStop()
-    {
-        SpriteRenderer m_Render = m_TP2.GetComponent<SpriteRenderer>();
-        m_Render.sortingLayerName = "warriorCenter";
-    }
+    //private void TP2PingPangOneStop()
+    //{
+    //    SpriteRenderer m_Render = m_TP2.GetComponent<SpriteRenderer>();
+    //    m_Render.sortingLayerName = "warriorCenter";
+    //}
 
-    private void TP2PingPangTwoStop()
-    {
-        SpriteRenderer m_Render = m_TP2.GetComponent<SpriteRenderer>();
-        m_Render.sortingLayerName = "Bounds";
-    }
+    //private void TP2PingPangTwoStop()
+    //{
+    //    SpriteRenderer m_Render = m_TP2.GetComponent<SpriteRenderer>();
+    //    m_Render.sortingLayerName = "Bounds";
+    //}
 
 
-    private void TPEffectSet()
-    {
-        m_TP1.PingPangOneStop += TP1PingPangOneStop;
-        m_TP1.PingPangTwoStop += TP1PingPangTwoStop;
+    //private void TPEffectSet()
+    //{
+    //    m_TP1.PingPangOneStop += TP1PingPangOneStop;
+    //    m_TP1.PingPangTwoStop += TP1PingPangTwoStop;
 
-        m_TP2.PingPangOneStop += TP2PingPangOneStop;
-        m_TP2.PingPangTwoStop += TP2PingPangTwoStop;
-    }
+    //    m_TP2.PingPangOneStop += TP2PingPangOneStop;
+    //    m_TP2.PingPangTwoStop += TP2PingPangTwoStop;
+    //}
 
-    #endregion
+    //#endregion
 
 
 
@@ -211,6 +332,15 @@ public class PlayerControl : CharacterPropBase {
             BattleCommoUIManager.Instance.speakLabelAlpha.enabled = true;
             BattleCommoUIManager.Instance.speakLabelAlpha.gameObject.SetActive(true);
         }
+
+        if (other.CompareTag("Story"))
+        {
+            if(other.name== "Stage0Story0")
+            {
+                StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0State0List());
+                Destroy(other.gameObject);
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -219,14 +349,25 @@ public class PlayerControl : CharacterPropBase {
         {
             if (!StoryManager.Instacne.isSpeak)
             {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    int id = CommonHelper.Str2Int(other.name);
-                    StoryManager.Instacne.ShowStoryPanel(id);
-                }
-            
+                int id = CommonHelper.Str2Int(other.name);
+                List<StoryData> dataList = new List<StoryData>();
+                dataList.Add(StoryManager.Instacne.GetStoryDataByID(0));
+                dataList.Add(StoryManager.Instacne.GetStoryDataByID(1));
+                dataList.Add(StoryManager.Instacne.GetStoryDataByID(2));
+                StoryManager.Instacne.ShowStoryList(dataList);
+
             }
         }
+
+        if (other.CompareTag("Test"))
+        {
+            //List<StoryData> dataList = new List<StoryData>();
+            //dataList = StoryManager.Instacne.GetStage0State0List();  
+            //StoryManager.Instacne.ShowStoryList(dataList);
+            //Destroy(other);
+        }
+
+      
     }
 
 
@@ -240,9 +381,22 @@ public class PlayerControl : CharacterPropBase {
     }
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("specialBullet"))
+        {
+            int id = CommonHelper.Str2Int(collision.gameObject.name);
+            ItemData data = ItemDataManager.Instance.GetItemDataByID(id);
+            List<ItemData> dataList = ItemDataManager.Instance.GetHasItemList();
+            ItemDataManager.Instance.AddItemToHasMaterialList(data);
+            Destroy(collision.gameObject);
+        }
+    }
+
+
     private void OnParticleCollision(GameObject other)
     {
-        Debug.LogError(1);
+
     }
 
 }

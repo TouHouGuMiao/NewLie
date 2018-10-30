@@ -9,7 +9,7 @@ public class SphereRotateBullet : BulletBase
     private GameObject bulletPrefab;
     [HideInInspector]
     public float angle=0;
-    private GameObject wuEffect;
+
     [HideInInspector]
     public Vector3 centerPoint;
 
@@ -23,10 +23,9 @@ public class SphereRotateBullet : BulletBase
     public float cout=60;
 
 
-    private void Awake()
+    protected override void Awake()
     {
-   
-        wuEffect = this.gameObject;
+        base.Awake();
         bulletPrefab = ResourcesManager.Instance.LoadBullet("starZhiXianBullet");
     }
 
@@ -43,6 +42,7 @@ public class SphereRotateBullet : BulletBase
         {
             Destroy(gameObject);
         }
+        transform.Rotate(new Vector3(0, 0, 1) * Time.deltaTime * 120);
     }
 
     IEnumerator InstanteBullet()

@@ -20,11 +20,13 @@ public class PointTargetBullet : BulletBase
     [HideInInspector]
     public float speed=0.1f;
     private float rotateSpeed = 30;
-     
-    private void Awake()
+
+    protected override void Awake()
     {
-      
+        explosionEffect = ResourcesManager.Instance.LoadEffect("explosionEffect");
+        Destroy(gameObject, 20);
         StartCoroutine(TimeDepent());
+   
     }
 
     private void Start()
@@ -42,7 +44,7 @@ public class PointTargetBullet : BulletBase
     private void Update()
     {
         transform.Translate(moveVec.normalized * Time.deltaTime * speed, Space.World);
-        if (time > 3)
+        if (time > 13)
         {
             speed = 5.0f;
             rotateSpeed = 360;

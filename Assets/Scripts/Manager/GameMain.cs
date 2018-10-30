@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameMain : MonoBehaviour
 {
 
+
 	// Use this for initialization
 	void Start () {
         AddSomeCompent();
@@ -21,6 +22,8 @@ public class GameMain : MonoBehaviour
     {
         Application.runInBackground = true;
         CharacterPropManager.Instance.InitCharacterDic();
+        Texture2D texture = ResourcesManager.Instance.LoadTexture2D("mouseUI");
+        Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
 
     }
         // Update is called once per frame

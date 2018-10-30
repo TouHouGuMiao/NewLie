@@ -19,15 +19,16 @@ public class MarisaHeiDongBianYuan
     }
 
     float angle = 0;
-    public void ShowSkill(Vector3 marisaVec)
+    public void ShowSkill(Transform marisaTF)
     {
         for (int i = 0; i < 6; i++)
         {
             GameObject go = GameObject.Instantiate(bulletPrefab);
             RotateHuXianBullet huXianBullet = go.GetComponent<RotateHuXianBullet>();
             huXianBullet.angle = angle;
-            huXianBullet.centerPoint = marisaVec;
+            huXianBullet.centerTF = marisaTF;
             huXianBullet.spriteName = spriteNameList[index];
+      
 
             index++;
             angle += 60;

@@ -5,12 +5,11 @@ using UnityEngine;
 public class SphereRotateWithPause : BulletBase
 {
 
-    [HideInInspector]
-    public float radius = 15;
+    private float radius = 15;
     private GameObject bulletPrefab;
     [HideInInspector]
     public float angle = 0;
-    private GameObject wuEffect;
+
     [HideInInspector]
     public Vector3 centerPoint;
 
@@ -22,10 +21,9 @@ public class SphereRotateWithPause : BulletBase
 
 
 
-    private void Awake()
+    protected override void Awake()
     {
-
-        wuEffect = this.gameObject;
+        base.Awake();
         bulletPrefab = ResourcesManager.Instance.LoadBullet("zhiXianPauseStar");
     }
 
@@ -53,9 +51,11 @@ public class SphereRotateWithPause : BulletBase
             transform.position = new Vector3((radius - 0.1f) * Mathf.Cos(angle * Mathf.Deg2Rad) + centerPoint.x, (radius - 0.1f) * Mathf.Sin(angle * Mathf.Deg2Rad) + centerPoint.y);
             go.transform.position = pos;
             ZhiXianPauseBullet zhiXianBullet = go.GetComponent<ZhiXianPauseBullet>();
-            zhiXianBullet.targetVec = new Vector2(radius * Mathf.Cos((angle - 30) * Mathf.Deg2Rad), radius * Mathf.Sin((angle - 30) * Mathf.Deg2Rad));
+            zhiXianBullet.targetVec = new Vector2(radius * Mathf.Cos((angle) * Mathf.Deg2Rad), radius * Mathf.Sin((angle) * Mathf.Deg2Rad));
             angle += 6;
-
+            zhiXianBullet.injured = 60;
+            zhiXianBullet.HP = 90;
+            zhiXianBullet.m_Type = BulletTpye.emptyBullet;
             SpriteRenderer render = go.GetComponent<SpriteRenderer>();
             render.sprite = sprite;
             yield return new WaitForSeconds(0.02f);

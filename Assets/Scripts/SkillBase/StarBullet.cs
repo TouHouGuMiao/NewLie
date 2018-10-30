@@ -4,70 +4,58 @@ using UnityEngine;
 
 public class StarBullet : BulletBase
 {
-
-    public Transform target;
     private float speed=15f;
-    private Vector2 m_MoveVec;
-    private GameObject item;
 
-    //private float speedCenter;
-    //private float speedOneGround;
-    //private float speedTwoGround;
-    //float x = 0;
+    private GameObject target;
 
-    private void Awake()
+
+    private GameObject player;
+
+    protected override void Awake()
     {
-        Destroy(this.gameObject, 10);
+        base.Awake();
+        player = GameObject.FindWithTag("Player");
+        FindEnemyInRadius();
     }
+
     private void Start()
-    {
-        m_MoveVec = target.position - transform.position;
-        //float index_x = transform.position.x - target.position.x;
-        //if (index_x > 0)
-        //{
-        //    transform.rotation = Quaternion.Euler(0, 180, 0);
-        //}
-        m_MoveVec.Normalize();
-        Vector3 vecPos = transform.InverseTransformPoint(target.position);
-        float angle = Mathf.Atan2(vecPos.y, vecPos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-        StartCoroutine(SpeedUpdata());
-      
+    { 
+        if (target != null)
+        {
+
+            Vector3 tempPos = transform.InverseTransformPoint(target.transform.position);
+            float angle = Mathf.Atan2(tempPos.y, tempPos.x) * Mathf.Rad2Deg;
+            transform.Rotate(new Vector3(0, 0, 1)*angle);
+        }
+    
     }
+
+
 
     private void Update()
     {
-        LockToTarget();
+        transform.Translate(new Vector3(1,0,0)* speed*Time.deltaTime, Space.Self);
     }
 
-    float time=0;
-    private IEnumerator SpeedUpdata()
-    {
-        yield return new WaitForSeconds(1);
-        time += 1;
-        speed = 15f - 2.0f * time;
-        StartCoroutine(SpeedUpdata()); 
-    }
 
-   
-  
-
-    public void LockToTarget()
+    void FindEnemyInRadius()
     {
-        if (target == null)
+        Collider[] colliders = Physics.OverlapSphere(player.transform.position, 10, 1 << LayerMask.NameToLayer("enemy"));
+        if (colliders.Length > 0)
         {
-            Destroy(this.gameObject);
+            GameObject go = colliders[0].gameObject;
+            for (int i = 1; i < colliders.Length; i++)
+            {
+                float distance_Temp = Vector2.Distance(go.transform.position, player.transform.position);
+                float distance_Now = Vector2.Distance(colliders[i].transform.position, player.transform.position);
+                if (distance_Now < distance_Temp)
+                {
+                    go = colliders[i].gameObject;
+                }
+            }
+            target = go;
         }
-    
-
-
-
-
-        transform.Translate(new Vector2(1, 0) * Time.deltaTime * speed);
     }
 
-    protected override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-    }
+
 }

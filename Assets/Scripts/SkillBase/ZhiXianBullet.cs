@@ -5,19 +5,28 @@ using UnityEngine;
 public class ZhiXianBullet : BulletBase{
 
     private float speed=6.0f;
-    public Vector2 targetVec;
+    public Vector3 targetVec = Vector3.zero;
 
-    private void Awake()
+    protected override void Awake()
     {
-        
+        base.Awake();
     }
     void Start () {
-		
+        Transform playerTF = GameObject.FindWithTag("Player").transform;
+        if (playerTF.rotation.eulerAngles.y == 0)
+        {
+            targetVec = new Vector3(1, 0, 0);
+        }
+
+        else
+        {
+            targetVec = new Vector3(-1, 0, 0);
+        }
 	}
 	
 
 	void Update ()
     {
-        transform.Translate(targetVec.normalized*speed*Time.deltaTime,Space.World);
+        transform.Translate(targetVec * speed*Time.deltaTime,Space.World);
 	}
 }

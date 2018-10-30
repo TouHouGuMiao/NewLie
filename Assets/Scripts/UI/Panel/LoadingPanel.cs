@@ -46,6 +46,7 @@ public class LoadingPanel : IView
     protected override void OnHide()
     {
         m_slider.value = 0;
+     
     }
 
     protected override void OnDestroy()
@@ -81,7 +82,11 @@ public class LoadingPanel : IView
         if (isOpen == false && DownLoadManager.Instance.isDo)
         {
             GUIManager.HideView("LoadingPanel");
-            GUIManager.ShowView(LoadingName);
+            if (LoadingName != null)
+            {
+                GUIManager.ShowView(LoadingName);
+                LoadingName = null;
+            }
         }
     }
 }

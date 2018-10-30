@@ -15,7 +15,7 @@ public class CharacterPropBase:MonoBehaviour
     {
         get
         {
-            return(400 + 0.3f * DEX + 0.05f * Power)*0.025f;//自带0.025的实际数据修正
+            return(400 + 0.3f * DEX + 0.05f * Power)*0.01f;//自带0.01的实际数据修正
         }
         
     }
@@ -49,7 +49,17 @@ public class CharacterPropBase:MonoBehaviour
     {
         get
         {
-            return (float)(1 - (0.004 * DEF + 0.002 * VIT + 0.001 * Lucky));
+            float defens= (1 - (0.004f * DEF + 0.002f * VIT + 0.001f * Lucky));
+            if (defens <= 0.1f)
+            {
+                return 0.1f;
+            }
+            else
+            {
+                return defens;
+            }
+       
+            
         }
     }
 

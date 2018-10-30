@@ -36,11 +36,11 @@ public class ParticleReturnNoInstate : MonoBehaviour {
     private void Update()
     {
      
-        if (time >= 1.3f)
+        if (time >= 1.0f)
         {
             Destroy(gameObject);
         }
-        if (time >= 0.6f)
+        if (time >= 0.5f)
         {
             if (isReturn == true)
                 return;

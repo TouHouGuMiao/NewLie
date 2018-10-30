@@ -66,6 +66,14 @@ public class SceneDataManager
         sceneDataDic.Add(m_SceneData2.ID, m_SceneData2);
 
 
+
+        SceneData m_SceneData3 = new SceneData();
+        m_SceneData3.ID = 4;
+        m_SceneData3.sceneName = "Stage0";
+        m_SceneData3.stateName = "Stage0State";
+        sceneDataDic.Add(m_SceneData3.ID, m_SceneData3);
+
+
     }
 
 }

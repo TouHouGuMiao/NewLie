@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// Similar to UIButtonColor, but adds a 'disabled' state based on whether the collider is enabled or not.
@@ -236,16 +237,38 @@ public class UIButton : UIButtonColor
 			base.OnDragOut();
 	}
 
-	/// <summary>
-	/// Call the listener function.
-	/// </summary>
+    /// <summary>
+    /// Call the listener function.
+    /// </summary>
+    public delegate void OnClickDelegate(int id);
+    public delegate void OnClickDelegateWithGameObject(GameObject go);
 
-	protected virtual void OnClick ()
+    public int id;
+    public OnClickDelegate DelegateOnClickByID;
+    public OnClickDelegateWithGameObject DelegateOnClickByGameObject;
+
+
+    protected virtual void OnClick ()
 	{
+        if (Regex.IsMatch(name, @"^[+-]?\d*$"))
+        {
+            id = CommonHelper.Str2Int(name);
+        }
+
 		if (current == null && isEnabled && UICamera.currentTouchID != -2 && UICamera.currentTouchID != -3)
 		{
 			current = this;
 			EventDelegate.Execute(onClick);
+            if (DelegateOnClickByGameObject != null)
+            {
+                DelegateOnClickByGameObject(gameObject);
+            }
+            if (DelegateOnClickByID != null)
+            {
+                DelegateOnClickByID(id);
+            }
+
+          
 			current = null;
 		}
 	}

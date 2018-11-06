@@ -20,5 +20,7 @@ public class StoryData
 
     public int cout { get; set; }
 
+    public string spriteName { get; set; }
+
     public List<string> SpeakList = new List<string>();
 }

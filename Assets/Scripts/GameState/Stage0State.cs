@@ -8,6 +8,7 @@ public class Stage0State : GameState
     protected override void OnLoadComplete(params object[] args)
     {
         GUIManager.ShowView("BattleUIPanel");
+       
     }
 
     protected override void OnStart()
@@ -19,4 +20,5 @@ public class Stage0State : GameState
     {
       
     }
+
 }

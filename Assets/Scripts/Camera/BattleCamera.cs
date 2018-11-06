@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BattleCamera : MonoBehaviour
 {
+    public static BattleCamera Instance;
+
     private int SightDistanceSpeed = 15;
     private bool CameraIsLock = false;
     private float RectSize = 50f;
@@ -18,6 +20,16 @@ public class BattleCamera : MonoBehaviour
     private Rect RectRight;
 
     private Vector3 playerVecState;
+
+    public bool isRightStop = false;
+
+    public bool isLeftStop = false;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         RectUp = new Rect(0, Screen.height - RectSize, Screen.width, Screen.height);
@@ -33,21 +45,23 @@ public class BattleCamera : MonoBehaviour
 
     private void Update()
     {
+       
         //if (Input.GetKeyDown(KeyCode.Y))
         //{
 
         //    CameraIsLock = !CameraIsLock;
         //}
+        
         UpdataPlayerOffest();
         //CameraMoveAndLock();
     }
 
     void CameraMoveAndLock()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
-        }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    transform.position = new Vector3(Player.position.x, Player.position.y, transform.position.z);
+        //}
 
         if (!CameraIsLock)
         {
@@ -98,9 +112,28 @@ public class BattleCamera : MonoBehaviour
         if (playerVecState != Player.position)
         {
             Vector3 offsetVec = Player.position - playerVecState;
-           
+            if (isLeftStop)
+            {
+                if (Player.position.x < playerVecState.x)
+                {
+                    offsetVec = Vector3.zero;
+                }
+            }
+
+            if (isRightStop)
+            {
+                if (Player.position.x > playerVecState.x)
+                {
+                    offsetVec = Vector3.zero;
+                }
+            }
+
+            else
+            {
+                playerVecState = Player.position;
+            }
             transform.position = transform.position + offsetVec;
-            playerVecState = Player.position;
+           
         }
 
 

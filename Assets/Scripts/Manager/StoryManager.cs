@@ -9,7 +9,8 @@ public class StoryManager
     private static StoryManager _instance = null;
     private Dictionary<int, StoryData> StoryDic;
     private Dictionary<int, StoryData> Stage0Dic;
-    private GameObject storyPanel;
+    private Dictionary<int, StoryData> Stage0EventDic;
+
 
     public static StoryManager Instacne
     {
@@ -23,31 +24,16 @@ public class StoryManager
         }
     }
 
-    public  bool isSpeak
-    {
-        get
-        {
-            if (storyPanel == null)
-            {
-                return false;
-            }
-
-            if (storyPanel.activeSelf)
-            {
-                return true;
-            }
-            return false;
-        }
-    }
+ 
     
 
     public void ShowStoryList(List<StoryData> dataList)
     {
-        if (StoryDic == null)
-        {
-            StoryDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("StoryConfig",StoryDic);
-        }
+        //if (StoryDic == null)
+        //{
+        //    StoryDic = new Dictionary<int, StoryData>();
+        //    LoadStoryXML("StoryConfig",StoryDic);
+        //}
 
         if (Stage0Dic == null)
         {
@@ -58,10 +44,26 @@ public class StoryManager
         StoryPanel.dataList = dataList;
         
         GUIManager.ShowView("StoryPanel");
-        if (storyPanel == null)
+
+    }
+
+    public void ShowEventStoryList(List<StoryData> dataList)
+    {
+
+        if (Stage0EventDic == null)
         {
-            storyPanel = GUIManager.FindPanel("StoryPanel");
+            Stage0EventDic = new Dictionary<int, global::StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0Dic);
         }
+
+        EventStoryPanel.dataList = dataList;
+
+        if (EventStoryPanel.isEventSpeak)
+        {
+            GUIManager.HideView("EventStoryPanel");
+        }
+        GUIManager.ShowView("EventStoryPanel");
+
     }
 
     public void ShowStoryPanel(StoryData data)
@@ -72,28 +74,25 @@ public class StoryManager
 
         StoryPanel.data = data;
         GUIManager.ShowView("StoryPanel");
-        if (storyPanel == null)
-        {
-            storyPanel = GUIManager.FindPanel("StoryPanel");
-        }
+
 
     }
     #region  获得对话数据
-    public StoryData GetStoryDataByID(int id)
-    {
-        if (StoryDic == null)
-        {
-            StoryDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("StoryConfig",StoryDic);
-        }
-        StoryData data = null;
-        if (!StoryDic.TryGetValue(id, out data))
-        {
-            Debug.LogError("not data in storyDic");
-            return null;
-        }
-        return data;
-    }
+    //public StoryData GetStoryDataByID(int id)
+    //{
+    //    if (StoryDic == null)
+    //    {
+    //        StoryDic = new Dictionary<int, StoryData>();
+    //        LoadStoryXML("StoryConfig",StoryDic);
+    //    }
+    //    StoryData data = null;
+    //    if (!StoryDic.TryGetValue(id, out data))
+    //    {
+    //        Debug.LogError("not data in storyDic");
+    //        return null;
+    //    }
+    //    return data;
+    //}
 
 
     public StoryData GetState0DataByID(int id)
@@ -137,13 +136,16 @@ public class StoryManager
                 XmlNode name = item.SelectSingleNode("name");
                 XmlNode cout = item.SelectSingleNode("cout");
                 XmlNode speak = item.SelectSingleNode("Speak");
-
+                XmlNode spriteName = item.SelectSingleNode("spriteName");
+                
                 StoryData data = new StoryData();
                 data.id = CommonHelper.Str2Int(id.InnerText);
                 data.state = CommonHelper.Str2Int(state.InnerText);
                 data.name = name.InnerText;
                 data.index = CommonHelper.Str2Int(index.InnerText);
                 data.cout = CommonHelper.Str2Int(cout.InnerText);
+                data.spriteName = spriteName.InnerText;
+
                 foreach (XmlNode pair in speak)
                 {
                     data.SpeakList.Add(pair.InnerText);
@@ -157,25 +159,14 @@ public class StoryManager
 
 
     #region
-    public void ShowTestChose()
-    {
-        ChoseData data = new global::ChoseData();
-        data.ChoseDesList.Add("冲了");
-        data.ChoseDesList.Add("爽了");
-        data.ChoseDesList.Add("废了");
-        data.HanderList.Add(ChoseManager.Instance.TestHander1);
-        data.HanderList.Add(ChoseManager.Instance.TestHander2);
-        data.HanderList.Add(ChoseManager.Instance.TestHander3);
-        ChosePanel.data = data;
-        GUIManager.ShowView("ChosePanel");
-    }
+ 
 
 
     #endregion
 
 
 
-    #region 获得每个单独的对话List，并且绑定了需要触发的方法
+    #region 获得Stage0中单独的对话List，并且绑定了需要触发的方法
     public List<StoryData> GetStage0State0List()
     {
         if (Stage0Dic == null)
@@ -191,8 +182,11 @@ public class StoryManager
                 dataList.Add(item.Value);  
             }
         }
+        dataList[dataList.Count - 1].Hander = WhatYouThinkAboutWhiteRabbit_1;
         return dataList;
     }
+
+  
 
     public List<StoryData> GetStage0State1List()
     {
@@ -211,13 +205,114 @@ public class StoryManager
         }
         return dataList;
     }
-
+    
     #endregion
 
 
-    #region Stage0对话所需的方法
+    #region 获得Stage0中Event的对话List，并且绑定了需要触发的方法
+    public List<StoryData> GetStage0TheMiLuGrilEvent()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
 
+        List<StoryData> dataList = new List<StoryData>();
+
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 0)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        dataList[dataList.Count - 1].Hander = ContiueGo;
+        return dataList;
+    }
+
+
+
+
+    public List<StoryData> GetStage0TheFunnyRabitEvent()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
+
+        List<StoryData> dataList = new List<StoryData>();
+
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 1)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        dataList[dataList.Count - 1].Hander = WhiteRabitSpeak;
+        return dataList;
+    }
+
+    public List<StoryData> GetStage0TheFunnyRabitEvent_1()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
+
+        List<StoryData> dataList = new List<StoryData>();
+
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 2)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        dataList[dataList.Count -1].Hander+= ObserveTheWhiteRabbitOrGiveUp_1;
+        return dataList;
+    }
+
+
+    #endregion
+
+    #region Stage0 对话所需方法
+
+
+    /// <summary>
+    /// 绑定在与白兔子第一次对话的最后一句，用于显示 热心的兔子 的首个Event
+    /// </summary>
+    void WhatYouThinkAboutWhiteRabbit_1()
+    {
+        List<StoryData> dataList = GetStage0TheFunnyRabitEvent_1();
+        ShowEventStoryList(dataList);
+    }
+
+
+    #endregion
+
+    #region Stage0 Event所需的方法
+
+    void ContiueGo()
+    {
+        ChoseManager.Instance.ShowChosePanel(0);
+    }
     
+    void WhiteRabitSpeak()
+    {
+        List<StoryData> dataList = GetStage0State0List();
+        ShowStoryList(dataList);
+    }
+    /// <summary>
+    /// Stage0 中首个观察或者放弃兔子  的选择
+    /// </summary>
+    void ObserveTheWhiteRabbitOrGiveUp_1()
+    {
+        ChoseManager.Instance.ShowChosePanel(1);
+    }
 
 
     #endregion

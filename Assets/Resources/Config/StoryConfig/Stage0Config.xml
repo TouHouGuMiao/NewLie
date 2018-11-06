@@ -3,6 +3,7 @@
     <id>0</id>
     <State>0</State>
     <name>妖怪兔A</name>
+    <spriteName>0</spriteName>
     <index>0</index>
     <cout>1</cout>
     <Speak>
@@ -13,6 +14,7 @@
   <StoryData>
     <id>1</id>
     <State>0</State>
+    <spriteName>0</spriteName>
     <name>妖怪兔A</name>
     <index>0</index>
     <cout>1</cout>
@@ -24,6 +26,7 @@
   <StoryData>
     <id>2</id>
     <State>0</State>
+    <spriteName>0</spriteName>
     <name>妖怪兔A</name>
     <index>0</index>
     <cout>1</cout>
@@ -35,6 +38,7 @@
   <StoryData>
     <id>3</id>
     <State>0</State>
+    <spriteName>0</spriteName>
     <name>妖怪兔A</name>
     <index>0</index>
     <cout>1</cout>
@@ -46,6 +50,7 @@
   <StoryData>
     <id>4</id>
     <State>0</State>
+    <spriteName>0</spriteName>
     <name>妖怪兔A</name>
     <index>0</index>
     <cout>1</cout>

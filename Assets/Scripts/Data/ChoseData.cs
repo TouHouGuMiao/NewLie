@@ -10,8 +10,13 @@ public class ChoseData
     public List<string> ChoseDesList = new List<string>();
 
   
+    public int Id
+    {
+        get;
+        set;
+    }
 
-    public string name
+    public string Name
     {
         get;
         set;

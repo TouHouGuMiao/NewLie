@@ -27,12 +27,32 @@ public class StoryPanel : IView
 
 
     private string addText=null;
+
+    private static GameObject storyPanel;
+
+    public static bool isSpeak
+    {
+        get
+        {
+            if (storyPanel == null)
+            {
+                return false;
+            }
+
+            if (storyPanel.activeSelf)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
     protected override void OnStart()
     {
 
         nameLabel = this.GetChild("nameLabel").GetComponent<UILabel>();
         speakLabel=this.GetChild("sperakLabel").GetComponent<UILabel>();
-        writer = speakLabel.GetComponent<TypewriterEffect>();     
+        writer = speakLabel.GetComponent<TypewriterEffect>();
+        storyPanel = GUIManager.FindPanel("StoryPanel");
     }
 
 
@@ -78,7 +98,7 @@ public class StoryPanel : IView
     {
         speakLabel.text = "";
         speakLabel.gameObject.SetActive(false);
-        writer.ResetToBeginning();
+
         
   
         if (data != null)
@@ -124,10 +144,13 @@ public class StoryPanel : IView
     public override void Update()
     {
 
-        if (StoryManager.Instacne.isSpeak)
+        if (StoryPanel.isSpeak)
         {
+            if ( ChosePanel.isChose)
+            {
+                return;
+            }
 
-         
             if (addText == null)
             {
                 if (Input.GetKeyDown(KeyCode.E))

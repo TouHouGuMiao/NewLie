@@ -1,0 +1,20 @@
+<Chose name="ChoseString">
+  <ChoseData>
+    <id>0</id>
+    <name>迷路的巫女</name>
+    <choseList>
+      <chose1>继续前进</chose1>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>1</id>
+    <name>热心的兔子1</name>
+    <choseList>
+      <chose1>观察</chose1>
+      <chose2>放置</chose2>
+    </choseList>
+  </ChoseData>
+  
+  
+</Chose>

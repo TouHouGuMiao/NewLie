@@ -86,7 +86,7 @@ public class PlayerControl : CharacterPropBase {
             GUIManager.ShowView("SystemPanel");
         }
 
-        if (StoryManager.Instacne.isSpeak)
+        if (StoryPanel.isSpeak||EventStoryPanel.isEventSpeak)
         {
             return;
         }
@@ -335,26 +335,29 @@ public class PlayerControl : CharacterPropBase {
 
         if (other.CompareTag("Story"))
         {
-            if(other.name== "Stage0Story0")
+            if(other.name== "Stage0Event_MiLu")
             {
-                StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0State0List());
+                StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheMiLuGrilEvent());
+                Destroy(other.gameObject);
+            }
+
+            if (other.name == "Stage0Event_FunnyBabit")
+            {
+                StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent());
                 Destroy(other.gameObject);
             }
         }
+
+     
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("NPC"))
         {
-            if (!StoryManager.Instacne.isSpeak)
+            if (!StoryPanel.isSpeak)
             {
                 int id = CommonHelper.Str2Int(other.name);
-                List<StoryData> dataList = new List<StoryData>();
-                dataList.Add(StoryManager.Instacne.GetStoryDataByID(0));
-                dataList.Add(StoryManager.Instacne.GetStoryDataByID(1));
-                dataList.Add(StoryManager.Instacne.GetStoryDataByID(2));
-                StoryManager.Instacne.ShowStoryList(dataList);
 
             }
         }
@@ -390,6 +393,13 @@ public class PlayerControl : CharacterPropBase {
             List<ItemData> dataList = ItemDataManager.Instance.GetHasItemList();
             ItemDataManager.Instance.AddItemToHasMaterialList(data);
             Destroy(collision.gameObject);
+        }
+
+        if (collision.transform.name == "Stage0Scene2")
+        {
+            BattleCamera.Instance.isRightStop = false;
+            BattleCamera.Instance.isLeftStop = false;
+            transform.position = new Vector3(-4.4f, -13.85f, 0);
         }
     }
 

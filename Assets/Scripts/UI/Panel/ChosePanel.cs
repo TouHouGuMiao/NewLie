@@ -10,13 +10,35 @@ public class ChosePanel : IView
     private GameObject item;
     public static ChoseData data;
     private int index=0;
+    private static GameObject chosePanel;
 
+    public static bool isChose
+    {
+        get
+        {
+            if (chosePanel == null)
+            {
+                return false;
+            }
+
+            if (chosePanel.activeSelf)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+    public ChosePanel()
+    {
+        m_Layer = Layer.UI;
+    }
    
     protected override void OnStart()
     {
         grid = this.GetChild("Grid").GetComponent<UIGrid>();
         panel = GUIManager.FindPanel("ChosePanel");
         item = this.GetChild("item").gameObject;
+        chosePanel = GUIManager.FindPanel("ChosePanel");
     }
     protected override void OnShow()
     {
@@ -29,17 +51,12 @@ public class ChosePanel : IView
 
     protected override void OnHide()
     {
-        if (data.HanderList[index] != null)
-        {
-            data.HanderList[index]();
-        }
         index = 0;
         data = null;
     }
 
     public override void Update()
     {
-   
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             index++;
@@ -57,7 +74,6 @@ public class ChosePanel : IView
                 index = data.HanderList.Count - 1;
             }
         }
-
         for (int i = 0; i < grid.transform.childCount; i++)
         {
             GameObject go = grid.transform.GetChild(i).gameObject;
@@ -76,6 +92,10 @@ public class ChosePanel : IView
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            if (data != null)
+            {
+                data.HanderList[index]();
+            }
             GUIManager.HideView("ChosePanel");
         }
     }
@@ -87,7 +107,7 @@ public class ChosePanel : IView
             return;
         }
 
-        if (grid.transform.childCount < data.ChoseDesList.Count)
+        if (grid.transform.childCount <= data.ChoseDesList.Count)
         {
             for (int i = 0; i < grid.transform.childCount; i++)
             {
@@ -95,7 +115,7 @@ public class ChosePanel : IView
               
                 UILabel label = go.transform.Find("Label").GetComponent<UILabel>();
                 label.text = data.ChoseDesList[i];
-                go.name = data.name;
+                go.name = data.Name;
                 go.SetActive(true);
             }
 
@@ -105,7 +125,7 @@ public class ChosePanel : IView
        
                 UILabel label = go.transform.Find("Label").GetComponent<UILabel>();
                 label.text = data.ChoseDesList[i];
-                go.name = data.name;
+                go.name = data.Name;
                 go.transform.SetParent(grid.transform, false);
                 go.SetActive(true);
             }

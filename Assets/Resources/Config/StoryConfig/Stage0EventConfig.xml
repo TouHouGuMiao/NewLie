@@ -1,0 +1,37 @@
+<Story name="CharacterSpeak">
+  <StoryData>
+    <id>0</id>
+    <State>0</State>
+    <name></name>
+    <spriteName>0</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>当你回过神来的时候，你发现你已经在竹林中迷了路。</speak1>
+    </Speak>
+    </StoryData>
+
+  <StoryData>
+    <id>1</id>
+    <State>1</State>
+    <name></name>
+    <spriteName>1</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>在你的视野里，出现了一只兔子。在你观察她的时候，她发现了你，她看向了你，表现出一副吃惊的样子，紧接着缓缓向你说道</speak1>
+    </Speak>
+  </StoryData>
+
+  <StoryData>
+    <id>2</id>
+    <State>2</State>
+    <name></name>
+    <spriteName>1</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>你觉得这只妖怪兔怪怪的，你决定</speak1>
+    </Speak>
+  </StoryData>
+</Story>

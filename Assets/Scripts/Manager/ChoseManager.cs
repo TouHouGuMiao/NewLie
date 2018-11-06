@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml;
 using UnityEngine;
 
 public class ChoseManager
@@ -19,20 +21,30 @@ public class ChoseManager
         }
     }
 
-    private Dictionary<string, ChoseData> ChoseDataDic = new Dictionary<string, ChoseData>();
 
-    public void Init()
+  
+
+    private Dictionary<int, ChoseData> ChoseDataDic;
+
+    void Init()
     {
-
-        
+        ChoseDataDic = new Dictionary<int, ChoseData>();
+        LoadChoseXML("ChoseConfig", ChoseDataDic);
+        InitChoseHander();
     }
 
-    public void ShowChosePanel(string name)
+    public void ShowChosePanel(int id)
     {
-        ChoseData data = null;
-        if(!ChoseDataDic.TryGetValue(name,out data))
+      
+
+        if (ChoseDataDic == null)
         {
-            Debug.LogError("not data in choseDic!");
+            Init();
+        }
+        ChoseData data = null;
+        if(!ChoseDataDic.TryGetValue(id,out data))
+        {
+            Debug.LogError("choseData is null");
             return;
         }
         ChosePanel.data = data;
@@ -40,52 +52,81 @@ public class ChoseManager
     }
 
 
-    #region
-    public void TestHander1()
+
+
+
+    #region 
+
+    void InitChoseHander()
     {
-        StoryData data = new StoryData();
-        data.id = 0;
-        data.name = "";
-        data.state = 0;
-        data.cout = 1;
-        data.index = 0;
-        data.SpeakList.Add("你冲了");
-        StoryPanel.data = data;
-        GUIManager.ShowView("StoryPanel");
+        ChoseData data = ChoseDataDic[0];
+        data.HanderList.Add(ContinueGo);
+
+        ChoseData data1 = ChoseDataDic[1];
+        data1.HanderList.Add(ObserveRabit_1);
+        data1.HanderList.Add(GiveUpYinYangYu_1);
     }
-
-    public void TestHander2()
-    {
-
-        StoryData data = new StoryData();
-        data.id = 0;
-        data.name = "";
-        data.state = 0;
-        data.cout = 1;
-        data.index = 0;
-        data.SpeakList.Add("你爽了");
-        StoryPanel.data = data;
-        GUIManager.ShowView("ItemCreatPanel");
-    }
-
-    public void TestHander3()
-    {
-
-        StoryData data = new StoryData();
-        data.id = 0;
-        data.name = "";
-        data.state = 0;
-        data.cout = 1;
-        data.index = 0;
-        data.SpeakList.Add("你废了");
-        StoryPanel.data = data;
-        GUIManager.ShowView("StoryPanel");
-
-        GUIManager.ShowView("ItemCreatPanel");
-    }
-
-
 
     #endregion
 
+
+    #region Stage0中选项方法设置
+    void ContinueGo()
+    {
+        GUIManager.HideView("EventStoryPanel");
+    }
+    void ObserveRabit_1()
+    {
+
+    }
+
+    void GiveUpYinYangYu_1()
+    {
+
+    }
+
+    #endregion
+
+
+
+
+
+    void LoadChoseXML(string pathName, Dictionary<int, ChoseData> DataDic)
+    {
+        string filePath = Application.dataPath + @"/Resources/Config/Chose/" + pathName + ".xml";
+        if (!File.Exists(filePath))
+        {
+            Debug.LogError("not ChoseCofing");
+            return;
+        }
+
+        if (File.Exists(filePath))
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(filePath);
+
+            XmlNode node = xmlDoc.SelectSingleNode("Chose");
+            XmlNodeList nodeList = node.ChildNodes;
+
+            foreach (XmlNode item in nodeList)
+            {
+                XmlNode id = item.SelectSingleNode("id");
+
+                XmlNode name = item.SelectSingleNode("name");
+     
+                XmlNode choseList = item.SelectSingleNode("choseList");
+              
+
+                ChoseData data = new ChoseData();
+
+                data.Id = CommonHelper.Str2Int(id.InnerText);
+                data.Name = name.InnerText;
+                foreach (XmlNode pair in choseList)
+                {
+                    data.ChoseDesList.Add(pair.InnerText);
+                }
+                DataDic.Add(data.Id, data);
+            }
+        }
+    }
 }

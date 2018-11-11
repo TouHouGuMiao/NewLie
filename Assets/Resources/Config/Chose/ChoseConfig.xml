@@ -15,6 +15,42 @@
       <chose2>放置</chose2>
     </choseList>
   </ChoseData>
-  
+
+  <ChoseData>
+    <id>2</id>
+    <name>热心的兔子2</name>
+    <choseList>
+      <chose1>观察</chose1>
+      <chose2>放置</chose2>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>3</id>
+    <name>热心的兔子3</name>
+    <choseList>
+      <chose1>观察</chose1>
+      <chose2>放置</chose2>
+    </choseList>
+  </ChoseData>
+
+
+  <ChoseData>
+    <id>4</id>
+    <name>热心的兔子4</name>
+    <choseList>
+      <chose1>观察</chose1>
+      <chose2>放置</chose2>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>5</id>
+    <name>热心的兔子5</name>
+    <choseList>
+      <chose1>观察</chose1>
+      <chose2>放置</chose2>
+    </choseList>
+  </ChoseData>
   
 </Chose>

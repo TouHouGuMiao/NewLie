@@ -9,13 +9,14 @@ public class EventStoryPanel : IView
         m_Layer = Layer.SpeicalUI;
     }
 
-    public static StoryData data;
+    //public static StoryData data;
     public static List<StoryData> dataList = new List<StoryData>();
     private UILabel nameLabel;
     private UILabel speakLabel;
+    private UISprite eventSprite;
     private TweenPosition tp;
 
-
+    private StoryData curData = new StoryData ();
 
     private TypewriterEffect writer;
     /// <summary>
@@ -52,7 +53,10 @@ public class EventStoryPanel : IView
     {
         //nameLabel = this.GetChild("nameLabel").GetComponent<UILabel>();
         speakLabel = this.GetChild("sperakLabel").GetComponent<UILabel>();
+        eventSprite = this.GetChild("EventSprite").GetComponent<UISprite>();
         writer = speakLabel.GetComponent<TypewriterEffect>();
+
+    
         tp = this.GetChild("EventSprite").GetComponent<TweenPosition>();
         EventDelegate EventAffterTP = new EventDelegate(ShowTextAfterTp);
         tp.onFinished.Add(EventAffterTP);
@@ -64,8 +68,29 @@ public class EventStoryPanel : IView
 
     protected override void OnShow()
     {
+        
         tp.enabled = true;
-        tp.ResetToBeginning();
+        if (dataList != null)
+        {
+            eventSprite.spriteName = dataList[0].spriteName;
+            if (curData == dataList[0])
+            {
+                Debug.LogError("重复上次数据，请检查"+"the curData is"+curData.name+"and the dataList[0] is"+dataList[0].name);
+                return;
+            }
+
+            if (curData.spriteName != dataList[0].spriteName)
+            {
+                tp.ResetToBeginning();
+                curData = dataList[0];
+            }
+
+            else
+            {
+                ShowTextAfterTp();
+            }
+        }
+       
     }
 
     protected override void OnDestroy()
@@ -75,10 +100,9 @@ public class EventStoryPanel : IView
 
     protected override void OnHide()
     {
-        speakLabel.text = "";
-        speakLabel.gameObject.SetActive(false);
-       
 
+        speakLabel.text = "";
+        speakLabel.enabled = false;
 
         //if (data != null)
         //{
@@ -113,13 +137,12 @@ public class EventStoryPanel : IView
         //    }
 
 
-            //IEnumeratorManager.Instance.StartCoroutine(ListOnHideSet());
+        //IEnumeratorManager.Instance.StartCoroutine(ListOnHideSet());
         //}
     }
 
     private void ShowTextAfterTp()
     {
-        writer.ResetToBeginning();
         if (dataList.Count > 0)
         {
             //if (dataList[0].spriteName != eventSpriteName)
@@ -136,20 +159,21 @@ public class EventStoryPanel : IView
             //nameLabel.text = dataList[index].name;
             speakLabel.text = text;
         }
-        else if (data != null)
-        {
-            string text = data.SpeakList[data.index];
+        //else if (data != null)
+        //{
+        //    string text = data.SpeakList[data.index];
 
-            if (text.Length > 40)
-            {
+        //    if (text.Length > 40)
+        //    {
 
-                addText = text.Substring(40, text.Length - 41);
-                text = text.Substring(0, 40);
-            }
-            //nameLabel.text = data.name;
-            speakLabel.text = text;
+        //        addText = text.Substring(40, text.Length - 41);
+        //        text = text.Substring(0, 40);
+        //    }
+        //    //nameLabel.text = data.name;
+        //    speakLabel.text = text;
 
-        }
+        //}
+        writer.ResetToBeginning();
         IEnumeratorManager.Instance.StartCoroutine(SetAcitveSpeakLabel_Delay());
     }
 
@@ -176,7 +200,7 @@ public class EventStoryPanel : IView
 
                     if (speakLabel.gameObject.activeSelf == false)
                     {
-                        speakLabel.gameObject.SetActive(true);
+                        speakLabel.enabled = true;
                         return;
                     }
                     if (writer.isActive)
@@ -203,7 +227,7 @@ public class EventStoryPanel : IView
                             }
                         }
                         if (needHide)
-                        {
+                        {                            
                             GUIManager.HideView("EventStoryPanel");
                         }
                     }
@@ -216,7 +240,7 @@ public class EventStoryPanel : IView
                 {
                     if (speakLabel.gameObject.activeSelf == false)
                     {
-                        speakLabel.gameObject.SetActive(true);
+                        speakLabel.enabled = true;
                         return;
                     }
 
@@ -239,13 +263,9 @@ public class EventStoryPanel : IView
 
     IEnumerator SetAcitveSpeakLabel_Delay()
     {
-        yield return new WaitForSeconds(0.2f);
-        speakLabel.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        speakLabel.enabled = true;
     }
 
-    IEnumerator ListOnHideSet()
-    {
-        yield return new WaitForSeconds(0.5f);
-        GUIManager.ShowView("EventStory");
-    }
+
 }

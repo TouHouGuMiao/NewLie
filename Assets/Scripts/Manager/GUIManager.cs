@@ -155,12 +155,17 @@ public static class GUIManager
 
     public static void Update()
     {
+        List<IView> NeedUpdataViewList = new List<IView>();
         foreach (KeyValuePair<GameObject,IView> pair in m_UIViewDic.Values)
         {
             if (pair.Key.activeInHierarchy)
             {
-                pair.Value.Update();
+                NeedUpdataViewList.Add(pair.Value);
             }
+        }
+        for (int i = 0; i < NeedUpdataViewList.Count; i++)
+        {
+            NeedUpdataViewList[i].Update();
         }
         
     }

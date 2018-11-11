@@ -19,7 +19,7 @@
     <index>0</index>
     <cout>1</cout>
     <Speak>
-      <speak1>在你的视野里，出现了一只兔子。在你观察她的时候，她发现了你，她看向了你，表现出一副吃惊的样子，紧接着缓缓向你说道</speak1>
+      <speak1>在你的视野里，出现了一只兔子。在你观察她的时候，她发现了你，她看向了你，表现出一副吃惊的样子，紧接着缓缓向你说道:</speak1>
     </Speak>
   </StoryData>
 
@@ -31,7 +31,67 @@
     <index>0</index>
     <cout>1</cout>
     <Speak>
-      <speak1>你觉得这只妖怪兔怪怪的，你决定</speak1>
+      <speak1>你觉得这只妖怪兔怪怪的，你决定:</speak1>
+    </Speak>
+  </StoryData>
+
+  <StoryData>
+    <id>3</id>
+    <State>3</State>
+    <name></name>
+    <spriteName>1</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>你观察到这个妖怪兔在不停用微妙的眼神打量你，让你不是很舒服。</speak1>
+    </Speak>
+  </StoryData>
+
+  <StoryData>
+    <id>4</id>
+    <State>4</State>
+    <name></name>
+    <spriteName>1</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>这只妖怪兔脸上的笑容开始褪去。</speak1>
+    </Speak>
+  </StoryData>
+
+  <StoryData>
+    <id>5</id>
+    <State>5</State>
+    <name></name>
+    <spriteName>1</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>这只妖怪兔的腿开始微微颤抖，像是在害怕你。</speak1>
+    </Speak>
+  </StoryData>
+
+  <StoryData>
+    <id>6</id>
+    <State>6</State>
+    <name></name>
+    <spriteName>1</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>这只妖怪兔眼中噙着泪水，下一秒可能就会哭出来。</speak1>
+    </Speak>
+  </StoryData>
+
+  <StoryData>
+    <id>7</id>
+    <State>7</State>
+    <name></name>
+    <spriteName>1</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>她的身体不停战栗着。</speak1>
     </Speak>
   </StoryData>
 </Story>

@@ -59,7 +59,7 @@ public class StoryPanel : IView
 
     protected override void OnShow()
     {
-        
+        writer.ResetToBeginning();
         if (dataList.Count > 0)
         {
             string text = dataList[index].SpeakList[dataIndex];
@@ -86,7 +86,8 @@ public class StoryPanel : IView
             speakLabel.text = text;
             
         }
-        speakLabel.gameObject.SetActive(true);
+
+        IEnumeratorManager.Instance.StartCoroutine(SetAcitveSpeakLabel_Delay());
     }
 
     protected override void OnDestroy()
@@ -96,10 +97,10 @@ public class StoryPanel : IView
 
     protected override void OnHide()
     {
-        speakLabel.text = "";
-        speakLabel.gameObject.SetActive(false);
 
-        
+        //speakLabel.gameObject.SetActive(false);
+
+        speakLabel.enabled = false;
   
         if (data != null)
         {
@@ -156,9 +157,9 @@ public class StoryPanel : IView
                 if (Input.GetKeyDown(KeyCode.E))
                 {
 
-                    if (speakLabel.gameObject.activeSelf == false)
+                    if (speakLabel.enabled == false)
                     {
-                        speakLabel.gameObject.SetActive(true);
+                        speakLabel.enabled=true;
                         return;
                     }
                     if (writer.isActive)
@@ -177,9 +178,9 @@ public class StoryPanel : IView
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    if (speakLabel.gameObject.activeSelf == false)
+                    if (speakLabel.enabled == false)
                     {
-                        speakLabel.gameObject.SetActive(true);
+                        speakLabel.enabled=true;
                         return;
                     }
 
@@ -202,7 +203,13 @@ public class StoryPanel : IView
 
     IEnumerator ListOnHideSet()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         GUIManager.ShowView("StoryPanel");
+    }
+
+    IEnumerator SetAcitveSpeakLabel_Delay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        speakLabel.enabled = true;
     }
 }

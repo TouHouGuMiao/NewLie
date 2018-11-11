@@ -65,6 +65,18 @@ public class ChoseManager
         ChoseData data1 = ChoseDataDic[1];
         data1.HanderList.Add(ObserveRabit_1);
         data1.HanderList.Add(GiveUpYinYangYu_1);
+
+        ChoseData data2 = ChoseDataDic[2];
+        data2.HanderList.Add(ObserveRabit_2);
+        data2.HanderList.Add(GiveUpYinYangYu_2);
+
+        ChoseData data3 = ChoseDataDic[3];
+        data3.HanderList.Add(ObserveRabit_3);
+        data3.HanderList.Add(GiveUpYinYangYu_3);
+
+        ChoseData data4 = ChoseDataDic[4];
+        data4.HanderList.Add(ObserveRabit_4);
+        data4.HanderList.Add(GiveUpYinYangYu_4);
     }
 
     #endregion
@@ -77,10 +89,44 @@ public class ChoseManager
     }
     void ObserveRabit_1()
     {
-
+        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_2());
+        StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0WhiteRabbitSpeak_1());
     }
 
     void GiveUpYinYangYu_1()
+    {
+
+    }
+
+    void ObserveRabit_2()
+    {
+        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_3());
+        StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0WhiteRabbitSpeak_2());
+    }
+
+    void GiveUpYinYangYu_2()
+    {
+
+    }
+
+    void ObserveRabit_3()
+    {
+        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_4());
+        StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0WhiteRabbitSpeak_3());
+    }
+
+    void GiveUpYinYangYu_3()
+    {
+
+    }
+
+    void ObserveRabit_4()
+    {
+        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_5());
+        StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0WhiteRabbitSpeak_4());
+    }
+
+    void GiveUpYinYangYu_4()
     {
 
     }

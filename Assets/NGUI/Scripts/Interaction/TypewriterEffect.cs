@@ -135,7 +135,7 @@ public class TypewriterEffect : MonoBehaviour
 			mLabel = GetComponent<UILabel>();
 			mFullText = mLabel.processedText;
 			mFade.Clear();
-
+            mNextChar = 0.0f;
 			if (keepFullDimensions && scrollView != null) scrollView.UpdatePosition();
 		}
 

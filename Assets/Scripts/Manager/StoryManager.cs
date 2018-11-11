@@ -53,7 +53,7 @@ public class StoryManager
         if (Stage0EventDic == null)
         {
             Stage0EventDic = new Dictionary<int, global::StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0Dic);
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
         }
 
         EventStoryPanel.dataList = dataList;
@@ -188,7 +188,7 @@ public class StoryManager
 
   
 
-    public List<StoryData> GetStage0State1List()
+    public List<StoryData> GetStage0WhiteRabbitSpeak_1()
     {
         if (Stage0Dic == null)
         {
@@ -198,14 +198,68 @@ public class StoryManager
         List<StoryData> dataList = new List<global::StoryData>();
         foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
         {
-            if (item.Value.state == 1)
+            if (item.Value.id == 5)
             {
                 dataList.Add(item.Value);
             }
         }
         return dataList;
     }
-    
+
+    public List<StoryData> GetStage0WhiteRabbitSpeak_2()
+    {
+        if (Stage0Dic == null)
+        {
+            Stage0Dic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0Config", Stage0Dic);
+        }
+        List<StoryData> dataList = new List<global::StoryData>();
+        foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
+        {
+            if (item.Value.id == 6)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        return dataList;
+    }
+
+    public List<StoryData> GetStage0WhiteRabbitSpeak_3()
+    {
+        if (Stage0Dic == null)
+        {
+            Stage0Dic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0Config", Stage0Dic);
+        }
+        List<StoryData> dataList = new List<global::StoryData>();
+        foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
+        {
+            if (item.Value.id == 7)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        return dataList;
+    }
+
+    public List<StoryData> GetStage0WhiteRabbitSpeak_4()
+    {
+        if (Stage0Dic == null)
+        {
+            Stage0Dic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0Config", Stage0Dic);
+        }
+        List<StoryData> dataList = new List<global::StoryData>();
+        foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
+        {
+            if (item.Value.id == 8)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        return dataList;
+    }
+
     #endregion
 
 
@@ -276,6 +330,90 @@ public class StoryManager
         return dataList;
     }
 
+    public List<StoryData> GetStage0TheFunnyRabitEvent_2()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
+
+        List<StoryData> dataList = new List<StoryData>();
+
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 3)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_2;
+        return dataList;
+    }
+
+    public List<StoryData> GetStage0TheFunnyRabitEvent_3()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
+
+        List<StoryData> dataList = new List<StoryData>();
+
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 4)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_3;
+        return dataList;
+    }
+
+    public List<StoryData> GetStage0TheFunnyRabitEvent_4()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
+
+        List<StoryData> dataList = new List<StoryData>();
+
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 5)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_4;
+        return dataList;
+    }
+
+    public List<StoryData> GetStage0TheFunnyRabitEvent_5()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
+
+        List<StoryData> dataList = new List<StoryData>();
+
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 6)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_5;
+        return dataList;
+    }
+
 
     #endregion
 
@@ -292,6 +430,11 @@ public class StoryManager
     }
 
 
+
+
+
+
+
     #endregion
 
     #region Stage0 Event所需的方法
@@ -306,6 +449,8 @@ public class StoryManager
         List<StoryData> dataList = GetStage0State0List();
         ShowStoryList(dataList);
     }
+
+
     /// <summary>
     /// Stage0 中首个观察或者放弃兔子  的选择
     /// </summary>
@@ -313,6 +458,29 @@ public class StoryManager
     {
         ChoseManager.Instance.ShowChosePanel(1);
     }
+
+    void ObserveTheWhiteRabbitOrGiveUp_2()
+    {
+        ChoseManager.Instance.ShowChosePanel(2);
+    }
+
+    void ObserveTheWhiteRabbitOrGiveUp_3()
+    {
+        ChoseManager.Instance.ShowChosePanel(3);
+    }
+
+    void ObserveTheWhiteRabbitOrGiveUp_4()
+    {
+        ChoseManager.Instance.ShowChosePanel(4);
+    }
+
+    void ObserveTheWhiteRabbitOrGiveUp_5()
+    {
+        ChoseManager.Instance.ShowChosePanel(5);
+    }
+
+
+
 
 
     #endregion

@@ -314,17 +314,17 @@ public class PlayerControl : CharacterPropBase {
 
     private void OnTriggerEnter(Collider other)
     {
-        BulletBase m_Base = other.GetComponent<BulletBase>();
-        if (m_Base != null)
-        {
-            if (m_Base.m_Type == BulletBase.BulletTpye.emptyBullet)
-            {
-                float injured = m_Base.injured;
-                injured = injured * defenseLV;
-                m_HP = BattleCommoUIManager.Instance.UpdataHP_Player(m_HP, HP, injured, -1);
-                GameObject.Destroy(m_Base.gameObject);
-            }
-        }
+        //BulletBase m_Base = other.GetComponent<BulletBase>();
+        //if (m_Base != null)
+        //{
+        //    if (m_Base.m_Type == BulletBase.BulletTpye.emptyBullet)
+        //    {
+        //        float injured = m_Base.injured;
+        //        injured = injured * defenseLV;
+        //        m_HP = BattleCommoUIManager.Instance.UpdataHP_Player(m_HP, HP, injured, -1);
+        //        GameObject.Destroy(m_Base.gameObject);
+        //    }
+        //}
 
         if (other.CompareTag("NPC"))
         {
@@ -333,17 +333,21 @@ public class PlayerControl : CharacterPropBase {
             BattleCommoUIManager.Instance.speakLabelAlpha.gameObject.SetActive(true);
         }
 
+       
+
         if (other.CompareTag("Story"))
         {
-            if(other.name== "Stage0Event_MiLu")
+            if(other.name== "Stage0EventMiLu")
             {
-                StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheMiLuGrilEvent());
+                List<StoryData> dataList = StoryManager.Instacne.GetStage0TheMiLuGrilEvent();
+                StoryManager.Instacne.ShowEventStoryList(dataList);
                 Destroy(other.gameObject);
             }
 
-            if (other.name == "Stage0Event_FunnyBabit")
+            if (other.name == "Stage0EventFunnyBabit")
             {
-                StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent());
+                List<StoryData> dataList = StoryManager.Instacne.GetStage0TheFunnyRabitEvent();
+                StoryManager.Instacne.ShowEventStoryList(dataList);
                 Destroy(other.gameObject);
             }
         }

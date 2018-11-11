@@ -58,4 +58,53 @@
       <speak1>赶紧试一下吧。</speak1>
     </Speak>
   </StoryData>
+
+  <StoryData>
+    <id>5</id>
+    <State>1</State>
+    <spriteName>0</spriteName>
+    <name>妖怪兔A</name>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>嗯？。</speak1>
+    </Speak>
+  </StoryData>
+
+  <StoryData>
+    <id>6</id>
+    <State>1</State>
+    <spriteName>0</spriteName>
+    <name>妖怪兔A</name>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>唔。。嗯？巫女大人。。怎么了吗？</speak1>
+    </Speak>
+  </StoryData>
+
+
+  <StoryData>
+    <id>7</id>
+    <State>1</State>
+    <spriteName>0</spriteName>
+    <name>妖怪兔A</name>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>咿...呀！</speak1>
+    </Speak>
+  </StoryData>
+
+  <StoryData>
+    <id>8</id>
+    <State>1</State>
+    <spriteName>0</spriteName>
+    <name>妖怪兔A</name>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>呜。。嘤。，。</speak1>
+    </Speak>
+  </StoryData>
 </Story>

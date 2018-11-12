@@ -94,4 +94,16 @@
       <speak1>她的身体不停战栗着。</speak1>
     </Speak>
   </StoryData>
+
+  <StoryData>
+    <id>8</id>
+    <State>8</State>
+    <name></name>
+    <spriteName>1</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>你刚开口说出第一个字的时候，她突然哭了出来：</speak1>
+    </Speak>
+  </StoryData>
 </Story>

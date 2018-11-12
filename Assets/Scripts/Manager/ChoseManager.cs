@@ -77,6 +77,14 @@ public class ChoseManager
         ChoseData data4 = ChoseDataDic[4];
         data4.HanderList.Add(ObserveRabit_4);
         data4.HanderList.Add(GiveUpYinYangYu_4);
+
+        ChoseData data5 = ChoseDataDic[5];
+        data5.HanderList.Add(ObserveRabit_5);
+        data5.HanderList.Add(GiveUpYinYangYu_5);
+
+        ChoseData data6 = ChoseDataDic[6];
+        data6.HanderList.Add(ObserveRabit_6);
+        data6.HanderList.Add(GiveUpYinYangYu_6);
     }
 
     #endregion
@@ -133,7 +141,25 @@ public class ChoseManager
 
     #endregion
 
+    void ObserveRabit_5()
+    {
+        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_6());
+    }
 
+    void GiveUpYinYangYu_5()
+    {
+
+    }
+
+    void ObserveRabit_6()
+    {
+        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_7());
+    }
+
+    void GiveUpYinYangYu_6()
+    {
+
+    }
 
 
 

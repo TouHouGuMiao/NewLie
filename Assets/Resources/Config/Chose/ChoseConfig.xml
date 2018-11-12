@@ -52,5 +52,14 @@
       <chose2>放置</chose2>
     </choseList>
   </ChoseData>
+
+  <ChoseData>
+    <id>6</id>
+    <name>热心的兔子6</name>
+    <choseList>
+      <chose1>询问</chose1>
+      <chose2>放置</chose2>
+    </choseList>
+  </ChoseData>
   
 </Chose>

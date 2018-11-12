@@ -260,6 +260,24 @@ public class StoryManager
         return dataList;
     }
 
+    public List<StoryData> GetStage0WhiteRabbitSpeak_5()
+    {
+        if (Stage0Dic == null)
+        {
+            Stage0Dic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0Config", Stage0Dic);
+        }
+        List<StoryData> dataList = new List<global::StoryData>();
+        foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
+        {
+            if (item.Value.id == 9)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        return dataList;
+    }
+
     #endregion
 
 
@@ -414,16 +432,57 @@ public class StoryManager
         return dataList;
     }
 
+    public List<StoryData> GetStage0TheFunnyRabitEvent_6()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
 
-    #endregion
+        List<StoryData> dataList = new List<StoryData>();
 
-    #region Stage0 对话所需方法
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 7)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_6;
+        return dataList;
+    }
+
+    public List<StoryData> GetStage0TheFunnyRabitEvent_7()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
+
+        List<StoryData> dataList = new List<StoryData>();
+
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 8)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        dataList[dataList.Count - 1].Hander += AskTheWhiteRabbit;
+        return dataList;
+    }
+
+        #endregion
+
+        #region Stage0 对话所需方法
 
 
-    /// <summary>
-    /// 绑定在与白兔子第一次对话的最后一句，用于显示 热心的兔子 的首个Event
-    /// </summary>
-    void WhatYouThinkAboutWhiteRabbit_1()
+        /// <summary>
+        /// 绑定在与白兔子第一次对话的最后一句，用于显示 热心的兔子 的首个Event
+        /// </summary>
+        void WhatYouThinkAboutWhiteRabbit_1()
     {
         List<StoryData> dataList = GetStage0TheFunnyRabitEvent_1();
         ShowEventStoryList(dataList);
@@ -480,7 +539,16 @@ public class StoryManager
     }
 
 
+    void ObserveTheWhiteRabbitOrGiveUp_6()
+    {
+        ChoseManager.Instance.ShowChosePanel(6);
+    }
 
+    void AskTheWhiteRabbit()
+    {
+        ShowStoryList(GetStage0WhiteRabbitSpeak_5());
+     
+    }
 
 
     #endregion

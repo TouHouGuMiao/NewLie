@@ -167,4 +167,20 @@ public class ResourcesManager
         }
         return particle;
     }
+
+
+    public TextAsset LoadConfig(string path,string name)
+    {
+        TextAsset textAsset = null;
+        string loadPath = path + "/" + name;
+        textAsset = Resources.Load(loadPath, typeof(TextAsset)) as  TextAsset;
+
+        if (textAsset == null)
+        {
+            Debug.LogError(loadPath + " ..." + "not found config by the path");
+            return null;
+        }
+        return textAsset;
+
+    }
 }

@@ -111,48 +111,42 @@ public class StoryManager
         return data;
     }
     #endregion
-    void LoadStoryXML(string pathName,Dictionary<int,StoryData> DataDic)
+    void LoadStoryXML(string pathName, Dictionary<int, StoryData> DataDic)
     {
-        string filePath = Application.dataPath + @"/Resources/Config/StoryConfig/"+ pathName+".xml";
-        if (!File.Exists(filePath))
+        string path = "Config";
+
+        string text = ResourcesManager.Instance.LoadConfig(path, pathName).text;
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(text);
+
+        XmlNode node = xmlDoc.SelectSingleNode("Story");
+        XmlNodeList nodeList = node.ChildNodes;
+    
+        foreach (XmlNode item in nodeList)
         {
-            Debug.LogError("not storyCofing");
-            return;
-        }
+            XmlNode id = item.SelectSingleNode("id");
+            XmlNode index = item.SelectSingleNode("index");
+            XmlNode state = item.SelectSingleNode("State");
+            XmlNode name = item.SelectSingleNode("name");
+            XmlNode cout = item.SelectSingleNode("cout");
+            XmlNode speak = item.SelectSingleNode("Speak");
+            XmlNode spriteName = item.SelectSingleNode("spriteName");
 
-        if (File.Exists(filePath))
-        {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(filePath);
+            StoryData data = new StoryData();
+            data.id = CommonHelper.Str2Int(id.InnerText);
+            data.state = CommonHelper.Str2Int(state.InnerText);
+            data.name = name.InnerText;
+            data.index = CommonHelper.Str2Int(index.InnerText);
+            data.cout = CommonHelper.Str2Int(cout.InnerText);
+            data.spriteName = spriteName.InnerText;
 
-            XmlNode node = xmlDoc.SelectSingleNode("Story");
-            XmlNodeList nodeList = node.ChildNodes;
-
-            foreach (XmlNode item in nodeList)
+            foreach (XmlNode pair in speak)
             {
-                XmlNode id = item.SelectSingleNode("id");
-                XmlNode index = item.SelectSingleNode("index");
-                XmlNode state = item.SelectSingleNode("State");
-                XmlNode name = item.SelectSingleNode("name");
-                XmlNode cout = item.SelectSingleNode("cout");
-                XmlNode speak = item.SelectSingleNode("Speak");
-                XmlNode spriteName = item.SelectSingleNode("spriteName");
-                
-                StoryData data = new StoryData();
-                data.id = CommonHelper.Str2Int(id.InnerText);
-                data.state = CommonHelper.Str2Int(state.InnerText);
-                data.name = name.InnerText;
-                data.index = CommonHelper.Str2Int(index.InnerText);
-                data.cout = CommonHelper.Str2Int(cout.InnerText);
-                data.spriteName = spriteName.InnerText;
-
-                foreach (XmlNode pair in speak)
-                {
-                    data.SpeakList.Add(pair.InnerText);
-                }
-                DataDic.Add(data.id,data);
+                data.SpeakList.Add(pair.InnerText);
             }
+            DataDic.Add(data.id, data);
         }
+        
     }
 
 
@@ -275,6 +269,7 @@ public class StoryManager
                 dataList.Add(item.Value);
             }
         }
+        dataList[dataList.Count - 1].Hander += WhiteRabbitRun;
         return dataList;
     }
 
@@ -474,22 +469,46 @@ public class StoryManager
         return dataList;
     }
 
-        #endregion
+    public List<StoryData> GetStage0TheFunnyRabitEvent_8()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
 
-        #region Stage0 对话所需方法
+        List<StoryData> dataList = new List<StoryData>();
+
+        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
+        {
+            if (item.Value.state == 9)
+            {
+                dataList.Add(item.Value);
+            }
+        }
+        return dataList;
+    }
+
+    #endregion
+
+    #region Stage0 对话所需方法
 
 
-        /// <summary>
-        /// 绑定在与白兔子第一次对话的最后一句，用于显示 热心的兔子 的首个Event
-        /// </summary>
-        void WhatYouThinkAboutWhiteRabbit_1()
+    /// <summary>
+    /// 绑定在与白兔子第一次对话的最后一句，用于显示 热心的兔子 的首个Event
+    /// </summary>
+    void WhatYouThinkAboutWhiteRabbit_1()
     {
         List<StoryData> dataList = GetStage0TheFunnyRabitEvent_1();
         ShowEventStoryList(dataList);
     }
 
 
-
+    void WhiteRabbitRun()
+    {
+        List<StoryData> dataList = GetStage0TheFunnyRabitEvent_8();
+        ShowEventStoryList(dataList);
+    }
 
 
 

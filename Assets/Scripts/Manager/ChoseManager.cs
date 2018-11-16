@@ -165,40 +165,34 @@ public class ChoseManager
 
     void LoadChoseXML(string pathName, Dictionary<int, ChoseData> DataDic)
     {
-        string filePath = Application.dataPath + @"/Resources/Config/Chose/" + pathName + ".xml";
-        if (!File.Exists(filePath))
+        string path = "Config";
+        string text = ResourcesManager.Instance.LoadConfig(path, pathName).text;
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(text);
+
+        XmlNode node = xmlDoc.SelectSingleNode("Chose");
+        XmlNodeList nodeList = node.ChildNodes; 
+
+        foreach (XmlNode item in nodeList)
         {
-            Debug.LogError("not ChoseCofing");
-            return;
-        }
+            XmlNode id = item.SelectSingleNode("id");
 
-        if (File.Exists(filePath))
-        {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(filePath);
+            XmlNode name = item.SelectSingleNode("name");
 
-            XmlNode node = xmlDoc.SelectSingleNode("Chose");
-            XmlNodeList nodeList = node.ChildNodes;
+            XmlNode choseList = item.SelectSingleNode("choseList");
 
-            foreach (XmlNode item in nodeList)
+
+            ChoseData data = new ChoseData();
+
+            data.Id = CommonHelper.Str2Int(id.InnerText);
+            data.Name = name.InnerText;
+            foreach (XmlNode pair in choseList)
             {
-                XmlNode id = item.SelectSingleNode("id");
-
-                XmlNode name = item.SelectSingleNode("name");
-     
-                XmlNode choseList = item.SelectSingleNode("choseList");
-              
-
-                ChoseData data = new ChoseData();
-
-                data.Id = CommonHelper.Str2Int(id.InnerText);
-                data.Name = name.InnerText;
-                foreach (XmlNode pair in choseList)
-                {
-                    data.ChoseDesList.Add(pair.InnerText);
-                }
-                DataDic.Add(data.Id, data);
+                data.ChoseDesList.Add(pair.InnerText);
             }
+            DataDic.Add(data.Id, data);
+        
         }
     }
 }

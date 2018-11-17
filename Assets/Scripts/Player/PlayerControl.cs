@@ -326,12 +326,7 @@ public class PlayerControl : CharacterPropBase {
         //    }
         //}
 
-        if (other.CompareTag("NPC"))
-        {
-            BattleCommoUIManager.Instance.speakLabelAlpha.ResetToBeginning();
-            BattleCommoUIManager.Instance.speakLabelAlpha.enabled = true;
-            BattleCommoUIManager.Instance.speakLabelAlpha.gameObject.SetActive(true);
-        }
+     
 
        
 
@@ -339,15 +334,15 @@ public class PlayerControl : CharacterPropBase {
         {
             if(other.name== "Stage0EventMiLu")
             {
-                List<StoryData> dataList = StoryManager.Instacne.GetStage0TheMiLuGrilEvent();
-                StoryManager.Instacne.ShowEventStoryList(dataList);
+
+                StoryManager.Instacne.ShowEventStoryList(0);
                 Destroy(other.gameObject);
             }
 
             if (other.name == "Stage0EventFunnyBabit")
             {
-                List<StoryData> dataList = StoryManager.Instacne.GetStage0TheFunnyRabitEvent();
-                StoryManager.Instacne.ShowEventStoryList(dataList);
+
+                StoryManager.Instacne.ShowEventStoryList(1);
                 Destroy(other.gameObject);
             }
         }
@@ -359,10 +354,32 @@ public class PlayerControl : CharacterPropBase {
     {
         if (other.CompareTag("NPC"))
         {
-            if (!StoryPanel.isSpeak)
+            string name = other.gameObject.name;
+            int id = CommonHelper.Str2Int(name);
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                int id = CommonHelper.Str2Int(other.name);
+                if (StoryPanel.isSpeak)
+                {
+                    return;
+                }
 
+                StoryManager.Instacne.ShowNPCStory(id);
+            }
+        }
+
+        if (other.CompareTag("Event"))
+        {
+            string name = other.gameObject.name;
+            int id = CommonHelper.Str2Int(name);
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (EventStoryPanel.isEventSpeak)
+                {
+                    return;
+                }
+
+                StoryManager.Instacne.ShowEventStoryList(id);
             }
         }
 
@@ -404,6 +421,13 @@ public class PlayerControl : CharacterPropBase {
             BattleCamera.Instance.isRightStop = false;
             BattleCamera.Instance.isLeftStop = false;
             transform.position = new Vector3(-4.4f, -13.85f, 0);
+        }
+
+        if (collision.transform.name == "Stage0Scene3")
+        {
+            BattleCamera.Instance.isRightStop = false;
+            BattleCamera.Instance.isLeftStop = false;
+            transform.position = new Vector3(-4.4f, -23.9f, 0);
         }
     }
 

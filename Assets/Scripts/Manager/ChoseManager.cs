@@ -85,6 +85,11 @@ public class ChoseManager
         ChoseData data6 = ChoseDataDic[6];
         data6.HanderList.Add(ObserveRabit_6);
         data6.HanderList.Add(GiveUpYinYangYu_6);
+
+        ChoseData data7 = ChoseDataDic[7];
+        data7.HanderList.Add(KnockRabbitADoor);
+        data7.HanderList.Add(IntoRabbitAHouse);
+        data7.HanderList.Add(LeavetRabbitHouse);
     }
 
     #endregion
@@ -97,7 +102,7 @@ public class ChoseManager
     }
     void ObserveRabit_1()
     {
-        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_2());
+        StoryManager.Instacne.ShowEventStoryList(3);
         StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0WhiteRabbitSpeak_1());
     }
 
@@ -108,7 +113,7 @@ public class ChoseManager
 
     void ObserveRabit_2()
     {
-        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_3());
+        StoryManager.Instacne.ShowEventStoryList(4);
         StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0WhiteRabbitSpeak_2());
     }
 
@@ -119,7 +124,7 @@ public class ChoseManager
 
     void ObserveRabit_3()
     {
-        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_4());
+        StoryManager.Instacne.ShowEventStoryList(5);
         StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0WhiteRabbitSpeak_3());
     }
 
@@ -130,7 +135,7 @@ public class ChoseManager
 
     void ObserveRabit_4()
     {
-        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_5());
+        StoryManager.Instacne.ShowEventStoryList(6);
         StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0WhiteRabbitSpeak_4());
     }
 
@@ -141,9 +146,10 @@ public class ChoseManager
 
     #endregion
 
+
     void ObserveRabit_5()
     {
-        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_6());
+        StoryManager.Instacne.ShowEventStoryList(7);
     }
 
     void GiveUpYinYangYu_5()
@@ -153,13 +159,34 @@ public class ChoseManager
 
     void ObserveRabit_6()
     {
-        StoryManager.Instacne.ShowEventStoryList(StoryManager.Instacne.GetStage0TheFunnyRabitEvent_7());
+        StoryManager.Instacne.ShowEventStoryList(8);
     }
 
     void GiveUpYinYangYu_6()
     {
 
     }
+
+    void IntoRabbitAHouse()
+    {
+
+    }
+
+    void KnockRabbitADoor()
+    {
+
+    }
+
+    void LeavetRabbitHouse()
+    {
+
+    }
+
+
+
+    #region 与NPC对话相关选项
+
+    #endregion
 
 
 

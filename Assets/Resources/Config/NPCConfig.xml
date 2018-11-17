@@ -1,0 +1,14 @@
+<Story name="CharacterSpeak">
+  <StoryData>
+    <id>0</id>
+    <State>0</State>
+    <name></name>
+    <spriteName></spriteName>
+    <index></index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>上面写着“兔子聚集地，闲人（巫女）免进”</speak1>
+    </Speak>
+    </StoryData>
+
+</Story>

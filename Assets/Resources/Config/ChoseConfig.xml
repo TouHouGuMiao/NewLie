@@ -61,5 +61,15 @@
       <chose2>放置</chose2>
     </choseList>
   </ChoseData>
+
+  <ChoseData>
+    <id>7</id>
+    <name>妖怪兔A的房子</name>
+    <choseList>
+      <chose1>敲门</chose1>
+      <chose2>进入</chose2>
+      <chose2>离开</chose2>
+    </choseList>
+  </ChoseData>
   
 </Chose>

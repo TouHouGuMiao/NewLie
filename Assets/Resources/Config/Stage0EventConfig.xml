@@ -118,4 +118,16 @@
       <speak1>她边哭着跑开了。</speak1>
     </Speak>
   </StoryData>
+
+  <StoryData>
+    <id>10</id>
+    <State>10</State>
+    <name></name>
+    <spriteName>1</spriteName>
+    <index>0</index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>门上写着，“妖怪兔A的房子，进来前请先敲门”</speak1>
+    </Speak>
+  </StoryData>
 </Story>

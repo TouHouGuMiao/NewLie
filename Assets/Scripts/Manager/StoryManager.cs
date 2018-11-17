@@ -10,7 +10,7 @@ public class StoryManager
     private Dictionary<int, StoryData> StoryDic;
     private Dictionary<int, StoryData> Stage0Dic;
     private Dictionary<int, StoryData> Stage0EventDic;
-
+    private Dictionary<int, StoryData> NPCDic;
 
     public static StoryManager Instacne
     {
@@ -47,14 +47,18 @@ public class StoryManager
 
     }
 
-    public void ShowEventStoryList(List<StoryData> dataList)
+    public void ShowEventStoryList(int id)
     {
-
+       
         if (Stage0EventDic == null)
         {
             Stage0EventDic = new Dictionary<int, global::StoryData>();
             LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+            InitEventStoryData();
         }
+
+        List<StoryData> dataList = new List<StoryData>();
+        dataList.Add(GetEventDataByID(id));
 
         EventStoryPanel.dataList = dataList;
 
@@ -152,12 +156,25 @@ public class StoryManager
 
 
 
-    #region
- 
 
 
-    #endregion
 
+    private StoryData GetEventDataByID(int id)
+    {
+        StoryData data = null;
+        if (Stage0EventDic == null)
+        {
+            InitEventStoryData();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
+
+        if (!Stage0EventDic.TryGetValue(id, out data))
+        {
+            Debug.LogError("EventData has error!......" + id);
+            return null;
+        }
+        return data;
+    }
 
 
     #region 获得Stage0中单独的对话List，并且绑定了需要触发的方法
@@ -276,8 +293,9 @@ public class StoryManager
     #endregion
 
 
-    #region 获得Stage0中Event的对话List，并且绑定了需要触发的方法
-    public List<StoryData> GetStage0TheMiLuGrilEvent()
+
+
+    private void InitEventStoryData()
     {
         if (Stage0EventDic == null)
         {
@@ -285,211 +303,39 @@ public class StoryManager
             LoadStoryXML("Stage0EventConfig", Stage0EventDic);
         }
 
-        List<StoryData> dataList = new List<StoryData>();
+        StoryData data = GetEventDataByID(0);
+        data.Hander += ContiueGo;
 
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 0)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count - 1].Hander = ContiueGo;
-        return dataList;
+        StoryData data1 = GetEventDataByID(1);
+        data1.Hander += WhiteRabitSpeak;
+
+        StoryData data2 = GetEventDataByID(2);
+        data2.Hander += ObserveTheWhiteRabbitOrGiveUp_1;
+
+        StoryData data3 = GetEventDataByID(3);
+        data3.Hander += ObserveTheWhiteRabbitOrGiveUp_2;
+
+        StoryData data4 = GetEventDataByID(4);
+        data4.Hander += ObserveTheWhiteRabbitOrGiveUp_3;
+
+        StoryData data5 = GetEventDataByID(5);
+        data5.Hander += ObserveTheWhiteRabbitOrGiveUp_4;
+
+        StoryData data6 = GetEventDataByID(6);
+        data6.Hander += ObserveTheWhiteRabbitOrGiveUp_5;
+
+        StoryData data7 = GetEventDataByID(7);
+        data7.Hander += ObserveTheWhiteRabbitOrGiveUp_6;
+
+        StoryData data8 = GetEventDataByID(8);
+        data8.Hander += AskTheWhiteRabbit;
+
+        StoryData data9 = GetEventDataByID(9);
+
+        StoryData data10 = GetEventDataByID(10);
+        data10.Hander += RabbitHouseEvent;
     }
 
-
-
-
-    public List<StoryData> GetStage0TheFunnyRabitEvent()
-    {
-        if (Stage0EventDic == null)
-        {
-            Stage0EventDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        List<StoryData> dataList = new List<StoryData>();
-
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 1)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count - 1].Hander = WhiteRabitSpeak;
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0TheFunnyRabitEvent_1()
-    {
-        if (Stage0EventDic == null)
-        {
-            Stage0EventDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        List<StoryData> dataList = new List<StoryData>();
-
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 2)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count -1].Hander+= ObserveTheWhiteRabbitOrGiveUp_1;
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0TheFunnyRabitEvent_2()
-    {
-        if (Stage0EventDic == null)
-        {
-            Stage0EventDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        List<StoryData> dataList = new List<StoryData>();
-
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 3)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_2;
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0TheFunnyRabitEvent_3()
-    {
-        if (Stage0EventDic == null)
-        {
-            Stage0EventDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        List<StoryData> dataList = new List<StoryData>();
-
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 4)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_3;
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0TheFunnyRabitEvent_4()
-    {
-        if (Stage0EventDic == null)
-        {
-            Stage0EventDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        List<StoryData> dataList = new List<StoryData>();
-
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 5)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_4;
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0TheFunnyRabitEvent_5()
-    {
-        if (Stage0EventDic == null)
-        {
-            Stage0EventDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        List<StoryData> dataList = new List<StoryData>();
-
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 6)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_5;
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0TheFunnyRabitEvent_6()
-    {
-        if (Stage0EventDic == null)
-        {
-            Stage0EventDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        List<StoryData> dataList = new List<StoryData>();
-
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 7)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count - 1].Hander += ObserveTheWhiteRabbitOrGiveUp_6;
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0TheFunnyRabitEvent_7()
-    {
-        if (Stage0EventDic == null)
-        {
-            Stage0EventDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        List<StoryData> dataList = new List<StoryData>();
-
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 8)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count - 1].Hander += AskTheWhiteRabbit;
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0TheFunnyRabitEvent_8()
-    {
-        if (Stage0EventDic == null)
-        {
-            Stage0EventDic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        List<StoryData> dataList = new List<StoryData>();
-
-        foreach (KeyValuePair<int, StoryData> item in Stage0EventDic)
-        {
-            if (item.Value.state == 9)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        return dataList;
-    }
-
-    #endregion
 
     #region Stage0 对话所需方法
 
@@ -499,15 +345,13 @@ public class StoryManager
     /// </summary>
     void WhatYouThinkAboutWhiteRabbit_1()
     {
-        List<StoryData> dataList = GetStage0TheFunnyRabitEvent_1();
-        ShowEventStoryList(dataList);
+        ShowEventStoryList(2);
     }
 
 
     void WhiteRabbitRun()
     {
-        List<StoryData> dataList = GetStage0TheFunnyRabitEvent_8();
-        ShowEventStoryList(dataList);
+        ShowEventStoryList(9);
     }
 
 
@@ -569,6 +413,73 @@ public class StoryManager
      
     }
 
+    void RabbitHouseEvent()
+    {
+        ChoseManager.Instance.ShowChosePanel(7);
+    }
+
+
+    #endregion
+
+
+
+
+
+
+
+
+
+    #region NPC
+    public void ShowNPCStory(int id)
+    {
+        if (NPCDic == null)
+        {
+            InitNPCDic();
+        }
+
+        StoryData data = GetNPCStroyDataById(id);
+        if (data != null)
+        {
+            List<StoryData> dataList = new List<StoryData>();
+            dataList.Add(data);
+            ShowStoryList(dataList);
+        }
+        else
+        {
+            Debug.LogError("NPC Data is null");
+            return;
+        }
+    }
+
+    private void InitNPCDic()
+    {
+        NPCDic = new Dictionary<int, StoryData>();
+        LoadStoryXML("NPCConfig", NPCDic);
+    }
+
+    private StoryData GetNPCStroyDataById(int id)
+    {
+        StoryData data = null;
+        if(!NPCDic.TryGetValue(id,out data))
+        {
+            Debug.LogError("NPCData has error!......" + id);
+            return null;
+        }
+        return data;
+    }
+
+
+    private void InitNPCData()
+    {
+
+    }
+
+
+    #region NPC对话添加事件
+
+
+
+    #endregion
 
     #endregion
 }

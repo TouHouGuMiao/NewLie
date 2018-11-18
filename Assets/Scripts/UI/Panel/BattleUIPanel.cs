@@ -21,7 +21,9 @@ public class BattleUIPanel :IView
     {
         m_Layer = Layer.city;
     }
-
+   /// <summary>
+   /// 
+   /// </summary>
     protected override void OnStart()
     {
 
@@ -39,6 +41,8 @@ public class BattleUIPanel :IView
     protected override void OnHide()
     {
        
+
+
     }
 
     protected override void OnDestroy()

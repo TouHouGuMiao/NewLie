@@ -33,7 +33,7 @@ public class InventoryPanel : IView
         itemHandBtn = this.GetChild("ItemHandBtn").GetComponent<UIButton>();
 
         AddEventInBtn();
-
+        
        
 
     }

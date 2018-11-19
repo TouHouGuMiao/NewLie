@@ -31,6 +31,26 @@ public class BattleCommoUIManager
     private UISprite bulletIcon;
     private UILabel bulletNum;
 
+    private TweenAlpha black_TA;
+
+
+    public bool IsBlackShade
+    {
+        get
+        {
+            UIWidget widget = black_TA.GetComponent<UIWidget>();
+            if (black_TA.gameObject.activeSelf)
+            {
+               if(widget.alpha > 0.5f)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+
     public void InitUI(GameObject panel)
     {
         HPSlider = panel.transform.FindRecursively("PlayerHPSlider").GetComponent<UISlider>();
@@ -44,8 +64,9 @@ public class BattleCommoUIManager
 
         bulletIcon = panel.transform.FindRecursively("bulletIcon").GetComponent<UISprite>();
         bulletNum = panel.transform.FindRecursively("bulletNum").GetComponent<UILabel>();
-
-
+        black_TA = panel.transform.FindRecursively("ShadeTexture").GetComponent<TweenAlpha>();
+        EventDelegate Black_TA_OnFished = new EventDelegate(OnBlackTexutureFinshed);
+        black_TA.onFinished.Add(Black_TA_OnFished);
     }
     /// <summary>
     /// 玩家HP因为属性而变动的时候调用
@@ -111,4 +132,17 @@ public class BattleCommoUIManager
         bulletNum.text = "x" + num;
     }
 
+
+
+    public void ShowBlackShade()
+    {
+        black_TA.gameObject.SetActive(true);
+        black_TA.enabled = true;
+    }
+
+    private void OnBlackTexutureFinshed()
+    {
+        black_TA.gameObject.SetActive(false);
+        black_TA.ResetToBeginning();
+    }
 }

@@ -11,4 +11,15 @@
     </Speak>
     </StoryData>
 
+  <StoryData>
+    <id>1</id>
+    <State>0</State>
+    <name></name>
+    <spriteName></spriteName>
+    <index></index>
+    <cout>1</cout>
+    <Speak>
+      <speak1>似乎是三只妖怪兔的合照</speak1>
+    </Speak>
+  </StoryData>
 </Story>

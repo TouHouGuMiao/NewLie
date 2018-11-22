@@ -169,7 +169,11 @@ public class ChoseManager
 
     void IntoRabbitAHouse()
     {
-
+        GUIManager.HideView("EventStoryPanel");
+        BattleCommoUIManager.Instance.ShowBlackShade();
+        GameObject player = GameObject.FindWithTag("Player");
+        player.transform.position = new Vector3(-61.66f, -1.87f, 0);
+       
     }
 
     void KnockRabbitADoor()

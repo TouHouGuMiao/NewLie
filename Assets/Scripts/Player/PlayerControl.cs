@@ -90,6 +90,11 @@ public class PlayerControl : CharacterPropBase {
         {
             return;
         }
+
+        if (BattleCommoUIManager.Instance.IsBlackShade)
+        {
+            return;
+        }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -420,6 +425,7 @@ public class PlayerControl : CharacterPropBase {
         {
             BattleCamera.Instance.isRightStop = false;
             BattleCamera.Instance.isLeftStop = false;
+            BattleCommoUIManager.Instance.ShowBlackShade();
             transform.position = new Vector3(-4.4f, -13.85f, 0);
         }
 
@@ -427,6 +433,7 @@ public class PlayerControl : CharacterPropBase {
         {
             BattleCamera.Instance.isRightStop = false;
             BattleCamera.Instance.isLeftStop = false;
+            BattleCommoUIManager.Instance.ShowBlackShade();
             transform.position = new Vector3(-4.4f, -23.9f, 0);
         }
     }

@@ -124,7 +124,7 @@ public class WingmanManager
         info.SetBullet(data.bulletName);
         info.tempTime = data.tempTime;
     }
-
+     
     IEnumerator SetWingmanCout(WingmanData data,int cout)
     {
         GameObject parent = player.transform.Find("wingman").gameObject;
@@ -139,6 +139,7 @@ public class WingmanManager
         
         for (int i = 0; i < cout; i++)
         {
+
             GameObject wingaman = GameObject.Instantiate(wingmanPrefab);
           
             wingaman.transform.SetParent(parent.transform, false);

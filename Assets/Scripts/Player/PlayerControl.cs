@@ -24,6 +24,8 @@ public class PlayerControl : CharacterPropBase {
 
     private float tempTime_Z;
     private float tempTime_X;
+
+    private Transform bulletCollider;
  
 
 

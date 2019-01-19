@@ -105,12 +105,28 @@ public abstract class UITweener : MonoBehaviour
 	// Deprecated functionality, kept for backwards compatibility
 	[HideInInspector] public GameObject eventReceiver;
 	[HideInInspector] public string callWhenFinished;
+    [HideInInspector] 
+    public bool Started
+    {
+        get
+        {
+            return mStarted;
+        }
+    }
 
-	bool mStarted = false;
+    bool mStarted = false;
 	float mStartTime = 0f;
 	float mDuration = 0f;
 	float mAmountPerDelta = 1000f;
 	float mFactor = 0f;
+
+    public float Factor
+    {
+        get
+        {
+            return mFactor;
+        }
+    }
 
 	/// <summary>
 	/// Amount advanced per delta time.

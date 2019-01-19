@@ -68,8 +68,97 @@
     <choseList>
       <chose1>敲门</chose1>
       <chose2>进入</chose2>
+      <chose3>离开</chose3>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>8</id>
+    <name>妖怪兔A的日记</name>
+    <choseList>
+      <chose1>翻看</chose1>
       <chose2>离开</chose2>
     </choseList>
   </ChoseData>
+
+  <ChoseData>
+    <id>9</id>
+    <name>妖怪兔A的日记</name>
+    <choseList>
+      <chose1>下页</chose1>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>10</id>
+    <name>妖怪兔A的日记</name>
+    <choseList>
+      <chose1>下页</chose1>
+      <chose2>上页</chose2>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>11</id>
+    <name>妖怪兔A的日记</name>
+    <choseList>
+      <chose1>下页</chose1>
+      <chose2>上页</chose2>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>12</id>
+    <name>妖怪兔A的日记</name>
+    <choseList>
+      <chose1>下页</chose1>
+      <chose2>上页</chose2>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>13</id>
+    <name>妖怪兔A的日记</name>
+    <choseList>
+      <chose1>下页</chose1>
+      <chose2>上页</chose2>
+    </choseList>
+  </ChoseData>
   
+  <ChoseData>
+    <id>14</id>
+    <name>妖怪兔A的日记</name>
+    <choseList>
+      <chose1>离开</chose1>
+      <chose2>上页</chose2>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>15</id>
+    <name>妖怪兔B的房间</name>
+    <choseList>
+      <chose1>尝试抹去门上的积灰</chose1>
+      <chose2>离开</chose2>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>16</id>
+    <name>妖怪兔B的房间</name>
+    <choseList>
+      <chose1>进入</chose1>
+      <chose2>离开</chose2>
+    </choseList>
+  </ChoseData>
+
+
+  <ChoseData>
+    <id>17</id>
+    <name>妖怪兔B的书柜</name>
+    <choseList>
+      <chose1>读一本</chose1>
+      <chose2>还是算了</chose2>
+    </choseList>
+  </ChoseData>
 </Chose>

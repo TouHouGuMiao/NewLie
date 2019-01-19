@@ -133,10 +133,20 @@ public class ChosePanel : IView
 
         else
         {
-            for (int i = grid.transform.childCount-1; i > data.ChoseDesList.Count; i--) 
+            for (int i = grid.transform.childCount-1; i >= data.ChoseDesList.Count; i--) 
             {
                 GameObject go = grid.transform.GetChild(i).gameObject;
                 go.SetActive(false);
+            }
+
+            for (int i = 0; i < data.ChoseDesList.Count; i++)
+            {
+                GameObject go = grid.transform.GetChild(i).gameObject;
+
+                UILabel label = go.transform.Find("Label").GetComponent<UILabel>();
+                label.text = data.ChoseDesList[i];
+                go.name = data.Name;
+                go.SetActive(true);
             }
         }
 

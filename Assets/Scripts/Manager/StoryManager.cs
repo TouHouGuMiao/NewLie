@@ -333,7 +333,45 @@ public class StoryManager
         StoryData data9 = GetEventDataByID(9);
 
         StoryData data10 = GetEventDataByID(10);
-        data10.Hander += RabbitHouseEvent;
+        data10.Hander += Rabbit_AHouseEvent;
+
+
+        StoryData data11 = GetEventDataByID(11);
+        data11.Hander += RabbitAsDiray;
+
+        StoryData data12 = GetEventDataByID(12);
+        data12.Hander += RabbitAsDirayFirstPage;
+
+        StoryData data13 = GetEventDataByID(13);
+        data13.Hander += RabbitAsDiraySecondPage;
+
+        StoryData data14 = GetEventDataByID(14);
+        data14.Hander += RabbitAsDirayThirdPage;
+
+        StoryData data15 = GetEventDataByID(15);
+        data15.Hander += RabbitAsDirayFourthPage;
+
+        StoryData data16 = GetEventDataByID(16);
+        data16.Hander += RabbitAsDirayFivePage;
+
+        StoryData data17 = GetEventDataByID(17);
+        data17.Hander += RabbitAsDiraySixthPage;
+
+        StoryData data18 = GetEventDataByID(18);
+        data18.Hander += RabbitBsHouse;
+
+        StoryData data19 = GetEventDataByID(19);
+        data19.Hander += RabbitBDoorIsOpen;
+
+
+        StoryData data20 = GetEventDataByID(20);
+        data20.Hander += RabbitBDoorIsOpen;
+
+        StoryData data21 = GetEventDataByID(21);
+        data21.Hander += RabbitB_BookCase;
+
+        StoryData data22 = GetEventDataByID(22);
+        data22.Hander += RabbitB_ReadBookFirst;
     }
 
 
@@ -413,12 +451,66 @@ public class StoryManager
      
     }
 
-    void RabbitHouseEvent()
+    void Rabbit_AHouseEvent()
     {
         ChoseManager.Instance.ShowChosePanel(7);
     }
 
+    void RabbitAsDiray()
+    {
+        ChoseManager.Instance.ShowChosePanel(8);
+    }
 
+    void RabbitAsDirayFirstPage()
+    {
+        ChoseManager.Instance.ShowChosePanel(9);
+    }
+
+    void RabbitAsDiraySecondPage()
+    {
+        ChoseManager.Instance.ShowChosePanel(10);
+    }
+
+    void RabbitAsDirayThirdPage()
+    {
+        ChoseManager.Instance.ShowChosePanel(11);
+    }
+
+    void RabbitAsDirayFourthPage()
+    {
+        ChoseManager.Instance.ShowChosePanel(12);
+    }
+
+    void RabbitAsDirayFivePage()
+    {
+        ChoseManager.Instance.ShowChosePanel(13);
+    }
+
+    void RabbitAsDiraySixthPage()
+    {
+        ChoseManager.Instance.ShowChosePanel(14);
+    }
+
+    void RabbitBsHouse()
+    {
+        ChoseManager.Instance.ShowChosePanel(15);
+    }
+
+    void RabbitBDoorIsOpen()
+    {
+        ChoseManager.Instance.ShowChosePanel(16);
+    }
+
+
+    void RabbitB_BookCase()
+    {
+        ShowEventStoryList(22);
+    }
+
+    void RabbitB_ReadBookFirst()
+    {
+        ChoseManager.Instance.ShowChosePanel(17);
+    }
     #endregion
 
 

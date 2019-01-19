@@ -89,7 +89,46 @@ public class ChoseManager
         ChoseData data7 = ChoseDataDic[7];
         data7.HanderList.Add(KnockRabbitADoor);
         data7.HanderList.Add(IntoRabbitAHouse);
-        data7.HanderList.Add(LeavetRabbitHouse);
+        data7.HanderList.Add(LeavetRabbitAHouse);
+
+        ChoseData data8 = ChoseDataDic[8];
+        data8.HanderList.Add(ReadRabbit_AsDiary );
+        data8.HanderList.Add(NotReadRabit_AsDiary );
+
+        ChoseData data9 = ChoseDataDic[9];
+        data9.HanderList.Add(Rabbit_AsDiaryFirstNextPage);
+
+        ChoseData data10 = ChoseDataDic[10];
+        data10.HanderList.Add(Rabbit_AsDiarySecondNextPage);
+        data10.HanderList.Add(Rabbit_AsDiarySecondLastPage);
+
+        ChoseData data11 = ChoseDataDic[11];
+        data11.HanderList.Add(Rabbit_AsDiaryThirdNextPage);
+        data11.HanderList.Add(Rabbit_AsDiaryThirdLastPage);
+
+        ChoseData data12 = ChoseDataDic[12];
+        data12.HanderList.Add(Rabbit_AsDiaryFourthNextPage);
+        data12.HanderList.Add(Rabbit_AsDiaryFourthLastPage);
+
+        ChoseData data13 = ChoseDataDic[13];
+        data13.HanderList.Add(Rabbit_AsDiaryFivethNextPage);
+        data13.HanderList.Add(Rabbit_AsDiaryFivethLastPage);
+
+        ChoseData data14 = ChoseDataDic[14];
+        data14.HanderList.Add(Rabbit_AsDiayrLastLeave);
+        data14.HanderList.Add(Rabbit_AsDiaryLastPage);
+
+        ChoseData data15 = ChoseDataDic[15];
+        data15.HanderList.Add(Rabbit_BsHouseDoor_Dust);
+        data15.HanderList.Add(Rabbit_BsHouseDoor_Leave);
+
+        ChoseData data16 = ChoseDataDic[16];
+        data16.HanderList.Add(Rabbit_BsHouseDoorInto);
+        data16.HanderList.Add(Rabbit_BsHouseDoor_Leave);
+
+        ChoseData data17 = ChoseDataDic[17];
+        data17.HanderList.Add(Rabbit_BsStartRead);
+        data17.HanderList.Add(Rabbit_BLeaveBookCase);
     }
 
     #endregion
@@ -181,7 +220,112 @@ public class ChoseManager
 
     }
 
-    void LeavetRabbitHouse()
+    void LeavetRabbitAHouse()
+    {
+
+    }
+    
+    void ReadRabbit_AsDiary ()
+    {
+        StoryManager.Instacne.ShowEventStoryList(12);
+    }
+
+    void NotReadRabit_AsDiary ()
+    {
+
+    }
+
+    void Rabbit_AsDiaryFirstNextPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(13);
+    }
+
+    void Rabbit_AsDiarySecondNextPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(14);
+    }
+
+    void Rabbit_AsDiarySecondLastPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(12);
+    }
+
+    void Rabbit_AsDiaryThirdNextPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(15);
+    }
+
+    void Rabbit_AsDiaryThirdLastPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(13);
+    }
+
+    void Rabbit_AsDiaryFourthNextPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(16);
+    }
+
+    void Rabbit_AsDiaryFourthLastPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(14);
+    }
+
+    void Rabbit_AsDiaryFivethNextPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(17);
+    }
+
+    void Rabbit_AsDiaryFivethLastPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(15);
+    }
+
+    void Rabbit_AsDiaryLastPage()
+    {
+        StoryManager.Instacne.ShowEventStoryList(16);
+    }
+
+    void Rabbit_AsDiayrLastLeave()
+    {
+
+    }
+
+
+    void Rabbit_BsHouseDoor_Dust()
+    {
+        StoryManager.Instacne.ShowEventStoryList(19);
+        GameObject[] goList = GameObject.FindGameObjectsWithTag("Event");
+        GameObject go = null;
+        for (int i = 0; i < goList.Length; i++)
+        {
+            if (goList[i].name == "18")
+            {
+                go = goList[i];
+            }
+        }
+
+        go.name = "20";
+    }
+
+    void Rabbit_BsHouseDoor_Leave()
+    {
+
+    }
+
+    void Rabbit_BsHouseDoorInto()
+    {
+        GUIManager.HideView("EventStoryPanel");
+        BattleCommoUIManager.Instance.ShowBlackShade();
+        GameObject player = GameObject.FindWithTag("Player");
+        player.transform.position = new Vector3(-55.8f, -28.2f, 0);
+    }
+
+    void Rabbit_BsStartRead()
+    {
+        StoryManager.Instacne.ShowEventStoryList(23);
+    }
+
+    void Rabbit_BLeaveBookCase()
     {
 
     }

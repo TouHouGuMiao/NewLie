@@ -14,7 +14,7 @@ public class PlayerControl : CharacterPropBase {
     public static PlayerState state = PlayerState.talk;
 
     public static PlayerControl Instace;
-
+    
 
     public GameObject bulletPrefab;
 
@@ -24,8 +24,8 @@ public class PlayerControl : CharacterPropBase {
 
     private float tempTime_Z;
     private float tempTime_X;
- 
 
+    //private GameObject systemPanel;//控制SystemPanel的GameObject
 
     //private TweenPosition m_TP1;
     //private TweenPosition m_TP2;
@@ -41,6 +41,8 @@ public class PlayerControl : CharacterPropBase {
 
     void Start ()
     {
+        
+        // systemPanel=this.transform.GetChild("")
         WingmanManager.Instance.Init();
         m_Animator = this.GetComponent<Animator>();
         bulletPrefab = ResourcesManager.Instance.LoadBullet("initBullet");
@@ -81,8 +83,12 @@ public class PlayerControl : CharacterPropBase {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    GUIManager.ShowView("SystemPanel");
+        //}
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+
             GUIManager.ShowView("SystemPanel");
         }
 
@@ -214,14 +220,17 @@ public class PlayerControl : CharacterPropBase {
             WingmanData data = WingmanManager.Instance.GetDataById(0);
             WingmanManager.Instance.CreatWingmanReturnCout(data, 6);
         }
-
+       
+        
+        
     }
+    
 
 
-    #region 动画帧事件
+#region 动画帧事件
 
 
-    public void UseAttack()
+public void UseAttack()
     {
         string name = bulletPrefab.name;
         ItemData data = ItemDataManager.Instance.GetItemDataByBulletName(name);
@@ -443,5 +452,6 @@ public class PlayerControl : CharacterPropBase {
     {
 
     }
-
+    
+    
 }

@@ -22,6 +22,7 @@ public class ItemDataManager
 
     private List<ItemData> HasItemList;
     private List<ItemData> HasMaterialList;
+    private List<ItemData> HasEquipList;
 
     public ItemData GetItemDataByBulletName(string name)
     {
@@ -41,6 +42,7 @@ public class ItemDataManager
     }
 
     public List<ItemData> GetHasItemList()
+
     {
         List<ItemData> ItemDataList = new List<global::ItemData>();
 
@@ -175,7 +177,7 @@ public class ItemDataManager
         }
         return data;
     }
-
+    
 
     public List<ItemData> GetHasMaterialList()
     {
@@ -186,6 +188,16 @@ public class ItemDataManager
             TestInitMaterialList();
         }
         ItemDataList = HasMaterialList;
+        return ItemDataList;
+    }
+    public List<ItemData> GetHasEquipList() {
+        List<ItemData> ItemDataList = new List<ItemData>();
+        if (HasEquipList == null) {
+            TestInitEquipmentList();
+        }
+        
+            ItemDataList = HasEquipList; 
+        
         return ItemDataList;
     }
 
@@ -263,7 +275,38 @@ public class ItemDataManager
 
     }
 
+    void TestInitEquipmentList() {
+        HasEquipList = new List<ItemData>();
 
+        ItemData data1 = new ItemData();
+        data1.id = 1;
+        data1.itemType = ItemType.Equipment;
+        data1.name = "大刀";
+        data1.icon = "1";
+
+        ItemData data2 = new ItemData();
+        data2.id = 2;
+        data2.itemType = ItemType.Equipment;
+        data2.name = "大剑";
+        data2.icon = "2";
+
+        ItemData data3 = new ItemData();
+        data3.id = 3;
+        data3.itemType = ItemType.Equipment;
+        data3.name = "大斧";
+        data3.icon = "3";
+
+        ItemData data4 = new ItemData();
+        data4.id = 4;
+        data4.itemType = ItemType.Equipment;
+        data4.name = "大枪";
+        data4.icon = "4";
+
+        HasEquipList.Add(data1);
+        HasEquipList.Add(data2);
+        HasEquipList.Add(data3);
+        HasEquipList.Add(data4);
+    }
 
 
 
@@ -297,9 +340,12 @@ public class ItemDataManager
         data4.icon = "4";
         data4.bulletName = "carrotBullet_Player";
 
+      
+
         ItemDataDic.Add(data1.id, data1);
         ItemDataDic.Add(data2.id, data2);
         ItemDataDic.Add(data3.id, data3);
         ItemDataDic.Add(data4.id, data4);
+       
     }
 }

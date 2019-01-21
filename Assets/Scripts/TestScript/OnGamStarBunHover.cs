@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnGamStarBunHover : MonoBehaviour{
+public class OnGamStarBunHover :MonoBehaviour{
   
     UIButton button;
     private Vector3 v1 = new Vector3(1, 1, 1);
     private Vector3 v2 = new Vector3(1.5f, 1.6f, 1);
-
+   
     private TweenScale ts;
+    
     // Use this for initialization
     void Start () {
        
         button = gameObject.GetComponent<UIButton>();
+        
      
 	}
 
@@ -33,6 +35,7 @@ public class OnGamStarBunHover : MonoBehaviour{
                    
                     Big();
                 }
+               
             }
             else if (button.state == UIButtonColor.State.Normal)
             {
@@ -42,10 +45,10 @@ public class OnGamStarBunHover : MonoBehaviour{
                    
                     Back();
                 }
-                            
+                
             }
         }
-		
+      
 	}
 
     void Init()
@@ -75,4 +78,6 @@ public class OnGamStarBunHover : MonoBehaviour{
        ts.ResetToBeginning();
 
     }
+   
+    
 }

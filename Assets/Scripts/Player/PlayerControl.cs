@@ -370,7 +370,7 @@ public class PlayerControl : CharacterPropBase {
                     return;
                 }
 
-                StoryManager.Instacne.ShowNPCStory(id);
+                //StoryManager.Instacne.ShowNPCStory(id);
             }
         }
 

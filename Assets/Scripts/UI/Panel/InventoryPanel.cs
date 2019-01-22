@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InventoryPanel : IView
 {
-    List<ItemData> ItemDataList= new List<ItemData> ();
+    List<ItemData> ItemDataList = new List<ItemData>();
     List<ItemData> MateriaDatalList = new List<ItemData>();
     private UIGrid itemGrid;
     private GameObject infoItem;
@@ -22,7 +22,7 @@ public class InventoryPanel : IView
     private UIButton itemHandBtn;
     protected override void OnStart()
     {
-       
+
         itemGrid = this.GetChild("ItemGrid").GetComponent<UIGrid>();
         infoItem = this.GetChild("Item").gameObject;
 
@@ -33,8 +33,8 @@ public class InventoryPanel : IView
         itemHandBtn = this.GetChild("ItemHandBtn").GetComponent<UIButton>();
 
         AddEventInBtn();
-        
-       
+
+
 
     }
 
@@ -47,12 +47,12 @@ public class InventoryPanel : IView
 
     protected override void OnDestroy()
     {
-       
+
     }
 
     protected override void OnHide()
     {
-         
+
     }
 
     #region 
@@ -77,10 +77,10 @@ public class InventoryPanel : IView
             Debug.LogError("Inventory ItemData is null");
             return;
         }
-        if(m_ItemData.itemType== ItemType.material)
+        if (m_ItemData.itemType == ItemType.material)
         {
             float width = clickTrans.GetComponent<UIWidget>().width;
-            itemWidget.transform.position = new Vector3(itemWidget.transform.position.x , clickTrans.position.y, 0);
+            itemWidget.transform.position = new Vector3(itemWidget.transform.position.x, clickTrans.position.y, 0);
             itemWidget.SetActive(true);
         }
     }
@@ -123,7 +123,7 @@ public class InventoryPanel : IView
                 UILabel label = go.transform.Find("name").GetComponent<UILabel>();
                 label.text = DataList[i].name;
                 UILabel numLabel = go.transform.Find("num").GetComponent<UILabel>();
-                numLabel.text = "x"+DataList[i].num.ToString();
+                numLabel.text = "x" + DataList[i].num.ToString();
                 UIButton button = go.GetComponent<UIButton>();
                 if (button.DelegateOnClickByGameObject == null)
                 {
@@ -180,8 +180,8 @@ public class InventoryPanel : IView
                 UILabel label = go.transform.Find("name").GetComponent<UILabel>();
                 label.text = DataList[i].name;
                 UIButton button = go.GetComponent<UIButton>();
-                  UILabel numLabel = go.transform.Find("num").GetComponent<UILabel>();
-                numLabel.text = "x"+DataList[i].num.ToString();
+                UILabel numLabel = go.transform.Find("num").GetComponent<UILabel>();
+                numLabel.text = "x" + DataList[i].num.ToString();
                 if (button.DelegateOnClickByGameObject == null)
                 {
                     button.DelegateOnClickByGameObject += OnChildItemClick_Go;
@@ -199,7 +199,7 @@ public class InventoryPanel : IView
     }
 
 
-    
+
 
 
 
@@ -219,6 +219,7 @@ public class InventoryPanel : IView
 
     public override void Update()
     {
-        
+
     }
+
 }

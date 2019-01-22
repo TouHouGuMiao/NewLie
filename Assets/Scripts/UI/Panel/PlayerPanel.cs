@@ -39,6 +39,8 @@ public class PlayerPanel : IView
         ShopBtn = this.GetChild("ShopBtn").GetComponent<UIButton>();
         InventoryBtn = this.GetChild("BackBtn").GetComponent<UIButton>();
         AddEventDelete();
+
+       
     }
 
 
@@ -49,12 +51,15 @@ public class PlayerPanel : IView
         EventDelegate CardsClick = new EventDelegate(OnCardsGroundBtnClick);
         EventDelegate ShopClick = new global::EventDelegate(OnSpeakPanelClick);
         EventDelegate InventoryEvent = new global::EventDelegate(OnInventoryBtnClick);
+        
 
         ShopBtn.onClick.Add(ShopClick); 
         ChouKaBtn.onClick.Add(ChouKaClick);
         BattleBtn.onClick.Add(BattleClick);
         CardsGroundBtn.onClick.Add(CardsClick);
         InventoryBtn.onClick.Add(InventoryEvent);
+      
+        
     }
 
     void OnInventoryBtnClick()
@@ -85,4 +90,6 @@ public class PlayerPanel : IView
         GameStateManager.LoadScene(4);
         GUIManager.ShowView("LoadingPanel");
     }
+    
+    
 }

@@ -8,6 +8,7 @@ public class SystemPanel : IView
     private UIButton InventoryBtn;
     protected override void OnStart()
     {
+        //  InventoryBtn = this.GetChild("InventoryBtn").GetComponent<UIButton>();
         InventoryBtn = this.GetChild("InventoryBtn").GetComponent<UIButton>();
         AddEventBtn();
     }  
@@ -34,7 +35,8 @@ public class SystemPanel : IView
 
     void OnInventoryBtnClick()
     {
-        GUIManager.ShowView("InventoryPanel");
+        // GUIManager.ShowView("InventoryPanel");
+        GUIManager.ShowView("BagPanel");
     }
 
 

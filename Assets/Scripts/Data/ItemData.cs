@@ -6,7 +6,8 @@ using UnityEngine;
 public enum ItemType
 {
     material=10,
-    Item = 20
+    Item = 20,
+    Equipment=30
 }
 public class ItemData
 {

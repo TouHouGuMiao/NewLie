@@ -68,11 +68,11 @@ public class UIButton : UIButtonColor
 
 	public bool pixelSnap = false;
 
-	/// <summary>
-	/// Click event listener.
-	/// </summary>
-
-	public List<EventDelegate> onClick = new List<EventDelegate>();
+    /// <summary>
+    /// Click event listener.
+    /// </summary>
+    public bool isActive_Button;//记录button的状态
+    public List<EventDelegate> onClick = new List<EventDelegate>();
 
 	// Cached value
 	[System.NonSerialized] UISprite mSprite;
@@ -247,6 +247,9 @@ public class UIButton : UIButtonColor
     public OnClickDelegate DelegateOnClickByID;
     public OnClickDelegateWithGameObject DelegateOnClickByGameObject;
 
+    
+  
+    
 
     protected virtual void OnClick ()
 	{

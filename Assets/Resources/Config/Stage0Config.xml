@@ -1,4 +1,5 @@
 <Story name="CharacterSpeak">
+  
   <StoryData>
     <id>0</id>
     <State>0</State>
@@ -10,117 +11,6 @@
       <speak1>呀呀呀？是巫女大人呀</speak1>
     </Speak>
     </StoryData>
-
-  <StoryData>
-    <id>1</id>
-    <State>0</State>
-    <spriteName>0</spriteName>
-    <name>妖怪兔A</name>
-    <index>0</index>
-    <cout>1</cout>
-    <Speak>
-      <speak1>唉，我是您的崇拜者，妖怪兔A，这次能与本人这么近，真的激动万分。。！</speak1>
-    </Speak>
-  </StoryData>
-
-  <StoryData>
-    <id>2</id>
-    <State>0</State>
-    <spriteName>0</spriteName>
-    <name>妖怪兔A</name>
-    <index>0</index>
-    <cout>1</cout>
-    <Speak>
-      <speak1>不过这么看来，巫女大人是迷路了吗？小兔不才，想要帮您</speak1>
-    </Speak>
-  </StoryData>
-
-  <StoryData>
-    <id>3</id>
-    <State>0</State>
-    <spriteName>0</spriteName>
-    <name>妖怪兔A</name>
-    <index>0</index>
-    <cout>1</cout>
-    <Speak>
-      <speak1>巫女大人还记得在幻想乡迷路应该怎么办吗？只要把阴阳玉拿出来，放在地上，阴阳玉便能帮您指出方向了</speak1>
-    </Speak>
-  </StoryData>
-
-  <StoryData>
-    <id>4</id>
-    <State>0</State>
-    <spriteName>0</spriteName>
-    <name>妖怪兔A</name>
-    <index>0</index>
-    <cout>1</cout>
-    <Speak>
-      <speak1>赶紧试一下吧。</speak1>
-    </Speak>
-  </StoryData>
-
-  <StoryData>
-    <id>5</id>
-    <State>1</State>
-    <spriteName>0</spriteName>
-    <name>妖怪兔A</name>
-    <index>0</index>
-    <cout>1</cout>
-    <Speak>
-      <speak1>嗯？。</speak1>
-    </Speak>
-  </StoryData>
-
-  <StoryData>
-    <id>6</id>
-    <State>1</State>
-    <spriteName>0</spriteName>
-    <name>妖怪兔A</name>
-    <index>0</index>
-    <cout>1</cout>
-    <Speak>
-      <speak1>唔。。嗯？巫女大人。。怎么了吗？</speak1>
-    </Speak>
-  </StoryData>
-
-
-  <StoryData>
-    <id>7</id>
-    <State>1</State>
-    <spriteName>0</spriteName>
-    <name>妖怪兔A</name>
-    <index>0</index>
-    <cout>1</cout>
-    <Speak>
-      <speak1>咿...呀！</speak1>
-    </Speak>
-  </StoryData>
-
-  <StoryData>
-    <id>8</id>
-    <State>1</State>
-    <spriteName>0</spriteName>
-    <name>妖怪兔A</name>
-    <index>0</index>
-    <cout>1</cout>
-    <Speak>
-      <speak1>呜。。嘤。，。</speak1>
-    </Speak>
-  </StoryData>
-
-  <StoryData>
-    <id>9</id>
-    <State>1</State>
-    <spriteName>0</spriteName>
-    <name>妖怪兔A</name>
-    <index>0</index>
-    <cout>1</cout>
-    <Speak>
-      <speak1>哇呜呜呜呜，巫女太可怕了。。。。。我。。。我。做不。到。啊。</speak1>
-    </Speak>
-  </StoryData>
-
-
   
   
 </Story>

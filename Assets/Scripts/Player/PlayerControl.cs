@@ -24,12 +24,10 @@ public class PlayerControl : CharacterPropBase {
 
     private float tempTime_Z;
     private float tempTime_X;
-<<<<<<< HEAD
+
 
     private Transform bulletCollider;
  
-=======
->>>>>>> a0e257ff1e1e8df082a2ccdcea00a02ace2767ee
 
     //private GameObject systemPanel;//控制SystemPanel的GameObject
 
@@ -98,7 +96,7 @@ public class PlayerControl : CharacterPropBase {
             GUIManager.ShowView("SystemPanel");
         }
 
-        if (StoryPanel.isSpeak||EventStoryPanel.isEventSpeak)
+        if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak)
         {
             return;
         }
@@ -350,22 +348,7 @@ public void UseAttack()
 
        
 
-        if (other.CompareTag("Story"))
-        {
-            if(other.name== "Stage0EventMiLu")
-            {
-
-                StoryManager.Instacne.ShowEventStoryList(0);
-                Destroy(other.gameObject);
-            }
-
-            if (other.name == "Stage0EventFunnyBabit")
-            {
-
-                StoryManager.Instacne.ShowEventStoryList(1);
-                Destroy(other.gameObject);
-            }
-        }
+      
 
      
     }
@@ -378,12 +361,12 @@ public void UseAttack()
             int id = CommonHelper.Str2Int(name);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (StoryPanel.isSpeak)
+                if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak)
                 {
                     return;
                 }
 
-                //StoryManager.Instacne.ShowNPCStory(id);
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(id);
             }
         }
 

@@ -16,11 +16,6 @@ public class NPCSpeakData
         set;
     }
 
-    public string Main
-    {
-        get;
-        set;
-    }
 
     public int SpeakCount
     {
@@ -29,7 +24,9 @@ public class NPCSpeakData
     }
 
 
-    public List<string> SpeakList = new List<string>();
+    public List<string> MainList = new List<string>();
 
- 
+    public StoryData storyData = new StoryData();
+
+
 }

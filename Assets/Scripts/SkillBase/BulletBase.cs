@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletBase:MonoBehaviour
 {
-    protected float radius = 2.5f;
+    protected float m_Radius = 2.5f;
 
     [HideInInspector]
     public GameObject explosionEffect;
@@ -16,7 +16,7 @@ public class BulletBase:MonoBehaviour
    /// <summary>
    /// 到达击打圈的角度位置
    /// </summary>
-    public float angle=0;
+    public float m_Angle=0;
 
     /// <summary>
     /// 延迟时间

@@ -29,19 +29,14 @@ public class StoryManager
 
     public void ShowStoryList(List<StoryData> dataList)
     {
-        //if (StoryDic == null)
-        //{
-        //    StoryDic = new Dictionary<int, StoryData>();
-        //    LoadStoryXML("StoryConfig",StoryDic);
-        //}
-
+     
         if (Stage0Dic == null)
         {
             Stage0Dic = new Dictionary<int, global::StoryData>();
             LoadStoryXML("Stage0Config",Stage0Dic);
         }
       
-        StoryPanel.dataList = dataList;
+        //StoryPanel.dataList = dataList;
         
         GUIManager.ShowView("StoryPanel");
 
@@ -60,7 +55,7 @@ public class StoryManager
         List<StoryData> dataList = new List<StoryData>();
         //dataList.Add(GetEventDataByID(id));
 
-        EventStoryPanel.dataList = dataList;
+        EventStoryPanel.data = dataList[0];
 
         if (EventStoryPanel.isEventSpeak)
         {
@@ -76,7 +71,7 @@ public class StoryManager
 
 
 
-        StoryPanel.data = data;
+        //StoryPanel.data = data;
         GUIManager.ShowView("StoryPanel");
 
 
@@ -157,222 +152,15 @@ public class StoryManager
 
 
 
+    private void InitEventStoryData()
+    {
+        if (Stage0EventDic == null)
+        {
+            Stage0EventDic = new Dictionary<int, StoryData>();
+            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
+        }
 
-
-    //private StoryData GetEventDataByID(int id)
-    //{
-    //    StoryData data = null;
-    //    if (Stage0EventDic == null)
-    //    {
-    //        InitEventStoryData();
-    //        LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-    //    }
-
-    //    if (!Stage0EventDic.TryGetValue(id, out data))
-    //    {
-    //        Debug.LogError("EventData has error!......" + id);
-    //        return null;
-    //    }
-    //    return data;
-    //}
-
-
-    //#region 获得Stage0中单独的对话List，并且绑定了需要触发的方法
-    //public List<StoryData> GetStage0State0List()
-    //{
-    //    if (Stage0Dic == null)
-    //    {
-    //        Stage0Dic = new Dictionary<int, StoryData>();
-    //        LoadStoryXML("Stage0Config",Stage0Dic);
-    //    }
-    //    List<StoryData> dataList = new List<global::StoryData>();
-    //    foreach (KeyValuePair<int,StoryData> item in Stage0Dic)
-    //    {
-    //        if (item.Value.state == 0)
-    //        {
-    //            dataList.Add(item.Value);  
-    //        }
-    //    }
-    //    dataList[dataList.Count - 1].Hander = WhatYouThinkAboutWhiteRabbit_1;
-    //    return dataList;
-    //}
-
-  
-
-    //public List<StoryData> GetStage0WhiteRabbitSpeak_1()
-    //{
-    //    if (Stage0Dic == null)
-    //    {
-    //        Stage0Dic = new Dictionary<int, StoryData>();
-    //        LoadStoryXML("Stage0Config", Stage0Dic);
-    //    }
-    //    List<StoryData> dataList = new List<global::StoryData>();
-    //    foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-    //    {
-    //        if (item.Value.id == 5)
-    //        {
-    //            dataList.Add(item.Value);
-    //        }
-    //    }
-    //    return dataList;
-    //}
-
-    //public List<StoryData> GetStage0WhiteRabbitSpeak_2()
-    //{
-    //    if (Stage0Dic == null)
-    //    {
-    //        Stage0Dic = new Dictionary<int, StoryData>();
-    //        LoadStoryXML("Stage0Config", Stage0Dic);
-    //    }
-    //    List<StoryData> dataList = new List<global::StoryData>();
-    //    foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-    //    {
-    //        if (item.Value.id == 6)
-    //        {
-    //            dataList.Add(item.Value);
-    //        }
-    //    }
-    //    return dataList;
-    //}
-
-    //public List<StoryData> GetStage0WhiteRabbitSpeak_3()
-    //{
-    //    if (Stage0Dic == null)
-    //    {
-    //        Stage0Dic = new Dictionary<int, StoryData>();
-    //        LoadStoryXML("Stage0Config", Stage0Dic);
-    //    }
-    //    List<StoryData> dataList = new List<global::StoryData>();
-    //    foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-    //    {
-    //        if (item.Value.id == 7)
-    //        {
-    //            dataList.Add(item.Value);
-    //        }
-    //    }
-    //    return dataList;
-    //}
-
-    //public List<StoryData> GetStage0WhiteRabbitSpeak_4()
-    //{
-    //    if (Stage0Dic == null)
-    //    {
-    //        Stage0Dic = new Dictionary<int, StoryData>();
-    //        LoadStoryXML("Stage0Config", Stage0Dic);
-    //    }
-    //    List<StoryData> dataList = new List<global::StoryData>();
-    //    foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-    //    {
-    //        if (item.Value.id == 8)
-    //        {
-    //            dataList.Add(item.Value);
-    //        }
-    //    }
-    //    return dataList;
-    //}
-
-    //public List<StoryData> GetStage0WhiteRabbitSpeak_5()
-    //{
-    //    if (Stage0Dic == null)
-    //    {
-    //        Stage0Dic = new Dictionary<int, StoryData>();
-    //        LoadStoryXML("Stage0Config", Stage0Dic);
-    //    }
-    //    List<StoryData> dataList = new List<global::StoryData>();
-    //    foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-    //    {
-    //        if (item.Value.id == 9)
-    //        {
-    //            dataList.Add(item.Value);
-    //        }
-    //    }
-    //    dataList[dataList.Count - 1].Hander += WhiteRabbitRun;
-    //    return dataList;
-    //}
-
-    //#endregion
-
-
-
-
-    //private void InitEventStoryData()
-    //{
-    //    if (Stage0EventDic == null)
-    //    {
-    //        Stage0EventDic = new Dictionary<int, StoryData>();
-    //        LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-    //    }
-
-    //    StoryData data = GetEventDataByID(0);
-    //    data.Hander += ContiueGo;
-
-    //    StoryData data1 = GetEventDataByID(1);
-    //    data1.Hander += WhiteRabitSpeak;
-
-    //    StoryData data2 = GetEventDataByID(2);
-    //    data2.Hander += ObserveTheWhiteRabbitOrGiveUp_1;
-
-    //    StoryData data3 = GetEventDataByID(3);
-    //    data3.Hander += ObserveTheWhiteRabbitOrGiveUp_2;
-
-    //    StoryData data4 = GetEventDataByID(4);
-    //    data4.Hander += ObserveTheWhiteRabbitOrGiveUp_3;
-
-    //    StoryData data5 = GetEventDataByID(5);
-    //    data5.Hander += ObserveTheWhiteRabbitOrGiveUp_4;
-
-    //    StoryData data6 = GetEventDataByID(6);
-    //    data6.Hander += ObserveTheWhiteRabbitOrGiveUp_5;
-
-    //    StoryData data7 = GetEventDataByID(7);
-    //    data7.Hander += ObserveTheWhiteRabbitOrGiveUp_6;
-
-    //    StoryData data8 = GetEventDataByID(8);
-    //    data8.Hander += AskTheWhiteRabbit;
-
-    //    StoryData data9 = GetEventDataByID(9);
-
-    //    StoryData data10 = GetEventDataByID(10);
-    //    data10.Hander += Rabbit_AHouseEvent;
-
-
-    //    StoryData data11 = GetEventDataByID(11);
-    //    data11.Hander += RabbitAsDiray;
-
-    //    StoryData data12 = GetEventDataByID(12);
-    //    data12.Hander += RabbitAsDirayFirstPage;
-
-    //    StoryData data13 = GetEventDataByID(13);
-    //    data13.Hander += RabbitAsDiraySecondPage;
-
-    //    StoryData data14 = GetEventDataByID(14);
-    //    data14.Hander += RabbitAsDirayThirdPage;
-
-    //    StoryData data15 = GetEventDataByID(15);
-    //    data15.Hander += RabbitAsDirayFourthPage;
-
-    //    StoryData data16 = GetEventDataByID(16);
-    //    data16.Hander += RabbitAsDirayFivePage;
-
-    //    StoryData data17 = GetEventDataByID(17);
-    //    data17.Hander += RabbitAsDiraySixthPage;
-
-    //    StoryData data18 = GetEventDataByID(18);
-    //    data18.Hander += RabbitBsHouse;
-
-    //    StoryData data19 = GetEventDataByID(19);
-    //    data19.Hander += RabbitBDoorIsOpen;
-
-
-    //    StoryData data20 = GetEventDataByID(20);
-    //    data20.Hander += RabbitBDoorIsOpen;
-
-    //    StoryData data21 = GetEventDataByID(21);
-    //    data21.Hander += RabbitB_BookCase;
-
-    //    StoryData data22 = GetEventDataByID(22);
-    //    data22.Hander += RabbitB_ReadBookFirst;
-    //}
+    }
 
 
     //#region Stage0 对话所需方法
@@ -403,7 +191,7 @@ public class StoryManager
     //{
     //    ChoseManager.Instance.ShowChosePanel(0);
     //}
-    
+
     //void WhiteRabitSpeak()
     //{
     //    List<StoryData> dataList = GetStage0State0List();
@@ -448,7 +236,7 @@ public class StoryManager
     //void AskTheWhiteRabbit()
     //{
     //    ShowStoryList(GetStage0WhiteRabbitSpeak_5());
-     
+
     //}
 
     //void Rabbit_AHouseEvent()

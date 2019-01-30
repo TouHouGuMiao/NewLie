@@ -42,6 +42,16 @@ public class ChosePanel : IView
     }
     protected override void OnShow()
     {
+        GameObject inputPanel = GUIManager.FindPanel("InputPanel");
+        if (inputPanel.activeSelf)
+        {
+            panel.transform.localPosition = new Vector3(-324, -217);
+        }
+
+        else
+        {
+            panel.transform.localPosition = new Vector3(-324, 47);
+        }
         UpdataItemData();
     }
     protected override void OnDestroy()
@@ -57,23 +67,6 @@ public class ChosePanel : IView
 
     public override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            index++;
-            if (index >= data.HanderList.Count)
-            {
-                index =0;
-            }
-        }   
-
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            index--;
-            if (index <0 )
-            {
-                index = data.HanderList.Count - 1;
-            }
-        }
         for (int i = 0; i < grid.transform.childCount; i++)
         {
             GameObject go = grid.transform.GetChild(i).gameObject;
@@ -90,13 +83,48 @@ public class ChosePanel : IView
                 button.SetState(UIButtonColor.State.Normal, true);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+
+        if (!InputPanel.isChange)
         {
-            if (data != null)
+            index = -1;
+            return;
+        
+        }
+        else
+        {
+
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                data.HanderList[index]();
+               
+                if (index >=data.HanderDic.Count-1)
+                {
+                    return;
+                }
+                index++;
+
             }
-            GUIManager.HideView("ChosePanel");
+
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                index--;
+                if (index < 0)
+                {
+                    index = -1;
+                    InputPanel.isChange = false;
+                    return;
+                }
+            }
+
+            
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                if (data != null)
+                {
+                    data.HanderDic[index]();
+                }
+                GUIManager.HideView("ChosePanel");
+            }
         }
     }
 

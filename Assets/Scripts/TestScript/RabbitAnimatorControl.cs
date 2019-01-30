@@ -6,7 +6,7 @@ public class RabbitAnimatorControl : MonoBehaviour {
     public Animator m_anim;
     float MoveSpeed = 5;
 	// Use this for initialization
-	void Start () {
+	void Start () { 
         m_anim = this.GetComponent<Animator>();
     }
     //void Walk() {

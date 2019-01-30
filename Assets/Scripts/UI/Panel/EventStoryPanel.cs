@@ -10,7 +10,7 @@ public class EventStoryPanel : IView
     }
 
     //public static StoryData data;
-    public static List<StoryData> dataList = new List<StoryData>();
+    public static StoryData data;
     private UILabel nameLabel;
     private UILabel speakLabel;
     private UISprite eventSprite;
@@ -26,7 +26,7 @@ public class EventStoryPanel : IView
     /// <summary>
     /// list 中 StoryData中的SpeakList的标志位
     /// </summary>
-    private int dataIndex = 0;
+
 
 
     private string addText = null;
@@ -70,19 +70,14 @@ public class EventStoryPanel : IView
     {
         
         tp.enabled = true;
-        if (dataList != null)
+        if (data != null)
         {
-            eventSprite.spriteName = dataList[0].spriteName;
-            if (curData == dataList[0])
-            {
-                Debug.LogError("重复上次数据，请检查"+"the curData is"+curData.name+"and the dataList[0] is"+dataList[0].name);
-                return;
-            }
+            eventSprite.spriteName = data.spriteName;
 
-            if (curData.spriteName != dataList[0].spriteName)
+            if (curData.spriteName != data.spriteName)
             {
                 tp.ResetToBeginning();
-                curData = dataList[0];
+                curData = data;
             }
 
             else
@@ -143,13 +138,13 @@ public class EventStoryPanel : IView
 
     private void ShowTextAfterTp()
     {
-        if (dataList.Count > 0)
+        if (data.cout > 0)
         {
             //if (dataList[0].spriteName != eventSpriteName)
             //{
             //    eventSpriteName = dataList[0].spriteName;
             //}
-            string text = dataList[index].SpeakList[dataIndex];
+            string text = data.SpeakList[data.index];
             if (text.Length > 60)
             {
                 
@@ -189,7 +184,7 @@ public class EventStoryPanel : IView
 
         if (EventStoryPanel.isEventSpeak)
         {
-            if (StoryPanel.isSpeak ||ChosePanel.isChose)
+            if (TalkPanel.isSpeak ||ChosePanel.isChose)
             {
                 return;
             }
@@ -206,26 +201,24 @@ public class EventStoryPanel : IView
                     if (writer.isActive)
                     {
                         writer.Finish();
-                        //for (int i = 0; i < dataList.Count; i++)
-                        //{
-                        //    if (dataList[i].Hander != null)
-                        //    {
-                        //         dataList[i].Hander();
-                        //    }
-                        //}
+                
                     }
 
                     else if (!writer.isActive)
                     {
                         bool needHide = true;
-                        for (int i = 0; i < dataList.Count; i++)
+                        StoryHander hander = null;
+                        if (data.StoryHanderDic.TryGetValue(data.index, out hander))
                         {
-                            if (dataList[i].Hander != null)
-                            {
-                                needHide = false;
-                                dataList[i].Hander();
-                            }
+                            hander();
+                            needHide = false;
                         }
+
+                        if (TalkPanel.isSpeak)
+                        {
+                            needHide = false;
+                        }
+             
                         if (needHide)
                         {                            
                             GUIManager.HideView("EventStoryPanel");

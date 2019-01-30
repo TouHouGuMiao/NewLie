@@ -1,0 +1,15 @@
+<Story name="CharacterSpeak">
+  <StoryData>
+    <id>0</id>
+    <State>0</State>
+    <name>驻步在神社的魔理沙</name>
+    <spriteName>0</spriteName>
+    <index>0</index>
+    <cout>2</cout>
+    <Speak>
+      <speak1>她停留在神社不知在做什么。</speak1>
+      <speak2>她显得十分生气。</speak2>
+    </Speak>
+    </StoryData>
+</Story>
+

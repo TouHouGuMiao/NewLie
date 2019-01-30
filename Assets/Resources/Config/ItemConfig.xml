@@ -1,15 +1,51 @@
 <Item>
   <ItemData>
-    <id>0</id>
+    <id>1</id>
     <name>楼观剑</name>
-    <sprite></sprite>
-    <atlas></atlas>
-    <Des></Des>
-    
-    <bulletPower></bulletPower>
-    <CRT></CRT>
-    <CRTPower></CRTPower>  
-    <Power_bu>B</Power_bu>
-    <DEX_bu>S</DEX_bu>
+    <ItemType>30</ItemType>
+    <sprite>1</sprite>
+    <atlas>HeroAtlas</atlas>
+    <Des>狠人</Des>    
+    <price></price>   
 </ItemData>
+  
+  <ItemData>
+  <id>2</id>
+  <name>伤药</name>
+  <ItemType>20</ItemType>
+  <sprite>2</sprite>
+  <atlas>HeroAtlas</atlas>
+  <Des>加血</Des>
+  <price>20</price>
+  </ItemData>
+  
+  <ItemData>
+    <id>3</id>
+    <name>金属</name>
+    <ItemType>10</ItemType>
+    <sprite>3</sprite>
+    <atlas>HeroAtlas</atlas>
+    <Des>无敌</Des>
+    <price>20</price>
+  </ItemData>
+
+  <ItemData>
+    <id>4</id>
+    <name>宝剑</name>
+    <ItemType>30</ItemType>
+    <sprite>5</sprite>
+    <atlas>HeroAtlas</atlas>
+    <Des>无敌</Des>
+    <price>20</price>
+  </ItemData>
+
+  <ItemData>
+    <id>5</id>
+    <name>柴刀</name>
+    <ItemType>30</ItemType>
+    <sprite>4</sprite>
+    <atlas>HeroAtlas</atlas>
+    <Des>无敌</Des>
+    <price>20</price>
+  </ItemData>
 </Item>

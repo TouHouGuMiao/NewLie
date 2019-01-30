@@ -17,6 +17,7 @@ public class PlayerControl : CharacterPropBase {
     
 
     public GameObject bulletPrefab;
+    private GameObject BagPanel;
 
     private Animator m_Animator;
     private float rate_Z=0.5f;
@@ -26,8 +27,12 @@ public class PlayerControl : CharacterPropBase {
     private float tempTime_X;
 
 
+
     private Transform bulletCollider;
  
+
+
+    
 
     //private GameObject systemPanel;//控制SystemPanel的GameObject
 
@@ -37,7 +42,7 @@ public class PlayerControl : CharacterPropBase {
     private UISlider m_Slider;
     private float m_HP;  //表示血条现有HP,而不是HP属性
 
-    private void Awake()
+    private void Awake() 
     {
         Instace = this;
         //HandWithPlayer.Instance.Init(transform);
@@ -46,6 +51,8 @@ public class PlayerControl : CharacterPropBase {
     void Start ()
     {
         
+       
+       // FindBagPanel();
         // systemPanel=this.transform.GetChild("")
         WingmanManager.Instance.Init();
         m_Animator = this.GetComponent<Animator>();
@@ -66,7 +73,18 @@ public class PlayerControl : CharacterPropBase {
 	
 	void Update ()
     {
-        CharacterControl();
+        if (Input.GetKeyDown(KeyCode.Escape)&&SystemPanel.Bg_IsActive==false) {
+
+            GUIManager.ShowView("SystemPanel");
+        }
+        if (SystemPanel.Bg_IsActive==false)
+        {
+            CharacterControl();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && SystemPanel.Bg_IsActive == true) {
+            GUIManager.HideView("BagPanel");
+            SystemPanel.Bg_IsActive = false;
+        }
         //YinYangYuControl();
         //UpDataPlayerPro();//测试用
     }
@@ -91,10 +109,10 @@ public class PlayerControl : CharacterPropBase {
         //{
         //    GUIManager.ShowView("SystemPanel");
         //}
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        //if (Input.GetKeyDown(KeyCode.Escape)) {
 
-            GUIManager.ShowView("SystemPanel");
-        }
+        //    GUIManager.ShowView("SystemPanel");
+        //}
 
         if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak)
         {
@@ -441,6 +459,15 @@ public void UseAttack()
     {
 
     }
-    
+    void FindBagPanel() {
+        GameObject[] arry;
+        arry= Resources.FindObjectsOfTypeAll<GameObject>();
+        for (int i = 0; i < arry.Length; i++) {
+            if (arry[i].name == "BagPanel") {
+                BagPanel = arry[i];
+            }
+        }
+        
+    }
     
 }

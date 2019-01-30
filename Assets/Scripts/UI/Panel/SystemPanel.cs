@@ -6,6 +6,8 @@ using UnityEngine;
 public class SystemPanel : IView
 {
     private UIButton InventoryBtn;
+    public static bool Bg_IsActive = false;
+    
     protected override void OnStart()
     {
         //  InventoryBtn = this.GetChild("InventoryBtn").GetComponent<UIButton>();
@@ -37,6 +39,7 @@ public class SystemPanel : IView
     {
         // GUIManager.ShowView("InventoryPanel");
         GUIManager.ShowView("BagPanel");
+        Bg_IsActive = true;
     }
 
 

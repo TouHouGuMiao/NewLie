@@ -4,28 +4,42 @@ using UnityEngine;
 
 public class BagPanel : IView
 {
-    private List<ItemData> m_ItemList;
-    private List<ItemData> EquipmentList = new List<ItemData>();
-    private List<ItemData> MaterialList = new List<ItemData>();
+    private List<ItemData> ItemsList;
+    private List<ItemData> EquipmentList;
+    private List<ItemData> MaterialList;
+    private List<UIButton> ItemsBtnControlList = new List<UIButton>();
+    private List<UIButton> m_BtnList = new List<UIButton>();
+    private List<UIButton> ItemWidgetList = new List<UIButton>();//功能按钮的存储表
+
     private GameObject m_ItemGo;
     private GameObject TrippleBtn;//是装备，材料等按钮的父物体
+    private GameObject ShowUI;//用于使整体显示的GameObject
+    private GameObject ChoiceMark;//按钮选择标记 
+    private GameObject FunctionChoice;//三个功能选择
+
     private UIButton EquipmentBtn;
     private UIButton MaterialBtn;
+    private UIButton ItemsBtn;//物品按钮
     private UIButton UseBtn;
+
     //private GameObject secondLayer;
     private UIGrid ItemGrid;
     //private GameObject ItemWidget;
     //private GameObject ShowInfo;
-    private GameObject ShowUI;//用于使整体显示的GameObject
-                              // private int ItemID;
+   
     private List<int> ItemIdList = new List<int>();
     static int ItemId;//记录点击的物品的ID的静态数据
     private UILabel ItemsName;//物品名称的控件
     private static int ButtonType;//记录背包更新的是什么表
+    private bool isActiveLeftArrow = false;
+  
+    
+
+    public bool isActive_1=false;//用于记录背包是否update的变量
+                               
 
 
-
-
+   
     // Use this for initialization
     public override void Update() {
         ButtonControl();
@@ -42,8 +56,12 @@ public class BagPanel : IView
     protected override void OnShow()
     {
 
+        //ItemDataManager.Instance.LoadItemXml(pathName,m_ItemList);
+       // ItemDataManager.Instance.LoadItemXml("ItemConfig",m_ItemList);
+      
         EquipmentList = ItemDataManager.Instance.GetHasEquipList();
         MaterialList = ItemDataManager.Instance.GetHasMaterialList();
+        ItemsList = ItemDataManager.Instance.GetHasItemsList();
         //OnItemsClick();
         //ButtonControl();
 
@@ -56,14 +74,22 @@ public class BagPanel : IView
         m_ItemGo.AddComponent<UIButton>();
         EquipmentBtn = this.GetChild("EquipBtn").GetComponent<UIButton>();
         MaterialBtn = this.GetChild("MaterialBtn").GetComponent<UIButton>();
+        ItemsBtn = this.GetChild("ItemBtn").GetComponent<UIButton>();
         ItemGrid = this.GetChild("ItemGrid").GetComponent<UIGrid>();
         ItemsName = this.GetChild("Name").GetComponent<UILabel>();
         //ItemWidget = this.GetChild("ItemWidget").gameObject;
         //ShowInfo = this.GetChild("ShowInfo").gameObject;
         UseBtn = this.GetChild("ItemUseBtn").GetComponent<UIButton>();
         TrippleBtn = this.GetChild("Grid").gameObject;
+        ChoiceMark = this.GetChild("ChoiceMark").gameObject;
+        FunctionChoice = this.GetChild("ItemWidget").gameObject;
 
+        AddButtonInList();
+        //AddButton();
         AddEventDelegate();
+        
+       // Debug.Log(ItemWidgetList[0].name);
+       // Debug.Log(FunctionChoice.name);
         //AddButtonInList();
         //Debug.Log(UIButton.current.name);
         //ButtonControl();
@@ -74,11 +100,13 @@ public class BagPanel : IView
         if (ShowUI.activeInHierarchy == true)
         {
             ShowUI.SetActive(false);
-        }       
+        }
+        //UIButton btn = UIButton.current;        
         UpdataBg(EquipmentList);
         ButtonType = 0;
 
     }
+    
     void OnClickMaterial() {//点击材料按钮时的操作
         if (ShowUI.activeInHierarchy == true) {
             ShowUI.SetActive(false);
@@ -86,12 +114,18 @@ public class BagPanel : IView
         UpdataBg(MaterialList);
         ButtonType = 1;//材料按钮的类型是1
     }
-    
+    void OnClickItems() {//当点击物品按钮时的操作
+        if (ShowUI.activeInHierarchy == true) {
+            ShowUI.SetActive(false);
+        }
+        UpdataBg(ItemsList);
+        ButtonType = 2;
+    }
 
     
     void OnItemsClick()//点击具体物品时的响应事件
     {
-
+        
         if (ShowUI.activeInHierarchy == false)
         {
             ShowUI.SetActive(true);
@@ -101,21 +135,54 @@ public class BagPanel : IView
             ShowUI.SetActive(false);
         }
         ItemId = System.Int32.Parse(UIButton.current.name);
-        
-        switch (ButtonType) {
-            case 0: UpdataInformation(EquipmentList, ItemId - 1);
-            break;
-            case 1:UpdataInformation(MaterialList, ItemId - 1);
-            break;
+        switch (ButtonType)
+        {
+            case 0:
+                UpdataInformation(EquipmentList, ItemId);
+                break;
+            case 1:
+                UpdataInformation(MaterialList, ItemId);
+                break;
+            case 2:
+                UpdataInformation(ItemsList, ItemId);
+                break;
         }
-        
+
+
+    }      
+
+    void OnItemsClick_2()//按键具体物品时的响应事件
+    {
+
+        if (ShowUI.activeInHierarchy == false)
+        {
+            ShowUI.SetActive(true);
+        }
+       
+        ItemId = System.Int32.Parse(ItemsBtnControlList[index].name);
+        //int.TryParse(m_BtnList[index].name, out ItemId);
+       // Debug.Log(ItemId);
+
+        switch (ButtonType)
+        {
+            case 0:
+                UpdataInformation(EquipmentList, ItemId);
+                break;
+            case 1:
+                UpdataInformation(MaterialList, ItemId);
+                break;
+            case 2:
+                UpdataInformation(ItemsList, ItemId);
+                break;
+        }
+
     }
 
 
     void UpdataBg(List<ItemData> DataList)
     {
-       
-         EventDelegate  OnItemClickBtn = new global:: EventDelegate(OnItemsClick);                         
+        ItemsBtnControlList.Clear();
+        EventDelegate  OnItemClickBtn = new global:: EventDelegate(OnItemsClick);                         
             if (ItemGrid.transform.childCount <= DataList.Count)
             {
             
@@ -133,7 +200,8 @@ public class BagPanel : IView
                 itemNum.text = "x" + DataList[i].num.ToString();
                 //m_Item.AddComponent<GetItemDataTools>();
                 m_Item.GetComponent<UIButton>().onClick.Remove(OnItemClickBtn);
-                m_Item.GetComponent<UIButton>().onClick.Add(OnItemClickBtn);
+                m_Item.GetComponent<UIButton>().onClick.Add(OnItemClickBtn);                
+                ItemsBtnControlList.Add(m_Item.GetComponent<UIButton>());
                 //ItemID = m_Item.GetComponent<GetItemDataTools>().getMyGameObjectID();
                 // ItemIdList.Add(ItemID);
                 m_Item.SetActive(true);
@@ -151,7 +219,8 @@ public class BagPanel : IView
                 itemNum.text = "x" + DataList[i].num.ToString();
                 //m_Item.AddComponent<GetItemDataTools>();
                 m_Item.GetComponent<UIButton>().onClick.Remove(OnItemClickBtn);
-                m_Item.GetComponent<UIButton>().onClick.Add(OnItemClickBtn);
+                m_Item.GetComponent<UIButton>().onClick.Add(OnItemClickBtn);              
+               ItemsBtnControlList.Add(m_Item.GetComponent<UIButton>());
                 //ItemID = m_Item.GetComponent<GetItemDataTools>().getMyGameObjectID();
                 // ItemIdList.Add(ItemID);
                 m_Item.SetActive(true);
@@ -160,6 +229,7 @@ public class BagPanel : IView
             }
             else
             {
+            
             for (int i = ItemGrid.transform.childCount-1; i >= DataList.Count; i--) {
                 GameObject m_Item = ItemGrid.transform.GetChild(i).gameObject;
                 m_Item.SetActive(false);
@@ -177,7 +247,8 @@ public class BagPanel : IView
                 itemNum.text = "x" + DataList[i].num.ToString();
                 //m_Item.AddComponent<GetItemDataTools>();
                 m_Item.GetComponent<UIButton>().onClick.Remove(OnItemClickBtn);
-                m_Item.GetComponent<UIButton>().onClick.Add(OnItemClickBtn);
+                m_Item.GetComponent<UIButton>().onClick.Add(OnItemClickBtn);               
+                ItemsBtnControlList.Add(m_Item.GetComponent<UIButton>());
                 //ItemID = m_Item.GetComponent<GetItemDataTools>().getMyGameObjectID();
                 // ItemIdList.Add(ItemID);
                 m_Item.SetActive(true);
@@ -186,7 +257,27 @@ public class BagPanel : IView
             ItemGrid.Reposition();                        
     }
     void UpdataInformation(List<ItemData> DataList,int Item_ID) {//更新背包右边显示窗口的方法
-        ItemsName.text = DataList[Item_ID].name;       
+        //foreach (ItemData data in DataList) {
+        //    if (data.id == Item_ID)
+        //    {
+        //        ItemsName.text = data.name;
+        //    }
+        //    else {
+        //        Debug.LogError("data.id" + data.id + "is not equals Item_ID,please check it!");
+        //        break; ;
+        //    }
+        //}
+        for (int i = 0; i < DataList.Count; i++) {
+            if (DataList[i].id == Item_ID)
+            {
+                ItemsName.text = DataList[i].name;
+            }
+            //else
+            //{
+            //    Debug.LogError("data.id" + DataList[i].id + "is not equals Item_ID,please check it!");
+            //    continue;
+            //}
+        }
     }
 
 
@@ -197,82 +288,238 @@ public class BagPanel : IView
         
         EventDelegate OnClickEquipmentBtn = new global::EventDelegate(OnClickEquipment);
         EventDelegate OnClickMaterialBtn = new global::EventDelegate(OnClickMaterial);
+        EventDelegate OnClickitemsBtn = new global::EventDelegate(OnClickItems);
         EventDelegate OnClickUseBtn = new global::EventDelegate(ClickUse);
 
         EquipmentBtn.onClick.Add(OnClickEquipmentBtn);
         MaterialBtn.onClick.Add(OnClickMaterialBtn);
+        ItemsBtn.onClick.Add(OnClickitemsBtn);
         UseBtn.onClick.Add(OnClickUseBtn);
       
 
     }
+    void ShowItemsName(List<ItemData> list) {
+        foreach (ItemData data in list)
+        {
+            if (data.id == ItemId)
+            {
+                Debug.Log("当前使用的物体的名字是" + data.name);
+            }
+        }
+    }
     void ClickUse() {//点击使用的按钮时的响应事件
+        switch (ButtonType)
+        {
+            case 0:
+                ShowItemsName(EquipmentList);
+                break;
+            case 1:
+                ShowItemsName(MaterialList);
+                break;
+            case 2:
+                ShowItemsName(ItemsList);
+                break;
+        }
+        //Debug.Log(ItemId);
+        
+    }
+    void ClickUse_2()
+    {//点击使用的按钮时的响应事件
+        switch (ButtonType)
+        {
+            case 0:
+                Debug.Log("当前使用的物体的名字是" + EquipmentList[index].name);
+                break;
+            case 1:
+                Debug.Log("当前使用的物体的名字是" + MaterialList[index].name);
+                break;
+            case 2:
+                Debug.Log("当前使用的物体的名字是" + ItemsList[index].name);
+                break;
+        }
 
     }
-    List<UIButton> m_BtnList = new List<UIButton>();
+
     void AddButtonInList()//将Button存入数组中
     {
-        for (int i = 0; i < TrippleBtn.transform.childCount; i++)
-        {
-            m_BtnList = ButtonManager.Instance.Add_Btn(TrippleBtn.transform.GetChild(i).GetComponent<UIButton>());
-            // Debug.Log(m_BtnList[i].name);
-        }
+        m_BtnList = ButtonManager.Instance.Add_Btn(TrippleBtn);
+        ItemWidgetList = ButtonManager.Instance.Add_Btn(FunctionChoice);
     }
+    
     int index = 0; //记录是第几个Button
     UIButton btn = new UIButton();
+    void trasver() {
+        for (int i = 0; i < ItemsBtnControlList.Count; i++) {
+            Debug.Log(ItemsBtnControlList[i].name);
+
+        }
+    }
+    void TransformChoicePos(UIButton btn) {
+
+        ChoiceMark.transform.position = btn.transform.position;//+ vt;
+        Debug.Log(btn.transform.localPosition);
+       
+    }
     void ButtonControl()
     {
-        AddButtonInList();
-        btn = m_BtnList[index];
-        for (int i = 0; i < m_BtnList.Count; i++)
-        {
-            m_BtnList[i].isActive_Button = false;
-        }
-        
-        if (Input.GetKeyDown(KeyCode.S))
+       
+       // AddButtonInList();
+       // btn = m_BtnList[index];
+
+
+        if (Input.GetKeyDown(KeyCode.DownArrow) && isActive_1 == false)
         {
             if (btn == m_BtnList[2])
             {
                 index = 0;
                 btn = m_BtnList[index];
+               
+                TransformChoicePos(btn);
                 Debug.Log(m_BtnList[index].name);
             }
             else
             {
-                btn = m_BtnList[index++];
-                btn.isActive_Button = true;
+                index += 1;
+                btn = m_BtnList[index];
+                //Debug.Log(btn.transform.position);
+                TransformChoicePos(btn);
+                //btn.isActive_Button = true;
                 Debug.Log(m_BtnList[index].name);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.W) )
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && isActive_1 == true) {
+            int length = ItemsBtnControlList.Count;
+            Debug.Log("length=" + length);
+            if (btn == ItemsBtnControlList[length-1])
+            {
+                Debug.Log("Error");
+                index = 0;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+                Debug.Log(ItemsBtnControlList[index].name);
+            }
+            else {
+                index += 1;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+                Debug.Log(ItemsBtnControlList[index].name);
+            }
+
+        }
+       if (Input.GetKeyDown(KeyCode.UpArrow)&&isActive_1==false)
         {
             if (btn == m_BtnList[0])
             {
                 index = 2;
                 btn = m_BtnList[index];
+                TransformChoicePos(btn);
                 Debug.Log(m_BtnList[index].name);
             }
             else
             {
-                btn = m_BtnList[index--];
+                index =index-1;
+                btn = m_BtnList[index];
+                TransformChoicePos(btn);
                 btn.isActive_Button = true;
                 Debug.Log(m_BtnList[index].name);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Return)) {
-            switch (index) {
-                case 0:                                        
-                  OnClickEquipment();                                    
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && isActive_1 == true) {
+            
+            if (btn == ItemsBtnControlList[0])
+            {
+                index = ItemsBtnControlList.Count - 1;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+                Debug.Log(ItemsBtnControlList[index].name);
+            }
+            else {
+                index = index - 1;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+                Debug.Log(ItemsBtnControlList[index].name);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow) && isActive_1 == false)
+        {
+            switch (index)
+            {
+                case 0:
+                    OnClickEquipment();
+                    isActive_1 = true;
                     break;
-                case 1:                    
-                  OnClickMaterial();                                        
+                case 1:
+                    OnClickMaterial();
+                    isActive_1 = true;
                     break;
                 case 2:
+                    OnClickItems();
+                    isActive_1 = true;
                     break;
-
             }
+            //TransformChoicePos(ItemsBtnControlList[0]);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && ShowUI.activeInHierarchy == true)
+        {
+            //index = 0;
+            OnItemsClick_2();
+            btn = ItemWidgetList[0];
+            TransformChoicePos(btn);
+            Debug.Log("index=" + index);
+            isActiveLeftArrow = true;
 
         }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && isActive_1 == true)
+        {
+            // trasver();
+            //index = 0;
+            if (ItemsBtnControlList.Count == 1)
+            {
+                index = 0;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+            }
+            else
+            {
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+            }
 
+            OnItemsClick_2();
+           
+            //isActive_1 = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && isActiveLeftArrow == true)
+        {
+            index = 0;
+            btn = ItemsBtnControlList[index];
+            TransformChoicePos(btn);
+            isActiveLeftArrow = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && isActive_1 == true)
+        {
+            index = 0;
+            btn = m_BtnList[index];
+            TransformChoicePos(btn);
+            if (ShowUI.activeInHierarchy == true)
+            {
+                ShowUI.SetActive(false);
+            }
+            isActive_1 = false;
+            
+        }
+       
+        if (Input.GetKeyDown(KeyCode.Return) && isActiveLeftArrow==true) {
+            ClickUse_2();
+        }
+        //if (Input.GetKeyDown(KeyCode.RightArrow) && index != 0) {
+            
+        //    btn = ItemsBtnControlList[index];
+        //    OnItemsClick_2();
+        //}
+       
+        
     }
 }
 

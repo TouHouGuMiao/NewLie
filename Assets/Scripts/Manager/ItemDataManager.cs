@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Xml;
 
 public class ItemDataManager
 {
@@ -20,9 +21,10 @@ public class ItemDataManager
     private Dictionary<int, ItemData> ItemDataDic;
 
 
-    private List<ItemData> HasItemList;
-    private List<ItemData> HasMaterialList;
-    private List<ItemData> HasEquipList;
+    private List<ItemData> HasItemList = new List<ItemData>();
+    private List<ItemData> HasMaterialList = new List<ItemData>();
+    private List<ItemData> HasEquipList = new List<ItemData>();
+    //private string pathName = "ItemConfig";
 
     public ItemData GetItemDataByBulletName(string name)
     {
@@ -51,7 +53,7 @@ public class ItemDataManager
             TestInitItemlList();
         }
 
-        
+
 
         ItemDataList = HasItemList;
         return ItemDataList;
@@ -177,27 +179,53 @@ public class ItemDataManager
         }
         return data;
     }
-    
 
+    //int count = 0;
     public List<ItemData> GetHasMaterialList()
     {
-
-        List<ItemData> ItemDataList = new List<global::ItemData>();
-        if (HasMaterialList == null)
-        {
-            TestInitMaterialList();
+        List<ItemData> ItemDataList = new List<ItemData>();      
+            LoadItemXml("ItemConfig", ItemDataList);
+        // ItemDataList = HasMaterialList;
+        //Debug.Log(ItemDataList.Count);
+        int length = ItemDataList.Count;
+       // Debug.Log(ItemDataList[1].itemType);
+        for (int i = ItemDataList.Count-1; i >= 0; i--) {
+            if (ItemDataList[i].itemType!=ItemType.material) {//解决方法，新建一个表，如果是这个数的话，加到这个表里，然后返回这个表
+                ItemDataList.Remove(ItemDataList[i]);
+                //Debug.Log(ItemDataList[i].name);
+               // count++;
+            }
         }
-        ItemDataList = HasMaterialList;
+        //Debug.Log("count"+count);
+        //Debug.Log(ItemDataList.Count);
+        
         return ItemDataList;
     }
     public List<ItemData> GetHasEquipList() {
-        List<ItemData> ItemDataList = new List<ItemData>();
-        if (HasEquipList == null) {
-            TestInitEquipmentList();
+        List<ItemData> ItemDataList = new List<ItemData>();       
+            LoadItemXml("ItemConfig", ItemDataList);
+        //ItemDataList = HasEquipList;
+        for (int i = ItemDataList.Count - 1; i >= 0; i--)
+        {
+            if (ItemDataList[i].itemType != ItemType.Equipment)
+            {//解决方法，新建一个表，如果是这个数的话，加到这个表里，然后返回这个表
+                ItemDataList.Remove(ItemDataList[i]);
+                //Debug.Log(ItemDataList[i].name);
+               // count++;
+            }
         }
-        
-            ItemDataList = HasEquipList; 
-        
+
+        //Debug.Log(HasEquipList.Count);
+        return ItemDataList;
+    }
+    public List<ItemData> GetHasItemsList() {
+        List<ItemData> ItemDataList = new List<ItemData>();
+        LoadItemXml("ItemConfig", ItemDataList);
+        for (int i = ItemDataList.Count - 1; i >= 0; i--) {
+            if (ItemDataList[i].itemType != ItemType.Item) {
+                ItemDataList.Remove(ItemDataList[i]);
+            }
+        }
         return ItemDataList;
     }
 
@@ -347,5 +375,46 @@ public class ItemDataManager
         ItemDataDic.Add(data3.id, data3);
         ItemDataDic.Add(data4.id, data4);
        
+    }
+    
+
+   public void LoadItemXml(string pathName, List<ItemData> list) {
+        string path = "Config";
+        string text = ResourcesManager.Instance.LoadConfig(path,pathName).text;
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(text);
+
+        XmlNode xmlNode = xmlDoc.SelectSingleNode("Item");
+        XmlNodeList nodeList = xmlNode.ChildNodes;
+
+        foreach (XmlNode node in nodeList) {
+            XmlNode id = node.SelectSingleNode("id");
+            XmlNode name = node.SelectSingleNode("name");
+            XmlNode sprite = node.SelectSingleNode("sprite");
+            XmlNode atlas = node.SelectSingleNode("atlas");//哪个图集
+            XmlNode Des = node.SelectSingleNode("Des");           
+            XmlNode price = node.SelectSingleNode("price");
+            XmlNode itemType = node.SelectSingleNode("ItemType");
+
+            ItemData data = new ItemData();
+            data.id = CommonHelper.Str2Int(id.InnerText);
+            data.name = name.InnerText;
+            data.icon = sprite.InnerText; 
+            data.atlasName = atlas.InnerText;
+            data.des = Des.InnerText;
+            data.price = CommonHelper.Str2Int(price.InnerText);
+            switch (int.Parse(itemType.InnerText)) {
+                case 10:data.itemType = ItemType.material;
+                    break;
+                case 20:data.itemType = ItemType.Item;
+                    break;
+                case 30:data.itemType = ItemType.Equipment;
+                    break;
+            }
+            //Debug.Log("xxx");                                                                   
+                list.Add(data);
+        }
+        //Debug.Log(list.Count);
     }
 }

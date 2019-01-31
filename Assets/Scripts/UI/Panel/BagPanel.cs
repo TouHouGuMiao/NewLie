@@ -28,10 +28,11 @@ public class BagPanel : IView
     //private GameObject ShowInfo;
    
     private List<int> ItemIdList = new List<int>();
-    static int ItemId;//记录点击的物品的ID的静态数据
+    public static int ItemId;//记录点击的物品的ID的静态数据
     private UILabel ItemsName;//物品名称的控件
-    private static int ButtonType;//记录背包更新的是什么表
+    public static int ButtonType;//记录背包更新的是什么表
     private bool isActiveLeftArrow = false;
+    private bool isActiveWhenShowUI = false;
   
     
 
@@ -346,7 +347,9 @@ public class BagPanel : IView
         ItemWidgetList = ButtonManager.Instance.Add_Btn(FunctionChoice);
     }
     
-    int index = 0; //记录是第几个Button
+    public static int index = 0; //记录是第几个Button
+    int twoTothreeIndex = 0;//记录从第一层进入第二层的时候的第一层的index
+    int oneTotwoIndex = 0;
     UIButton btn = new UIButton();
     void trasver() {
         for (int i = 0; i < ItemsBtnControlList.Count; i++) {
@@ -357,14 +360,15 @@ public class BagPanel : IView
     void TransformChoicePos(UIButton btn) {
 
         ChoiceMark.transform.position = btn.transform.position;//+ vt;
-        Debug.Log(btn.transform.localPosition);
+       // Debug.Log(btn.transform.localPosition);
+       Debug.Log("indexBtn="+index);
        
     }
     void ButtonControl()
     {
-       
-       // AddButtonInList();
-       // btn = m_BtnList[index];
+
+        // AddButtonInList();
+        // btn = m_BtnList[index];
 
 
         if (Input.GetKeyDown(KeyCode.DownArrow) && isActive_1 == false)
@@ -373,7 +377,7 @@ public class BagPanel : IView
             {
                 index = 0;
                 btn = m_BtnList[index];
-               
+
                 TransformChoicePos(btn);
                 Debug.Log(m_BtnList[index].name);
             }
@@ -387,10 +391,12 @@ public class BagPanel : IView
                 Debug.Log(m_BtnList[index].name);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && isActive_1 == true) {
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && ShowUI.activeInHierarchy == true)
+        {//////
             int length = ItemsBtnControlList.Count;
-            Debug.Log("length=" + length);
-            if (btn == ItemsBtnControlList[length-1])
+            //Debug.Log("length=" + length);
+            // Debug.Log("xxxx");
+            if (btn == ItemsBtnControlList[length - 1])
             {
                 Debug.Log("Error");
                 index = 0;
@@ -398,7 +404,30 @@ public class BagPanel : IView
                 TransformChoicePos(btn);
                 Debug.Log(ItemsBtnControlList[index].name);
             }
-            else {
+            else
+            {
+                index += 1;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+                Debug.Log(ItemsBtnControlList[index].name);
+            }
+            OnItemsClick_2();
+            //isActiveWhenShowUI = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && isActive_1 == true && btn.transform.position == ItemsBtnControlList[0].transform.position) 
+        {
+            int length = ItemsBtnControlList.Count;
+            Debug.Log("length=" + length);
+            if (btn == ItemsBtnControlList[length - 1])
+            {
+                Debug.Log("Error");
+                index = 0;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+                Debug.Log(ItemsBtnControlList[index].name);
+            }
+            else
+            {
                 index += 1;
                 btn = ItemsBtnControlList[index];
                 TransformChoicePos(btn);
@@ -420,9 +449,28 @@ public class BagPanel : IView
                 index =index-1;
                 btn = m_BtnList[index];
                 TransformChoicePos(btn);
-                btn.isActive_Button = true;
+                //btn.isActive_Button = true;
                 Debug.Log(m_BtnList[index].name);
             }
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && ShowUI.activeInHierarchy==true)
+        {
+
+            if (btn == ItemsBtnControlList[0])
+            {
+                index = ItemsBtnControlList.Count - 1;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+                Debug.Log(ItemsBtnControlList[index].name);
+            }
+            else
+            {
+                index = index - 1;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+                Debug.Log(ItemsBtnControlList[index].name);
+            }
+            OnItemsClick_2();
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && isActive_1 == true) {
             
@@ -439,9 +487,48 @@ public class BagPanel : IView
                 TransformChoicePos(btn);
                 Debug.Log(ItemsBtnControlList[index].name);
             }
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && isActive_1 == false)
+        }       
+         if (Input.GetKeyDown(KeyCode.RightArrow) && isActiveLeftArrow==true)
         {
+            //index = 0;
+            twoTothreeIndex = index;           
+            OnItemsClick_2();
+            btn = ItemWidgetList[0];
+            TransformChoicePos(btn);
+            Debug.Log("index=" + index);
+            
+            isActiveWhenShowUI = true;
+
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && isActive_1 == true)
+        {
+            // trasver();
+            //index = 0;
+            //twoTothreeIndex = index;
+            if (ItemsBtnControlList.Count == 1)
+            {
+                index = 0;
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+            }
+            else
+            {
+                btn = ItemsBtnControlList[index];
+                TransformChoicePos(btn);
+            }
+
+            isActiveLeftArrow = true;
+           // OnItemsClick_2();
+           
+
+            //isActive_1 = false;
+        }
+       else if (Input.GetKeyDown(KeyCode.RightArrow) && isActive_1 == false)
+        {
+            Debug.Log("ItemsControlList" + ItemsBtnControlList.Count);
+            oneTotwoIndex = index;
+            Debug.Log("oneTotwoIndex=" + oneTotwoIndex);
+            Debug.Log("index=" + index);
             switch (index)
             {
                 case 0:
@@ -457,49 +544,34 @@ public class BagPanel : IView
                     isActive_1 = true;
                     break;
             }
+            Debug.Log("ItemsControlList" + ItemsBtnControlList.Count);
+            //index = 0;
+            //if (ItemsBtnControlList.Count <= 2)
+            //{
+            //    index = 0;
+            //    btn = ItemsBtnControlList[index];
+            //    TransformChoicePos(btn);
+            //}
+            //else {
+            //    btn = ItemsBtnControlList[index];
+            //    Debug.Log("cishideIndex=" + index);
+            //    TransformChoicePos(btn);
+            //}
             //TransformChoicePos(ItemsBtnControlList[0]);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && ShowUI.activeInHierarchy == true)
-        {
-            //index = 0;
-            OnItemsClick_2();
-            btn = ItemWidgetList[0];
-            TransformChoicePos(btn);
-            Debug.Log("index=" + index);
-            isActiveLeftArrow = true;
-
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && isActive_1 == true)
-        {
-            // trasver();
-            //index = 0;
-            if (ItemsBtnControlList.Count == 1)
-            {
-                index = 0;
-                btn = ItemsBtnControlList[index];
-                TransformChoicePos(btn);
-            }
-            else
-            {
-                btn = ItemsBtnControlList[index];
-                TransformChoicePos(btn);
-            }
-
-            OnItemsClick_2();
-           
-            //isActive_1 = false;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) && isActiveLeftArrow == true)
         {
-            index = 0;
+            index = twoTothreeIndex;
+            Debug.Log(twoTothreeIndex+ "twoTothreeIndex");
             btn = ItemsBtnControlList[index];
             TransformChoicePos(btn);
             isActiveLeftArrow = false;
         }
+
         else if (Input.GetKeyDown(KeyCode.LeftArrow) && isActive_1 == true)
         {
-            index = 0;
+            index = oneTotwoIndex;
             btn = m_BtnList[index];
             TransformChoicePos(btn);
             if (ShowUI.activeInHierarchy == true)
@@ -509,18 +581,19 @@ public class BagPanel : IView
             isActive_1 = false;
             
         }
-       
-        if (Input.GetKeyDown(KeyCode.Return) && isActiveLeftArrow==true) {
-            ClickUse_2();
+
+        if (Input.GetKeyDown(KeyCode.Return) && btn.transform.position == ItemWidgetList[0].transform.position)
+        {
+            ItemUseData data = new ItemUseData();
+            ItemUseManager.Instance.addDelegate_Use(data);
+            if (data.u_Hander != null)
+            {
+                data.u_Hander();
+            }
         }
-        //if (Input.GetKeyDown(KeyCode.RightArrow) && index != 0) {
-            
-        //    btn = ItemsBtnControlList[index];
-        //    OnItemsClick_2();
-        //}
        
-        
-    }
+
+        }
 }
 
 

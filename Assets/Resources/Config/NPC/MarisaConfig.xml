@@ -1,0 +1,13 @@
+<MarisaConfig name="CharacterSpeak">
+  <SpeakData>
+    <id>0</id>
+    <Main>
+      <main1>你说你马</main1>
+      <main2>你说你妈</main2>
+    </Main>
+    <SpeakCout>1</SpeakCout>
+    <Speak>
+      <speak1>1:您说您马呢？</speak1>
+    </Speak>
+    </SpeakData>
+</MarisaConfig>

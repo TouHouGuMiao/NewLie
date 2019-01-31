@@ -6,7 +6,7 @@ public class ChoseData
 {
 
 
-    public List<ChoseHandler> HanderList=new List<ChoseHandler>();
+    public Dictionary<int, ChoseHandler> HanderDic = new Dictionary<int, ChoseHandler>();
     public List<string> ChoseDesList = new List<string>();
 
   

@@ -29,19 +29,14 @@ public class StoryManager
 
     public void ShowStoryList(List<StoryData> dataList)
     {
-        //if (StoryDic == null)
-        //{
-        //    StoryDic = new Dictionary<int, StoryData>();
-        //    LoadStoryXML("StoryConfig",StoryDic);
-        //}
-
+     
         if (Stage0Dic == null)
         {
             Stage0Dic = new Dictionary<int, global::StoryData>();
             LoadStoryXML("Stage0Config",Stage0Dic);
         }
       
-        StoryPanel.dataList = dataList;
+        //StoryPanel.dataList = dataList;
         
         GUIManager.ShowView("StoryPanel");
 
@@ -54,13 +49,13 @@ public class StoryManager
         {
             Stage0EventDic = new Dictionary<int, global::StoryData>();
             LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-            InitEventStoryData();
+            //InitEventStoryData();
         }
 
         List<StoryData> dataList = new List<StoryData>();
-        dataList.Add(GetEventDataByID(id));
+        //dataList.Add(GetEventDataByID(id));
 
-        EventStoryPanel.dataList = dataList;
+        EventStoryPanel.data = dataList[0];
 
         if (EventStoryPanel.isEventSpeak)
         {
@@ -76,7 +71,7 @@ public class StoryManager
 
 
 
-        StoryPanel.data = data;
+        //StoryPanel.data = data;
         GUIManager.ShowView("StoryPanel");
 
 
@@ -157,144 +152,6 @@ public class StoryManager
 
 
 
-
-
-    private StoryData GetEventDataByID(int id)
-    {
-        StoryData data = null;
-        if (Stage0EventDic == null)
-        {
-            InitEventStoryData();
-            LoadStoryXML("Stage0EventConfig", Stage0EventDic);
-        }
-
-        if (!Stage0EventDic.TryGetValue(id, out data))
-        {
-            Debug.LogError("EventData has error!......" + id);
-            return null;
-        }
-        return data;
-    }
-
-
-    #region 获得Stage0中单独的对话List，并且绑定了需要触发的方法
-    public List<StoryData> GetStage0State0List()
-    {
-        if (Stage0Dic == null)
-        {
-            Stage0Dic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0Config",Stage0Dic);
-        }
-        List<StoryData> dataList = new List<global::StoryData>();
-        foreach (KeyValuePair<int,StoryData> item in Stage0Dic)
-        {
-            if (item.Value.state == 0)
-            {
-                dataList.Add(item.Value);  
-            }
-        }
-        dataList[dataList.Count - 1].Hander = WhatYouThinkAboutWhiteRabbit_1;
-        return dataList;
-    }
-
-  
-
-    public List<StoryData> GetStage0WhiteRabbitSpeak_1()
-    {
-        if (Stage0Dic == null)
-        {
-            Stage0Dic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0Config", Stage0Dic);
-        }
-        List<StoryData> dataList = new List<global::StoryData>();
-        foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-        {
-            if (item.Value.id == 5)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0WhiteRabbitSpeak_2()
-    {
-        if (Stage0Dic == null)
-        {
-            Stage0Dic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0Config", Stage0Dic);
-        }
-        List<StoryData> dataList = new List<global::StoryData>();
-        foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-        {
-            if (item.Value.id == 6)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0WhiteRabbitSpeak_3()
-    {
-        if (Stage0Dic == null)
-        {
-            Stage0Dic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0Config", Stage0Dic);
-        }
-        List<StoryData> dataList = new List<global::StoryData>();
-        foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-        {
-            if (item.Value.id == 7)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0WhiteRabbitSpeak_4()
-    {
-        if (Stage0Dic == null)
-        {
-            Stage0Dic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0Config", Stage0Dic);
-        }
-        List<StoryData> dataList = new List<global::StoryData>();
-        foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-        {
-            if (item.Value.id == 8)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        return dataList;
-    }
-
-    public List<StoryData> GetStage0WhiteRabbitSpeak_5()
-    {
-        if (Stage0Dic == null)
-        {
-            Stage0Dic = new Dictionary<int, StoryData>();
-            LoadStoryXML("Stage0Config", Stage0Dic);
-        }
-        List<StoryData> dataList = new List<global::StoryData>();
-        foreach (KeyValuePair<int, StoryData> item in Stage0Dic)
-        {
-            if (item.Value.id == 9)
-            {
-                dataList.Add(item.Value);
-            }
-        }
-        dataList[dataList.Count - 1].Hander += WhiteRabbitRun;
-        return dataList;
-    }
-
-    #endregion
-
-
-
-
     private void InitEventStoryData()
     {
         if (Stage0EventDic == null)
@@ -303,183 +160,206 @@ public class StoryManager
             LoadStoryXML("Stage0EventConfig", Stage0EventDic);
         }
 
-        StoryData data = GetEventDataByID(0);
-        data.Hander += ContiueGo;
-
-        StoryData data1 = GetEventDataByID(1);
-        data1.Hander += WhiteRabitSpeak;
-
-        StoryData data2 = GetEventDataByID(2);
-        data2.Hander += ObserveTheWhiteRabbitOrGiveUp_1;
-
-        StoryData data3 = GetEventDataByID(3);
-        data3.Hander += ObserveTheWhiteRabbitOrGiveUp_2;
-
-        StoryData data4 = GetEventDataByID(4);
-        data4.Hander += ObserveTheWhiteRabbitOrGiveUp_3;
-
-        StoryData data5 = GetEventDataByID(5);
-        data5.Hander += ObserveTheWhiteRabbitOrGiveUp_4;
-
-        StoryData data6 = GetEventDataByID(6);
-        data6.Hander += ObserveTheWhiteRabbitOrGiveUp_5;
-
-        StoryData data7 = GetEventDataByID(7);
-        data7.Hander += ObserveTheWhiteRabbitOrGiveUp_6;
-
-        StoryData data8 = GetEventDataByID(8);
-        data8.Hander += AskTheWhiteRabbit;
-
-        StoryData data9 = GetEventDataByID(9);
-
-        StoryData data10 = GetEventDataByID(10);
-        data10.Hander += RabbitHouseEvent;
     }
 
 
-    #region Stage0 对话所需方法
+    //#region Stage0 对话所需方法
 
 
-    /// <summary>
-    /// 绑定在与白兔子第一次对话的最后一句，用于显示 热心的兔子 的首个Event
-    /// </summary>
-    void WhatYouThinkAboutWhiteRabbit_1()
-    {
-        ShowEventStoryList(2);
-    }
+    ///// <summary>
+    ///// 绑定在与白兔子第一次对话的最后一句，用于显示 热心的兔子 的首个Event
+    ///// </summary>
+    //void WhatYouThinkAboutWhiteRabbit_1()
+    //{
+    //    ShowEventStoryList(2);
+    //}
 
 
-    void WhiteRabbitRun()
-    {
-        ShowEventStoryList(9);
-    }
-
-
-
-
-    #endregion
-
-    #region Stage0 Event所需的方法
-
-    void ContiueGo()
-    {
-        ChoseManager.Instance.ShowChosePanel(0);
-    }
-    
-    void WhiteRabitSpeak()
-    {
-        List<StoryData> dataList = GetStage0State0List();
-        ShowStoryList(dataList);
-    }
-
-
-    /// <summary>
-    /// Stage0 中首个观察或者放弃兔子  的选择
-    /// </summary>
-    void ObserveTheWhiteRabbitOrGiveUp_1()
-    {
-        ChoseManager.Instance.ShowChosePanel(1);
-    }
-
-    void ObserveTheWhiteRabbitOrGiveUp_2()
-    {
-        ChoseManager.Instance.ShowChosePanel(2);
-    }
-
-    void ObserveTheWhiteRabbitOrGiveUp_3()
-    {
-        ChoseManager.Instance.ShowChosePanel(3);
-    }
-
-    void ObserveTheWhiteRabbitOrGiveUp_4()
-    {
-        ChoseManager.Instance.ShowChosePanel(4);
-    }
-
-    void ObserveTheWhiteRabbitOrGiveUp_5()
-    {
-        ChoseManager.Instance.ShowChosePanel(5);
-    }
-
-
-    void ObserveTheWhiteRabbitOrGiveUp_6()
-    {
-        ChoseManager.Instance.ShowChosePanel(6);
-    }
-
-    void AskTheWhiteRabbit()
-    {
-        ShowStoryList(GetStage0WhiteRabbitSpeak_5());
-     
-    }
-
-    void RabbitHouseEvent()
-    {
-        ChoseManager.Instance.ShowChosePanel(7);
-    }
-
-
-    #endregion
+    //void WhiteRabbitRun()
+    //{
+    //    ShowEventStoryList(9);
+    //}
 
 
 
 
+    //#endregion
+
+    //#region Stage0 Event所需的方法
+
+    //void ContiueGo()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(0);
+    //}
+
+    //void WhiteRabitSpeak()
+    //{
+    //    List<StoryData> dataList = GetStage0State0List();
+    //    ShowStoryList(dataList);
+    //}
+
+
+    ///// <summary>
+    ///// Stage0 中首个观察或者放弃兔子  的选择
+    ///// </summary>
+    //void ObserveTheWhiteRabbitOrGiveUp_1()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(1);
+    //}
+
+    //void ObserveTheWhiteRabbitOrGiveUp_2()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(2);
+    //}
+
+    //void ObserveTheWhiteRabbitOrGiveUp_3()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(3);
+    //}
+
+    //void ObserveTheWhiteRabbitOrGiveUp_4()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(4);
+    //}
+
+    //void ObserveTheWhiteRabbitOrGiveUp_5()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(5);
+    //}
+
+
+    //void ObserveTheWhiteRabbitOrGiveUp_6()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(6);
+    //}
+
+    //void AskTheWhiteRabbit()
+    //{
+    //    ShowStoryList(GetStage0WhiteRabbitSpeak_5());
+
+    //}
+
+    //void Rabbit_AHouseEvent()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(7);
+    //}
+
+    //void RabbitAsDiray()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(8);
+    //}
+
+    //void RabbitAsDirayFirstPage()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(9);
+    //}
+
+    //void RabbitAsDiraySecondPage()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(10);
+    //}
+
+    //void RabbitAsDirayThirdPage()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(11);
+    //}
+
+    //void RabbitAsDirayFourthPage()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(12);
+    //}
+
+    //void RabbitAsDirayFivePage()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(13);
+    //}
+
+    //void RabbitAsDiraySixthPage()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(14);
+    //}
+
+    //void RabbitBsHouse()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(15);
+    //}
+
+    //void RabbitBDoorIsOpen()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(16);
+    //}
+
+
+    //void RabbitB_BookCase()
+    //{
+    //    ShowEventStoryList(22);
+    //}
+
+    //void RabbitB_ReadBookFirst()
+    //{
+    //    ChoseManager.Instance.ShowChosePanel(17);
+    //}
+    //#endregion
 
 
 
 
 
-    #region NPC
-    public void ShowNPCStory(int id)
-    {
-        if (NPCDic == null)
-        {
-            InitNPCDic();
-        }
-
-        StoryData data = GetNPCStroyDataById(id);
-        if (data != null)
-        {
-            List<StoryData> dataList = new List<StoryData>();
-            dataList.Add(data);
-            ShowStoryList(dataList);
-        }
-        else
-        {
-            Debug.LogError("NPC Data is null");
-            return;
-        }
-    }
-
-    private void InitNPCDic()
-    {
-        NPCDic = new Dictionary<int, StoryData>();
-        LoadStoryXML("NPCConfig", NPCDic);
-    }
-
-    private StoryData GetNPCStroyDataById(int id)
-    {
-        StoryData data = null;
-        if(!NPCDic.TryGetValue(id,out data))
-        {
-            Debug.LogError("NPCData has error!......" + id);
-            return null;
-        }
-        return data;
-    }
-
-
-    private void InitNPCData()
-    {
-
-    }
-
-
-    #region NPC对话添加事件
 
 
 
-    #endregion
 
-    #endregion
+    //#region NPC
+    //public void ShowNPCStory(int id)
+    //{
+    //    if (NPCDic == null)
+    //    {
+    //        InitNPCDic();
+    //    }
+
+    //    StoryData data = GetNPCStroyDataById(id);
+    //    if (data != null)
+    //    {
+    //        List<StoryData> dataList = new List<StoryData>();
+    //        dataList.Add(data);
+    //        ShowStoryList(dataList);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("NPC Data is null");
+    //        return;
+    //    }
+    //}
+
+    //private void InitNPCDic()
+    //{
+    //    NPCDic = new Dictionary<int, StoryData>();
+    //    LoadStoryXML("NPCConfig", NPCDic);
+    //}
+
+    //private StoryData GetNPCStroyDataById(int id)
+    //{
+    //    StoryData data = null;
+    //    if(!NPCDic.TryGetValue(id,out data))
+    //    {
+    //        Debug.LogError("NPCData has error!......" + id);
+    //        return null;
+    //    }
+    //    return data;
+    //}
+
+
+    //private void InitNPCData()
+    //{
+
+    //}
+
+
+    //#region NPC对话添加事件
+
+
+
+    //#endregion
+
+    //#endregion
 }

@@ -26,19 +26,19 @@ public class ItemUseManager {
             case 2:
                 list = ItemDataManager.Instance.GetHasItemsList();
                 break;
-        } 
-       
-        Debug.Log("当前使用的物体名称是"+list[BagPanel.index].name );
+        }
+        if (list[BagPanel.index].id == 2) {
+            click_UseMed();
+        }
+        //Debug.Log("当前使用的物体名称是"+list[BagPanel.index].name );
     }
     //后续的用其他物体的方法就是
     //在ClickUse方法里面写
     //得到物体的id，看是否匹配，在外部写物体单独的使用方法，添加进ClickUse里
     
-    //void click_UseMed() {
-    //    if () {
-    //        Debug.Log();
-    //    }
-    //}
+    void click_UseMed() {
+        Debug.Log("使用伤药");
+    }
     
     public void addDelegate_Use(ItemUseData data) {
         //EquipList = ItemDataManager.Instance.GetHasEquipList();

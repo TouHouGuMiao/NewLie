@@ -37,6 +37,20 @@ public class ResourcesManager
     }
 
 
+    public Texture2D LoadCG(string name)
+    {
+        string path = "CG" + "/" + name;
+        Texture2D texture = Resources.Load(path, typeof(Texture2D)) as Texture2D;
+        if (texture == null)
+        {
+            Debug.LogError("texture is null");
+            return null;
+        }
+        return texture;
+    }
+
+
+
     private string bulletPath = "BulletPrefab";
     public GameObject LoadBullet(string name)
     {

@@ -114,7 +114,7 @@ public class PlayerControl : CharacterPropBase {
         //    GUIManager.ShowView("SystemPanel");
         //}
 
-        if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak)
+        if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak||CGPanel.IsCGPlay)
         {
             return;
         }

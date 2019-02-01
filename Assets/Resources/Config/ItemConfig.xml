@@ -29,6 +29,9 @@
     <price>20</price>
   </ItemData>
 
+
+ 
+
   <ItemData>
     <id>4</id>
     <name>宝剑</name>
@@ -46,6 +49,16 @@
     <sprite>4</sprite>
     <atlas>HeroAtlas</atlas>
     <Des>无敌</Des>
+    <price>20</price>
+  </ItemData>
+
+  <ItemData>
+    <id>6</id>
+    <name>透</name>
+    <ItemType>30</ItemType>
+    <sprite>4</sprite>
+    <atlas>HeroAtlas</atlas>
+    <Des>难受</Des>
     <price>20</price>
   </ItemData>
 </Item>

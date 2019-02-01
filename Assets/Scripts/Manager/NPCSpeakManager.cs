@@ -109,11 +109,7 @@ public class NPCSpeakManager
     #region 第一章确定输入后的方法
     void MarisaEnterChapterOne0()
     {
-        NPCSpeakData data = null;
-        if(MarisaDic.TryGetValue(0,out data))
-        {
-            TalkManager.Instance.ShowTalkPanel(data.storyData);
-        }
+     
     }
 
 

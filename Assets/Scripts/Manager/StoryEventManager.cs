@@ -40,6 +40,7 @@ public class StoryEventManager
 
     public void ShowEventPanel_ChapterOne(int id,int index=0)
     {
+ 
         StoryData data = GetChapterOneEventDataById(id);
         data.index = index;
         EventStoryPanel.data = data;
@@ -90,8 +91,17 @@ public class StoryEventManager
     private void InitHander()
     {
         StoryData data = GetChapterOneEventDataById(0);
-        data.StoryHanderDic.Add(0, InShenSheOfMarisa0);
-        data.StoryHanderDic.Add(1, InShenSheOfMarisa0);
+        data.StoryHanderDic.Add(0, KongWuGuaiTan0);
+        data.StoryHanderDic.Add(1, KongWuGuaiTan1);
+        data.StoryHanderDic.Add(2, KongWuGuaiTan2);
+        data.StoryHanderDic.Add(3, KongWuGuaiTan3);
+        data.StoryHanderDic.Add(4, KongWuGuaiTan4);
+        data.StoryHanderDic.Add(5, KongWuGuaiTan5);
+        data.StoryHanderDic.Add(6, KongWuGuaiTan6);
+        data.StoryHanderDic.Add(7, KongWuGuaiTan7);
+        data.StoryHanderDic.Add(8, KongWuGuaiTan8);
+        data.StoryHanderDic.Add(9, KongWuGuaiTan9);
+        data.StoryHanderDic.Add(10, KongWuGuaiTan10);
     }
 
     #endregion
@@ -99,13 +109,63 @@ public class StoryEventManager
 
     #region   第一章事件触发的方法
 
-    private void InShenSheOfMarisa0()
+    #region 空鹜怪谈
+    private void KongWuGuaiTan0()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
-        ChoseManager.Instance.ShowChosePanel(0);
+       ShowEventPanel_ChapterOne(0, 1);
+    }
+    private void KongWuGuaiTan1()
+    {
+        ShowEventPanel_ChapterOne(0, 2);
+        CGManager.instance.ChangeCG("CG2");
     }
 
- 
+    private void KongWuGuaiTan2()
+    {
+        ShowEventPanel_ChapterOne(0, 3);
+    }
+
+    private void KongWuGuaiTan3()
+    {
+        ShowEventPanel_ChapterOne(0, 4);
+    }
+    private void KongWuGuaiTan4()
+    {
+        ShowEventPanel_ChapterOne(0, 5);
+    }
+
+    private void KongWuGuaiTan5()
+    {
+        ShowEventPanel_ChapterOne(0, 6);
+    }
+    private void KongWuGuaiTan6()
+    {
+        ShowEventPanel_ChapterOne(0, 7);
+    }
+
+    private void KongWuGuaiTan7()
+    {
+        ShowEventPanel_ChapterOne(0, 8);
+    }
+
+    private void KongWuGuaiTan8()
+    {
+        GameZaXiangManager.Instance.ShowCover();
+        GUIManager.HideView("CGPanel");
+        TalkManager.Instance.ShowTalkPanel(0);
+    }
+
+    private void KongWuGuaiTan9()
+    {
+        ShowEventPanel_ChapterOne(0, 10);
+    }
+
+    private void KongWuGuaiTan10()
+    {
+        TalkManager.Instance.ShowTalkPanel(0,1);
+    }
+    #endregion
+
 
 
     #endregion

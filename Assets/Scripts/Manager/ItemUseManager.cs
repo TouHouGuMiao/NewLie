@@ -30,6 +30,9 @@ public class ItemUseManager {
         if (list[BagPanel.index].id == 2) {
             click_UseMed();
         }
+        if (list[BagPanel.index].id == 4) {
+            click_UseBaoJian();
+        }
         //Debug.Log("当前使用的物体名称是"+list[BagPanel.index].name );
     }
     //后续的用其他物体的方法就是
@@ -39,7 +42,9 @@ public class ItemUseManager {
     void click_UseMed() {
         Debug.Log("使用伤药");
     }
-    
+    void click_UseBaoJian() {
+        Debug.Log("使用宝剑");
+    }
     public void addDelegate_Use(ItemUseData data) {
         //EquipList = ItemDataManager.Instance.GetHasEquipList();
         data.u_Hander += ClickUse;

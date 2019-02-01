@@ -7,8 +7,11 @@ public class Stage0State : GameState
 {
     protected override void OnLoadComplete(params object[] args)
     {
+        CGManager.instance.ShowCGPanel("CG1");
         GUIManager.ShowView("BattleUIPanel");
-       
+        GameZaXiangManager.Instance.ShowCover();
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0);
+        
     }
 
     protected override void OnStart()

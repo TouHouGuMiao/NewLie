@@ -9,6 +9,7 @@ public enum Layer
     city =20,
     UI=30,
     SpeicalUI=40,
+    CoverUI=50,
 }
 
 public abstract  class IView

@@ -2,11 +2,12 @@
   <StoryData>
     <id>0</id>
     <State>0</State>
-    <name>雾雨魔理沙</name>
+    <name>空鹜怪谈</name>
     <index>0</index>
-    <cout>3</cout>
+    <cout>2</cout>
     <Speak>
-      <speak1></speak1>
+      <speak1>1:看，是博丽大人来了！* </speak1>
+      <speak2>0:呦，你就是新任的巫女吗？我是异变治理方面的专家雾雨魔理沙，普通的魔法使daze☆</speak2>
     </Speak>
     </StoryData>
 </Story>

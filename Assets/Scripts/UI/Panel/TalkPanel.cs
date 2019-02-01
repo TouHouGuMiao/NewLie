@@ -115,7 +115,7 @@ public class TalkPanel : IView
             //    data.Hander();
             //}
             StoryHander hander = null;
-            if(data.StoryHanderDic.TryGetValue(index,out hander))
+            if(data.StoryHanderDic.TryGetValue(data.index,out hander))
             {
                 hander();
             }

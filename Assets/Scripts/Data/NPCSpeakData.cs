@@ -6,9 +6,9 @@ public class NPCSpeakData
 {
     public delegate void NPCSpeakHander();
     /// <summary>
-    /// 一个对话结束后所触发的委托
+    /// 玩家确定输入后触发的委托
     /// </summary>
-    public NPCSpeakHander Hander;
+    public Dictionary<int, NPCSpeakHander> OnEnterDownDic = new Dictionary<int, NPCSpeakHander>();
 
     public int Id
     {

@@ -65,30 +65,30 @@ public class TalkPanel : IView
         if (dataList.Count > 0)
         {
             string text = dataList[index].SpeakList[dataIndex];
-            if (text.Length > 40)
+            if (text.Length > 60)
             {
 
-                addText = text.Substring(40, text.Length - 41);
-                text = text.Substring(0, 40);
+                addText = text.Substring(60, text.Length - 60);
+                text = text.Substring(0, 60);
             }
             nameLabel.text = dataList[index].name;
             speakLabel.text = text;
         }
         else if (data != null)
         {
-            string text = data.SpeakList[data.index];
+            string[] sArray = data.SpeakList[data.index].Split(':');
+            string[] sArray2 = sArray[1].Split('*');
+            string text = sArray2[0];
 
-            if (text.Length > 40)
+            if (text.Length > 60)
             {
 
-                addText = text.Substring(40, text.Length - 41);
-                text = text.Substring(0, 40);
+                addText = text.Substring(60, text.Length - 60);
+                text = text.Substring(0, 60);
             }
-            string[] sArray = data.SpeakList[data.index].Split(':');
-
-            nameLabel.text = data.name;
+            nameLabel.text = sArray2[1];
             m_Sprite.spriteName = sArray[0];
-            speakLabel.text = sArray[1];
+            speakLabel.text = text;
             
         }
 

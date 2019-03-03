@@ -1,13 +1,51 @@
-<MarisaConfig name="CharacterSpeak">
+<NPCConfig name="CharacterSpeak">
   <SpeakData>
     <id>0</id>
     <Main>
-      <main1>你说你马</main1>
-      <main2>你说你妈</main2>
+      <main1>什么时候</main1>
+      <main2>如何抓到</main2>
+      <main3>是谁抓到</main3>
+      <main4>你怎么看</main4>
+      <main5>魔理沙怎么认为</main5>
+      <main6>你怎么认为</main6>
+      <main7>你觉得</main7>
+      <main8>想什么</main8>
+      <main9>想些什么</main9>
+      <main10>偷</main10>
+      <main11>地点</main11>
+      <main12>凶手在哪</main12>
+      <main13>犯人在哪</main13>
+      <main14>关于凶手</main14>
+      <main15>关于犯人</main15>
+      <main16>魔法森林</main16>
+      <main17>你妈</main17>
+      <main18>你马</main18>
+      <main19>新宝岛</main19>
+      <main20>胖次</main20>
+      <main21>雷普</main21>
+      <main22>杰哥不要</main22>
+      <main23>你知道</main23>
+      <main24>你了解</main24>
+      <main25>身份</main25>
+      <main26>你好</main26>    
     </Main>
-    <SpeakCout>1</SpeakCout>
+    <SpeakCout>3</SpeakCout>
     <Speak>
-      <speak1>1:您说您马呢？</speak1>
+      <speak1>1:嘛......不是很清楚。我也是听说村民们抓到凶手，就立刻赶来了*雾雨魔理沙</speak1>
+      <speak2>1:好像是村民抓到的，具体的恐怕要问他们了*雾雨魔理沙</speak2>
+      <speak3>1:嗯？我蛮奇怪的----我为了这件事情甚至跑偏了整个幻想乡，妖怪这样袭击人里真的是闻所未闻,我之前认为是从外界新来的不懂规矩的妖怪，但顺着这个思路也没调查出什么结果。*雾雨魔理沙</speak3>
+      <speak4>1:啊,毕竟幻想乡从没出现过“袭击畜口”这样的事情，所以我在想凶手到底是什么身份。*雾雨魔理沙</speak4>
+      <speak5>1:喏，已经被关在仓库里了，听说是村民抓到的。*雾雨魔理沙</speak5>
+      <speak6>1:谁知道呢。*雾雨魔理沙</speak6>
+      <speak7>1:偷？我觉得那只是借吧？*雾雨魔理沙</speak7>
+      <speak8>1:凶手吗？我对它也没什么了解，毕竟我也是听到消息才赶过来。*雾雨魔理沙</speak8>
+      <speak9>1:魔法森林还是老样子。*雾雨魔理沙</speak9>
+      <speak10>1:你妈？*雾雨魔理沙</speak10>
+      <speak11>1:好（不*雾雨魔理沙</speak11>
+      <speak12>1:你还有这种兴趣吗？*雾雨魔理沙</speak12>
+      <speak13>1:.....*雾雨魔理沙</speak13>
+      <speak14>1:我之前虽然也调查了一些，但完全没有寻找到有意义的线索，嘿嘿.......*雾雨魔理沙</speak14>
+      <speak15>1:嗷~~ 你好！*雾雨魔理沙</speak15>
     </Speak>
     </SpeakData>
-</MarisaConfig>
+</NPCConfig>

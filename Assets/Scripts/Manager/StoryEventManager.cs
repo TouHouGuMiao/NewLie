@@ -37,7 +37,11 @@ public class StoryEventManager
         return data;
     }
 
-
+    /// <summary>
+    /// 第一个参数代表事件编号，第二个参数代表事件数据的index
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="index"></param>
     public void ShowEventPanel_ChapterOne(int id,int index=0)
     {
  
@@ -102,6 +106,20 @@ public class StoryEventManager
         data.StoryHanderDic.Add(8, KongWuGuaiTan8);
         data.StoryHanderDic.Add(9, KongWuGuaiTan9);
         data.StoryHanderDic.Add(10, KongWuGuaiTan10);
+        data.StoryHanderDic.Add(11, KongWuGuaiTan11);
+        data.StoryHanderDic.Add(12, KongWuGuaiTan12);
+        data.StoryHanderDic.Add(13, KongWuGuaiTan13);
+        data.StoryHanderDic.Add(14, KongWuGuaiTan14);
+        data.StoryHanderDic.Add(15, KongWuGuaiTan15);
+        data.StoryHanderDic.Add(16, KongWuGuaiTan16);
+        data.StoryHanderDic.Add(17, KongWuGuaiTan17);
+        data.StoryHanderDic.Add(18, KongWuGuaiTan18);
+        data.StoryHanderDic.Add(19, KongWuGuaiTan19);
+        data.StoryHanderDic.Add(20, KongWuGuaiTan20);
+        data.StoryHanderDic.Add(21, KongWuGuaiTan21);
+        data.StoryHanderDic.Add(22, KongWuGuaiTan22);
+        data.StoryHanderDic.Add(23, KongWuGuaiTan23);
+        data.StoryHanderDic.Add(24, KongWuGuaiTan24);
     }
 
     #endregion
@@ -164,9 +182,77 @@ public class StoryEventManager
     {
         TalkManager.Instance.ShowTalkPanel(0,1);
     }
+
+    private void KongWuGuaiTan11()
+    {
+        ShowEventPanel_ChapterOne(0, 12);
+    }
+
+    private void KongWuGuaiTan12()
+    {
+        ChoseManager.Instance.ShowChosePanel(0);
+    }
+
+    private void KongWuGuaiTan13()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(1);
+    }
+
+    private void KongWuGuaiTan14()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
     #endregion
 
+    private  void KongWuGuaiTan15()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
+
+    private void KongWuGuaiTan16()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
+
+    private void KongWuGuaiTan17()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
 
 
+    private void KongWuGuaiTan18()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
+
+    private void KongWuGuaiTan19()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
+
+    private void KongWuGuaiTan20()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
+
+    private void KongWuGuaiTan21()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
+
+    private void KongWuGuaiTan22()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
+
+    private void KongWuGuaiTan23()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
+
+    private void KongWuGuaiTan24()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+    }
     #endregion
 }

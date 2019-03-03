@@ -8,6 +8,11 @@ public class SystemPanel : IView
     private UIButton InventoryBtn;
     public static bool Bg_IsActive = false;
     
+    public SystemPanel()
+    {
+        m_Layer = Layer.System;
+    }
+
     protected override void OnStart()
     {
         //  InventoryBtn = this.GetChild("InventoryBtn").GetComponent<UIButton>();

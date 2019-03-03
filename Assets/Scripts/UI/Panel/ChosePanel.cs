@@ -42,16 +42,20 @@ public class ChosePanel : IView
     }
     protected override void OnShow()
     {
-        GameObject inputPanel = GUIManager.FindPanel("InputPanel");
-        if (inputPanel.activeSelf)
+
+        if (!InputPanel.IsInput)
         {
-            panel.transform.localPosition = new Vector3(-324, -217);
+            panel.transform.localPosition = new Vector3(-324, 47);
         }
 
         else
         {
-            panel.transform.localPosition = new Vector3(-324, 47);
+
+            panel.transform.localPosition = new Vector3(-324, -217);
+
+
         }
+
         UpdataItemData();
     }
     protected override void OnDestroy()
@@ -84,12 +88,16 @@ public class ChosePanel : IView
             }
         }
 
-        if (!InputPanel.isChange)
+        if (InputPanel.IsInput)
         {
-            index = -1;
-            return;
-        
+            if (!InputPanel.isChange)
+            {
+                index = -1;
+                return;
+
+            }
         }
+      
         else
         {
 

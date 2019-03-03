@@ -47,7 +47,15 @@ public class ChoseManager
         GUIManager.ShowView("ChosePanel");
     }
 
-
+    public ChoseData GetChsoeDataByID(int id)
+    {
+        ChoseData data;
+        if(!ChoseDataDic.TryGetValue(id,out data))
+        {
+            Debug.LogError("not choseData in Dic" + "... " + id);
+        }
+        return data;
+    }
 
 
 
@@ -55,10 +63,10 @@ public class ChoseManager
 
     void InitChoseHander()
     {
-        ChoseData data = ChoseDataDic[0];
-        data.HanderDic[0] = MarisaTalkChose0;
-        data.HanderDic[1] = MarisaTalkChose0;
-
+        ChoseData data = GetChsoeDataByID(0);
+        data.HanderDic.Add(0,KongWuGuaiTanChoseNPCSpeak0);
+        data.HanderDic.Add(1, KongWuGuaiTanChoseNPCSpeak1);
+        data.HanderDic.Add(2, KongWuGuaiTanChoseNPCSpeak2);
 
     }
 
@@ -107,12 +115,19 @@ public class ChoseManager
 
     #region
 
-    void MarisaTalkChose0()
+    void KongWuGuaiTanChoseNPCSpeak0()
     {
-        GUIManager.HideView("ChosePanel");
-        GUIManager.HideView("EventStoryPanel");
-        GUIManager.HideView("InputPanel");
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 13);
     }
 
+    void KongWuGuaiTanChoseNPCSpeak1()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 14);
+    }
+
+    void KongWuGuaiTanChoseNPCSpeak2()
+    {
+
+    }
     #endregion
 }

@@ -39,7 +39,7 @@ public class InputPanel : IView
     protected override void OnShow()
     {
         NPCSpeakDic = NPCSpeakManager.Instance.GetNPCDicById(NPCId);
-        inputPanel.transform.localPosition = new Vector3(-46, 198, 0);
+        inputPanel.transform.localPosition = new Vector3(38, 198, 0);
         isChange = false;
         foreach (KeyValuePair<int,NPCSpeakData> item in NPCSpeakDic)
         {
@@ -84,6 +84,7 @@ public class InputPanel : IView
 
     void OnSumbit()
     {
+
         if (isChange)
         {
             return;
@@ -99,7 +100,8 @@ public class InputPanel : IView
             {
                 if (text.Contains(NPCSpeakList[i].MainList[j]))
                 {
-                    NPCSpeakList[i].Hander();
+                    NPCSpeakList[i].OnEnterDownDic[j]();
+                    return;
                 }
             }
         }

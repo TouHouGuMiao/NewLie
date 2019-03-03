@@ -6,8 +6,8 @@
     <index>0</index>
     <cout>2</cout>
     <Speak>
-      <speak1>1:看，是博丽大人来了！* </speak1>
-      <speak2>0:呦，你就是新任的巫女吗？我是异变治理方面的专家雾雨魔理沙，普通的魔法使daze☆</speak2>
+      <speak1>1:看，是博丽大人来了！*村民</speak1>
+      <speak2>0:呦，你就是新任的巫女吗？我是异变治理方面的专家雾雨魔理沙，是个普通的魔法使daze *雾雨魔理沙</speak2>
     </Speak>
     </StoryData>
 </Story>

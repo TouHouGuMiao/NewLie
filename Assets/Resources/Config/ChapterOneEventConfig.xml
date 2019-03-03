@@ -5,7 +5,7 @@
     <name>空鹜怪谈</name>
     <spriteName>0</spriteName>
     <index>0</index>
-    <cout>12</cout>
+    <cout>23</cout>
     <Speak>
       <speak1>当你被人里的村民从神社拥簇着到了人里，已是黄昏时分。</speak1>
       <speak2>在去人里的路上村民们告诉你，导致村子畜口莫名死亡的凶手已经被抓到了。</speak2>
@@ -19,6 +19,19 @@
       <speak10>你随着人群来到了一个仓库的门口。</speak10>
       <speak11>见到你的到来，人群中出现了一位金发少女。</speak11>
       <speak12>雾雨魔理沙是居住在魔法森林的魔法使，在博丽巫女空缺的时候，她常常自主去调查异变。也因为此，她在人里还算小有名气.</speak12>
+      <speak13>异变凶手突然被抓到，使你一头雾水</speak13>
+      <speak14>村民们围在一起，议论纷纷，你听见人群中有人甚至嚷嚷着要杀了这个凶手。</speak14>
+      <speak15>她紧锁眉头，好像在想着什么。</speak15>
+      <speak16>她挠着头说道。</speak16>
+      <speak17>说罢，她指了指你身后围着的那群村民。</speak17>
+      <speak18>说完，她无奈的耸了耸肩。</speak18>
+      <speak19>她用手摸了一摸下巴，若有所思的说道。</speak19>
+      <speak20>她向仓库噘了噘嘴。</speak20>
+      <speak21>(摇头摊手)</speak21>
+      <speak22>她说这句话的时候，表情变都没变。</speak22>
+      <speak23>她似乎并不明白你为什么要问这样的问题。</speak23>
+      <speak24>她向你尴尬的笑了笑。</speak24>
+      <speak25>她豪爽的回应着你的招呼。</speak25>
     </Speak>
     </StoryData>
 </Story>

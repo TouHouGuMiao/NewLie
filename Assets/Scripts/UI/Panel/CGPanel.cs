@@ -48,7 +48,7 @@ public class CGPanel : IView
         }
 
         mainCG.mainTexture = CGTexutre;
-        mainCG.MakePixelPerfect();
+        //mainCG.MakePixelPerfect();
     }
 
     protected override void OnDestroy()

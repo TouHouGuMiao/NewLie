@@ -40,7 +40,10 @@ public class BagPanel : IView
     public bool isActive_1 = false;//用于记录背包是否update的变量
 
 
-
+    public BagPanel()
+    {
+        m_Layer = Layer.System;
+    }
 
     // Use this for initialization
     public override void Update()

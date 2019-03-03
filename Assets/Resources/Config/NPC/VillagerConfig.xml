@@ -1,0 +1,15 @@
+<NPCConfig name="CharacterSpeak">
+  <SpeakData>
+    <id>0</id>
+    <Main>
+      <main1>发生什么</main1>
+      <main2>怎么回事</main2>
+      <main3></main3>
+      <main4></main4>
+    </Main>
+    <SpeakCout>1</SpeakCout>
+    <Speak>
+      <speak1>1:博丽大人，</speak1>
+    </Speak>
+    </SpeakData>
+</NPCConfig>

@@ -29,6 +29,13 @@ public class TalkManager
         GUIManager.ShowView("TalkPanel");
     }
 
+    public void ShowTalkPanel(StoryData data,int index=0)
+    {
+        data.index = index;
+        TalkPanel.data = data;
+        GUIManager.ShowView("TalkPanel");
+    }
+
     void InitLoad()
     {
        LoadStoryXML("StoryConfig",StoryDataDic);

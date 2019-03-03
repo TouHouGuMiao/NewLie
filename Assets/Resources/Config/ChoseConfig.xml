@@ -1,10 +1,11 @@
 <Chose name="ChoseString">
   <ChoseData>
     <id>0</id>
-    <name>与魔理沙的奇怪对话</name>
+    <name>那么与谁说话呢（空鹜怪谈）</name>
     <choseList>
-      <chose1>一键自闭</chose1>
-      <chose2>我选择狗带</chose2>
+      <chose1>向村民询问</chose1>
+      <chose2>向奇怪的魔法使询问</chose2>
+      <chose3>进屋</chose3>
     </choseList>
   </ChoseData>
 </Chose>

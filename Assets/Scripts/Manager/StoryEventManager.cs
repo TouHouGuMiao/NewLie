@@ -120,6 +120,19 @@ public class StoryEventManager
         data.StoryHanderDic.Add(22, KongWuGuaiTan22);
         data.StoryHanderDic.Add(23, KongWuGuaiTan23);
         data.StoryHanderDic.Add(24, KongWuGuaiTan24);
+        data.StoryHanderDic.Add(25, KongWuGuaiTan25);
+        data.StoryHanderDic.Add(26, KongWuGuaiTan26);
+        data.StoryHanderDic.Add(27, KongWuGuaiTan27);
+        data.StoryHanderDic.Add(28, KongWuGuaiTan28);
+        data.StoryHanderDic.Add(29, KongWuGuaiTan29);
+        data.StoryHanderDic.Add(30, KongWuGuaiTan30);
+        data.StoryHanderDic.Add(31, KongWuGuaiTan31);
+        data.StoryHanderDic.Add(32, KongWuGuaiTan32);
+        data.StoryHanderDic.Add(33, KongWuGuaiTan33);
+        data.StoryHanderDic.Add(34, KongWuGuaiTan34);
+        data.StoryHanderDic.Add(35, KongWuGuaiTan35);
+        data.StoryHanderDic.Add(36, KongWuGuaiTan36);
+
     }
 
     #endregion
@@ -195,64 +208,124 @@ public class StoryEventManager
 
     private void KongWuGuaiTan13()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(1);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(1,0);
     }
 
     private void KongWuGuaiTan14()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
     #endregion
 
     private  void KongWuGuaiTan15()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
 
     private void KongWuGuaiTan16()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
 
     private void KongWuGuaiTan17()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
 
 
     private void KongWuGuaiTan18()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
 
     private void KongWuGuaiTan19()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
 
     private void KongWuGuaiTan20()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
 
     private void KongWuGuaiTan21()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
 
     private void KongWuGuaiTan22()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
 
     private void KongWuGuaiTan23()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
 
     private void KongWuGuaiTan24()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan25()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan26()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan27()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan28()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan29()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan30()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan31()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan32()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan33()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan34()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan35()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+    }
+
+    private void KongWuGuaiTan36()
+    {
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
     #endregion
 }

@@ -11,6 +11,7 @@ public class ChosePanel : IView
     public static ChoseData data;
     private int index=0;
     private static GameObject chosePanel;
+    private UIWidget container;
 
     public static bool isChose
     {
@@ -39,19 +40,20 @@ public class ChosePanel : IView
         panel = GUIManager.FindPanel("ChosePanel");
         item = this.GetChild("item").gameObject;
         chosePanel = GUIManager.FindPanel("ChosePanel");
+        container = this.GetChild("Container").GetComponent<UIWidget>();
     }
     protected override void OnShow()
     {
 
         if (!InputPanel.IsInput)
         {
-            panel.transform.localPosition = new Vector3(-324, 47);
+            container.bottomAnchor.Set(0, -12);
         }
 
         else
         {
 
-            panel.transform.localPosition = new Vector3(-324, -217);
+            container.bottomAnchor.Set(0, -514);
 
 
         }

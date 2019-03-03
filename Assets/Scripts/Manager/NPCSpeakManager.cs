@@ -33,8 +33,12 @@ public class NPCSpeakManager
         InitHnader();
     }
 
-
-    public void ShowNPCSpeakPanel(int id)
+    /// <summary>
+    /// 参数一为NPC编号，参数二为NPC的事件id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="eventId"></param>
+    public void ShowNPCSpeakPanel(int id,int eventId)
     {
         InputPanel.NPCId = id;
         GUIManager.ShowView("InputPanel");
@@ -131,6 +135,17 @@ public class NPCSpeakManager
         data.OnEnterDownDic.Add(23, MarisaEnterEventOneSpeak13);
         data.OnEnterDownDic.Add(24, MarisaEnterEventOneSpeak13);
         data.OnEnterDownDic.Add(25, MarisaEnterEventOneSpeak14);
+        data.OnEnterDownDic.Add(26, MarisaEnterEventOneSpeak15);
+        data.OnEnterDownDic.Add(27, MarisaEnterEventOneSpeak16);
+        data.OnEnterDownDic.Add(28, MarisaEnterEventOneSpeak16);
+        data.OnEnterDownDic.Add(29, MarisaEnterEventOneSpeak17);
+        data.OnEnterDownDic.Add(30, MarisaEnterEventOneSpeak18);
+        data.OnEnterDownDic.Add(31, MarisaEnterEventOneSpeak19);
+        data.OnEnterDownDic.Add(32, MarisaEnterEventOneSpeak19);
+        data.OnEnterDownDic.Add(33, MarisaEnterEventOneSpeak20);
+        data.OnEnterDownDic.Add(34, MarisaEnterEventOneSpeak21);
+        data.OnEnterDownDic.Add(35, MarisaEnterEventOneSpeak22);
+        data.OnEnterDownDic.Add(36, MarisaEnterEventOneSpeak22);
 
         data.storyData.StoryHanderDic.Add(0, MarisaTalkChapterOne0);
         data.storyData.StoryHanderDic.Add(1, MarisaTalkChapterOne1);
@@ -147,6 +162,14 @@ public class NPCSpeakManager
         data.storyData.StoryHanderDic.Add(12, MarisaTalkChapterOne12);
         data.storyData.StoryHanderDic.Add(13, MarisaTalkChapterOne13);
         data.storyData.StoryHanderDic.Add(14, MarisaTalkChapterOne14);
+        data.storyData.StoryHanderDic.Add(15, MarisaTalkChapterOne15);
+        data.storyData.StoryHanderDic.Add(16, MarisaTalkChapterOne16);
+        data.storyData.StoryHanderDic.Add(17, MarisaTalkChapterOne17);
+        data.storyData.StoryHanderDic.Add(18, MarisaTalkChapterOne18);
+        data.storyData.StoryHanderDic.Add(19, MarisaTalkChapterOne19);
+        data.storyData.StoryHanderDic.Add(20, MarisaTalkChapterOne20);
+        data.storyData.StoryHanderDic.Add(21, MarisaTalkChapterOne21);
+        data.storyData.StoryHanderDic.Add(22, MarisaTalkChapterOne22);
     }
 
 
@@ -257,7 +280,60 @@ public class NPCSpeakManager
         TalkManager.Instance.ShowTalkPanel(data.storyData, 14);
     }
 
+    void MarisaEnterEventOneSpeak15()
+    {
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(0, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 15);
+    }
+    void MarisaEnterEventOneSpeak16()
+    {
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(0, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 16);
+    }
 
+    void MarisaEnterEventOneSpeak17()
+    {
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(0, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 17);
+    }
+
+    void MarisaEnterEventOneSpeak18()
+    {
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(0, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 18);
+    }
+
+    void MarisaEnterEventOneSpeak19()
+    {
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(0, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 19);
+    }
+
+    void MarisaEnterEventOneSpeak20()
+    {
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(0, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 20);
+    }
+
+    void MarisaEnterEventOneSpeak21()
+    {
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(0, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 21);
+    }
+
+    void MarisaEnterEventOneSpeak22()
+    {
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(0, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 22);
+    }
 
     #endregion
     #endregion
@@ -347,6 +423,51 @@ public class NPCSpeakManager
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 24);
     }
 
+
+    void MarisaTalkChapterOne15()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 25);
+    }
+
+
+    void MarisaTalkChapterOne16()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 26);
+    }
+
+
+    void MarisaTalkChapterOne17()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 27);
+    }
+
+
+    void MarisaTalkChapterOne18()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 28);
+    }
+
+
+    void MarisaTalkChapterOne19()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 29);
+    }
+
+    void MarisaTalkChapterOne20()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 30);
+    }
+
+
+    void MarisaTalkChapterOne21()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 31);
+    }
+
+    void MarisaTalkChapterOne22()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 32);
+    }
     #endregion
     #endregion
 

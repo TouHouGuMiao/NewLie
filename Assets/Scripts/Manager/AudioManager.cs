@@ -65,6 +65,7 @@ public class AudioManager:MonoBehaviour
         {
             bg_Source.clip = clip;
             bg_Source.Play();
+            
         }
     }
 

@@ -13,6 +13,7 @@ public class LoginPanel : IView
     private UIButton loginButton;
     private UIButton developerBtn;
     private UIButton closeGameBtn;
+    private UIButton HelpBtn;
     private UISprite m_Dimon;
     private GameObject m_go;
     private Transform gameChoice;
@@ -43,7 +44,9 @@ public class LoginPanel : IView
         loginButton.onClick.Add(OnLoginClick);
 
         OnLoginBtnHover();//鼠标悬浮选项放大的事件
-       // InitDimon();
+                          // InitDimon();
+        HelpBtn = this.GetChild("LoginButton (3)").GetComponent<UIButton>();
+        HelpBtn.onClick.Add(new EventDelegate(OnHelpPanelClick));
 
         developerBtn = this.GetChild("LoginButton (4)").GetComponent<UIButton>();
         EventDelegate OnDeveloperBtn = new global::EventDelegate(OnDeveloperBtnClick);
@@ -92,6 +95,18 @@ public class LoginPanel : IView
         Application.Quit();
 
     }//游戏整体退出
+    void OnHelpPanelClick() {
+        GUIManager.ShowView("GameHelpPanel");
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //void InitDimon() {
     //    foreach (Transform child in m_PicList) {
     //        GameObject go = GameObject.Find("Dimon");

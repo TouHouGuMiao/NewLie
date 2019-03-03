@@ -27,8 +27,9 @@ public class InputPanel : IView
     private static GameObject inputPanel;
     private UIInput input;
     public static int NPCId;
+    public static int eventId;
     private Dictionary<int, NPCSpeakData> NPCSpeakDic;
-    private List<NPCSpeakData> NPCSpeakList=new List<NPCSpeakData> ();
+    private NPCSpeakData m_NPCSpeakData=new NPCSpeakData ();
     protected override void OnStart()
     {
         input = this.GetChild("InputBG").GetComponent<UIInput>();
@@ -43,7 +44,10 @@ public class InputPanel : IView
         isChange = false;
         foreach (KeyValuePair<int,NPCSpeakData> item in NPCSpeakDic)
         {
-            NPCSpeakList.Add(item.Value);
+            if (item.Key == eventId)
+            {
+                m_NPCSpeakData = item.Value;
+            }
         }
     }
 
@@ -90,19 +94,24 @@ public class InputPanel : IView
             return;
         }
         string text = input.value;
+        TestInputManager.Instance.CreatOrWriteConfig(NPCId.ToString() + text);
         if (text.Length<=0)
         {
             return;
         }
-        for (int i = 0; i < NPCSpeakList.Count; i++)
+        for (int i = 0; i < m_NPCSpeakData.SpeakCount; i++)
         {
-            for (int j = 0; j < NPCSpeakList[i].MainList.Count; j++)
+            if (text.Contains(m_NPCSpeakData.MainList[i]))
             {
-                if (text.Contains(NPCSpeakList[i].MainList[j]))
-                {
-                    NPCSpeakList[i].OnEnterDownDic[j]();
-                    return;
-                }
+                m_NPCSpeakData.OnEnterDownDic[i]();
+                return;
+            }
+        }
+        if (NPCId == 0)
+        {
+            if (eventId == 0)
+            {
+                m_NPCSpeakData.OnEnterDownDic[18]();
             }
         }
     }

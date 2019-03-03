@@ -27,9 +27,20 @@
       <main23>你知道</main23>
       <main24>你了解</main24>
       <main25>身份</main25>
-      <main26>你好</main26>    
+      <main26>你好</main26>
+      <main27>天气</main27>
+      <main28>扫帚</main28>
+      <main29>扫把</main29>
+      <main30>帮我</main30>
+      <main31>我觉得你不行</main31>
+      <main32>吃饭</main32>
+      <main33>吃个饭</main33>
+      <main34>危险</main34>
+      <main35>保护</main35>
+      <main36>时间</main36>
+      <main37>几点</main37>
     </Main>
-    <SpeakCout>3</SpeakCout>
+    <SpeakCout>37</SpeakCout>
     <Speak>
       <speak1>1:嘛......不是很清楚。我也是听说村民们抓到凶手，就立刻赶来了*雾雨魔理沙</speak1>
       <speak2>1:好像是村民抓到的，具体的恐怕要问他们了*雾雨魔理沙</speak2>
@@ -39,13 +50,21 @@
       <speak6>1:谁知道呢。*雾雨魔理沙</speak6>
       <speak7>1:偷？我觉得那只是借吧？*雾雨魔理沙</speak7>
       <speak8>1:凶手吗？我对它也没什么了解，毕竟我也是听到消息才赶过来。*雾雨魔理沙</speak8>
-      <speak9>1:魔法森林还是老样子。*雾雨魔理沙</speak9>
+      <speak9>1:魔法森林还是老样子，我家就在那里。我家还蛮大的，玩累了就直接睡觉，不,,不要紧的。*雾雨魔理沙</speak9>
       <speak10>1:你妈？*雾雨魔理沙</speak10>
       <speak11>1:好（不*雾雨魔理沙</speak11>
       <speak12>1:你还有这种兴趣吗？*雾雨魔理沙</speak12>
       <speak13>1:.....*雾雨魔理沙</speak13>
       <speak14>1:我之前虽然也调查了一些，但完全没有寻找到有意义的线索，嘿嘿.......*雾雨魔理沙</speak14>
       <speak15>1:嗷~~ 你好！*雾雨魔理沙</speak15>
+      <speak16>1:天气..还算...不错吧？*雾雨魔理沙</speak16>
+      <speak17>1:这个东西是魔法使的象征，可不轻易外借哦~*雾雨魔理沙</speak17>
+      <speak18>1:放心，我必定帮你。*雾雨魔理沙</speak18>
+      <speak19>1:比划比划？*雾雨魔理沙</speak19>
+      <speak20>1:啊哈？你有钱请人吃饭吗？话先说在前头，我可不请客哦。*雾雨魔理沙</speak20>
+      <speak21>1:嘛，危险应该谈不上，毕竟你可是巫女啊*雾雨魔理沙。</speak21>
+      <speak22>1:啊哈，来吧，我必保护你！*雾雨魔理沙</speak22>
+      <speak23>1:具体时间我也不是很清楚，差不多在下午五六点左右吧？*雾雨魔理沙</speak23>
     </Speak>
     </SpeakData>
 </NPCConfig>

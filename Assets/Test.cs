@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Test : MonoBehaviour {
-    public List<ItemData> list = new List<ItemData>();
+    public float speed;
 	// Use this for initialization
 	void Start () {
-      ItemDataManager.Instance.GetHasEquipList();
-        //Debug.Log(list[0].itemType);
-        Debug.Log(list.Count);
+        this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(speed, 0, 0);
 	}
 	
 	// Update is called once per frame

@@ -113,7 +113,7 @@ public class ChoseManager
         }
     }
 
-    #region
+    #region   事件一中的选项
 
     void KongWuGuaiTanChoseNPCSpeak0()
     {
@@ -127,7 +127,19 @@ public class ChoseManager
 
     void KongWuGuaiTanChoseNPCSpeak2()
     {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 34);
+    }
+
+
+    void KongWuGuaiTanIntoCangKu0()
+    {
 
     }
+
+    void KongWuGuaiTanIntoCangKu1()
+    {
+       
+    }
+
     #endregion
 }

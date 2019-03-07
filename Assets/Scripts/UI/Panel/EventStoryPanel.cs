@@ -68,7 +68,6 @@ public class EventStoryPanel : IView
 
     protected override void OnShow()
     {
-        
         tp.enabled = true;
         if (data != null)
         {

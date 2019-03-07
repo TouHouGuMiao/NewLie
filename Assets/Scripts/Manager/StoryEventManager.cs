@@ -44,8 +44,7 @@ public class StoryEventManager
     /// <param name="index"></param>
     public void ShowEventPanel_ChapterOne(int id,int index=0)
     {
- 
-        StoryData data = GetChapterOneEventDataById(id);
+         StoryData data = GetChapterOneEventDataById(id);
         data.index = index;
         EventStoryPanel.data = data;
         GUIManager.ShowView("EventStoryPanel");
@@ -130,9 +129,6 @@ public class StoryEventManager
         data.StoryHanderDic.Add(32, KongWuGuaiTan32);
         data.StoryHanderDic.Add(33, KongWuGuaiTan33);
         data.StoryHanderDic.Add(34, KongWuGuaiTan34);
-        data.StoryHanderDic.Add(35, KongWuGuaiTan35);
-        data.StoryHanderDic.Add(36, KongWuGuaiTan36);
-
     }
 
     #endregion
@@ -208,7 +204,7 @@ public class StoryEventManager
 
     private void KongWuGuaiTan13()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(1,0);
+        TalkManager.Instance.ShowTalkPanel(0, 2);
     }
 
     private void KongWuGuaiTan14()
@@ -310,22 +306,12 @@ public class StoryEventManager
 
     private void KongWuGuaiTan33()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(1,0);
     }
 
     private void KongWuGuaiTan34()
     {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
-    }
-
-    private void KongWuGuaiTan35()
-    {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
-    }
-
-    private void KongWuGuaiTan36()
-    {
-        NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
+        ChoseManager.Instance.ShowChosePanel(1);
     }
     #endregion
 }

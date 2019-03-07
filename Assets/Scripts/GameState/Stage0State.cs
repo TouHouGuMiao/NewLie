@@ -11,6 +11,7 @@ public class Stage0State : GameState
         GUIManager.ShowView("BattleUIPanel");
         GameZaXiangManager.Instance.ShowCover();
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0);
+        GUIManager.HideView("GameHelpPanel");
         
     }
 

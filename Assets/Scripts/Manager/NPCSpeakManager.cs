@@ -20,16 +20,18 @@ public class NPCSpeakManager
         }
     }
     /// <summary>
-    /// 词典查找:0-魔理沙
+    /// 词典查找:0-魔理沙 1-村民
     /// </summary>
     private Dictionary<int, Dictionary<int, NPCSpeakData>> NPCCollectionDic=new Dictionary<int, Dictionary<int, NPCSpeakData>> ();
 
     private Dictionary<int, NPCSpeakData> MarisaDic=new Dictionary<int, NPCSpeakData> ();
-
+    private Dictionary<int, NPCSpeakData> VillagerDic = new Dictionary<int, NPCSpeakData>();
     void Init()
     {
         LoadNPCSpeakData("MarisaConfig",MarisaDic);
+        LoadNPCSpeakData("VillagerConfig", VillagerDic);
         NPCCollectionDic.Add(0, MarisaDic);
+        NPCCollectionDic.Add(1, VillagerDic);
         InitHnader();
     }
 

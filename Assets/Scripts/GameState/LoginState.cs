@@ -17,7 +17,13 @@ public class LoginState : GameState
 
     protected override void OnLoadComplete(params object[] args)
     {
+        GUIManager.ShowView("CoverPanel");
+
         GUIManager.ShowView("LoginPanel");
+
     }
+
+
+
 
 }

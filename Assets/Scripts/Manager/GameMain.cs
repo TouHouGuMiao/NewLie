@@ -5,10 +5,14 @@ using UnityEngine;
 public class GameMain : MonoBehaviour
 {
 
-
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
         AddSomeCompent();
+    }
+
+    // Use this for initialization
+    void Start () {
+  
         DoSmoeSetting();
 	}
 	
@@ -17,6 +21,8 @@ public class GameMain : MonoBehaviour
         this.gameObject.AddComponent<DownLoadManager>();
         this.gameObject.AddComponent<GameStateManager>();
         this.gameObject.AddComponent<IEnumeratorManager>();
+        this.gameObject.AddComponent<AudioManager>();
+
     }
     void DoSmoeSetting()
     {

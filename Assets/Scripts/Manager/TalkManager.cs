@@ -97,6 +97,7 @@ public class TalkManager
         StoryData data = GetStoryDataById(0);
         data.StoryHanderDic.Add(0, KongWuGuaiTan0);
         data.StoryHanderDic.Add(1, KongWuGuaiTan1);
+        data.StoryHanderDic.Add(2, KongWuGuaiTan_MengNanGuMiao0);
     }
 
 
@@ -113,5 +114,10 @@ public class TalkManager
     {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 11);
     }
-    #endregion
-}
+
+    void KongWuGuaiTan_MengNanGuMiao0()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 33);
+    }
+        #endregion
+    }

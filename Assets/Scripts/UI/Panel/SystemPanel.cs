@@ -72,7 +72,6 @@ public class SystemPanel : IView
             if (goList[i].gameObject.activeInHierarchy == true)
             {
                 goActiveList.Add(goList[i].name);
-                Debug.Log(goList[i].name);
             }
         }
         for (int j = 0; j < goActiveList.Count; j++)

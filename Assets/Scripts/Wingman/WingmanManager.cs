@@ -5,11 +5,11 @@ using UnityEngine;
 public class WingmanManager
 {
     private static WingmanManager _Instance=null;
-    private GameObject wingmanPrefab;
+    private static GameObject wingmanPrefab;
     private Transform player;
 
 
-    private Dictionary<int, WingmanData> WingmanDataDic;
+    private static Dictionary<int, WingmanData> WingmanDataDic;
     public static WingmanManager Instance
     {
         get
@@ -17,21 +17,17 @@ public class WingmanManager
             if (_Instance == null)
             {
                 _Instance = new WingmanManager();
+                Init();
             }
             return _Instance;
         }
     }
 
-    public void Init()
+    private static  void Init()
     {
         string path = "WingmanPrefab/Wingman";
         wingmanPrefab = Resources.Load(path, typeof (GameObject))as GameObject;
-        player = GameObject.FindWithTag("Player").transform;
-        if (player == null)
-        {
-            Debug.LogError("player is null");
-            return;
-        }
+   
 
         WingmanData data = new global::WingmanData();
         data.id = 0;
@@ -111,6 +107,12 @@ public class WingmanManager
 
     void AddOneWingman(WingmanData data)
     {
+        player = GameObject.FindWithTag("Player").transform;
+        if (player == null)
+        {
+            Debug.LogError("player is null");
+            return;
+        }
         GameObject parent = player.transform.Find("wingman").gameObject;
         GameObject wingaman = GameObject.Instantiate(wingmanPrefab);
 
@@ -127,6 +129,11 @@ public class WingmanManager
      
     IEnumerator SetWingmanCout(WingmanData data,int cout)
     {
+        player = GameObject.FindWithTag("Player").transform;
+        if (player == null)
+        {
+            Debug.LogError("player is null");
+        }
         GameObject parent = player.transform.Find("wingman").gameObject;
         float nowCout = parent.transform.childCount;
         for (int i = 0; i < nowCout; i++)
@@ -160,6 +167,12 @@ public class WingmanManager
     //恢复 到 指定数目的僚机 （僚机单个离开自机的顺序 按第一个 第二个 第三个。。。才能使用的恢复方法）
     public void CreatWingmanReturnCout(WingmanData data, int cout)
     {
+        player = GameObject.FindWithTag("Player").transform;
+        if (player == null)
+        {
+            Debug.LogError("player is null");
+            return;
+        }
         GameObject wingman = player.Find("wingman").gameObject;
         int nowCout = wingman.transform.childCount;
         if (nowCout > cout)

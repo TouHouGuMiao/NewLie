@@ -8,4 +8,13 @@
       <chose3>进屋</chose3>
     </choseList>
   </ChoseData>
+
+  <ChoseData>
+    <id>1</id>
+    <name>终于要进入仓库了吗？（空鹜怪谈）</name>
+    <choseList>
+      <chose1>进入仓库</chose1>
+      <chose2>再询问询问</chose2>
+    </choseList>
+  </ChoseData>
 </Chose>

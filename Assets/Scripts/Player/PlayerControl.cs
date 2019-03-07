@@ -54,7 +54,6 @@ public class PlayerControl : CharacterPropBase {
        
        // FindBagPanel();
         // systemPanel=this.transform.GetChild("")
-        WingmanManager.Instance.Init();
         m_Animator = this.GetComponent<Animator>();
         bulletPrefab = ResourcesManager.Instance.LoadBullet("initBullet");
         //GameObject yinYangYu1 = transform.FindRecursively("YinYangYu1").gameObject;

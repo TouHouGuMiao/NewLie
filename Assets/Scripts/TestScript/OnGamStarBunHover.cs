@@ -28,7 +28,7 @@ public class OnGamStarBunHover :MonoBehaviour{
                 TweenScale ts = this.GetComponent<TweenScale>();
                 if (ts == null)
                 {
-                    Init();
+                    Init();                   
                 }
                 else  if(ts.to != v2)
                 {

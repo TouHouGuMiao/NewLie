@@ -54,6 +54,8 @@ public class LoginPanel : IView
         sakuraParticle_1.gameObject.SetActive(false);
         sakuraParticle_2.gameObject.SetActive(false);
         particleSystem_Normal_1.gameObject.SetActive(false);
+        ParticleSystem.VelocityOverLifetimeModule velocityOverLifetimeModule = paritcleSystem_Normal.velocityOverLifetime;
+        velocityOverLifetimeModule.enabled = false;
     }
 
     protected override void OnShow()
@@ -251,6 +253,7 @@ public class LoginPanel : IView
     void ParticleSetting_Up()
     {
         ParticleSystem.VelocityOverLifetimeModule velocityOverLifetimeModule = paritcleSystem_Normal.velocityOverLifetime;
+        velocityOverLifetimeModule.enabled = true;
         velocityOverLifetimeModule.y = 0.7f;
     }
 

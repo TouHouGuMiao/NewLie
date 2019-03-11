@@ -81,6 +81,9 @@ public class SystemPanel : IView
                 GUIManager.HideView(goActiveList[j]);
             }
         }
+        if (LoginPanel.BackGround.GetComponent<UITexture>().mainTexture == ResourcesManager.Instance.LoadTexture2D("BinaryCover_Kong")) {
+            LoginPanel.BackGround.GetComponent<UITexture>().mainTexture = ResourcesManager.Instance.LoadTexture2D("BinaryCover_Zi");
+        }
         GameStateManager.LoadScene(1);
     }
 }

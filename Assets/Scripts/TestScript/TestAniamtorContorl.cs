@@ -27,15 +27,13 @@ public class TestAniamtorContorl : MonoBehaviour {
             this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, 0, this.transform.rotation.eulerAngles.z);
             AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
 
-            if (stateInfo.IsName("Base Layer.Idle"))
+            if (stateInfo.IsName("Base Layer.loopIdle") || stateInfo.IsName("Base Layer.startIdle"))
             {
                 m_Animator.SetBool("isWalk", true);
-
-
             }
 
-       
-                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
+
+            transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
             
         }
 
@@ -51,7 +49,7 @@ public class TestAniamtorContorl : MonoBehaviour {
             this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, 180, this.transform.rotation.eulerAngles.z);
             AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
 
-            if (stateInfo.IsName("Base Layer.Idle"))
+            if (stateInfo.IsName("Base Layer.loopIdle")|| stateInfo.IsName("Base Layer.startIdle"))
             {
                 m_Animator.SetBool("isWalk", true);
             }

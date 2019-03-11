@@ -222,9 +222,6 @@ public class LoginPanel : IView
         eggChangeList.Add(againGameBtn_b);
         eggChangeList.Add(HelpBtn_b);
         eggChangeList.Add(seetingsBtn_b);
-        for (int i = 0; i < eggChangeList.Count;i++) {
-            Debug.Log(eggChangeList[i]);
-        }
     }
 
 

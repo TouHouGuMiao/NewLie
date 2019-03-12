@@ -252,6 +252,17 @@ public class LoginPanel : IView
         
         // Debug.Log("isAllboolVauletrue="+isAllboolVauletrue);
     }
+
+    void addElementInEggChangeList()
+    {
+        eggChangeList.Add(loginButton_b);
+        eggChangeList.Add(developerBtn_b);
+        eggChangeList.Add(closeGameBtn_b);
+        eggChangeList.Add(againGameBtn_b);
+        eggChangeList.Add(HelpBtn_b);
+        eggChangeList.Add(seetingsBtn_b);
+    }
+
     //void addElementInEggChangeList()
     //{
     //    eggChangeList.Add(loginButton_b);
@@ -264,6 +275,7 @@ public class LoginPanel : IView
     //        Debug.Log(eggChangeList[i]);
     //    }
     //}
+
 
 
 

@@ -234,7 +234,8 @@ public class LoginPanel : IView
         }
         if (isAllboolVauletrue == true)
         {
-            if (BackGround.GetComponent<UITexture>().mainTexture.name== "BinaryCover_Kong")
+
+            if (BackGround.GetComponent<UITexture>().mainTexture.name == "BinaryCover_Kong")
             {
                 return;
             }
@@ -242,7 +243,7 @@ public class LoginPanel : IView
             foreach (UIButton child in choiceBtnList) {
                 child.isActive_Button = false;
             }
-            if (BackGround.GetComponent<UITexture>().mainTexture == ResourcesManager.Instance.LoadTexture2D("BinaryCover_Zi")) {
+            if (BackGround.GetComponent<UITexture>().mainTexture.name == "BinaryCover_Zi"){ // == ResourcesManager.Instance.LoadTexture2D("BinaryCover_Zi")) {
                 BackGround.GetComponent<UITexture>().mainTexture = ResourcesManager.Instance.LoadTexture2D("BinaryCover_Kong");
             }
 

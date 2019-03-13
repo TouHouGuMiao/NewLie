@@ -119,13 +119,14 @@ public class PlayerPanel : IView
         }
     }
     private bool islegal = false;
-    void OnSubmit() {
+    void OnSubmit()
+    {
         playerName = input.value;
         bool isChinese_s = isChinese();
         bool isEnglish_s = isEnglish();
         if (isChinese_s)
         {
-            if (playerName.Length <= 5 && playerName != "灵梦")
+            if (playerName.Length <= 5 && !(playerName.Contains("灵梦")))
             {
                 if (succeseSprite.activeInHierarchy == false)
                 {
@@ -146,7 +147,7 @@ public class PlayerPanel : IView
         }
         else if (isEnglish_s)
         {
-            if (playerName.Length <= 6 && playerName != "reimu" && playerName != "Reimu")
+            if (playerName.Length <= 6 && (!playerName.Contains("reimu")) && (!playerName.Contains("Reimu")))
             {
                 if (succeseSprite.activeInHierarchy == false)
                 {
@@ -164,17 +165,23 @@ public class PlayerPanel : IView
                 }
             }
         }
-        else {                                      
-               if (playerName.Length <= 6) {
-                if (!(playerName.Contains("灵梦") || playerName.Contains("reimu") || playerName.Contains("Reimu")))
+        else
+        {
+            Debug.Log(1111);
+            Debug.Log(playerName.Length);
+            
+                if ((!playerName.Contains("灵梦")) && (!playerName.Contains("reimu")) && (!playerName.Contains("Reimu"))&&playerName.Length<=6)
                 {
+                
                     succeseSprite.SetActive(true);
                     islegal = true;
                     Debug.Log("111");
                 }
-                    }
-                
-                else {
+            
+
+            
+                if (playerName.Contains("灵梦") || playerName.Contains("reimu") || playerName.Contains("Reimu"))
+                {
                     if (errorSprite.activeInHierarchy == false)
                     {
                         errorSprite.SetActive(true);
@@ -182,9 +189,11 @@ public class PlayerPanel : IView
                         Debug.Log("222");
                         return;
                     }
+
                 }
-            }
+            
         }
+    }
        // Debug.Log("名字真好听");   
     public string GetPalyerName() {
         if (playerName == null)

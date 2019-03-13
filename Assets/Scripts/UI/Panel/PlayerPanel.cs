@@ -125,9 +125,10 @@ public class PlayerPanel : IView
         bool isChinese_s = isChinese();
         bool isEnglish_s = isEnglish();
         if (isChinese_s)
-        {
-            if (playerName.Length <= 5 && !(playerName.Contains("灵梦")))
+        {          
+            if (playerName.Length <= 5 && (!playerName.Contains("灵梦")))
             {
+               
                 if (succeseSprite.activeInHierarchy == false)
                 {
                     succeseSprite.SetActive(true);

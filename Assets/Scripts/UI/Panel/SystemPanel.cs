@@ -7,6 +7,7 @@ public class SystemPanel : IView
 {
     private UIButton InventoryBtn;
     private UIButton BacktoMenuBtn;
+    private UIButton SkillBtn;
     private Transform ParentGo;
     public static bool Bg_IsActive = false;
     private List<Transform> goList = new List<Transform>();
@@ -23,6 +24,7 @@ public class SystemPanel : IView
         //  InventoryBtn = this.GetChild("InventoryBtn").GetComponent<UIButton>();
         InventoryBtn = this.GetChild("InventoryBtn").GetComponent<UIButton>();
         BacktoMenuBtn = this.GetChild("BacktoMenuBtn").GetComponent<UIButton>();
+        SkillBtn = this.GetChild("SkillBtn").GetComponent<UIButton>();
         AddEventBtn();
     }  
     protected override void OnShow()
@@ -45,8 +47,10 @@ public class SystemPanel : IView
         EventDelegate InventoryBtnEvent = new global::EventDelegate(OnInventoryBtnClick);
         EventDelegate BacktoMenuEvent = new global::EventDelegate(OnBacktoMenuClick);
 
+
         InventoryBtn.onClick.Add(InventoryBtnEvent);
         BacktoMenuBtn.onClick.Add(BacktoMenuEvent);
+        SkillBtn.onClick.Add(new EventDelegate(OnClickSkillBtn));
     }
 
     void OnInventoryBtnClick()
@@ -85,5 +89,9 @@ public class SystemPanel : IView
             LoginPanel.BackGround.GetComponent<UITexture>().mainTexture = ResourcesManager.Instance.LoadTexture2D("BinaryCover_Zi");
         }
         GameStateManager.LoadScene(1);
+    }
+    void OnClickSkillBtn() {
+        GUIManager.ShowView("SkillPanel");
+        GUIManager.HideView("SystemPanel");
     }
 }

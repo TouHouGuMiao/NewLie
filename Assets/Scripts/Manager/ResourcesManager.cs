@@ -125,6 +125,19 @@ public class ResourcesManager
         return effect;
     }
 
+    public GameObject LoadDiceCard(string name)
+    {
+        string path = "Model" + "/" + "DiceCard" + "/"+ name;
+
+        GameObject effect = Resources.Load(path) as GameObject;
+        if (effect == null)
+        {
+            Debug.LogError("diceModel is null");
+            return null;
+        }
+        return effect;
+    }
+
     public Sprite LoadSpriteBullet(string name,int width=128,int heigt=128)
     {
         string path = "BulletSprite" + "/" + name;

@@ -56,7 +56,7 @@ public class BattleCommoUIManager
         HPSlider = panel.transform.FindRecursively("PlayerHPSlider").GetComponent<UISlider>();
         playerHPBGWiget = panel.transform.FindRecursively("HPBG").GetComponent<UIWidget>();
         playerHPWiget = panel.transform.FindRecursively("HP").GetComponent<UIWidget>();
-        playerBaseData = CharacterPropManager.Instance.GetCharcaterDataByName("reimu");
+        //playerBaseData = CharacterPropManager.Instance.GetCharcaterDataByName("reimu");
         BossSlider = panel.transform.FindRecursively("BossHPSlider").GetComponent<UISlider>();
         BossNameLabel = panel.transform.FindRecursively("BossName").GetComponent<UILabel>();
         speakLabelAlpha = panel.transform.FindRecursively("SpeakLabel").GetComponent<TweenAlpha>();

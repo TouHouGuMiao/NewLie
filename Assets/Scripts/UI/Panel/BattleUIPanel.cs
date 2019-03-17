@@ -35,7 +35,7 @@ public class BattleUIPanel :IView
 
     protected override void OnShow()
     {
-        BattleCommoUIManager.Instance.UpdataSlider_Player();
+        //BattleCommoUIManager.Instance.UpdataSlider_Player();
     }
 
     protected override void OnHide()
@@ -52,7 +52,7 @@ public class BattleUIPanel :IView
 
     public override void Update()
     {
-        BattleCommoUIManager.Instance.UpdataSlider_Player();
+        //BattleCommoUIManager.Instance.UpdataSlider_Player();
        
     }
 }

@@ -62,7 +62,6 @@ public class PlayerControl : CharacterPropBase {
         //m_TP2 = yinYangYu2.GetComponent<TweenPosition>();
         m_HP = HP;
         //TPEffectSet();
-        PlayerSkillManager.Instance.InitPlayerSkillManager();
         WingmanData data = new WingmanData();
         data.bulletName = "StarBullet";
         data.tempTime = 0.5f;
@@ -142,7 +141,7 @@ public class PlayerControl : CharacterPropBase {
             }
             if (stateInfo.IsName("Base Layer.idle") || stateInfo.IsName("Base Layer.Move.MoveLoop") || stateInfo.IsName("Base Layer.Move.MoveBegin"))
             {
-                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed,Space.Self);
+                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * 5,Space.Self);
             }
 
 
@@ -175,7 +174,7 @@ public class PlayerControl : CharacterPropBase {
             }
          
        
-                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed,Space.Self);
+                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * 5,Space.Self);
             
          
         }
@@ -189,12 +188,12 @@ public class PlayerControl : CharacterPropBase {
 
         if (Input.GetKey(KeyCode.UpArrow))
         { 
-            transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * speed ); ;
+            transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * 5 ); ;
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * speed);
+            transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * 5);
         }
 
         if (tempTime_Z < Time.time)
@@ -288,17 +287,15 @@ public void UseAttack()
 
     private void UpDataPlayerPro()
     {
-        CharacterPropBase baseData = CharacterPropManager.Instance.GetCharcaterDataByName("reimu");
-        if (baseData == null)
-        {
-            Debug.LogError("baseData is null");
-            return;
-        }
-        Power = baseData.Power;
-        DEF = baseData.DEF;
-        DEX = baseData.DEX;
-        VIT = baseData.VIT;
-        Lucky = baseData.Lucky;
+        //CharacterPropBase baseData = CharacterPropManager.Instance.GetCharcaterDataByName("reimu");
+        //if (baseData == null)
+        //{
+        //    Debug.LogError("baseData is null");
+        //    return;
+        //}
+        //Power = baseData.Power;
+        //VIT = baseData.VIT;
+        //Lucky = baseData.Lucky;
 
     }
    

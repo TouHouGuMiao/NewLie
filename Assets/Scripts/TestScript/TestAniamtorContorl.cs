@@ -33,8 +33,9 @@ public class TestAniamtorContorl : MonoBehaviour {
             }
 
 
-            transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
-            
+            if (stateInfo.IsName("Base Layer.Walk")){
+                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
+            }
         }
 
   
@@ -54,9 +55,9 @@ public class TestAniamtorContorl : MonoBehaviour {
                 m_Animator.SetBool("isWalk", true);
             }
 
-
-          
+            if(stateInfo.IsName("Base Layer.Walk")){
                 transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
+            }
             
 
         }

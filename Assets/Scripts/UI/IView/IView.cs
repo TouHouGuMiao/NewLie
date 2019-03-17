@@ -11,6 +11,7 @@ public enum Layer
     SpeicalUI=40,
     CoverUI=50,
     System=60,
+    Dice=70,
 }
 
 public abstract  class IView

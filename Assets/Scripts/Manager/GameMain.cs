@@ -27,7 +27,6 @@ public class GameMain : MonoBehaviour
     void DoSmoeSetting()
     {
         Application.runInBackground = true;
-        CharacterPropManager.Instance.InitCharacterDic();
         Texture2D texture = ResourcesManager.Instance.LoadTexture2D("mouseUI");
         Cursor.SetCursor(texture, Vector2.zero, CursorMode.Auto);
 

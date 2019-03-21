@@ -16,6 +16,9 @@ public class SlerpRun : MonoBehaviour {
     [HideInInspector]
     public float radius =7;
     private bool stopRotate = false;
+    [HideInInspector]
+    public bool isClickCard=false;
+    
 
     // Use this for initialization
     void Start () {
@@ -176,23 +179,158 @@ public class SlerpRun : MonoBehaviour {
         tweenRotation.from = transform.rotation.eulerAngles;
         tweenRotation.to = new Vector3(transform.rotation.eulerAngles.x, 180, transform.rotation.eulerAngles.z);
         tweenRotation.ResetToBeginning();
+        tweenRotation.onFinished.Clear();
+        tweenRotation.onFinished.Add(new EventDelegate(OnRotateNumberDiceCard_SecFished));
+       
     }
     
+    void OnRotateNumberDiceCard_SecFished()
+    {
+        UIButton btn = this.GetComponent<UIButton>();
+        btn.onClick.Clear();
+        btn.enabled = true;
+        btn.onClick.Add(new EventDelegate(OnBtnLastClick));
+    }
+
     void OnButtonClick()
     {
-
+        isClickCard = true;
         Transform parent = transform.parent;
         for (int i = 0; i < parent.childCount; i++)
         {
             GameObject go = parent.GetChild(i).gameObject;
+            UIButton btn = go.GetComponent<UIButton>();
+            btn.onClick.Clear();
+            btn.enabled = false;
             if (go.name == gameObject.name)
             {
                 continue;
             }
             SlerpRun slerpRun = go.transform.GetComponent<SlerpRun>();
             slerpRun.stopSlerp = true;
+     
             slerpRun.isDrift=true;
         }
+        int number= CommonHelper.Str2Int(this.name);
+        DicePanel.diceValue = number;
+      
         ShowNumberDicCard();
     }
+
+    void OnBtnLastClick()
+    {
+        UIButton btn = UIButton.current;
+        btn.onClick.Clear();
+        btn.enabled = false;
+        int number = CommonHelper.Str2Int(this.name);
+
+ 
+        HideDiceCards();
+        DiceManager.Instance.DepentClickSource(number);
+    }
+
+
+    void HideDiceCards()
+    {
+        TweenPosition tp;
+        Transform parent = transform.parent;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            GameObject go = parent.GetChild(i).gameObject;
+            tp = go.GetComponent<TweenPosition>();
+            SlerpRun slerpRun = go.GetComponent<SlerpRun>();
+            slerpRun.isDrift = false;
+
+            if (!slerpRun.isClickCard)
+            {
+                tp = go.AddComponent<TweenPosition>();
+                tp.from = go.transform.localPosition;
+                tp.to = new Vector3(0, i * 0.1f, 0);
+                tp.duration = 2.0f;
+                tp.ignoreTimeScale = false;
+            }
+
+
+            else
+            {
+                tp.enabled = true;
+                tp.onFinished.Clear();
+                tp.from = go.transform.localPosition;
+                tp.to = new Vector3(0, i * 0.1f, 0);
+                tp.duration = 2.0f;
+                tp.ignoreTimeScale = false;
+                ReturnRotateFrist();
+                tp.ResetToBeginning();
+                tp.onFinished.Add(new EventDelegate(ReturnTweenPositionToScan));
+            }
+           
+
+        
+        }
+    }
+
+    #region 卡牌返回时的方法
+    void ReturnRotateFrist()
+    {
+        stopRotate = true;
+        TweenRotation tweenRotation = gameObject.GetComponent<TweenRotation>();
+        tweenRotation.enabled = true;
+        tweenRotation.onFinished.Clear();
+        tweenRotation.from = transform.rotation.eulerAngles;
+        tweenRotation.to = new Vector3(0, 0, 0);
+        tweenRotation.ResetToBeginning();
+        tweenRotation.ignoreTimeScale = false;
+        tweenRotation.duration = 0.75f;
+        tweenRotation.onFinished.Add(new EventDelegate(ReturnRotateSecond));
+    }
+
+    void ReturnRotateSecond()
+    {
+        TweenRotation tweenRotation = gameObject.GetComponent<TweenRotation>();
+        tweenRotation.enabled = true;
+        tweenRotation.onFinished.Clear();
+        tweenRotation.ignoreTimeScale = false;
+        tweenRotation.duration = 0.75f;
+        tweenRotation.from = transform.rotation.eulerAngles;
+        tweenRotation.to = new Vector3(80, 0, 0);
+        tweenRotation.ResetToBeginning();
+  
+    }
+
+  
+
+    void ReturnTweenPositionToScan()
+    {
+        Transform parent = transform.parent;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            GameObject go = parent.GetChild(i).gameObject;
+            TweenPosition tp = go.GetComponent<TweenPosition>();
+            tp.enabled = true;
+          
+            tp.from = go.transform.localPosition;
+            tp.to = new Vector3(30, go.transform.localPosition.y, go.transform.localPosition.z);
+            tp.duration = 1;
+            tp.delay = i * 0.3f+0.3f;
+            SlerpRun slerp = go.GetComponent<SlerpRun>();
+            slerp.stopRotate = false;
+            tp.ignoreTimeScale = false;
+            if (i == parent.childCount - 1)
+            {
+                tp.onFinished.Add(new EventDelegate(LastTPHidePanel));
+            }
+            else
+            {
+                tp.onFinished = null;
+            }
+            tp.ResetToBeginning();
+
+        }
+    }
+
+    void LastTPHidePanel()
+    {
+        GUIManager.HideView("DicePanel");
+    }
+    #endregion
 }

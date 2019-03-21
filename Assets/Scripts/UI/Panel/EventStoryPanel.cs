@@ -15,6 +15,7 @@ public class EventStoryPanel : IView
     private UILabel speakLabel;
     private UISprite eventSprite;
     private TweenPosition tp;
+    private StoryHander lastHander=null;
 
     private StoryData curData = new StoryData ();
 
@@ -94,7 +95,7 @@ public class EventStoryPanel : IView
 
     protected override void OnHide()
     {
-
+        lastHander = null;
         speakLabel.text = "";
         speakLabel.enabled = false;
 
@@ -209,8 +210,14 @@ public class EventStoryPanel : IView
                         StoryHander hander = null;
                         if (data.StoryHanderDic.TryGetValue(data.index, out hander))
                         {
-                            hander();
-                            needHide = false;
+                            if (lastHander != hander)
+                            {
+                                hander();
+                                lastHander = hander;
+                                needHide = false;
+                            }
+                           
+                   
                         }
 
                         if (TalkPanel.isSpeak)

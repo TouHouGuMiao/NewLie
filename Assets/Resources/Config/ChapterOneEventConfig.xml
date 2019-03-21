@@ -45,5 +45,20 @@
       <speak36>在仓库门口踱步了一会，你还是决定先详细询问好情况，再进仓库审问凶手。</speak36>
     </Speak>
     </StoryData>
+
+
+  <StoryData>
+    <id>1</id>
+    <State>0</State>
+    <name>骰出属性</name>
+    <spriteName>0</spriteName>
+    <index>0</index>
+    <cout>2</cout>
+    <Speak>
+      <speak1>投掷两次六面骰，体型属性将为两次骰子结果的和加6再乘5。</speak1>
+      <speak2>第一次投骰......</speak2>
+      <speak3>第二次投骰......</speak3>
+    </Speak>
+  </StoryData>
 </Story>
 

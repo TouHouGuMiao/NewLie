@@ -15,6 +15,7 @@ TagManager:
   - rightLock
   - leftLock
   - Event
+  - DiceCard
   layers:
   - Default
   - TransparentFX
@@ -26,9 +27,9 @@ TagManager:
   - 
   - Warrior
   - enemy
-  - 
-  - 
-  - 
+  - 3DUI
+  - StaticUI
+  - Prop3DUI
   - 
   - BG
   - 

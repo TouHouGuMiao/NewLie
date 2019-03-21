@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillManager {
-    private static SkillManager _Instance = null;
-    public static SkillManager Instance {
-        get {
-            if (_Instance == null) {
-                _Instance = new SkillManager();
-               
+public class SkillManager
+{
+    private static SkillManager _instance = null;
+    public static SkillManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                return _instance;
             }
-            return _Instance;
+            return _instance;
         }
     }
 
+    private void InitSkillData()
+    {
+        
+    }
+
+    
 }
+

@@ -92,8 +92,11 @@ public class PlayerPanel : IView
     {
         if (islegal)
         {
-            GameStateManager.LoadScene(4);
-            GUIManager.ShowView("LoadingPanel");
+            GUIManager.ShowView("CoverPanel");
+            GUIManager.HideView("PlayerPanel");
+            GUIManager.ShowView("SurePropertyPanel");
+            StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 0);
+            //GameStateManager.LoadScene(4);
         }
         else {
             if (noNameSprite.activeInHierarchy == false) {

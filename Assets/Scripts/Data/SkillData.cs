@@ -11,18 +11,20 @@ public enum SkillType
 
 public class Skill
 {
-    public SkillData data=new SkillData ();
-    /// <summary>
-    /// 涉及到升级后是否可以使用该技能;
-    /// </summary>
-    public bool canUse;
-    public string animatorName;
+    public SkillData data = new SkillData();
+    public Skill(int id,string name,string des,string altasName,string iconName)
+    {
+        data.Name = name;
+        data.ID = id;
+        data.Des = des;
+        data.IconName = iconName;
+    }
+    public int point;
+    public virtual void Init()
+    {
 
-    public bool isCold=false;
-
-
-    public virtual void Init() { }
-    public virtual void Show(Transform shotPoint, Transform parent,Transform target =null,int sign = 1) { }
+    }
+    
 }
 
 
@@ -41,7 +43,12 @@ public class SkillData
         get;set;
     }
 
-    public float ColdTime
+    public string AltasName
+    {
+        get;set;
+    }
+
+    public string IconName
     {
         get;
         set;

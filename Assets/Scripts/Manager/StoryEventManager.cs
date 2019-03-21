@@ -20,11 +20,15 @@ public class StoryEventManager
     }
 
     private Dictionary<int, StoryData> ChapterOneDic = new Dictionary<int, StoryData>();
+    private int now_Id=0;
+    private int now_Index=0;
+
 
     private void InitLoad()
     {
         LoadStoryXML("ChapterOneEventConfig", ChapterOneDic);
         InitHander();
+        InitHander_EventOne();
     }
 
     private StoryData GetChapterOneEventDataById(int id)
@@ -48,8 +52,19 @@ public class StoryEventManager
         data.index = index;
         EventStoryPanel.data = data;
         GUIManager.ShowView("EventStoryPanel");
+        now_Id = id;
+        now_Index = index;
     }
 
+    public int GetNowEventDataId()
+    {
+        return now_Id;
+    }
+
+    public int GetNowEventDataIndex()
+    {
+        return now_Index;
+    }
 
 
     void LoadStoryXML(string pathName, Dictionary<int, StoryData> DataDic)
@@ -129,6 +144,15 @@ public class StoryEventManager
         data.StoryHanderDic.Add(32, KongWuGuaiTan32);
         data.StoryHanderDic.Add(33, KongWuGuaiTan33);
         data.StoryHanderDic.Add(34, KongWuGuaiTan34);
+    }
+
+    private void InitHander_EventOne()
+    {
+        StoryData data = new StoryData();
+        data = GetChapterOneEventDataById(1);
+        data.StoryHanderDic.Add(0, new StoryHander(SureStatureProp));
+        data.StoryHanderDic.Add(1, new StoryHander(SureStatureProp_FristDice));
+        data.StoryHanderDic.Add(2, new StoryHander(SureStatureProp_SecondDice));
     }
 
     #endregion
@@ -211,7 +235,7 @@ public class StoryEventManager
     {
         NPCSpeakManager.Instance.ShowNPCSpeakPanel(0,0);
     }
-    #endregion
+  
 
     private  void KongWuGuaiTan15()
     {
@@ -313,5 +337,24 @@ public class StoryEventManager
     {
         ChoseManager.Instance.ShowChosePanel(1);
     }
+    #endregion
+
+    #region 骰出属性
+    void SureStatureProp()
+    {
+        SurePropertyPanel.SureState = CreatSureState.Stature_State;
+        ShowEventPanel_ChapterOne(1, 1);
+    }
+
+    void SureStatureProp_FristDice()
+    {
+        DiceManager.Instance.ShowDicePanel(6, 0.01f);
+    }
+
+    void SureStatureProp_SecondDice()
+    {
+        DiceManager.Instance.ShowDicePanel(6, 0.01f);
+    }
+    #endregion
     #endregion
 }

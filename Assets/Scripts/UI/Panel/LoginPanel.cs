@@ -33,6 +33,7 @@ public class LoginPanel : IView
 
     private UISprite changeWordPic;
     private GameObject m_go;
+    private GameObject GameChoice;
     public static GameObject BackGround;//LoginPanel的背景图片
     private List<UIButton> choiceBtnList = new List<UIButton>();
     private List<bool> eggChangeList = new List<bool>();
@@ -49,6 +50,8 @@ public class LoginPanel : IView
 
     private bool isParticleSetting_Up = false;
     //private GameObject go;
+    private Vector3 ogPos = new Vector3(1300, -1, 0);
+    private Vector3 changePos = new Vector3(200, -1, 0);
 
     protected override void OnDestroy()
     {
@@ -63,6 +66,7 @@ public class LoginPanel : IView
         particleSystem_Normal_1.gameObject.SetActive(false);
         ParticleSystem.VelocityOverLifetimeModule velocityOverLifetimeModule = paritcleSystem_Normal.velocityOverLifetime;
         velocityOverLifetimeModule.enabled = false;
+        GameChoice.transform.localPosition = ogPos;
     }
 
     protected override void OnShow()
@@ -101,6 +105,7 @@ public class LoginPanel : IView
         m_go = this.GetChild("ButtonGrid").gameObject;
         changeWordPic = this.GetChild("ChangeWord").GetComponent<UISprite>();
         BackGround = this.GetChild("bg").gameObject;
+        GameChoice = this.GetChild("GameChoice").gameObject;
 
         //addElementInEggChangeList();
        // Debug.Log(eggChangeList[0]);
@@ -245,6 +250,7 @@ public class LoginPanel : IView
             }
             if (BackGround.GetComponent<UITexture>().mainTexture.name == "BinaryCover_Zi"){ // == ResourcesManager.Instance.LoadTexture2D("BinaryCover_Zi")) {
                 BackGround.GetComponent<UITexture>().mainTexture = ResourcesManager.Instance.LoadTexture2D("BinaryCover_Kong");
+                GameChoice.transform.localPosition = changePos;
             }
 
 

@@ -9,10 +9,10 @@ public class SkillPanel : IView
     private UIButton addPointsBtn;
     private UIButton minusPointsBtn;
     public static int skillPoints=10;//技能职业加点
-    
+    int pointts;
     int currentPoints = 0;
 
-
+    
     protected override void OnDestroy()
     {
        
@@ -25,7 +25,7 @@ public class SkillPanel : IView
 
     protected override void OnShow()
     {
-        
+         pointts = SkillPanel.skillPoints;
     }
 
     protected override void OnStart()
@@ -33,20 +33,25 @@ public class SkillPanel : IView
         points = this.GetChild("points").GetComponent<UILabel>();
         canAddPoints = this.GetChild("canAddPoints").GetComponent<UILabel>();
         addPointsBtn = this.GetChild("addPoints").GetComponent<UIButton>();
+        addPointsBtn.button_type = UIButton.button_Class.add_button;
         minusPointsBtn = this.GetChild("minusPoints").GetComponent<UIButton>();
+        minusPointsBtn.button_type = UIButton.button_Class.minus_button;
         points.text = currentPoints.ToString();
         canAddPoints.text = skillPoints.ToString();
-        addPointsBtn.onClick.Add(new EventDelegate(OnClickAddPointsBtn));
-        minusPointsBtn.onClick.Add(new EventDelegate(OnClickMinusPointsBtn));
+        AddDelegate();
+        //addPointsBtn.onClick.Add(new EventDelegate(OnClickAddPointsBtn));
+        //minusPointsBtn.onClick.Add(new EventDelegate(OnClickMinusPointsBtn));
     }
-    int pointts = SkillPanel.skillPoints;
+    
     void OnClickAddPointsBtn() {
-       
+
+
         if (pointts == 0)
         {
-            Debug.Log("技能点数不够");
+            Debug.LogError("技能点数不够");
         }
-        else {
+        else
+        {
             currentPoints++;
             points.text = currentPoints.ToString();
             if (pointts > 0)
@@ -54,28 +59,43 @@ public class SkillPanel : IView
                 pointts--;
                 canAddPoints.text = pointts.ToString();
             }
-            else {
-                return;
-            }
+
         }
     }
     void OnClickMinusPointsBtn() {
-        
+
+
+
         if (currentPoints == 0)
         {
-            Debug.Log("cant minus points");
+            Debug.LogError("cant minus points");
         }
-        else {
+        else
+        {
             currentPoints--;
             pointts++;
             points.text = currentPoints.ToString();
-            if (pointts <= skillPoints) {
+            if (pointts <= skillPoints)
+            {
                 canAddPoints.text = pointts.ToString();
             }
-            else {
-                return;
-            }
+
         }
-       
+
+    }
+     void ChoiceAddOrMinus(UIButton button)
+    {
+        if (button.button_type == UIButton.button_Class.add_button)
+        {
+            OnClickAddPointsBtn();
+        }
+        else if (button.button_type == UIButton.button_Class.minus_button)
+        {
+            OnClickMinusPointsBtn();
+        }
+    }
+    void AddDelegate() {
+      addPointsBtn.skillBtnDelegate += ChoiceAddOrMinus;
+      minusPointsBtn.skillBtnDelegate += ChoiceAddOrMinus;
     }
 }

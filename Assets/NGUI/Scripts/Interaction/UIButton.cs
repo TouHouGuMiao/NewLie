@@ -71,11 +71,18 @@ public class UIButton : UIButtonColor
     /// <summary>
     /// Click event listener.
     /// </summary>
+    /// 
     public bool isActive_Button;//记录button的状态
+  
     public List<EventDelegate> onClick = new List<EventDelegate>();
-
-	// Cached value
-	[System.NonSerialized] UISprite mSprite;
+    public enum button_Class
+    {
+        add_button,
+        minus_button
+    }
+    public button_Class button_type;
+    // Cached value
+    [System.NonSerialized] UISprite mSprite;
 	[System.NonSerialized] UI2DSprite mSprite2D;
 	[System.NonSerialized] string mNormalSprite;
 	[System.NonSerialized] UnityEngine.Sprite mNormalSprite2D;
@@ -247,9 +254,14 @@ public class UIButton : UIButtonColor
     public OnClickDelegate DelegateOnClickByID;
     public OnClickDelegateWithGameObject DelegateOnClickByGameObject;
 
+    public delegate void ClickSkillBtnDelegate(UIButton button);
+    public ClickSkillBtnDelegate skillBtnDelegate;
+
     
-  
-    
+
+
+
+
 
     protected virtual void OnClick ()
 	{
@@ -271,6 +283,9 @@ public class UIButton : UIButtonColor
                 DelegateOnClickByID(id);
             }
 
+            if (skillBtnDelegate != null) {
+                skillBtnDelegate(this);
+            }
           
 			current = null;
 		}

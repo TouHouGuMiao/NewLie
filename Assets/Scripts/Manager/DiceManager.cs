@@ -91,14 +91,29 @@ public class DiceManager
             {
                 PropStatureDice_One(diceNumber);
             }
+
+            if (index == 2)
+            {
+                PropStatureDice_Two(diceNumber);
+            }
         }
     }
 
+    /// <summary>
+    /// 写在这里的事件，将会在骰点结束后触发
+    /// </summary>
+    /// <param name="diceNumber"></param>
     #region 骰属性事件
     void PropStatureDice_One(int diceNumber)
     {
         SurePropertyPanel.dice1 = diceNumber;
-        SurePropertyPanel.ShowStatureSecondBtn();
+        SurePropertyPanel.SureState = CreatSureState.Stature_State_Dice1;
+    }
+
+    void PropStatureDice_Two(int diceNumber)
+    {
+        SurePropertyPanel.dice2 = diceNumber;
+        SurePropertyPanel.SureState = CreatSureState.Stature_State_Dice2;
     }
     #endregion
 }

@@ -153,6 +153,7 @@ public class StoryEventManager
         data.StoryHanderDic.Add(0, new StoryHander(SureStatureProp));
         data.StoryHanderDic.Add(1, new StoryHander(SureStatureProp_FristDice));
         data.StoryHanderDic.Add(2, new StoryHander(SureStatureProp_SecondDice));
+        data.StoryHanderDic.Add(3, new StoryHander(SureStatureProp_GetResult));
     }
 
     #endregion
@@ -354,6 +355,11 @@ public class StoryEventManager
     void SureStatureProp_SecondDice()
     {
         DiceManager.Instance.ShowDicePanel(6, 0.01f);
+    }
+
+    void SureStatureProp_GetResult()
+    {
+        SurePropertyPanel.SureState = CreatSureState.Stature_State_Reslut;
     }
     #endregion
     #endregion

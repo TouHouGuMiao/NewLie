@@ -58,6 +58,7 @@
       <speak1>投掷两次六面骰，体型属性将为两次骰子结果的和加6再乘5。</speak1>
       <speak2>第一次投骰......</speak2>
       <speak3>第二次投骰......</speak3>
+      <speak4>你的体型为....</speak4>
     </Speak>
   </StoryData>
 </Story>

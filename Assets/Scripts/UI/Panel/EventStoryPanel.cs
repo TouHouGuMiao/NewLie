@@ -224,6 +224,11 @@ public class EventStoryPanel : IView
                         {
                             needHide = false;
                         }
+
+                        if (DicePanel.IsDice)
+                        {
+                            needHide = false;
+                        }
              
                         if (needHide)
                         {                            

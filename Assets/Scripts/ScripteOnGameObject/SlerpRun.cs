@@ -155,11 +155,16 @@ public class SlerpRun : MonoBehaviour {
     void ShowNumberDicCard()
     {
         stopSlerp = true;
-        TweenPosition tweenPosition = gameObject.AddComponent<TweenPosition>();
+        TweenPosition tweenPosition = gameObject.GetComponent<TweenPosition>();
+        tweenPosition.enabled = true;
+        tweenPosition.onFinished.Clear();
         Vector3 targetVec = new Vector3(0, 0, 0);
         tweenPosition.from = transform.localPosition;
         tweenPosition.to = targetVec;
+        tweenPosition.delay = 0;
+        tweenPosition.duration = 1.5f;
         tweenPosition.onFinished.Add(new EventDelegate (RotateNumberNDicCard));
+        tweenPosition.ResetToBeginning();
     }
 
     void RotateNumberNDicCard()
@@ -222,11 +227,10 @@ public class SlerpRun : MonoBehaviour {
         UIButton btn = UIButton.current;
         btn.onClick.Clear();
         btn.enabled = false;
-        int number = CommonHelper.Str2Int(this.name);
+   
 
- 
         HideDiceCards();
-        DiceManager.Instance.DepentClickSource(number);
+
     }
 
 
@@ -243,11 +247,13 @@ public class SlerpRun : MonoBehaviour {
 
             if (!slerpRun.isClickCard)
             {
-                tp = go.AddComponent<TweenPosition>();
+                tp.enabled = true;
                 tp.from = go.transform.localPosition;
                 tp.to = new Vector3(0, i * 0.1f, 0);
                 tp.duration = 2.0f;
-                tp.ignoreTimeScale = false;
+                tp.delay = 0.15f * i;
+                tp.ignoreTimeScale = true;
+                tp.ResetToBeginning();
             }
 
 
@@ -258,9 +264,13 @@ public class SlerpRun : MonoBehaviour {
                 tp.from = go.transform.localPosition;
                 tp.to = new Vector3(0, i * 0.1f, 0);
                 tp.duration = 2.0f;
-                tp.ignoreTimeScale = false;
+                tp.delay = 0.2f * i;
+                tp.ignoreTimeScale = true;
                 ReturnRotateFrist();
                 tp.ResetToBeginning();
+            }
+            if (i == parent.childCount - 1)
+            {
                 tp.onFinished.Add(new EventDelegate(ReturnTweenPositionToScan));
             }
            
@@ -302,20 +312,21 @@ public class SlerpRun : MonoBehaviour {
     void ReturnTweenPositionToScan()
     {
         Transform parent = transform.parent;
-        for (int i = 0; i < parent.childCount; i++)
+        int temp_j=0;
+        for (int i = parent.childCount-1; i >=0; i--)
         {
             GameObject go = parent.GetChild(i).gameObject;
             TweenPosition tp = go.GetComponent<TweenPosition>();
             tp.enabled = true;
           
             tp.from = go.transform.localPosition;
-            tp.to = new Vector3(30, go.transform.localPosition.y, go.transform.localPosition.z);
-            tp.duration = 1;
-            tp.delay = i * 0.3f+0.3f;
+            tp.to = new Vector3(-30, go.transform.localPosition.y, go.transform.localPosition.z);
+            tp.duration = 0.7f;
+            tp.delay = temp_j * 0.2f+0.2f;
             SlerpRun slerp = go.GetComponent<SlerpRun>();
             slerp.stopRotate = false;
             tp.ignoreTimeScale = false;
-            if (i == parent.childCount - 1)
+            if (i == 0)
             {
                 tp.onFinished.Add(new EventDelegate(LastTPHidePanel));
             }
@@ -324,13 +335,17 @@ public class SlerpRun : MonoBehaviour {
                 tp.onFinished = null;
             }
             tp.ResetToBeginning();
-
+            temp_j++;
         }
     }
 
     void LastTPHidePanel()
     {
+        int number = CommonHelper.Str2Int(this.name);
+        DiceManager.Instance.DepentClickSource(number);
         GUIManager.HideView("DicePanel");
     }
+
+
     #endregion
 }

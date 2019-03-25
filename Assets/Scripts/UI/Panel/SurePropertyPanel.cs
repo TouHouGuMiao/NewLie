@@ -12,6 +12,7 @@ public enum CreatSureState
     Power_State_Dice1=6,
     Power_State_Dice2=7,
     Power_State_Dice3=8,
+    Power_State_Reslut = 9,
 }
 
 public class SurePropertyPanel : IView {
@@ -28,7 +29,7 @@ public class SurePropertyPanel : IView {
     public static CreatSureState SureState;
 
     public static int stature_Prop;
-
+    public static int power_Prop;
 
     private GameObject statureCard;
     private GameObject statureCardExpress;
@@ -38,9 +39,14 @@ public class SurePropertyPanel : IView {
     private UILabel stature_SecondDice;
     private UIButton stature_NextBtn;
 
+
+    private GameObject powerCardExpress;
+    private GameObject powerCard;
     private UILabel power_FristDice;
     private UILabel power_SecondDice;
     private UILabel power_ThridDice;
+    private UILabel powerNumber;
+    private UIButton power_NextBtn;
     public SurePropertyPanel()
     {
         m_Layer = Layer.bottom;
@@ -64,6 +70,12 @@ public class SurePropertyPanel : IView {
         power_FristDice = power.Find("fristDice").GetComponent<UILabel>();
         power_SecondDice = power.Find("secondDice").GetComponent<UILabel>();
         power_ThridDice = power.Find("thDice").GetComponent<UILabel>();
+        powerCardExpress = power.Find("powerCardExpress").gameObject;
+        powerCard = power.Find("powerCard").gameObject;
+        power_NextBtn = power.Find("nextBtn").GetComponent<UIButton>();
+        powerNumber = powerCardExpress.transform.Find("Number").GetComponent<UILabel>();
+
+
     }
      
     protected override void OnShow()
@@ -170,8 +182,21 @@ public class SurePropertyPanel : IView {
             if (power_ThridDice.text != dice3.ToString())
             {
                 power_ThridDice.text = dice3.ToString();
-                //StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 14);
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 15);
             }
+        }
+
+        else if (SureState == CreatSureState.Power_State_Reslut)
+        {
+            if (!powerCard.activeSelf)
+            {
+                power_Prop = (dice1 + dice2 + dice3) * 5;
+                TweenPosition tp = powerCard.GetComponent<TweenPosition>();
+                tp.onFinished.Add(new EventDelegate(ShowPowerPropExpress));
+                powerCard.SetActive(true);
+                power_NextBtn.gameObject.SetActive(true);
+            }
+
         }
     }
 
@@ -214,6 +239,11 @@ public class SurePropertyPanel : IView {
         statureCardExpress.SetActive(true);
     }
 
+    void ShowPowerPropExpress()
+    {
+        powerNumber.text = power_Prop.ToString();
+        powerCardExpress.SetActive(true);
+    }
     void OnStatureNextBtnClick()
     {
         Stature.gameObject.SetActive(false);

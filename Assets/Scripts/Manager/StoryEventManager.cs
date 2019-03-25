@@ -165,6 +165,7 @@ public class StoryEventManager
         data.StoryHanderDic.Add(12, new StoryHander(SurePowerProp_SecondDice_QianYan2));
         data.StoryHanderDic.Add(13, new StoryHander(SurePowerProp_SecondDice));
         data.StoryHanderDic.Add(14, new StoryHander(SurePowerProp_ThridDice));
+        data.StoryHanderDic.Add(15, new StoryHander(SurePowerProp_Reslut));
     }
 
     #endregion
@@ -427,6 +428,11 @@ public class StoryEventManager
     void SurePowerProp_ThridDice()
     {
         DiceManager.Instance.ShowDicePanel(6, 0.01f);
+    }
+
+    void SurePowerProp_Reslut()
+    {
+        SurePropertyPanel.SureState = CreatSureState.Power_State_Reslut;
     }
     #endregion
     #endregion

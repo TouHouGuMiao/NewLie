@@ -90,7 +90,7 @@ public class SurePropertyPanel : IView {
             if (stature_FristDice.text != dice1.ToString())
             {
                 stature_FristDice.text = dice1.ToString();
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 2);
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 5);
             }
         }
         if (SureState == CreatSureState.Stature_State_Dice2)
@@ -98,7 +98,7 @@ public class SurePropertyPanel : IView {
             if (stature_SecondDice.text != dice2.ToString())
             {
                 stature_SecondDice.text = dice2.ToString();
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 3);
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 6);
             }
         }
 

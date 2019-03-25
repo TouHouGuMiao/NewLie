@@ -150,10 +150,13 @@ public class StoryEventManager
     {
         StoryData data = new StoryData();
         data = GetChapterOneEventDataById(1);
-        data.StoryHanderDic.Add(0, new StoryHander(SureStatureProp));
-        data.StoryHanderDic.Add(1, new StoryHander(SureStatureProp_FristDice));
-        data.StoryHanderDic.Add(2, new StoryHander(SureStatureProp_SecondDice));
-        data.StoryHanderDic.Add(3, new StoryHander(SureStatureProp_GetResult));
+        data.StoryHanderDic.Add(0, new StoryHander(SureProp_QianYan_1));
+        data.StoryHanderDic.Add(1, new StoryHander(SureProp_QianYan_2));
+        data.StoryHanderDic.Add(2, new StoryHander(SureProp_QianYan_3));
+        data.StoryHanderDic.Add(3, new StoryHander(SureStatureProp));
+        data.StoryHanderDic.Add(4, new StoryHander(SureStatureProp_FristDice));
+        data.StoryHanderDic.Add(5, new StoryHander(SureStatureProp_SecondDice));
+        data.StoryHanderDic.Add(6, new StoryHander(SureStatureProp_GetResult));
     }
 
     #endregion
@@ -341,20 +344,36 @@ public class StoryEventManager
     #endregion
 
     #region 骰出属性
+    void SureProp_QianYan_1()
+    {
+        ShowEventPanel_ChapterOne(1, 1);
+    }
+
+    void SureProp_QianYan_2()
+    {
+        ShowEventPanel_ChapterOne(1, 2);
+    }
+
+    void SureProp_QianYan_3()
+    {
+        ShowEventPanel_ChapterOne(1, 3);
+    }
+
+
     void SureStatureProp()
     {
         SurePropertyPanel.SureState = CreatSureState.Stature_State;
-        ShowEventPanel_ChapterOne(1, 1);
+        ShowEventPanel_ChapterOne(1, 4);
     }
 
     void SureStatureProp_FristDice()
     {
-        DiceManager.Instance.ShowDicePanel(6, 0.01f);
+        DiceManager.Instance.ShowDicePanel(10, 0.01f);
     }
 
     void SureStatureProp_SecondDice()
     {
-        DiceManager.Instance.ShowDicePanel(6, 0.01f);
+        DiceManager.Instance.ShowDicePanel(10, 0.01f);
     }
 
     void SureStatureProp_GetResult()

@@ -53,13 +53,18 @@
     <name>骰出属性</name>
     <spriteName>0</spriteName>
     <index>0</index>
-    <cout>2</cout>
+    <cout>7</cout>
     <Speak>
-      <speak1>投掷两次六面骰，体型属性将为两次骰子结果的和加6再乘5。</speak1>
-      <speak2>第一次投骰......</speak2>
-      <speak3>第二次投骰......</speak3>
-      <speak4>你的体型为....</speak4>
-    </Speak>
+      <speak1>欢迎你的到来，巫女小姐。但....我现在完全不知道你是一位什么样的人，高矮胖瘦？天才或者是一个...蠢蛋？充满威严的贵妇人？亦或者是一个五大三粗的铁憨憨。</speak1>
+      <sepak2>这一切都要询问你所选中的卡牌....命运早已注定，你想强求或者改变，都无济于事。</sepak2>
+      <speak3>准备好了吗？我也很好奇，你的第一张牌会是哪个数字呢？</speak3>
+      <speak4>那么开始转动你的命运之轮吧————从体型开始</speak4>
+      <speak5>第一次....</speak5>
+      <speak6>第二次......</speak6>
+      <speak7>你的体型为....</speak7>
+      <speak8>对于你的体型满意吗？命运之轮继续转动，开始我们的下一个轮盘吧。</speak8>
+    
+  </Speak>
   </StoryData>
 </Story>
 

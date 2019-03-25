@@ -65,6 +65,10 @@ public class DicePanel : IView
             {
                 tp.onFinished.Add(new EventDelegate(StartSlerp));
             }
+            else
+            {
+                tp.onFinished.Add(new EventDelegate(PlayerCardMoveAudio));
+            }
         }
     }
 
@@ -131,6 +135,7 @@ public class DicePanel : IView
                 tp.ResetToBeginning();
             }
         }
+        PlayerCardMoveAudio();
     }
 
     int slerpIndex = 0;
@@ -518,6 +523,12 @@ public class DicePanel : IView
                 DiceCardDeep();
             }
         }
-    }   
+    }  
+    
+
+    void PlayerCardMoveAudio()
+    {
+        AudioManager.Instance.PlayEffect_Source("cardMove");
+    }
 
 }

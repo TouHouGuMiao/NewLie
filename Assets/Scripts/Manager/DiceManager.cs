@@ -87,12 +87,12 @@ public class DiceManager
         int index = StoryEventManager.Instance.GetNowEventDataIndex();
         if (id == 1)
         {
-            if (index == 1)
+            if (index == 4)
             {
                 PropStatureDice_One(diceNumber);
             }
 
-            if (index == 2)
+            if (index == 5)
             {
                 PropStatureDice_Two(diceNumber);
             }

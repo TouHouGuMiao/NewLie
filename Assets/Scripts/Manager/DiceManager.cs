@@ -96,6 +96,21 @@ public class DiceManager
             {
                 PropStatureDice_Two(diceNumber);
             }
+
+            if (index == 10)
+            {
+                PropPowerDice_One(diceNumber);
+            }
+
+            if (index == 13)
+            {
+                PropPowerDice_Two(diceNumber);
+            }
+
+            if (index == 14)
+            {
+                PropPowerDice_Thrid(diceNumber);
+            }
         }
     }
 
@@ -114,6 +129,24 @@ public class DiceManager
     {
         SurePropertyPanel.dice2 = diceNumber;
         SurePropertyPanel.SureState = CreatSureState.Stature_State_Dice2;
+    }
+
+    void PropPowerDice_One(int diceNumber)
+    {
+        SurePropertyPanel.dice1 = diceNumber;
+        SurePropertyPanel.SureState = CreatSureState.Power_State_Dice1;
+    }
+
+    void PropPowerDice_Two(int diceNumber)
+    {
+        SurePropertyPanel.dice2 = diceNumber;
+        SurePropertyPanel.SureState = CreatSureState.Power_State_Dice2;
+    }
+
+    void PropPowerDice_Thrid(int diceNumber)
+    {
+        SurePropertyPanel.dice3 = diceNumber;
+        SurePropertyPanel.SureState = CreatSureState.Power_State_Dice3;
     }
     #endregion
 }

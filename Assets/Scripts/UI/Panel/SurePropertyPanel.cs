@@ -13,6 +13,20 @@ public enum CreatSureState
     Power_State_Dice2=7,
     Power_State_Dice3=8,
     Power_State_Reslut = 9,
+    IQ_State = 10,
+    IQ_State_Dice1 = 11,
+    IQ_State_Dice2 = 12,
+    IQ_State_Dice3 = 13,
+    IQ_State_Reslut = 14,
+    WeiYan_State = 15,
+    WeiYan_State_Dice1 = 16,
+    WeiYan_State_Dice2 = 17,
+    WeiYan_State_Reslut = 18,
+    Lucky_State = 19,
+    Lucky_State_Dice1 = 20,
+    Lucky_State_Dice2 = 21,
+    Lucky_State_Dice3 =22,
+    Lucky_State_Reslut = 23,
 }
 
 public class SurePropertyPanel : IView {

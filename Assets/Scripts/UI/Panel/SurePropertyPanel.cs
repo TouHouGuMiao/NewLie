@@ -8,11 +8,31 @@ public enum CreatSureState
     Stature_State_Dice1=2,
     Stature_State_Dice2=3,
     Stature_State_Reslut=4,
+    Power_State=5,
+    Power_State_Dice1=6,
+    Power_State_Dice2=7,
+    Power_State_Dice3=8,
+    Power_State_Reslut = 9,
+    IQ_State = 10,
+    IQ_State_Dice1 = 11,
+    IQ_State_Dice2 = 12,
+    IQ_State_Dice3 = 13,
+    IQ_State_Reslut = 14,
+    WeiYan_State = 15,
+    WeiYan_State_Dice1 = 16,
+    WeiYan_State_Dice2 = 17,
+    WeiYan_State_Reslut = 18,
+    Lucky_State = 19,
+    Lucky_State_Dice1 = 20,
+    Lucky_State_Dice2 = 21,
+    Lucky_State_Dice3 =22,
+    Lucky_State_Reslut = 23,
 }
 
 public class SurePropertyPanel : IView {
 
     private Transform Stature;
+    private Transform power;
     private Transform Container;
     /// <summary>
     /// 初始值大于9，以保重不与9张牌冲突
@@ -23,7 +43,7 @@ public class SurePropertyPanel : IView {
     public static CreatSureState SureState;
 
     public static int stature_Prop;
-
+    public static int power_Prop;
 
     private GameObject statureCard;
     private GameObject statureCardExpress;
@@ -31,7 +51,16 @@ public class SurePropertyPanel : IView {
     private UILabel statureNumber;
     private UILabel stature_FristDice;
     private UILabel stature_SecondDice;
+    private UIButton stature_NextBtn;
 
+
+    private GameObject powerCardExpress;
+    private GameObject powerCard;
+    private UILabel power_FristDice;
+    private UILabel power_SecondDice;
+    private UILabel power_ThridDice;
+    private UILabel powerNumber;
+    private UIButton power_NextBtn;
     public SurePropertyPanel()
     {
         m_Layer = Layer.bottom;
@@ -48,6 +77,18 @@ public class SurePropertyPanel : IView {
         statureCardExpress = Stature.Find("statureCardExpress").gameObject;
         statureDes = statureCardExpress.transform.Find("Des").GetComponent<UILabel>();
         statureNumber = statureCardExpress.transform.Find("Number").GetComponent<UILabel>();
+        stature_NextBtn = Stature.Find("nextBtn").GetComponent<UIButton>();
+        stature_NextBtn.onClick.Add(new EventDelegate(OnStatureNextBtnClick));
+
+        power = this.GetChild("Power");
+        power_FristDice = power.Find("fristDice").GetComponent<UILabel>();
+        power_SecondDice = power.Find("secondDice").GetComponent<UILabel>();
+        power_ThridDice = power.Find("thDice").GetComponent<UILabel>();
+        powerCardExpress = power.Find("powerCardExpress").gameObject;
+        powerCard = power.Find("powerCard").gameObject;
+        power_NextBtn = power.Find("nextBtn").GetComponent<UIButton>();
+        powerNumber = powerCardExpress.transform.Find("Number").GetComponent<UILabel>();
+
 
     }
      
@@ -85,24 +126,24 @@ public class SurePropertyPanel : IView {
                 Stature.gameObject.SetActive(true);
             }
         }
-        if (SureState == CreatSureState.Stature_State_Dice1)
+       else if (SureState == CreatSureState.Stature_State_Dice1)
         {
             if (stature_FristDice.text != dice1.ToString())
             {
                 stature_FristDice.text = dice1.ToString();
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 2);
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 5);
             }
         }
-        if (SureState == CreatSureState.Stature_State_Dice2)
+       else if (SureState == CreatSureState.Stature_State_Dice2)
         {
             if (stature_SecondDice.text != dice2.ToString())
             {
                 stature_SecondDice.text = dice2.ToString();
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 3);
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 6);
             }
         }
 
-        if (SureState == CreatSureState.Stature_State_Reslut)
+       else if (SureState == CreatSureState.Stature_State_Reslut)
         {
             if (!statureCard.activeSelf)
             {
@@ -110,7 +151,66 @@ public class SurePropertyPanel : IView {
                 TweenPosition tp = statureCard.GetComponent<TweenPosition>();
                 tp.onFinished.Add(new EventDelegate(ShowStaturePropExpress));
                 statureCard.SetActive(true);
+                stature_NextBtn.gameObject.SetActive(true);
             }
+           
+        }
+
+       else if (SureState == CreatSureState.Power_State)
+        {
+            if (!power.gameObject.activeSelf)
+            {
+                for (int i = 0; i < Container.childCount; i++)
+                {
+                    GameObject go = Container.GetChild(i).gameObject;
+                    if (go.name != power.name)
+                    {
+                        go.SetActive(false);
+                    }
+                }
+                power.gameObject.SetActive(true);
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 10);
+            }
+        }
+
+        else if (SureState == CreatSureState.Power_State_Dice1)
+        {
+            if (power_FristDice.text != dice1.ToString())
+            {
+                power_FristDice.text = dice1.ToString();
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 11);
+            }
+        }
+
+        else if (SureState == CreatSureState.Power_State_Dice2)
+        {
+            if (power_SecondDice.text != dice2.ToString())
+            {
+                power_SecondDice.text = dice2.ToString();
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 14);
+            }
+        }
+
+        else if (SureState == CreatSureState.Power_State_Dice3)
+        {
+            if (power_ThridDice.text != dice3.ToString())
+            {
+                power_ThridDice.text = dice3.ToString();
+                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 15);
+            }
+        }
+
+        else if (SureState == CreatSureState.Power_State_Reslut)
+        {
+            if (!powerCard.activeSelf)
+            {
+                power_Prop = (dice1 + dice2 + dice3) * 5;
+                TweenPosition tp = powerCard.GetComponent<TweenPosition>();
+                tp.onFinished.Add(new EventDelegate(ShowPowerPropExpress));
+                powerCard.SetActive(true);
+                power_NextBtn.gameObject.SetActive(true);
+            }
+
         }
     }
 
@@ -151,6 +251,19 @@ public class SurePropertyPanel : IView {
         }
         statureDes.text= des;
         statureCardExpress.SetActive(true);
+    }
 
+    void ShowPowerPropExpress()
+    {
+        powerNumber.text = power_Prop.ToString();
+        powerCardExpress.SetActive(true);
+    }
+    void OnStatureNextBtnClick()
+    {
+        Stature.gameObject.SetActive(false);
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 7);
+        dice1 = 10;
+        dice2 = 10;
+        dice3 = 10;
     }
 }

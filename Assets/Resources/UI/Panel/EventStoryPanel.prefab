@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1564204306009502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -818, y: 346, z: 0}
+  m_LocalPosition: {x: -819, y: 345, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4213586725995982}
@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1821315163994540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37, y: 332, z: 0}
+  m_LocalPosition: {x: 36, y: 331, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4213586725995982}
@@ -158,7 +158,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952391516539650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 347, z: 0}
+  m_LocalPosition: {x: 11, y: 346, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4213586725995982}
@@ -226,12 +226,12 @@ MonoBehaviour:
   mAlignment: 1
   mEncoding: 1
   mMaxLineCount: 3
-  mEffectStyle: 2
-  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mEffectStyle: 1
+  mEffectColor: {r: 1, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
   mOverflow: 1
-  mApplyGradient: 1
+  mApplyGradient: 0
   mGradientTop: {r: 0, g: 0, b: 0, a: 1}
   mGradientBottom: {r: 1, g: 1, b: 1, a: 1}
   mSpacingX: 10
@@ -518,7 +518,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 0.5833333
+  aspectRatio: 0.5875
   mType: 0
   mFillDirection: 4
   mFillAmount: 1

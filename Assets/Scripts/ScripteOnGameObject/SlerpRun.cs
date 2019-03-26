@@ -233,6 +233,10 @@ public class SlerpRun : MonoBehaviour {
 
     }
 
+    void PlayCardMoveAudio()
+    {
+        AudioManager.Instance.PlayEffect_Source("cardMove");
+    }
 
     void HideDiceCards()
     {
@@ -242,6 +246,7 @@ public class SlerpRun : MonoBehaviour {
         {
             GameObject go = parent.GetChild(i).gameObject;
             tp = go.GetComponent<TweenPosition>();
+            tp.onFinished.Clear();
             SlerpRun slerpRun = go.GetComponent<SlerpRun>();
             slerpRun.isDrift = false;
 
@@ -272,6 +277,10 @@ public class SlerpRun : MonoBehaviour {
             if (i == parent.childCount - 1)
             {
                 tp.onFinished.Add(new EventDelegate(ReturnTweenPositionToScan));
+            }
+            else
+            {
+                tp.onFinished.Add(new EventDelegate(PlayCardMoveAudio));
             }
            
 
@@ -311,6 +320,10 @@ public class SlerpRun : MonoBehaviour {
 
     void ReturnTweenPositionToScan()
     {
+        if (ReturnTweenPositionToScanIsOver)
+        {
+            return;
+        }
         Transform parent = transform.parent;
         int temp_j=0;
         for (int i = parent.childCount-1; i >=0; i--)
@@ -318,7 +331,6 @@ public class SlerpRun : MonoBehaviour {
             GameObject go = parent.GetChild(i).gameObject;
             TweenPosition tp = go.GetComponent<TweenPosition>();
             tp.enabled = true;
-          
             tp.from = go.transform.localPosition;
             tp.to = new Vector3(-30, go.transform.localPosition.y, go.transform.localPosition.z);
             tp.duration = 0.7f;
@@ -326,18 +338,24 @@ public class SlerpRun : MonoBehaviour {
             SlerpRun slerp = go.GetComponent<SlerpRun>();
             slerp.stopRotate = false;
             tp.ignoreTimeScale = false;
+            tp.onFinished.Clear();
             if (i == 0)
             {
+              
                 tp.onFinished.Add(new EventDelegate(LastTPHidePanel));
+                tp.onFinished.Add(new EventDelegate(PlayCardMoveAudio));
+                
             }
             else
             {
-                tp.onFinished = null;
+                tp.onFinished.Add(new EventDelegate(PlayCardMoveAudio));
             }
             tp.ResetToBeginning();
             temp_j++;
         }
+        ReturnTweenPositionToScanIsOver = true;
     }
+    private bool ReturnTweenPositionToScanIsOver = false;
 
     void LastTPHidePanel()
     {

@@ -150,10 +150,22 @@ public class StoryEventManager
     {
         StoryData data = new StoryData();
         data = GetChapterOneEventDataById(1);
-        data.StoryHanderDic.Add(0, new StoryHander(SureStatureProp));
-        data.StoryHanderDic.Add(1, new StoryHander(SureStatureProp_FristDice));
-        data.StoryHanderDic.Add(2, new StoryHander(SureStatureProp_SecondDice));
-        data.StoryHanderDic.Add(3, new StoryHander(SureStatureProp_GetResult));
+        data.StoryHanderDic.Add(0, new StoryHander(SureProp_QianYan_1));
+        data.StoryHanderDic.Add(1, new StoryHander(SureProp_QianYan_2));
+        data.StoryHanderDic.Add(2, new StoryHander(SureProp_QianYan_3));
+        data.StoryHanderDic.Add(3, new StoryHander(SureStatureProp));
+        data.StoryHanderDic.Add(4, new StoryHander(SureStatureProp_FristDice));
+        data.StoryHanderDic.Add(5, new StoryHander(SureStatureProp_SecondDice));
+        data.StoryHanderDic.Add(6, new StoryHander(SureStatureProp_GetResult));
+        data.StoryHanderDic.Add(7, new StoryHander(SurePowerProp_QianYan1));
+        data.StoryHanderDic.Add(8, new StoryHander(SurePowerProp_QianYan2));
+        data.StoryHanderDic.Add(9, new StoryHander(SurePowerProp_QianYan3));
+        data.StoryHanderDic.Add(10, new StoryHander(SurePowerPror_FristDice));
+        data.StoryHanderDic.Add(11, new StoryHander(SurePowerProp_SecondDice_QianYan1));
+        data.StoryHanderDic.Add(12, new StoryHander(SurePowerProp_SecondDice_QianYan2));
+        data.StoryHanderDic.Add(13, new StoryHander(SurePowerProp_SecondDice));
+        data.StoryHanderDic.Add(14, new StoryHander(SurePowerProp_ThridDice));
+        data.StoryHanderDic.Add(15, new StoryHander(SurePowerProp_Reslut));
     }
 
     #endregion
@@ -341,10 +353,26 @@ public class StoryEventManager
     #endregion
 
     #region 骰出属性
+    void SureProp_QianYan_1()
+    {
+        ShowEventPanel_ChapterOne(1, 1);
+    }
+
+    void SureProp_QianYan_2()
+    {
+        ShowEventPanel_ChapterOne(1, 2);
+    }
+
+    void SureProp_QianYan_3()
+    {
+        ShowEventPanel_ChapterOne(1, 3);
+    }
+
+
     void SureStatureProp()
     {
         SurePropertyPanel.SureState = CreatSureState.Stature_State;
-        ShowEventPanel_ChapterOne(1, 1);
+        ShowEventPanel_ChapterOne(1, 4);
     }
 
     void SureStatureProp_FristDice()
@@ -360,6 +388,51 @@ public class StoryEventManager
     void SureStatureProp_GetResult()
     {
         SurePropertyPanel.SureState = CreatSureState.Stature_State_Reslut;
+    }
+
+    void SurePowerProp_QianYan1()
+    {
+        ShowEventPanel_ChapterOne(1, 8);
+    }
+
+    void SurePowerProp_QianYan2()
+    {
+        ShowEventPanel_ChapterOne(1, 9);
+    }
+
+    void SurePowerProp_QianYan3()
+    {
+        SurePropertyPanel.SureState = CreatSureState.Power_State;
+    }
+
+    void SurePowerPror_FristDice()
+    {
+        DiceManager.Instance.ShowDicePanel(6, 0.01f);
+    }
+
+    void SurePowerProp_SecondDice_QianYan1()
+    {
+        ShowEventPanel_ChapterOne(1, 12);
+    }
+
+    void SurePowerProp_SecondDice_QianYan2()
+    {
+        ShowEventPanel_ChapterOne(1, 13);
+    }
+
+    void SurePowerProp_SecondDice()
+    {
+        DiceManager.Instance.ShowDicePanel(6, 0.01f);
+    }
+
+    void SurePowerProp_ThridDice()
+    {
+        DiceManager.Instance.ShowDicePanel(6, 0.01f);
+    }
+
+    void SurePowerProp_Reslut()
+    {
+        SurePropertyPanel.SureState = CreatSureState.Power_State_Reslut;
     }
     #endregion
     #endregion

@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class OnGamStarBunHover :MonoBehaviour{
   
-    UIButton button;
+    private UIButton button;
     private Vector3 v1 = new Vector3(1, 1, 1);
     private Vector3 v2 = new Vector3(1.5f, 1.6f, 1);
-   
+   // private GameObject markChoice;
     private TweenScale ts;
+   // private TweenScale tsMark;
     
     // Use this for initialization
     void Start () {
-       
+        //markChoice = LoginPanel.GameChoice.transform.Find("markChoice").gameObject;
         button = gameObject.GetComponent<UIButton>();
-        
+       
      
 	}
 
@@ -25,25 +26,30 @@ public class OnGamStarBunHover :MonoBehaviour{
         {
             if (button.state == UIButtonColor.State.Hover)
             {
+                
                 TweenScale ts = this.GetComponent<TweenScale>();
                 if (ts == null)
                 {
-                    Init();                   
+                    Init();
+                    //ShowChoice();
                 }
                 else  if(ts.to != v2)
                 {
                    
                     Big();
+                   // ShowChoice();
                 }
                
             }
             else if (button.state == UIButtonColor.State.Normal)
             {
+               
                 TweenScale ts = this.GetComponent<TweenScale>();
                 if (ts != null&&ts.to!=v1)
                 {
                    
                     Back();
+                    //HideChoice();
                 }
                 
             }
@@ -53,31 +59,80 @@ public class OnGamStarBunHover :MonoBehaviour{
 
     void Init()
     {
-       ts= gameObject.AddComponent<TweenScale>();
-   
-       ts.from = v1;
-       ts.to = v2;
-       ts.duration = 0.8f;
-       ts.ignoreTimeScale = false;
-       ts.delay =0.0f;
-
+        InitBtn();
+        //InitMark();
     }
     void Big() {
-       ts.enabled = true;
-       ts.from = this.transform.localScale;
-       ts.to = v2;
-       ts.duration =0.8f;
-       ts.ResetToBeginning();
-
+        BigBtn();
+       // BigMark();
     }
     void Back() {
-       ts.enabled = true;
-       ts.from = this.transform.localScale;
-       ts.to = v1;
-        ts.duration = 0.8f;
-       ts.ResetToBeginning();
-
+        BackBtn();
+        //BackMark();
     }
-   
+   //void ShowChoice()
+   // {
+   //     if (markChoice.activeInHierarchy == false)
+   //     {
+   //         markChoice.transform.position = button.transform.position;
+   //         markChoice.SetActive(true);
+   //     }
+   //     else
+   //     {
+   //         markChoice.SetActive(false);
+   //     }
+
+   // }
+    //void HideChoice()
+    //{
+    //    if(markChoice.activeInHierarchy == true)
+    //    {
+    //        markChoice.SetActive(false);
+    //    }
+    //}
+    void BackBtn() {
+        ts.enabled = true;
+        ts.from = this.transform.localScale;
+        ts.to = v1;
+        ts.duration = 0.8f;
+        ts.ResetToBeginning();
+    }
+    //void BackMark() {
+    //    tsMark.enabled = true;
+    //    tsMark.from = this.transform.localScale;
+    //    tsMark.to = v1;
+    //    tsMark.duration = 0.8f;
+    //    tsMark.ResetToBeginning();
+    //}
+    void InitBtn() {
+        ts = gameObject.AddComponent<TweenScale>();
+        ts.from = v1;
+        ts.to = v2;
+        ts.duration = 0.8f;
+        ts.ignoreTimeScale = false;
+        ts.delay = 0.0f;
+    }
+    //void InitMark() {
+    //    tsMark = markChoice.AddComponent<TweenScale>();
+    //    tsMark.from = v1;
+    //    tsMark.to = v2;
+    //    tsMark.duration = 0.8f;
+    //    tsMark.ignoreTimeScale = false;
+    //    tsMark.delay = 0.0f;
+    //}
+    void BigBtn() {
+        ts.enabled = true;
+        ts.from = this.transform.localScale;
+        ts.to = v2;
+        ts.duration = 0.8f;
+        ts.ResetToBeginning();
+    }
+    //void BigMark() {
+    //    tsMark.enabled = true;
+    //    tsMark.from = this.transform.localScale;
+    //    tsMark.to = v2;
+    //    tsMark.duration = 0.8f;
+    //    tsMark.ResetToBeginning();
+    //}
     
 }

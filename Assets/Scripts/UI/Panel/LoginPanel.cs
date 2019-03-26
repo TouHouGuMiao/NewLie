@@ -8,16 +8,8 @@ public class LoginPanel : IView
     public LoginPanel()
     {
         m_Layer = Layer.bottom;
-    }
-    
-   
-        private static bool loginButton_b = false;
-        private static bool developerBtn_b = false;
-        private static bool closeGameBtn_b = false;
-        private static bool againGameBtn_b = false;
-        private static bool HelpBtn_b = false;
-        private static bool seetingsBtn_b = false;
-    
+    }  
+ 
     struct ValueBtn {
         private bool isRight;
     }
@@ -26,19 +18,20 @@ public class LoginPanel : IView
     private UIButton loginButton;
     private UIButton developerBtn;
     private UIButton closeGameBtn;
-    private UIButton againGameBtn;
-    private UIButton HelpBtn;
-
+    private UIButton againGameBtn;   
     private UIButton seetingsBtn;
 
     private UISprite changeWordPic;
-    private GameObject m_go;
-    private GameObject GameChoice;
-    public static GameObject BackGround;//LoginPanel的背景图片
+
+    private  GameObject m_go;
+    public static GameObject GameChoice;
+    public static  GameObject BackGround;//LoginPanel的背景图片
+   
+
     private List<UIButton> choiceBtnList = new List<UIButton>();
     private List<bool> eggChangeList = new List<bool>();
 
-    private UISprite m_Dimon;
+    
 
 
     private Transform gameChoice;
@@ -86,17 +79,15 @@ public class LoginPanel : IView
       developerBtn.isActive_Button = false;
         closeGameBtn.isActive_Button = false;
         againGameBtn.isActive_Button = false;
-         HelpBtn.isActive_Button = false;
+        seetingsBtn.isActive_Button = false;
     }
     public override void Update() {
-        OnHoverChangeWord();
-       
+        OnHoverChangeWord();  
     }
 
     protected override void OnStart()
     {       
-        loginButton = this.GetChild("LoginButton").GetComponent<UIButton>();
-        HelpBtn = this.GetChild("LoginButton (3)").GetComponent<UIButton>();
+        loginButton = this.GetChild("LoginButton").GetComponent<UIButton>();      
         developerBtn = this.GetChild("LoginButton (4)").GetComponent<UIButton>();
         closeGameBtn = this.GetChild("LoginButton (5)").GetComponent<UIButton>();
 
@@ -106,16 +97,9 @@ public class LoginPanel : IView
         changeWordPic = this.GetChild("ChangeWord").GetComponent<UISprite>();
         BackGround = this.GetChild("bg").gameObject;
         GameChoice = this.GetChild("GameChoice").gameObject;
+       
 
-        //addElementInEggChangeList();
-       // Debug.Log(eggChangeList[0]);
-       // Debug.Log(eggChangeList.Count);
-        OnLoginBtnHover();//鼠标悬浮选项放大的事件                       
-        addDelegate();
-        //ChangeCover();
-       ColorEgg();       
-
-
+        //addElementInEggChangeList();                       
         paritcleSystem_Normal = this.GetChild("NormalParticle").GetComponent<ParticleSystem>();
         particleArray_Normal= new ParticleSystem.Particle[paritcleSystem_Normal.main.maxParticles];
 
@@ -124,6 +108,10 @@ public class LoginPanel : IView
         sakuraParticle_1 = this.GetChild("SakuraParticle1").GetComponent<ParticleSystem>();
         sakuraParticle_2 = this.GetChild("SakuraParticle2").GetComponent<ParticleSystem>();
 
+        addDelegate();
+        //ChangeCover();
+        ColorEgg();
+        OnLoginBtnHover();
     }
 
 
@@ -140,15 +128,16 @@ public class LoginPanel : IView
       //  GameObject go = GameObject.Find("ButtonGrid");
         foreach (Transform child in m_go.transform) {
             m_PicList.Add(child);
-        } 
+        }
+        
         BtnControl();
         
     }
-    void BtnControl() {//悬停鼠标功能控制
+    void BtnControl()
+    {//悬停鼠标功能控制
 
-        foreach (Transform child in m_PicList)
-        {
-            child.gameObject.AddComponent<OnGamStarBunHover>();
+        for (int i = 0; i < m_PicList.Count; i++) {
+            m_PicList[i].gameObject.AddComponent<ShowChoiceMark>();
         }
     }
 
@@ -161,16 +150,16 @@ public class LoginPanel : IView
         Application.Quit();
 
     }//游戏整体退出
-    void OnHelpPanelClick() {
-        GUIManager.ShowView("GameHelpPanel");
-    }
+    //void OnHelpPanelClick() {
+    //    GUIManager.ShowView("GameHelpPanel");
+    //}
 
 
     void addDelegate() {
         EventDelegate OnLoginClick = new global::EventDelegate(OnLoginBtnClick);
         loginButton.onClick.Add(OnLoginClick);
 
-        HelpBtn.onClick.Add(new EventDelegate(OnHelpPanelClick));
+        //HelpBtn.onClick.Add(new EventDelegate(OnHelpPanelClick));
 
         EventDelegate OnDeveloperBtn = new global::EventDelegate(OnDeveloperBtnClick);
         developerBtn.onClick.Add(OnDeveloperBtn);
@@ -196,13 +185,7 @@ public class LoginPanel : IView
            // loginButton_b = true;
             loginButton.isActive_Button = true;
            
-        }
-       
-        else if (HelpBtn.state == UIButtonColor.State.Hover) {
-            changeWordPic.spriteName = "four";
-            // HelpBtn_b = true;
-            HelpBtn.isActive_Button = true;
-        }
+        }               
         else if (developerBtn.state == UIButtonColor.State.Hover) {
             changeWordPic.spriteName = "five";
             // developerBtn_b = true;
@@ -244,12 +227,13 @@ public class LoginPanel : IView
             {
                 return;
             }
-            GUIManager.ShowView("CoverPanel");
+           
             foreach (UIButton child in choiceBtnList) {
                 child.isActive_Button = false;
             }
             if (BackGround.GetComponent<UITexture>().mainTexture.name == "BinaryCover_Zi"){ // == ResourcesManager.Instance.LoadTexture2D("BinaryCover_Zi")) {
                 BackGround.GetComponent<UITexture>().mainTexture = ResourcesManager.Instance.LoadTexture2D("BinaryCover_Kong");
+                GUIManager.ShowView("CoverPanel");
                 GameChoice.transform.localPosition = changePos;
             }
 
@@ -259,29 +243,28 @@ public class LoginPanel : IView
         // Debug.Log("isAllboolVauletrue="+isAllboolVauletrue);
     }
 
-    void addElementInEggChangeList()
-    {
-        eggChangeList.Add(loginButton_b);
-        eggChangeList.Add(developerBtn_b);
-        eggChangeList.Add(closeGameBtn_b);
-        eggChangeList.Add(againGameBtn_b);
-        eggChangeList.Add(HelpBtn_b);
-        eggChangeList.Add(seetingsBtn_b);
-    }
-
-    //void addElementInEggChangeList()
+    //void ShowChoice()
     //{
-    //    eggChangeList.Add(loginButton_b);
-    //    eggChangeList.Add(developerBtn_b);
-    //    eggChangeList.Add(closeGameBtn_b);
-    //    eggChangeList.Add(againGameBtn_b);
-    //    eggChangeList.Add(HelpBtn_b);
-    //    eggChangeList.Add(seetingsBtn_b);
-    //    for (int i = 0; i < eggChangeList.Count;i++) {
-    //        Debug.Log(eggChangeList[i]);
+    //    foreach (Transform child in m_PicList)
+    //    {
+    //        if (markChoice.activeInHierarchy == false)
+    //        {
+    //            markChoice.transform.position = child.transform.position;
+    //            markChoice.SetActive(true);
+    //        }
+    //        else
+    //        {
+    //            markChoice.SetActive(false);
+    //        }
     //    }
     //}
-
+    //void HideChoice()
+    //{
+    //    if (markChoice.activeInHierarchy == true)
+    //    {
+    //        markChoice.SetActive(false);
+    //    }
+    //}
 
 
 

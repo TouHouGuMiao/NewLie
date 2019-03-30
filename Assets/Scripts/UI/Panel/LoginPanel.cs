@@ -1,4 +1,4 @@
-﻿
+﻿ 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -82,7 +82,7 @@ public class LoginPanel : IView
         seetingsBtn.isActive_Button = false;
     }
     public override void Update() {
-        OnHoverChangeWord();  
+       // OnHoverChangeWord();  
     }
 
     protected override void OnStart()
@@ -108,8 +108,7 @@ public class LoginPanel : IView
         sakuraParticle_1 = this.GetChild("SakuraParticle1").GetComponent<ParticleSystem>();
         sakuraParticle_2 = this.GetChild("SakuraParticle2").GetComponent<ParticleSystem>();
 
-        addDelegate();
-        //ChangeCover();
+        addDelegate();      
         ColorEgg();
         OnLoginBtnHover();
     }
@@ -118,9 +117,9 @@ public class LoginPanel : IView
     void OnLoginBtnClick()
     {
         AudioManager.Instance.CloseBg_Source(); 
-        GameStateManager.LoadScene(2);
+        GameStateManager.LoadScene(4);
         GUIManager.ShowView("LoadingPanel");
-        LoadingPanel.LoadingName = "PlayerPanel";
+        //LoadingPanel.LoadingName = "PlayerPanel";
     }
 
     private List<Transform> m_PicList=new List<Transform> ();
@@ -135,7 +134,6 @@ public class LoginPanel : IView
     }
     void BtnControl()
     {//悬停鼠标功能控制
-
         for (int i = 0; i < m_PicList.Count; i++) {
             m_PicList[i].gameObject.AddComponent<ShowChoiceMark>();
         }
@@ -143,23 +141,16 @@ public class LoginPanel : IView
 
     void OnDeveloperBtnClick() {//开发人员界面显示
         GUIManager.ShowView("DeveloperPanel");
-        GUIManager.HideView("LoginPanel");
-        //LoadingPanel.LoadingName("")
+        GUIManager.HideView("LoginPanel");       
     }
     void OnCloseGameBtn() {
         Application.Quit();
 
-    }//游戏整体退出
-    //void OnHelpPanelClick() {
-    //    GUIManager.ShowView("GameHelpPanel");
-    //}
-
-
+    }
     void addDelegate() {
         EventDelegate OnLoginClick = new global::EventDelegate(OnLoginBtnClick);
         loginButton.onClick.Add(OnLoginClick);
-
-        //HelpBtn.onClick.Add(new EventDelegate(OnHelpPanelClick));
+       
 
         EventDelegate OnDeveloperBtn = new global::EventDelegate(OnDeveloperBtnClick);
         developerBtn.onClick.Add(OnDeveloperBtn);
@@ -175,8 +166,7 @@ public class LoginPanel : IView
             choiceBtnList.Add(child.GetComponent<UIButton>());
             // Debug.Log(child.name);
         }
-        //OnHoverChangeWord();
-        //Debug.Log(choiceBtnList.Count);
+        
     }
     //int num=0;
     void OnHoverChangeWord() {

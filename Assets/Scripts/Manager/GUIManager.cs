@@ -86,7 +86,7 @@ public static class GUIManager
 
         if(!m_UIViewDic.TryGetValue(name,out pair))
         {
-            Debug.LogError(pair + "has error");
+            Debug.LogError(name + "has error");
             return;
         }
         pair.Value.Hide();

@@ -67,6 +67,8 @@ public class ChoseManager
         data.HanderDic.Add(0,KongWuGuaiTanChoseNPCSpeak0);
         data.HanderDic.Add(1, KongWuGuaiTanChoseNPCSpeak1);
         data.HanderDic.Add(2, KongWuGuaiTanChoseNPCSpeak2);
+        ChoseData data1 = GetChsoeDataByID(1);
+        data1.HanderDic.Add(0,KongWuGuaiTanIntoCangKu0);
 
     }
 
@@ -133,7 +135,9 @@ public class ChoseManager
 
     void KongWuGuaiTanIntoCangKu0()
     {
-
+       GUIManager.ShowView("CoverPanel");
+       TalkManager.Instance.ShowTalkPanel(0,4);
+       
     }
 
     void KongWuGuaiTanIntoCangKu1()

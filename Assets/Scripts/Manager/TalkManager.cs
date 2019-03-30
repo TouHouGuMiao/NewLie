@@ -98,6 +98,8 @@ public class TalkManager
         data.StoryHanderDic.Add(0, KongWuGuaiTan0);
         data.StoryHanderDic.Add(1, KongWuGuaiTan1);
         data.StoryHanderDic.Add(2, KongWuGuaiTan_MengNanGuMiao0);
+        data.StoryHanderDic.Add(4, KongWuGuaiTan_InToCangKu);
+        
     }
 
 
@@ -114,10 +116,14 @@ public class TalkManager
     {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 11);
     }
+   
 
     void KongWuGuaiTan_MengNanGuMiao0()
     {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 33);
+    }
+    void KongWuGuaiTan_InToCangKu() {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 37);
     }
         #endregion
     }

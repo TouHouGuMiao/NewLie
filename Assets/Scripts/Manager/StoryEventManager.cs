@@ -144,6 +144,8 @@ public class StoryEventManager
         data.StoryHanderDic.Add(32, KongWuGuaiTan32);
         data.StoryHanderDic.Add(33, KongWuGuaiTan33);
         data.StoryHanderDic.Add(34, KongWuGuaiTan34);
+        data.StoryHanderDic.Add(36, KongWuGuaiTan35);
+       
     }
 
     private void InitHander_EventOne()
@@ -350,6 +352,12 @@ public class StoryEventManager
     {
         ChoseManager.Instance.ShowChosePanel(1);
     }
+    private void KongWuGuaiTan35() {
+       
+        GUIManager.HideView("InputPanel");
+        ChoseManager.Instance.ShowChosePanel(0);
+    }
+    
     #endregion
 
     #region 骰出属性

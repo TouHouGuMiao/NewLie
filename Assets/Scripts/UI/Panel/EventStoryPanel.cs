@@ -225,6 +225,12 @@ public class EventStoryPanel : IView
                             needHide = false;
                         }
 
+
+                        if (InputPanel.IsInput)
+                        {
+                            needHide = false;
+                        }
+
                         if (DicePanel.IsDice)
                         {
                             needHide = false;

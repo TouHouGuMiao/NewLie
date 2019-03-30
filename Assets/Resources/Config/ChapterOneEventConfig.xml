@@ -43,6 +43,13 @@
       <speak34>一个彪形猛男从人群中窜了出来</speak34>
       <speak35>确定要进入仓库了吗？</speak35>
       <speak36>在仓库门口踱步了一会，你还是决定先详细询问好情况，再进仓库审问凶手。</speak36>
+      <speak37>她回头看了你一眼.</speak37>
+      <speak38>你环顾了一下仓库四周</speak38>
+      <speak39></speak39>
+      <speak40></speak40>
+      <speak41></speak41>
+      <speak42></speak42>
+      <speak43></speak43>
     </Speak>
     </StoryData>
 
@@ -119,5 +126,6 @@
       <speak62>你的运气是</speak62>
   </Speak>
   </StoryData>
+  
 </Story>
 

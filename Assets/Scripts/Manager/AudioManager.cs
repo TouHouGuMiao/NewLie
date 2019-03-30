@@ -17,6 +17,7 @@ public class AudioManager:MonoBehaviour
         {
             if (audioDelegateDic.Count<=0)
             {
+                index = 100;
                 return false;
             }
             else
@@ -143,17 +144,22 @@ public class AudioManager:MonoBehaviour
         dicIndex++;
     }
 
-
+    private int index=100;
     private void Update()
     {
         if (IsHnader)
-        {          
-            for (int i = 0; i < audioDelegateDic.Count; i++)
+        {
+            foreach (KeyValuePair<int, KeyValuePair<float, AudioEventDelegate>> item in audioDelegateDic)
             {
-                KeyValuePair<float, AudioEventDelegate> item = audioDelegateDic[i];
-                if (bg_Source.time <= item.Key + 0.02f && bg_Source.time >= item.Key - 0.02f)
+                if (bg_Source.time <= (item.Value.Key + 0.02f) && (bg_Source.time >= item.Value.Key - 0.02f))
                 {
-                    item.Value();
+                    if (index == item.Key)
+                    {
+                        continue;
+                    }
+
+                    item.Value.Value();
+                    index = item.Key;
                 }
             }
         }

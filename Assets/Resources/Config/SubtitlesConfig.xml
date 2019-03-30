@@ -1,0 +1,17 @@
+<Subtitles name="Subtitles">
+  <SubtitlesData>
+    <id>0</id>
+    <name>背景故事</name>
+    <index>0</index>
+    <cout>6</cout>
+    <Speak>
+      <speak1>幻想乡,处于东之国中远离人里的边境之地......</speak1>
+      <speak2>它的存在不为世人所知，如同世外桃源一般.....</speak2>
+      <speak3>幻想乡中存在着人类与妖怪.....</speak3>
+      <speak4>妖怪以人为食，人们惧怕着妖怪...</speak4>
+      <speak5>而负责维持两者之间的平衡的是......</speak5>
+      <speak6>博丽的巫女...</speak6>
+    </Speak>
+    </SubtitlesData>
+</Subtitles>
+

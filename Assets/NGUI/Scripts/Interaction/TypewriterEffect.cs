@@ -10,14 +10,14 @@ using System.Collections.Generic;
 /// <summary>
 /// This script is able to fill in the label's text gradually, giving the effect of someone typing or fading in the content over time.
 /// </summary>
-
+public delegate void PrintOneCharDelegate();
 [RequireComponent(typeof(UILabel))]
 [AddComponentMenu("NGUI/Interaction/Typewriter Effect")]
 public class TypewriterEffect : MonoBehaviour
 {
 	static public TypewriterEffect current;
-
-	struct FadeEntry
+    public PrintOneCharDelegate printOneCharHader;
+    struct FadeEntry
 	{
 		public int index;
 		public string text;
@@ -140,10 +140,14 @@ public class TypewriterEffect : MonoBehaviour
 		}
 
 		if (string.IsNullOrEmpty(mFullText)) return;
-
+        //每次打出字符的时候会进入该循环
 		while (mCurrentOffset < mFullText.Length && mNextChar <= RealTime.time)
 		{
-			int lastOffset = mCurrentOffset;
+            if (printOneCharHader != null)
+            {
+                printOneCharHader();
+            }
+            int lastOffset = mCurrentOffset;
 			charsPerSecond = Mathf.Max(1, charsPerSecond);
 
 			// Automatically skip all symbols
@@ -163,6 +167,11 @@ public class TypewriterEffect : MonoBehaviour
 			{
 				delay += delayOnNewLine;
 			}
+
+            else if(c == '.' )
+            {
+                delay += delayOnPeriod;
+            }
 			else if (lastOffset + 1 == mFullText.Length || mFullText[lastOffset + 1] <= ' ')
 			{
 				if (c == '.')
@@ -178,7 +187,7 @@ public class TypewriterEffect : MonoBehaviour
 				{
 					delay += delayOnPeriod;
 				}
-			}
+            }
 
 			if (mNextChar == 0f)
 			{
@@ -205,6 +214,10 @@ public class TypewriterEffect : MonoBehaviour
 				// If a scroll view was specified, update its position
 				if (!keepFullDimensions && scrollView != null) scrollView.UpdatePosition();
 			}
+            if (printOneCharHader != null)
+            {
+                printOneCharHader();
+            }
 		}
 
 		// Alpha-based fading
@@ -263,7 +276,6 @@ public class TypewriterEffect : MonoBehaviour
 					sb.Append("[00]");
 					sb.Append(mFullText.Substring(mCurrentOffset));
 				}
-
 				mLabel.text = sb.ToString();
 			}
 		}

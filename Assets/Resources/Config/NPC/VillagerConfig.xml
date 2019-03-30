@@ -2,12 +2,12 @@
   <SpeakData>
     <id>0</id>
     <Main>
-      <main1>大哥好</main1>
-      <main2>你好</main2>
-      <main3>您好</main3>
-      <main4>什么情况</main4>
-      <main5>当时情况</main5>
-      <main6>当时的情况</main6>
+      <main0>大哥好</main0>
+      <main1>你好</main1>
+      <main2>您好</main2>
+      <main3>什么情况</main3>
+      <main4>当时情况</main4>
+      <main5>当时的情况</main5>
     </Main>
     <SpeakCout>1</SpeakCout>
     <Speak>

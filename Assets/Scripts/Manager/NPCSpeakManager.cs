@@ -65,7 +65,7 @@ public class NPCSpeakManager
     {
         Dictionary<int, NPCSpeakData> speakDic = GetNPCDicById(dicIndex);
         NPCSpeakData data = null;
-        if (!speakDic.TryGetValue(0, out data))
+        if (!speakDic.TryGetValue(id, out data))
         {
             Debug.LogError("NPCSpeakManager data has error");
         }
@@ -148,6 +148,7 @@ public class NPCSpeakManager
         data.OnEnterDownDic.Add(34, MarisaEnterEventOneSpeak21);
         data.OnEnterDownDic.Add(35, MarisaEnterEventOneSpeak22);
         data.OnEnterDownDic.Add(36, MarisaEnterEventOneSpeak22);
+        data.OnEnterDownDic.Add(37, MarisaEnterEventOneSpeak23);
 
         data.storyData.StoryHanderDic.Add(0, MarisaTalkChapterOne0);
         data.storyData.StoryHanderDic.Add(1, MarisaTalkChapterOne1);
@@ -172,6 +173,7 @@ public class NPCSpeakManager
         data.storyData.StoryHanderDic.Add(20, MarisaTalkChapterOne20);
         data.storyData.StoryHanderDic.Add(21, MarisaTalkChapterOne21);
         data.storyData.StoryHanderDic.Add(22, MarisaTalkChapterOne22);
+        data.storyData.StoryHanderDic.Add(23, MarisaTalkChapterOne23);
     }
 
 
@@ -336,6 +338,11 @@ public class NPCSpeakManager
         NPCSpeakData data = GetDataByID(0, 0);
         TalkManager.Instance.ShowTalkPanel(data.storyData, 22);
     }
+    void MarisaEnterEventOneSpeak23() {
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(0, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 23);
+    }
 
     #endregion
     #endregion
@@ -469,6 +476,10 @@ public class NPCSpeakManager
     void MarisaTalkChapterOne22()
     {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 32);
+    }
+    void MarisaTalkChapterOne23()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 36);
     }
     #endregion
     #endregion

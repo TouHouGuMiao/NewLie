@@ -125,5 +125,8 @@ public class TalkManager
     void KongWuGuaiTan_InToCangKu() {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 37);
     }
+    void KongWuGuaiTan_InToCangKu1() {
+
+    }
         #endregion
     }

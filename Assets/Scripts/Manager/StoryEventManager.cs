@@ -145,7 +145,18 @@ public class StoryEventManager
         data.StoryHanderDic.Add(33, KongWuGuaiTan33);
         data.StoryHanderDic.Add(34, KongWuGuaiTan34);
         data.StoryHanderDic.Add(36, KongWuGuaiTan35);
-       
+        data.StoryHanderDic.Add(37, KongWuGuaiTan36);
+        data.StoryHanderDic.Add(38, KongWuGuaiTan37);
+        data.StoryHanderDic.Add(39, KongWuGuaiTan38);
+        data.StoryHanderDic.Add(40, KongWuGuaiTan39);
+        data.StoryHanderDic.Add(41, KongWuGuaiTan40);
+        data.StoryHanderDic.Add(42, KongWuGuaiTan41);
+        data.StoryHanderDic.Add(43, KongWuGuaiTan42);
+        data.StoryHanderDic.Add(44, KongWuGuaiTan43);
+        data.StoryHanderDic.Add(45, KongWuGuaiTan44);
+        data.StoryHanderDic.Add(46, KongWuGuaiTan45);
+        data.StoryHanderDic.Add(47, KongWuGuaiTan46);
+        data.StoryHanderDic.Add(48, KongWuGuaiTan47);
     }
 
     private void InitHander_EventOne()
@@ -357,7 +368,48 @@ public class StoryEventManager
         GUIManager.HideView("InputPanel");
         ChoseManager.Instance.ShowChosePanel(0);
     }
+    private void KongWuGuaiTan36() {
+        ShowEventPanel_ChapterOne(0, 38);
+    }
+    private void KongWuGuaiTan37() {
+        ShowEventPanel_ChapterOne(0, 39);
+    }
+    private void KongWuGuaiTan38() {
+        ShowEventPanel_ChapterOne(0, 40);
+    }
+    private void KongWuGuaiTan39() {
+        ShowEventPanel_ChapterOne(0, 41);
+    }
+    private void KongWuGuaiTan40() {
+        ShowEventPanel_ChapterOne(0, 42);
+    }
+    private void KongWuGuaiTan41() {
+        ShowEventPanel_ChapterOne(0, 43);
+    }
+    private void KongWuGuaiTan42() {
+        ShowEventPanel_ChapterOne(0, 44);
+    }
+    private void KongWuGuaiTan43() {
+        GUIManager.ShowView("CoverPanel");
+        ShowEventPanel_ChapterOne(0, 45);
+        CGManager.instance.ShowCGPanel("kongkongwu");
+    }
+    private void KongWuGuaiTan44() {
+        ShowEventPanel_ChapterOne(0, 46);
+    }
+    private void KongWuGuaiTan45() {
+        ShowEventPanel_ChapterOne(0, 47);
+    }
     
+    private void KongWuGuaiTan46() {
+        GUIManager.ShowView("CoverPanel");
+        GUIManager.HideView("CGPanel");
+        ShowEventPanel_ChapterOne(0, 48);
+    }
+    private void KongWuGuaiTan47() {
+        
+        TalkManager.Instance.ShowTalkPanel(0, 5);
+    }
     #endregion
 
     #region 骰出属性

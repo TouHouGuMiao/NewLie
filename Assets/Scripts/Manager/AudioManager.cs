@@ -69,7 +69,7 @@ public class AudioManager:MonoBehaviour
     }
 
 
-    public void PlayBg_Source(string name)
+    public void PlayBg_Source(string name,bool isLoop)
     {
         AudioClip clip = ResourcesManager.Instance.LoadAudioClip(name);
         if (clip == null)
@@ -84,6 +84,7 @@ public class AudioManager:MonoBehaviour
             audioDelegateDic.Clear();
             dicIndex = 0;
             bg_Source.clip = clip;
+            bg_Source.loop = isLoop;
             bg_Source.Play();
             
         }

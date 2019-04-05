@@ -45,7 +45,7 @@ public class LoginPanel : IView
     //private GameObject go;
     private Vector3 ogPos = new Vector3(1300, -1, 0);
     private Vector3 changePos = new Vector3(200, -1, 0);
-
+    private GameObject lieLogo;
     protected override void OnDestroy()
     {
        
@@ -64,19 +64,9 @@ public class LoginPanel : IView
 
     protected override void OnShow()
     {
-        AudioManager.Instance.PlayBg_Source("LoginBGM");
-        ParticleSystem.EmissionModule emission = paritcleSystem_Normal.emission;
-        emission.rateOverTime = 4;
-        AudioManager.Instance.LockBGMTimeEvent(new AudioEventDelegate(ParticleSetting_Pasue), "LoginBGM", 50.4f);
-
-        AudioManager.Instance.LockBGMTimeEvent(new AudioEventDelegate(ParticleSetting_Up), "LoginBGM", 70.5f);
-
-        AudioManager.Instance.LockBGMTimeEvent(new AudioEventDelegate(ParticleSetting_Normal1Up), "LoginBGM", 84.5f);
-
-        AudioManager.Instance.LockBGMTimeEvent(new AudioEventDelegate(ParticleSakuRaShow), "LoginBGM", 101.5f);
-
+        lieLogo.gameObject.SetActive(true);
         loginButton.isActive_Button = false;
-      developerBtn.isActive_Button = false;
+        developerBtn.isActive_Button = false;
         closeGameBtn.isActive_Button = false;
         againGameBtn.isActive_Button = false;
         seetingsBtn.isActive_Button = false;
@@ -85,12 +75,13 @@ public class LoginPanel : IView
        // OnHoverChangeWord();  
     }
 
+
     protected override void OnStart()
     {       
         loginButton = this.GetChild("LoginButton").GetComponent<UIButton>();      
         developerBtn = this.GetChild("LoginButton (4)").GetComponent<UIButton>();
         closeGameBtn = this.GetChild("LoginButton (5)").GetComponent<UIButton>();
-
+        lieLogo = this.GetChild("LieLogo").gameObject;
         againGameBtn = this.GetChild("LoginButton (1)").GetComponent<UIButton>();
         seetingsBtn = this.GetChild("LoginButton (2)").GetComponent<UIButton>();
         m_go = this.GetChild("ButtonGrid").gameObject;
@@ -111,15 +102,18 @@ public class LoginPanel : IView
         addDelegate();      
         ColorEgg();
         OnLoginBtnHover();
+
+        TweenAlpha ta = lieLogo.GetComponent<TweenAlpha>();
+        ta.onFinished.Add(new EventDelegate(BGMSet));
     }
 
 
     void OnLoginBtnClick()
     {
         AudioManager.Instance.CloseBg_Source(); 
-        GameStateManager.LoadScene(4);
+        GameStateManager.LoadScene(2);
         GUIManager.ShowView("LoadingPanel");
-        //LoadingPanel.LoadingName = "PlayerPanel";
+        LoadingPanel.LoadingName = "PlayerPanel";
     }
 
     private List<Transform> m_PicList=new List<Transform> ();
@@ -257,7 +251,20 @@ public class LoginPanel : IView
     //}
 
 
+    void BGMSet()
+    {
+        lieLogo.gameObject.SetActive(false);
+        AudioManager.Instance.PlayBg_Source("LoginBGM",true);
+        ParticleSystem.EmissionModule emission = paritcleSystem_Normal.emission;
+        emission.rateOverTime = 4;
+        AudioManager.Instance.LockBGMTimeEvent(new AudioEventDelegate(ParticleSetting_Pasue), "LoginBGM", 50.4f);
 
+        AudioManager.Instance.LockBGMTimeEvent(new AudioEventDelegate(ParticleSetting_Up), "LoginBGM", 70.5f);
+
+        AudioManager.Instance.LockBGMTimeEvent(new AudioEventDelegate(ParticleSetting_Normal1Up), "LoginBGM", 84.5f);
+
+        AudioManager.Instance.LockBGMTimeEvent(new AudioEventDelegate(ParticleSakuRaShow), "LoginBGM", 101.5f);
+    }
 
 
 

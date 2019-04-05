@@ -37,7 +37,7 @@ public class BattleCllider : MonoBehaviour
     {
 
 
-        AudioManager.Instance.PlayBg_Source("Religion");
+        //AudioManager.Instance.PlayBg_Source("Religion");
         startGO.SetActive(true);
 
 

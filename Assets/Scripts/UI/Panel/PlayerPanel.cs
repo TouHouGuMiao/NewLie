@@ -95,7 +95,7 @@ public class PlayerPanel : IView
             GUIManager.ShowView("CoverPanel");
             GUIManager.HideView("PlayerPanel");
             GUIManager.ShowView("SurePropertyPanel");
-            StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 0);
+            //StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 0);
             //GameStateManager.LoadScene(4);
         }
         else {

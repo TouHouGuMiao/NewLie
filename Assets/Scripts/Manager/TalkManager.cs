@@ -99,7 +99,10 @@ public class TalkManager
         data.StoryHanderDic.Add(1, KongWuGuaiTan1);
         data.StoryHanderDic.Add(2, KongWuGuaiTan_MengNanGuMiao0);
         data.StoryHanderDic.Add(4, KongWuGuaiTan_InToCangKu);
-        
+        data.StoryHanderDic.Add(5, KongWuGuaiTan_InToCangKu1);
+        data.StoryHanderDic.Add(6, KongWuGuaiTan_InToCangKu2);
+        data.StoryHanderDic.Add(7, KongWuGuaiTan_InToCangKu3);
+        data.StoryHanderDic.Add(8, KongWuGuaiTan_InToCangKu4);
     }
 
 
@@ -126,7 +129,19 @@ public class TalkManager
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 37);
     }
     void KongWuGuaiTan_InToCangKu1() {
-
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 49);
+       
+    }
+    void KongWuGuaiTan_InToCangKu2() {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 52);
+       // ChoseManager.Instance.ShowChosePanel(3);
+    }
+    void KongWuGuaiTan_InToCangKu3() {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 54);
+        //ChoseManager.Instance.ShowChosePanel(4);
+    }
+    void KongWuGuaiTan_InToCangKu4() {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 56);
     }
         #endregion
-    }
+}

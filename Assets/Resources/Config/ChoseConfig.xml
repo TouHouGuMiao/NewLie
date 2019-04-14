@@ -17,4 +17,31 @@
       <chose2>再询问询问</chose2>
     </choseList>
   </ChoseData>
+  
+  <ChoseData>
+    <id>2</id>
+    <name>你的选择（空鹜怪谈）</name>
+    <choseList>
+      <chose1>询问</chose1>
+      <chose2>观察它</chose2>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>3</id>
+    <name>你的选择(询问的第二次)（空鹜怪谈）</name>
+    <choseList>
+      <chose1>询问</chose1>
+      <chose2>观察它</chose2>
+    </choseList>
+  </ChoseData>
+
+  <ChoseData>
+    <id>4</id>
+    <name>你的选择(询问的第三次)（空鹜怪谈）</name>
+    <choseList>
+      <chose1>询问</chose1>
+      <chose2>观察它</chose2>
+    </choseList>
+  </ChoseData>
 </Chose>

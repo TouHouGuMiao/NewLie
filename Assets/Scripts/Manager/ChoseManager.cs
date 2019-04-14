@@ -69,7 +69,16 @@ public class ChoseManager
         data.HanderDic.Add(2, KongWuGuaiTanChoseNPCSpeak2);
         ChoseData data1 = GetChsoeDataByID(1);
         data1.HanderDic.Add(0,KongWuGuaiTanIntoCangKu0);
-
+        data1.HanderDic.Add(1, KongWuGuaiTanIntoCangKu1);
+        ChoseData data2 = GetChsoeDataByID(2);
+        data2.HanderDic.Add(0, KongWuGuaiTanTalkWithKongWu1_0);
+        data2.HanderDic.Add(1, KongWuGuaiTanTalkWithKongWu1_1);
+        ChoseData data3 = GetChsoeDataByID(3);
+        data3.HanderDic.Add(0, KongWuGuaiTanTalkWithKongWu2_0);
+        data3.HanderDic.Add(1, KongWuGuaiTanTalkWithKongWu2_1);
+        ChoseData data4 = GetChsoeDataByID(4);
+        data4.HanderDic.Add(0, KongWuGuaiTanTalkWithKongWu3_0);
+        data4.HanderDic.Add(1, KongWuGuaiTanTalkWithKongWu3_1);
     }
 
     #endregion
@@ -137,6 +146,7 @@ public class ChoseManager
     {
        GUIManager.ShowView("CoverPanel");
        TalkManager.Instance.ShowTalkPanel(0,4);
+       StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 50);
        
     }
 
@@ -144,6 +154,31 @@ public class ChoseManager
     {
        
     }
+    /*
+      KongWuGuaiTanTalkWithKongWu1_0 前面的1表示的是这是第几次询问
+     */
+    void KongWuGuaiTanTalkWithKongWu1_0()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 51);
+    }
 
+
+    void KongWuGuaiTanTalkWithKongWu1_1()
+    {
+
+    }
+   
+    void KongWuGuaiTanTalkWithKongWu2_0() {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 53);
+    }
+    void KongWuGuaiTanTalkWithKongWu2_1() {
+       
+    }
+    void KongWuGuaiTanTalkWithKongWu3_0() {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 55);
+    }
+    void KongWuGuaiTanTalkWithKongWu3_1() {
+
+    }
     #endregion
 }

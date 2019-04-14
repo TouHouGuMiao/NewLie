@@ -61,6 +61,10 @@ public class SurePropertyPanel : IView {
     private UILabel power_ThridDice;
     private UILabel powerNumber;
     private UIButton power_NextBtn;
+    private GameObject cardWidget;
+
+    private GameObject labelWidget;
+    private Transform statureLabel;
     public SurePropertyPanel()
     {
         m_Layer = Layer.bottom;
@@ -68,33 +72,40 @@ public class SurePropertyPanel : IView {
 
     protected override void OnStart()
     {
-        Container = this.GetChild("Container");
-        Stature = this.GetChild("Stature");
-        stature_FristDice = Stature.Find("fristDice").GetComponent<UILabel>();
-        stature_SecondDice= Stature.Find("secondDice").GetComponent<UILabel>();
+        //Container = this.GetChild("Container");
+        //Stature = this.GetChild("Stature");
+        //stature_FristDice = Stature.Find("fristDice").GetComponent<UILabel>();
+        //stature_SecondDice= Stature.Find("secondDice").GetComponent<UILabel>();
 
-        statureCard = Stature.Find("statureCard").gameObject;
-        statureCardExpress = Stature.Find("statureCardExpress").gameObject;
-        statureDes = statureCardExpress.transform.Find("Des").GetComponent<UILabel>();
-        statureNumber = statureCardExpress.transform.Find("Number").GetComponent<UILabel>();
-        stature_NextBtn = Stature.Find("nextBtn").GetComponent<UIButton>();
-        stature_NextBtn.onClick.Add(new EventDelegate(OnStatureNextBtnClick));
+        //statureCard = Stature.Find("statureCard").gameObject;
+        //statureCardExpress = Stature.Find("statureCardExpress").gameObject;
+        //statureDes = statureCardExpress.transform.Find("Des").GetComponent<UILabel>();
+        //statureNumber = statureCardExpress.transform.Find("Number").GetComponent<UILabel>();
+        //stature_NextBtn = Stature.Find("nextBtn").GetComponent<UIButton>();
+        //stature_NextBtn.onClick.Add(new EventDelegate(OnStatureNextBtnClick));
 
-        power = this.GetChild("Power");
-        power_FristDice = power.Find("fristDice").GetComponent<UILabel>();
-        power_SecondDice = power.Find("secondDice").GetComponent<UILabel>();
-        power_ThridDice = power.Find("thDice").GetComponent<UILabel>();
-        powerCardExpress = power.Find("powerCardExpress").gameObject;
-        powerCard = power.Find("powerCard").gameObject;
-        power_NextBtn = power.Find("nextBtn").GetComponent<UIButton>();
-        powerNumber = powerCardExpress.transform.Find("Number").GetComponent<UILabel>();
-
-
+        //power = this.GetChild("Power");
+        //power_FristDice = power.Find("fristDice").GetComponent<UILabel>();
+        //power_SecondDice = power.Find("secondDice").GetComponent<UILabel>();
+        //power_ThridDice = power.Find("thDice").GetComponent<UILabel>();
+        //powerCardExpress = power.Find("powerCardExpress").gameObject;
+        //powerCard = power.Find("powerCard").gameObject;
+        //power_NextBtn = power.Find("nextBtn").GetComponent<UIButton>();
+        //powerNumber = powerCardExpress.transform.Find("Number").GetComponent<UILabel>();
+        cardWidget = this.GetChild("CardWidget").gameObject;
+        for (int i = 0; i < cardWidget.transform.childCount; i++)
+        {
+            GameObject go = cardWidget.transform.GetChild(i).gameObject;
+            UIButton button = go.GetComponent<UIButton>();
+            button.onClick.Add(new EventDelegate(OnCardBtnClick));
+        }
+        labelWidget = this.GetChild("LabelWidget").gameObject;
+        statureLabel = labelWidget.transform.Find("StatureLabel");
     }
      
     protected override void OnShow()
     {
-
+        CardTweenPositionInit();
     }
 
     protected override void OnDestroy()
@@ -111,107 +122,107 @@ public class SurePropertyPanel : IView {
 
     public override void Update()
     {
-        if (SureState == CreatSureState.Stature_State)
-        {
-            if (!Stature.gameObject.activeSelf)
-            {
-                for (int i = 0; i < Container.childCount; i++)
-                {
-                    GameObject go = Container.GetChild(i).gameObject;
-                    if (go.name != Stature.name)
-                    {
-                        go.SetActive(false);
-                    }
-                }
-                Stature.gameObject.SetActive(true);
-            }
-        }
-       else if (SureState == CreatSureState.Stature_State_Dice1)
-        {
-            if (stature_FristDice.text != dice1.ToString())
-            {
-                stature_FristDice.text = dice1.ToString();
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 5);
-            }
-        }
-       else if (SureState == CreatSureState.Stature_State_Dice2)
-        {
-            if (stature_SecondDice.text != dice2.ToString())
-            {
-                stature_SecondDice.text = dice2.ToString();
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 6);
-            }
-        }
+       // if (SureState == CreatSureState.Stature_State)
+       // {
+       //     if (!Stature.gameObject.activeSelf)
+       //     {
+       //         for (int i = 0; i < Container.childCount; i++)
+       //         {
+       //             GameObject go = Container.GetChild(i).gameObject;
+       //             if (go.name != Stature.name)
+       //             {
+       //                 go.SetActive(false);
+       //             }
+       //         }
+       //         Stature.gameObject.SetActive(true);
+       //     }
+       // }
+       //else if (SureState == CreatSureState.Stature_State_Dice1)
+       // {
+       //     if (stature_FristDice.text != dice1.ToString())
+       //     {
+       //         stature_FristDice.text = dice1.ToString();
+       //         StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 5);
+       //     }
+       // }
+       //else if (SureState == CreatSureState.Stature_State_Dice2)
+       // {
+       //     if (stature_SecondDice.text != dice2.ToString())
+       //     {
+       //         stature_SecondDice.text = dice2.ToString();
+       //         StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 6);
+       //     }
+       // }
 
-       else if (SureState == CreatSureState.Stature_State_Reslut)
-        {
-            if (!statureCard.activeSelf)
-            {
-                stature_Prop = (dice1 + dice2 + 6) * 5;
-                TweenPosition tp = statureCard.GetComponent<TweenPosition>();
-                tp.onFinished.Add(new EventDelegate(ShowStaturePropExpress));
-                statureCard.SetActive(true);
-                stature_NextBtn.gameObject.SetActive(true);
-            }
+       //else if (SureState == CreatSureState.Stature_State_Reslut)
+       // {
+       //     if (!statureCard.activeSelf)
+       //     {
+       //         stature_Prop = (dice1 + dice2 + 6) * 5;
+       //         TweenPosition tp = statureCard.GetComponent<TweenPosition>();
+       //         tp.onFinished.Add(new EventDelegate(ShowStaturePropExpress));
+       //         statureCard.SetActive(true);
+       //         stature_NextBtn.gameObject.SetActive(true);
+       //     }
            
-        }
+       // }
 
-       else if (SureState == CreatSureState.Power_State)
-        {
-            if (!power.gameObject.activeSelf)
-            {
-                for (int i = 0; i < Container.childCount; i++)
-                {
-                    GameObject go = Container.GetChild(i).gameObject;
-                    if (go.name != power.name)
-                    {
-                        go.SetActive(false);
-                    }
-                }
-                power.gameObject.SetActive(true);
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 10);
-            }
-        }
+       //else if (SureState == CreatSureState.Power_State)
+       // {
+       //     if (!power.gameObject.activeSelf)
+       //     {
+       //         for (int i = 0; i < Container.childCount; i++)
+       //         {
+       //             GameObject go = Container.GetChild(i).gameObject;
+       //             if (go.name != power.name)
+       //             {
+       //                 go.SetActive(false);
+       //             }
+       //         }
+       //         power.gameObject.SetActive(true);
+       //         StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 10);
+       //     }
+       // }
 
-        else if (SureState == CreatSureState.Power_State_Dice1)
-        {
-            if (power_FristDice.text != dice1.ToString())
-            {
-                power_FristDice.text = dice1.ToString();
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 11);
-            }
-        }
+       // else if (SureState == CreatSureState.Power_State_Dice1)
+       // {
+       //     if (power_FristDice.text != dice1.ToString())
+       //     {
+       //         power_FristDice.text = dice1.ToString();
+       //         StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 11);
+       //     }
+       // }
 
-        else if (SureState == CreatSureState.Power_State_Dice2)
-        {
-            if (power_SecondDice.text != dice2.ToString())
-            {
-                power_SecondDice.text = dice2.ToString();
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 14);
-            }
-        }
+       // else if (SureState == CreatSureState.Power_State_Dice2)
+       // {
+       //     if (power_SecondDice.text != dice2.ToString())
+       //     {
+       //         power_SecondDice.text = dice2.ToString();
+       //         StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 14);
+       //     }
+       // }
 
-        else if (SureState == CreatSureState.Power_State_Dice3)
-        {
-            if (power_ThridDice.text != dice3.ToString())
-            {
-                power_ThridDice.text = dice3.ToString();
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 15);
-            }
-        }
+       // else if (SureState == CreatSureState.Power_State_Dice3)
+       // {
+       //     if (power_ThridDice.text != dice3.ToString())
+       //     {
+       //         power_ThridDice.text = dice3.ToString();
+       //         StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 15);
+       //     }
+       // }
 
-        else if (SureState == CreatSureState.Power_State_Reslut)
-        {
-            if (!powerCard.activeSelf)
-            {
-                power_Prop = (dice1 + dice2 + dice3) * 5;
-                TweenPosition tp = powerCard.GetComponent<TweenPosition>();
-                tp.onFinished.Add(new EventDelegate(ShowPowerPropExpress));
-                powerCard.SetActive(true);
-                power_NextBtn.gameObject.SetActive(true);
-            }
+       // else if (SureState == CreatSureState.Power_State_Reslut)
+       // {
+       //     if (!powerCard.activeSelf)
+       //     {
+       //         power_Prop = (dice1 + dice2 + dice3) * 5;
+       //         TweenPosition tp = powerCard.GetComponent<TweenPosition>();
+       //         tp.onFinished.Add(new EventDelegate(ShowPowerPropExpress));
+       //         powerCard.SetActive(true);
+       //         power_NextBtn.gameObject.SetActive(true);
+       //     }
 
-        }
+       // }
     }
 
 
@@ -265,5 +276,130 @@ public class SurePropertyPanel : IView {
         dice1 = 10;
         dice2 = 10;
         dice3 = 10;
+    }
+
+    void CardTweenPositionInit()
+    {
+        for (int i = 0; i < cardWidget.transform.childCount; i++)
+        {
+            GameObject go = cardWidget.transform.GetChild(i).gameObject;
+            TweenPosition tp = go.GetComponent<TweenPosition>();
+            go.transform.rotation = Quaternion.Euler(90, 0, 0);
+            tp.enabled = true;
+            tp.delay = i * 0.3f;
+            tp.duration = 0.5f;
+            tp.from = new Vector3(20, i * 0.1f, 0);
+            tp.to = new Vector3(7.5f, i * 0.1f, 0);
+            if (i >= cardWidget.transform.childCount-1)
+            {
+                tp.onFinished.Add(new EventDelegate(CardTweenPositionToItsPosition));
+              
+            }
+            else
+            {
+                tp.onFinished.Add(new EventDelegate(PlayBoomAudio));
+            }
+            tp.ResetToBeginning();
+        }
+        cardWidget.SetActive(true);
+    }
+
+    void PlayBoomAudio()
+    {
+        AudioManager.Instance.PlayEffect_Source("cardMove");
+    }
+    bool isCardTweenToPos=false;
+    void CardTweenPositionToItsPosition()
+    {
+        int cout = cardWidget.transform.childCount-1;
+        AudioManager.Instance.PlayEffect_Source("cardMove");
+        for (int i = 0; i < cardWidget.transform.childCount; i++)
+        {
+            if (isCardTweenToPos)
+            {
+                return;
+            }
+            GameObject go = cardWidget.transform.GetChild(cout).gameObject;
+            TweenPosition tp = go.GetComponent<TweenPosition>();
+            tp.enabled = true;
+            tp.onFinished.Clear();
+            tp.from = go.transform.localPosition;
+            tp.to = new Vector3(i * 1.6f, 0, 0.1f);
+            tp.delay = 0.3f * i+1f;
+            tp.duration = 0.5f;
+
+            tp.ResetToBeginning();
+            TweenRotation tr = go.GetComponent<TweenRotation>();
+            tr.from = go.transform.rotation.eulerAngles;
+            tr.to = new Vector3(0, 180, 0);
+            tr.delay = i * 0.3f+1;
+            tr.duration = 0.5f;
+            tr.enabled = true;
+            cout--;
+        }
+        isCardTweenToPos = true;
+    }
+
+    void OnCardBtnClick()
+    {
+        UIButton button = UIButton.current;
+        int temp_j=0;
+        for (int i = 0; i < cardWidget.transform.childCount; i++)
+        {
+            GameObject go = cardWidget.transform.GetChild(i).gameObject;
+            if (go.name == button.gameObject.name)
+            {
+                TweenPosition tp = go.GetComponent<TweenPosition>();
+                tp.onFinished.Clear();
+                tp.enabled = true;
+                tp.from = go.transform.localPosition;
+                tp.to = new Vector3(1.86f, 0, -1.11f);
+                tp.duration = 1f;
+                tp.delay = 0;
+                tp.ResetToBeginning();
+                tp.onFinished.Add(new EventDelegate(OnCardTweenPosisitonFished));
+                TweenRotation ts = go.GetComponent<TweenRotation>();
+                ts.enabled = true;
+                ts.from = go.transform.rotation.eulerAngles;
+                ts.to = new Vector3(0, 130, 0);
+                ts.onFinished.Clear();
+                ts.delay = 0;
+                ts.duration = 1f;
+                ts.ResetToBeginning();
+                continue;
+            }
+            else
+            {
+                TweenPosition tp = go.GetComponent<TweenPosition>();
+                tp.enabled = true;
+                tp.onFinished.Clear();
+                tp.from = go.transform.localPosition;
+                tp.to = new Vector3(go.transform.localPosition.x, go.transform.localPosition.y + 20, go.transform.localPosition.z);
+                tp.duration = 0.5f;
+                tp.onFinished.Add(new EventDelegate(OnCardTweenPosisitonFished));
+                tp.delay = 0.15f * temp_j + 0.15f;
+                tp.ResetToBeginning();
+            }
+            temp_j++;
+        }
+        //if (button.gameObject.name.Contains("Stature"))
+        //{
+        //    TweenScale ts = statureLabel.GetComponent<TweenScale>();
+        //    ts.enabled = true;
+        //    statureLabel.gameObject.SetActive(true);
+        //    ts.ResetToBeginning();
+        //}
+    }
+
+    void OnCardTweenPosisitonFished()
+    {
+        TweenPosition tp = (TweenPosition)TweenPosition.current;
+        if (tp.gameObject.name.Contains("Stature"))
+        {
+            TweenScale ts = statureLabel.GetComponent<TweenScale>();
+            ts.enabled = true;
+            statureLabel.gameObject.SetActive(true);
+            ts.ResetToBeginning();
+        }
     }
 }

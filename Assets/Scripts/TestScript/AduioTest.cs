@@ -6,7 +6,7 @@ public class AduioTest : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        AudioManager.Instance.PlayBg_Source("HouShanBGM");
+        //AudioManager.Instance.PlayBg_Source("HouShanBGM");
             }
 	
 	// Update is called once per frame

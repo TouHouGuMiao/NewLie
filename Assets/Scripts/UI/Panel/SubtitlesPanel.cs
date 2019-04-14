@@ -21,6 +21,7 @@ public class SubtitlesPanel : IView
 
     protected override void OnShow()
     {
+        AudioManager.Instance.PlayEffect_Source("waterAudio");
         AudioClip audioClip= ResourcesManager.Instance.LoadAudioClip(effectAudioName);
         if (audioClip != null)
         {

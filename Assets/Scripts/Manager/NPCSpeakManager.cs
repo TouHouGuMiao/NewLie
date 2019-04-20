@@ -20,18 +20,21 @@ public class NPCSpeakManager
         }
     }
     /// <summary>
-    /// 词典查找:0-魔理沙 1-村民
+    /// 词典查找:0-魔理沙 1-村民 2-空鹜
     /// </summary>
     private Dictionary<int, Dictionary<int, NPCSpeakData>> NPCCollectionDic=new Dictionary<int, Dictionary<int, NPCSpeakData>> ();
 
     private Dictionary<int, NPCSpeakData> MarisaDic=new Dictionary<int, NPCSpeakData> ();
     private Dictionary<int, NPCSpeakData> VillagerDic = new Dictionary<int, NPCSpeakData>();
+    private Dictionary<int, NPCSpeakData> KongWuDic = new Dictionary<int, NPCSpeakData>();
     void Init()
     {
         LoadNPCSpeakData("MarisaConfig",MarisaDic);
         LoadNPCSpeakData("VillagerConfig", VillagerDic);
+        LoadNPCSpeakData("KongWuConfig", KongWuDic);
         NPCCollectionDic.Add(0, MarisaDic);
         NPCCollectionDic.Add(1, VillagerDic);
+        NPCCollectionDic.Add(2, KongWuDic);
         InitHnader();
     }
 
@@ -174,10 +177,15 @@ public class NPCSpeakManager
         data.storyData.StoryHanderDic.Add(21, MarisaTalkChapterOne21);
         data.storyData.StoryHanderDic.Add(22, MarisaTalkChapterOne22);
         data.storyData.StoryHanderDic.Add(23, MarisaTalkChapterOne23);
+
+        NPCSpeakData data1 = GetDataByID(2, 0);
+        data1.OnEnterDownDic.Add(0, KongWuEnterEventOneSpeak0);
+
+        //data1.storyData.StoryHanderDic.Add(0, KongWuTalkChapterOne0);
     }
 
 
-    #region 第一章确定输入后的方法
+    #region 第一章确定输入后的魔理沙的方法
     #region 事件一
     void MarisaEnterEventOneSpeak0()
     {
@@ -347,7 +355,7 @@ public class NPCSpeakManager
     #endregion
     #endregion
 
-    #region  第一章，对话结束后会触发的方法
+    #region  第一章，对话结束后会触发的魔理沙的方法
     #region 事件一
     void MarisaTalkChapterOne0()
     {
@@ -484,4 +492,18 @@ public class NPCSpeakManager
     #endregion
     #endregion
 
+    #region 第一章，空鹜确定输入的方法
+    void KongWuEnterEventOneSpeak0() {
+
+        GUIManager.HideView("InputPanel");
+        NPCSpeakData data = GetDataByID(2, 0);
+        TalkManager.Instance.ShowTalkPanel(data.storyData, 0);
+    }
+    #endregion
+    #region 第一章，空鹜对话结束后会触发的方法
+    //void KongWuTalkChapterOne0() {
+    //    StoryEventManager.Instance.ShowEventPanel_ChapterOne(0,50);
+    //    NPCSpeakManager.Instance.ShowNPCSpeakPanel(2,0);
+    //}
+    #endregion
 }

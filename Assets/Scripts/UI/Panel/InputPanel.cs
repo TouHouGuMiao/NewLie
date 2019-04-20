@@ -25,14 +25,19 @@ public class InputPanel : IView
     public static bool isChange = false;
 
     private static GameObject inputPanel;
+    private static GameObject TipsGo;
     private UIInput input;
     public static int NPCId;
     public static int eventId;
+
+    private static UILabel Tips;
     private Dictionary<int, NPCSpeakData> NPCSpeakDic;
     private NPCSpeakData m_NPCSpeakData=new NPCSpeakData ();
     protected override void OnStart()
     {
         input = this.GetChild("InputBG").GetComponent<UIInput>();
+        Tips = this.GetChild("tips").GetComponent<UILabel>();
+        TipsGo = this.GetChild("TipsBG").gameObject;
         input.onSubmit.Add(new EventDelegate(OnSumbit));
         inputPanel = GUIManager.FindPanel("InputPanel");
     }
@@ -116,7 +121,13 @@ public class InputPanel : IView
         }
     }
 
-
+    public static void ShowTipsContainer(string innerText) {       
+       Tips.text = innerText;
+        TipsGo.SetActive(true);
+    }
+    public static void CloseTipsContainer() {
+        TipsGo.SetActive(false);
+    }
 
 
 }

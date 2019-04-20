@@ -8,7 +8,7 @@ public class TalkPanel : IView
     
     public TalkPanel()
     {
-        m_Layer = Layer.UI;
+        m_Layer = Layer.Talk;
     }
 
     public static StoryData data;
@@ -106,7 +106,7 @@ public class TalkPanel : IView
         //speakLabel.gameObject.SetActive(false);
 
         speakLabel.enabled = false;
-  
+
         if (data != null)
         {
 
@@ -115,46 +115,15 @@ public class TalkPanel : IView
             //    data.Hander();
             //}
             StoryHander hander = null;
-            if(data.StoryHanderDic.TryGetValue(data.index,out hander))
+            if (data.StoryHanderDic.TryGetValue(data.index, out hander))
             {
                 hander();
             }
             data.index++;
-            if (data.cout>=index)
-            {
-                data = null;
-            }
 
-            else
-            {
-                IEnumeratorManager.Instance.StartCoroutine(ListOnHideSet());
-            }
-           
-        }
-
-        if (dataList.Count > 0)
-        {
-            //if (dataList[index].Hander != null)
-            //{
-            //    dataList[index].Hander();
-            //}
-
-            dataIndex++;
-            if (dataIndex >= dataList[index].SpeakList.Count)
-            {
-                dataIndex = 0;
-                index++;
-            }
-
-            if (index > dataList.Count-1)
-            {
-                dataList.Clear();
-                index = 0;
-                return;
-            }
+            data = null;
 
 
-            IEnumeratorManager.Instance.StartCoroutine(ListOnHideSet());
         }
     }
 
@@ -166,10 +135,10 @@ public class TalkPanel : IView
 
         if (TalkPanel.isSpeak)
         {
-            if ( ChosePanel.isChose)
-            {
-                return;
-            }
+            //if (ChosePanel.isChose)
+            //{
+            //    return;
+            //}
 
             if (addText == null)
             {
@@ -220,11 +189,7 @@ public class TalkPanel : IView
     }
 
 
-    IEnumerator ListOnHideSet()
-    {
-        yield return new WaitForSeconds(0.1f);
-        GUIManager.ShowView("TalkPanel");
-    }
+ 
 
     IEnumerator SetAcitveSpeakLabel_Delay()
     {

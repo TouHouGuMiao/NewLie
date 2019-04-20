@@ -157,6 +157,13 @@ public class StoryEventManager
         data.StoryHanderDic.Add(46, KongWuGuaiTan45);
         data.StoryHanderDic.Add(47, KongWuGuaiTan46);
         data.StoryHanderDic.Add(48, KongWuGuaiTan47);
+        data.StoryHanderDic.Add(49, KongWuGuaiTan48);
+        data.StoryHanderDic.Add(51, KongWuGuaiTan49);
+        data.StoryHanderDic.Add(52, KongWuGuaiTan50);
+        data.StoryHanderDic.Add(53, KongWuGuaiTan51);
+        data.StoryHanderDic.Add(54, KongWuGuaiTan52);
+        data.StoryHanderDic.Add(55, KongWuGuaiTan53);
+        data.StoryHanderDic.Add(56, KongWuGuaiTan54);
     }
 
     private void InitHander_EventOne()
@@ -409,6 +416,34 @@ public class StoryEventManager
     private void KongWuGuaiTan47() {
         
         TalkManager.Instance.ShowTalkPanel(0, 5);
+    }
+    private void KongWuGuaiTan48() {
+        ChoseManager.Instance.ShowChosePanel(2);
+    }
+    private void KongWuGuaiTan49()
+    {
+        TalkManager.Instance.ShowTalkPanel(0, 6);
+    }
+    private void KongWuGuaiTan50() {
+        ChoseManager.Instance.ShowChosePanel(3);
+       // TalkManager.Instance.ShowTalkPanel(0, 7);
+    }
+    private void KongWuGuaiTan51() {
+        TalkManager.Instance.ShowTalkPanel(0, 7);
+    }
+    private void KongWuGuaiTan52() {
+        ChoseManager.Instance.ShowChosePanel(4);
+    }
+    private void KongWuGuaiTan53() {
+        TalkManager.Instance.ShowTalkPanel(0, 8);
+    }
+    private void KongWuGuaiTan54() {
+        string text = "尽量问出妖怪口中一直念叨着的话是什么意思";
+        ShowEventPanel_ChapterOne(0, 57);
+        NPCSpeakManager.Instance.ShowNPCSpeakPanel(2, 0);
+        if (InputPanel.IsInput) {
+            InputPanel.ShowTipsContainer(text);
+        }
     }
     #endregion
 

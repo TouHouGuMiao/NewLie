@@ -12,6 +12,7 @@ public enum Layer
     CoverUI=50,
     System=60,
     Dice=70,
+    Talk=80,
 }
 
 public abstract  class IView

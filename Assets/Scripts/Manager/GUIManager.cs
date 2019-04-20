@@ -83,7 +83,7 @@ public static class GUIManager
     public static void HideView(string name)
     {
         KeyValuePair<GameObject, IView> pair;
-
+     
         if(!m_UIViewDic.TryGetValue(name,out pair))
         {
             Debug.LogError(name + "has error");

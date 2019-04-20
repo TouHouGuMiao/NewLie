@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void DiceHander ();
+
 public class DiceManager
 {
+   
     private static DiceManager _instance = null;
     public static  DiceManager Instance
     {
@@ -30,7 +33,7 @@ public class DiceManager
     /// </summary>
     /// <param name="diceType"></param>
     /// <param name="rate"></param>
-    public void ShowDicePanel(int diceType, float rate)
+    public void ShowDicePanel(int diceType, float rate, DiceHander hander=null)
     {
         int[] DiceNumerArray=new int[diceType];
         if (diceType == 6)
@@ -43,6 +46,7 @@ public class DiceManager
         }
         DicePanel.DiceNumerArray = DiceNumerArray;
         DicePanel.rate = rate;
+        DicePanel.OnDiceRotateFished = hander;
         GUIManager.ShowView("DicePanel");
     }
 

@@ -16,6 +16,7 @@ TagManager:
   - leftLock
   - Event
   - DiceCard
+  - UICamera
   layers:
   - Default
   - TransparentFX

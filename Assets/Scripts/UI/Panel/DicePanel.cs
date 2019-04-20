@@ -6,7 +6,7 @@ using UnityEngine;
 public class DicePanel : IView
 {
     public static int diceValue=10;
-
+    public static DiceHander OnDiceRotateFished;
     private GameObject card;
     private GameObject Container;
     private float radius=7;
@@ -45,6 +45,7 @@ public class DicePanel : IView
 
     protected override void OnShow()
     {
+        diceValue = 10;
         GameObject panel = GUIManager.FindPanel("DicePanel");
         for (int i = 0; i < DiceNumerArray.Length; i++)
         {          
@@ -95,9 +96,15 @@ public class DicePanel : IView
     protected override void OnHide()
     {
         DestoryDiceCard();
+        if (OnDiceRotateFished != null)
+        {
+            OnDiceRotateFished();
+        }
         Array.Clear(DiceNumerArray, 0, DiceNumerArray.Length);
         slerpIndex = 0;
         DiceCardDic.Clear();
+        OnDiceRotateFished = null;
+        
     }
 
     void DestoryDiceCard()

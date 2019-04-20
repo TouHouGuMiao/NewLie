@@ -12,18 +12,20 @@ public enum SkillType
 public class Skill
 {
     public SkillData data = new SkillData();
-    public Skill(int id,string name,string des,string altasName,string iconName)
+    public Skill(int id,string name,string des,string modelName)
     {
         data.Name = name;
         data.ID = id;
         data.Des = des;
-        data.IconName = iconName;
+        data.ModelName = modelName;
+        cardPrefab = ResourcesManager.Instance.LoadNomalCard("modelName");
     }
     public int point;
     public virtual void Init()
     {
 
     }
+    private GameObject cardPrefab;
     
 }
 
@@ -43,12 +45,8 @@ public class SkillData
         get;set;
     }
 
-    public string AltasName
-    {
-        get;set;
-    }
 
-    public string IconName
+    public string ModelName
     {
         get;
         set;

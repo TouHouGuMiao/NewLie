@@ -29,7 +29,7 @@ public class LoginState : GameState
         //list.Add(8);
         //list.Add(9);
         //DiceManager.Instance.ShowDicePanel(list, 0.01f);
-        GUIManager.ShowView("LoginPanel");
+        GUIManager.ShowView("BGStoryPanel");
        // GUIManager.ShowView("BGStoryPanel");
     }
 

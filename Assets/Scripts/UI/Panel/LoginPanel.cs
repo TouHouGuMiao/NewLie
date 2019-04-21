@@ -111,9 +111,9 @@ public class LoginPanel : IView
     void OnLoginBtnClick()
     {
         AudioManager.Instance.CloseBg_Source(); 
-        GameStateManager.LoadScene(2);
+        GameStateManager.LoadScene(4);
         GUIManager.ShowView("LoadingPanel");
-        LoadingPanel.LoadingName = "PlayerPanel";
+        LoadingPanel.LoadingName = "BattleUIPanel";
     }
 
     private List<Transform> m_PicList=new List<Transform> ();

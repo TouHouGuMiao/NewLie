@@ -236,12 +236,13 @@ public class StoryEventManager
     {
         GameZaXiangManager.Instance.ShowCover();
         GUIManager.HideView("CGPanel");
-        TalkManager.Instance.ShowTalkPanel(0);
+        ShowEventPanel_ChapterOne(0, 9);
+        //TalkManager.Instance.ShowTalkPanel(0);
     }
 
     private void KongWuGuaiTan9()
     {
-        ShowEventPanel_ChapterOne(0, 10);
+        GUIManager.HideView("EventStoryPanel");
     }
 
     private void KongWuGuaiTan10()

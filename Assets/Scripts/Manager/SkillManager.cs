@@ -22,6 +22,10 @@ public class SkillManager
         
     }
 
+    public void ShowSkill()
+    {
+
+    }
     
 }
 

@@ -115,6 +115,10 @@ public class UIDragObject : MonoBehaviour
 	void FindPanel ()
 	{
 		panelRegion = (target != null) ? UIPanel.Find(target.transform.parent) : null;
+        if (panelRegion.name == "SkillUsePanel")
+        {
+            panelRegion = null;
+        }
 		if (panelRegion == null) restrictWithinPanel = false;
 	}
 
@@ -143,9 +147,10 @@ public class UIDragObject : MonoBehaviour
 	/// Create a plane on which we will be performing the dragging.
 	/// </summary>
 
-	void OnPress (bool pressed)
+	protected virtual void OnPress (bool pressed)
 	{
-		if (UICamera.currentTouchID == -2 || UICamera.currentTouchID == -3) return;
+      
+        if (UICamera.currentTouchID == -2 || UICamera.currentTouchID == -3) return;
 
 		// Unity's physics seems to break when timescale is not quite zero. Raycasts start to fail completely.
 		float ts = Time.timeScale;
@@ -185,7 +190,7 @@ public class UIDragObject : MonoBehaviour
 				}
 			}
 		}
-	}
+    }
 
 	/// <summary>
 	/// Drag the object along the plane.
@@ -193,6 +198,7 @@ public class UIDragObject : MonoBehaviour
 
 	void OnDrag (Vector2 delta)
 	{
+        
 		if (mPressed && mTouchID == UICamera.currentTouchID && enabled && NGUITools.GetActive(gameObject) && target != null)
 		{
 			UICamera.currentTouch.clickNotification = UICamera.ClickNotification.BasedOnDelta;
@@ -246,39 +252,42 @@ public class UIDragObject : MonoBehaviour
 
 	void Move (Vector3 worldDelta)
 	{
-		if (panelRegion != null)
-		{
-			mTargetPos += worldDelta;
-			Transform parent = target.parent;
-			Rigidbody rb = target.GetComponent<Rigidbody>();
+        if (panelRegion != null)
+        {
+            mTargetPos += worldDelta;
+            Transform parent = target.parent;
+            Rigidbody rb = target.GetComponent<Rigidbody>();
 
-			if (parent != null)
-			{
-				Vector3 after = parent.worldToLocalMatrix.MultiplyPoint3x4(mTargetPos);
-				after.x = Mathf.Round(after.x);
-				after.y = Mathf.Round(after.y);
+            if (parent != null)
+            {
+                Vector3 after = parent.worldToLocalMatrix.MultiplyPoint3x4(mTargetPos);
+                after.x = Mathf.Round(after.x);
+                after.y = Mathf.Round(after.y);
 
-				if (rb != null)
-				{
-					// With a lot of colliders under the rigidbody, moving the transform causes some crazy overhead.
-					// Moving the rigidbody is much cheaper, but it does seem to have a side effect of causing
-					// widgets to detect movement relative to the panel, when in fact they should not be moving.
-					// This is why it's best to keep the panel as 'static' if at all possible.
-					after = parent.localToWorldMatrix.MultiplyPoint3x4(after);
-					rb.position = after;
-				}
-				else target.localPosition = after;
-			}
-			else if (rb != null)
-			{
-				rb.position = mTargetPos;
-			}
-			else target.position = mTargetPos;
+                if (rb != null)
+                {
+                    // With a lot of colliders under the rigidbody, moving the transform causes some crazy overhead.
+                    // Moving the rigidbody is much cheaper, but it does seem to have a side effect of causing
+                    // widgets to detect movement relative to the panel, when in fact they should not be moving.
+                    // This is why it's best to keep the panel as 'static' if at all possible.
+                    after = parent.localToWorldMatrix.MultiplyPoint3x4(after);
+                    rb.position = after;
+                }
+                else target.localPosition = after;
+            }
+            else if (rb != null)
+            {
+                rb.position = mTargetPos;
+            }
+            else target.position = mTargetPos;
 
-			UIScrollView ds = panelRegion.GetComponent<UIScrollView>();
-			if (ds != null) ds.UpdateScrollbars(true);
-		}
-		else target.position += worldDelta;
+            UIScrollView ds = panelRegion.GetComponent<UIScrollView>();
+            if (ds != null) ds.UpdateScrollbars(true);
+        }
+        else
+        {
+            target.position += worldDelta;
+        }
 	}
 
 	/// <summary>
@@ -344,6 +353,11 @@ public class UIDragObject : MonoBehaviour
 		mMomentum = Vector3.zero;
 		mScroll = Vector3.zero;
 	}
+
+    public bool GetMPress()
+    {
+        return mPressed;
+    }
 
 	/// <summary>
 	/// Cancel the spring movement.

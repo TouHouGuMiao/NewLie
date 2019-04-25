@@ -125,6 +125,19 @@ public class ResourcesManager
         return effect;
     }
 
+    public GameObject LoadEventCard(string name)
+    {
+        string path = "Model" + "/" + "EventCard" + "/" + name;
+
+        GameObject effect = Resources.Load(path) as GameObject;
+        if (effect == null)
+        {
+            Debug.LogError("Model is null" + name);
+            return null;
+        }
+        return effect;
+    }
+
     public GameObject LoadNomalCard(string name)
     {
         string path = "Model" + "/" + "Card" + "/" + name;
@@ -132,7 +145,7 @@ public class ResourcesManager
         GameObject effect = Resources.Load(path) as GameObject;
         if (effect == null)
         {
-            Debug.LogError("Model is null");
+            Debug.LogError("Model is null"+ name);
             return null;
         }
         return effect;

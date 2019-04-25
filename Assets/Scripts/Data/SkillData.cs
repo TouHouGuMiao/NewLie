@@ -18,15 +18,12 @@ public class Skill
         data.ID = id;
         data.Des = des;
         data.ModelName = modelName;
-        cardPrefab = ResourcesManager.Instance.LoadNomalCard("modelName");
+        cardPrefab = ResourcesManager.Instance.LoadNomalCard(modelName);
     }
     public int point;
-    public virtual void Init()
-    {
 
-    }
-    private GameObject cardPrefab;
-    
+    public GameObject cardPrefab;
+    public bool canUse=false;
 }
 
 

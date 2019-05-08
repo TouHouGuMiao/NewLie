@@ -13,9 +13,11 @@ public class EventStoryPanel : IView
     public static StoryData data;
     private UILabel nameLabel;
     private UILabel speakLabel;
-    private UISprite eventSprite;
-    private TweenPosition tp;
+ 
+
     private StoryHander lastHander=null;
+    private Transform cardWidget;
+
 
     private StoryData curData = new StoryData ();
 
@@ -54,14 +56,8 @@ public class EventStoryPanel : IView
     {
         //nameLabel = this.GetChild("nameLabel").GetComponent<UILabel>();
         speakLabel = this.GetChild("sperakLabel").GetComponent<UILabel>();
-        eventSprite = this.GetChild("EventSprite").GetComponent<UISprite>();
+        cardWidget = this.GetChild("CardWidget");
         writer = speakLabel.GetComponent<TypewriterEffect>();
-
-    
-        tp = this.GetChild("EventSprite").GetComponent<TweenPosition>();
-        EventDelegate EventAffterTP = new EventDelegate(ShowTextAfterTp);
-        tp.onFinished.Add(EventAffterTP);
-
         eventStoryPanel = GUIManager.FindPanel("EventStoryPanel");
     }
 
@@ -69,21 +65,19 @@ public class EventStoryPanel : IView
 
     protected override void OnShow()
     {
-        tp.enabled = true;
+        for (int i = 0; i < cardWidget.transform.childCount; i++)
+        {
+            GameObject go = cardWidget.transform.GetChild(i).gameObject;
+            GameObject.Destroy(go);
+        }
+
         if (data != null)
         {
-            eventSprite.spriteName = data.spriteName;
-
-            if (curData.spriteName != data.spriteName)
-            {
-                tp.ResetToBeginning();
-                curData = data;
-            }
-
-            else
-            {
-                ShowTextAfterTp();
-            }
+            GameObject card = GameObject.Instantiate(ResourcesManager.Instance.LoadEventCard(data.modelName));
+            card.name = data.name;
+            card.transform.SetParent(cardWidget, false);
+            card.transform.localPosition = new Vector3(-11.09f, 2.27f, 26.2f);
+            ShowTextAfterTp();
         }
        
     }
@@ -98,7 +92,11 @@ public class EventStoryPanel : IView
         lastHander = null;
         speakLabel.text = "";
         speakLabel.enabled = false;
-
+        for (int i = 0; i < cardWidget.transform.childCount; i++)
+        {
+            GameObject go = cardWidget.transform.GetChild(i).gameObject;
+            GameObject.Destroy(go);
+        }
         //if (data != null)
         //{
 
@@ -177,10 +175,10 @@ public class EventStoryPanel : IView
 
     public override void Update()
     {
-        if (tp.isActiveAndEnabled)
-        {
-            return;
-        }
+        //if (tp.isActiveAndEnabled)
+        //{
+        //    return;
+        //}
 
         if (EventStoryPanel.isEventSpeak)
         {

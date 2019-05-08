@@ -111,8 +111,11 @@ public class LoginPanel : IView
     void OnLoginBtnClick()
     {
         AudioManager.Instance.CloseBg_Source(); 
+
         GameStateManager.LoadScene(2);//车人场景是2
+        //GameStateManager.LoadScene(4);
         GUIManager.ShowView("LoadingPanel");
+        //LoadingPanel.LoadingName = "BattleUIPanel";
         LoadingPanel.LoadingName = "PlayerPanel";
     }
 

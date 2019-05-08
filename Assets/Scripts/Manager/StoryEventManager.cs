@@ -86,7 +86,7 @@ public class StoryEventManager
             XmlNode name = item.SelectSingleNode("name");
             XmlNode cout = item.SelectSingleNode("cout");
             XmlNode speak = item.SelectSingleNode("Speak");
-            XmlNode spriteName = item.SelectSingleNode("spriteName");
+            XmlNode modelName = item.SelectSingleNode("spriteName");
 
             StoryData data = new StoryData();
             data.id = CommonHelper.Str2Int(id.InnerText);
@@ -94,7 +94,7 @@ public class StoryEventManager
             data.name = name.InnerText;
             data.index = CommonHelper.Str2Int(index.InnerText);
             data.cout = CommonHelper.Str2Int(cout.InnerText);
-            data.spriteName = spriteName.InnerText;
+            data.modelName = modelName.InnerText;
 
             foreach (XmlNode pair in speak)
             {
@@ -236,12 +236,14 @@ public class StoryEventManager
     {
         GameZaXiangManager.Instance.ShowCover();
         GUIManager.HideView("CGPanel");
-        TalkManager.Instance.ShowTalkPanel(0);
+        ShowEventPanel_ChapterOne(0, 9);
+        GUIManager.ShowView("SkillUsePanel");
+        //TalkManager.Instance.ShowTalkPanel(0);
     }
 
     private void KongWuGuaiTan9()
     {
-        ShowEventPanel_ChapterOne(0, 10);
+        GUIManager.HideView("EventStoryPanel");
     }
 
     private void KongWuGuaiTan10()

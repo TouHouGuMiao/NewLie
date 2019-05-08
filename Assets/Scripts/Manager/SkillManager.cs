@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,13 +11,13 @@ public class SkillManager
         {
             if (_instance == null)
             {
-                //return _instance;
                 _instance = new SkillManager();
+                _instance.InitSkillData();
             }
             return _instance;
         }
     }
-    //  private SkillData data=new SkillData();
+
     private Dictionary<int, Skill> m_SkillDataDic=new Dictionary<int, Skill>();
     private void InitSkillData()
     {
@@ -38,7 +38,7 @@ public class SkillManager
         data2.ModelName = "name";
         data2.SkillPoints = 0;
         Skill s2 = new Skill(data2.ID, data2.Name, data2.Des, data2.ModelName);
-        m_SkillDataDic.Add(data2.ID, s2);
+        m_SkillDataDic.Add(data2.ID,s2);
 
         SkillData data3 = new SkillData();
         data3.ID = 3;
@@ -47,7 +47,7 @@ public class SkillManager
         data3.ModelName = "name";
         data3.SkillPoints = 0;
         Skill s3 = new Skill(data3.ID, data3.Name, data3.Des, data3.ModelName);
-        m_SkillDataDic.Add(data3.ID, s3);
+        m_SkillDataDic.Add(data3.ID,s3);
 
         SkillData data4 = new SkillData();
         data4.ID = 4;
@@ -56,7 +56,7 @@ public class SkillManager
         data4.ModelName = "name";
         data4.SkillPoints = 0;
         Skill s4 = new Skill(data4.ID, data4.Name, data4.Des, data4.ModelName);
-        m_SkillDataDic.Add(data4.ID, s4);
+        m_SkillDataDic.Add(data4.ID,s4);
 
         SkillData data5 = new SkillData();
         data5.ID = 5;
@@ -65,12 +65,15 @@ public class SkillManager
         data5.ModelName = "name";
         data5.SkillPoints = 0;
         Skill s5 = new Skill(data5.ID, data5.Name, data5.Des, data5.ModelName);
-        m_SkillDataDic.Add(data5.ID, s5);
+        m_SkillDataDic.Add(data5.ID,s5);
 
     }
     public Dictionary<int,Skill> GetSkillDataInDic() {
         Dictionary<int,Skill> SkillDataDic = new Dictionary<int, Skill>();
-        InitSkillData();
+        if (m_SkillDataDic == null)
+        {
+            InitSkillData();
+        }
         SkillDataDic = m_SkillDataDic;
         return SkillDataDic;
     }
@@ -97,5 +100,84 @@ public class SkillManager
             }
         }
     }
+    /// <summary>
+    /// 安抚
+    /// </summary>
+    private Skill Placate;
+    /// <summary>
+    /// 妖怪学
+    /// </summary>
+    private Skill MonsterTheory;
+    /// <summary>
+    /// 博物学
+    /// </summary>
+    private Skill NaturalTheory;
+    /// <summary>
+    /// 第三只眼
+    /// </summary>
+    private Skill ThridEye;
+    /// <summary>
+    /// 侦查
+    /// </summary>
+    private Skill Investigate;
+    /// <summary>
+    /// 聆听
+    /// </summary>
+    private Skill Listen;
+
+
+    private Dictionary<int, Skill> SkillDic = new Dictionary<int, Skill>();
+    private void InitSkillData_1()
+    {
+        Placate = new Skill(0,"Placate", "","Placate");
+        Placate.canUse = true;
+        MonsterTheory = new Skill(1, "MonsterTheory", "", "MonsterTheory");
+        MonsterTheory.canUse = true;
+        NaturalTheory = new Skill(2, "NaturalTheory", "", "NaturalTheory");
+        NaturalTheory.canUse = true;
+        ThridEye = new Skill(3, "ThridEye", "", "ThridEye");
+        ThridEye.canUse = true;
+        Investigate = new Skill(4, "Investigate", "", "Investigate");
+        Investigate.canUse = true;
+        Listen = new Skill(5, "Listen", "", "Listen");
+        Listen.canUse = true;
+
+        SkillDic.Add(Placate.data.ID, Placate);
+        SkillDic.Add(MonsterTheory.data.ID, MonsterTheory);
+        SkillDic.Add(NaturalTheory.data.ID, NaturalTheory);
+        SkillDic.Add(ThridEye.data.ID, ThridEye);
+        SkillDic.Add(Investigate.data.ID, Investigate);
+        SkillDic.Add(Listen.data.ID, Listen);
+    }
+
+    private Skill GetSkillById(int id)
+    {
+        Skill skill = null;
+        if(!SkillDic.TryGetValue(id,out skill))
+        {
+            Debug.LogError("skill is null___"+id);
+        }
+        return skill; 
+    }
+
+    public List<Skill> CanUseSkillList()
+    {
+        List<Skill> List = new List<Skill>();
+        foreach (Skill item in SkillDic.Values)
+        {
+            if (item.canUse)
+            {
+                List.Add(item);
+            }
+        }
+        return List;
+    }
+
+    public void ShowSkill()
+    {
+
+    }
+    
 }
+
 

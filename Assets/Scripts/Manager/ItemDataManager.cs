@@ -185,20 +185,17 @@ public class ItemDataManager
     {
         List<ItemData> ItemDataList = new List<ItemData>();      
             LoadItemXml("ItemConfig", ItemDataList);
-        // ItemDataList = HasMaterialList;
-        //Debug.Log(ItemDataList.Count);
+       
+       
         int length = ItemDataList.Count;
-       // Debug.Log(ItemDataList[1].itemType);
+     
         for (int i = ItemDataList.Count-1; i >= 0; i--) {
             if (ItemDataList[i].itemType!=ItemType.material) {//解决方法，新建一个表，如果是这个数的话，加到这个表里，然后返回这个表
                 ItemDataList.Remove(ItemDataList[i]);
-                //Debug.Log(ItemDataList[i].name);
-               // count++;
+               
+             
             }
         }
-        //Debug.Log("count"+count);
-        //Debug.Log(ItemDataList.Count);
-        
         return ItemDataList;
     }
     public List<ItemData> GetHasEquipList() {

@@ -90,11 +90,13 @@ public class PlayerPanel : IView
 
     void OnSpeakPanelClick()
     {
-        if (islegal)
+        if (!islegal)
         {
             GUIManager.ShowView("CoverPanel");
             GUIManager.HideView("PlayerPanel");
-            GUIManager.ShowView("SurePropertyPanel");
+            //GUIManager.ShowView("SurePropertyPanel");
+           GUIManager.ShowView("SkillPanel");
+          
             //StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 0);
             //GameStateManager.LoadScene(4);
         }
@@ -122,30 +124,36 @@ public class PlayerPanel : IView
         }
     }
     private bool islegal = false;
+    void showError() {
+        if (errorSprite.activeInHierarchy == false)
+        {
+            errorSprite.SetActive(true);
+            islegal = true;
+            return;
+        }
+    }
+   
     void OnSubmit()
     {
         playerName = input.value;
         bool isChinese_s = IsChinese();
         bool isEnglish_s = IsEnglish();
         bool isEmpty_s = IsEmptyName();
-        if (isEmpty_s) {
-            if (errorSprite.activeInHierarchy == false)
-            {
-                errorSprite.SetActive(true);
-                islegal = false;
+        
+        if (isChinese_s)
+        {
+            if (isEmpty) {
+                Debug.LogError("cuuu");
+                showError();
                 return;
             }
-        }
-        if (isChinese_s)
-        {                     
-           
-        if (playerName.Length <= 5 && (!playerName.Contains("灵梦")) && (!playerName.Contains("博丽")))
+        else if (playerName.Length <= 5 && (!playerName.Contains("灵梦")) && (!playerName.Contains("博丽")))
             {
 
                 if (succeseSprite.activeInHierarchy == false)
                 {
                     succeseSprite.SetActive(true);
-                    islegal = true;
+                    islegal = false;
                 }
             }
         
@@ -156,19 +164,25 @@ public class PlayerPanel : IView
             if (errorSprite.activeInHierarchy == false)
             {
                 errorSprite.SetActive(true);
-                islegal = false;
+                islegal = true;
                 return;
             }
         }
     }     
         else if (isEnglish_s)
         {
-            if (playerName.Length <= 6 &&(!playerName.Contains("reimu")) && (!playerName.Contains("Reimu")))
+             if (isEmpty)
+            {
+                Debug.LogError("cuuu");
+                showError();
+                return;
+            }
+            else if (playerName.Length <= 6 &&(!playerName.Contains("reimu")) && (!playerName.Contains("Reimu")))
             {
                 if (succeseSprite.activeInHierarchy == false)
                 {
                     succeseSprite.SetActive(true);
-                    islegal = true;
+                    islegal = false;
                 }
             }
             else
@@ -176,21 +190,24 @@ public class PlayerPanel : IView
                 if (errorSprite.activeInHierarchy == false)
                 {
                     errorSprite.SetActive(true);
-                    islegal = false;
+                    islegal = true;
                     return;
                 }
             }
         }          
        else
         {
-            Debug.LogError(1111);
-            Debug.LogError(playerName.Length);
-
-            if ((!playerName.Contains("灵梦")) && (!playerName.Contains("reimu")) && (!playerName.Contains("Reimu")) && playerName.Length <= 6)
+            if (isEmpty)
+            {
+                Debug.LogError("cuuu");
+                showError();
+                return;
+            }
+            else if ((!playerName.Contains("灵梦")) && (!playerName.Contains("reimu")) && (!playerName.Contains("Reimu")) && playerName.Length <= 6)
             {
 
                 succeseSprite.SetActive(true);
-                islegal = true;
+                islegal = false;
                 Debug.Log("111");
             }
             if (playerName.Contains("灵梦") || playerName.Contains("reimu") || playerName.Contains("Reimu"))
@@ -198,7 +215,7 @@ public class PlayerPanel : IView
                 if (errorSprite.activeInHierarchy == false)
                 {
                     errorSprite.SetActive(true);
-                    islegal = false;
+                    islegal = true;
                     Debug.Log("222");
                     return;
                 }

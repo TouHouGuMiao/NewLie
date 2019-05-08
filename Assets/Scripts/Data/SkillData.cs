@@ -18,9 +18,10 @@ public class Skill
         data.ID = id;
         data.Des = des;
         data.ModelName = modelName;
-        cardPrefab = ResourcesManager.Instance.LoadNomalCard("modelName");
+        cardPrefab = ResourcesManager.Instance.LoadNomalCard(modelName);
     }
     public int point;
+    public static int CanUsePoints=80;
     public virtual void Init()
     {
 
@@ -48,6 +49,10 @@ public class SkillData
 
     public string ModelName
     {
+        get;
+        set;
+    }
+    public int SkillPoints {
         get;
         set;
     }

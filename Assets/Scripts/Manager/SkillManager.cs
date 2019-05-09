@@ -91,6 +91,11 @@ public class SkillManager
         return List;
     }
 
+    public void IdeaCheck(EventDelegate hander)
+    {
+
+    }
+
     public void ShowSkill()
     {
 

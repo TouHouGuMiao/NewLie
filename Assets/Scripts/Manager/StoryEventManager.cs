@@ -29,6 +29,7 @@ public class StoryEventManager
         LoadStoryXML("ChapterOneEventConfig", ChapterOneDic);
         InitHander();
         InitHander_EventOne();
+        InitHander_KongWu_Chu();
     }
 
     private StoryData GetChapterOneEventDataById(int id)
@@ -188,6 +189,50 @@ public class StoryEventManager
         data.StoryHanderDic.Add(15, new StoryHander(SurePowerProp_Reslut));
     }
 
+
+    private void InitHander_KongWu_Chu()
+    {
+        StoryData data = new StoryData();
+        data = GetChapterOneEventDataById(2);
+        data.StoryHanderDic.Add(0, new StoryHander(ShenSheToSleep0));
+        data.StoryHanderDic.Add(1, new StoryHander(ShenSheToSleep1));
+        data.StoryHanderDic.Add(2, new StoryHander(ShenSheToSleep2));
+        data.StoryHanderDic.Add(3, new StoryHander(ShenSheToSleep3));
+        data.StoryHanderDic.Add(4, new StoryHander(ShenSheToSleep4));
+        data.StoryHanderDic.Add(5, new StoryHander(ShenSheToSleep5));
+        data.StoryHanderDic.Add(6, new StoryHander(ShenSheToSleep6));
+        data.StoryHanderDic.Add(7, new StoryHander(ShenSheToSleep7));
+        data.StoryHanderDic.Add(8, new StoryHander(ShenSheToSleep8));
+        data.StoryHanderDic.Add(9, new StoryHander(ShenSheToSleep9));
+        data.StoryHanderDic.Add(10, new StoryHander(ShenSheToSleep10));
+        data.StoryHanderDic.Add(11, new StoryHander(ShenSheToSleep11));
+        data.StoryHanderDic.Add(12, new StoryHander(ShenSheToSleep12));
+        data.StoryHanderDic.Add(13, new StoryHander(ShenSheToSleep13));
+        data.StoryHanderDic.Add(14, new StoryHander(ShenSheToSleep14));
+        data.StoryHanderDic.Add(15, new StoryHander(ShenSheToSleep15));
+        data.StoryHanderDic.Add(16, new StoryHander(ShenSheToSleep16));
+        data.StoryHanderDic.Add(17, new StoryHander(ShenSheToSleep17));
+        data.StoryHanderDic.Add(18, new StoryHander(ShenSheToSleep18));
+        data.StoryHanderDic.Add(19, new StoryHander(ShenSheToSleep19));
+        data.StoryHanderDic.Add(20, new StoryHander(ShenSheToSleep20));
+        data.StoryHanderDic.Add(21, new StoryHander(ShenSheToSleep21));
+        data.StoryHanderDic.Add(22, new StoryHander(ShenSheToSleep22));
+        data.StoryHanderDic.Add(23, new StoryHander(ShenSheToSleep23));
+        data.StoryHanderDic.Add(24, new StoryHander(ShenSheToSleep24));
+        data.StoryHanderDic.Add(25, new StoryHander(ShenSheToSleep25));
+        data.StoryHanderDic.Add(26, new StoryHander(ShenSheToSleep26));
+        data.StoryHanderDic.Add(27, new StoryHander(ShenSheToSleep27));
+        data.StoryHanderDic.Add(28, new StoryHander(ShenSheToSleep28));
+        data.StoryHanderDic.Add(29, new StoryHander(ShenSheToSleep29));
+        data.StoryHanderDic.Add(30, new StoryHander(ShenSheToSleep30));
+        data.StoryHanderDic.Add(31, new StoryHander(ShenSheToSleep31));
+        data.StoryHanderDic.Add(32, new StoryHander(ShenSheToSleep32));
+        data.StoryHanderDic.Add(33, new StoryHander(ShenSheToSleep33));
+        data.StoryHanderDic.Add(34, new StoryHander(ShenSheToSleep34));
+        data.StoryHanderDic.Add(35, new StoryHander(ShenSheToSleep35));
+        data.StoryHanderDic.Add(36, new StoryHander(ShenSheToSleep36));
+        data.StoryHanderDic.Add(37, new StoryHander(ShenSheToSleep37));
+    }
     #endregion
 
 
@@ -532,5 +577,227 @@ public class StoryEventManager
         SurePropertyPanel.SureState = CreatSureState.Power_State_Reslut;
     }
     #endregion
+
+
+    #region 空鹜之章——初
+    void ShenSheToSleep0()
+    {
+        ShowEventPanel_ChapterOne(2, 1);
+        AudioManager.Instance.PlayBg_Source("BGForDaoRu", true);
+    }
+
+    void ShenSheToSleep1()
+    {
+        ShowEventPanel_ChapterOne(2, 2);
+    }
+
+    void ShenSheToSleep2()
+    {
+        ShowEventPanel_ChapterOne(2, 3);
+    }
+
+    void ShenSheToSleep3()
+    {
+        ShowEventPanel_ChapterOne(2, 4);
+    }
+
+    void ShenSheToSleep4()
+    {
+        ShowEventPanel_ChapterOne(2, 5);
+    }
+
+    void ShenSheToSleep5()
+    {
+        ShowEventPanel_ChapterOne(2, 6);
+    }
+
+    void ShenSheToSleep6()
+    {
+        ShowEventPanel_ChapterOne(2, 7);
+    }
+
+    void ShenSheToSleep7()
+    {
+        ShowEventPanel_ChapterOne(2, 8);
+    }
+
+    void ShenSheToSleep8()
+    {
+        ShowEventPanel_ChapterOne(2, 9);
+    }
+
+    void ShenSheToSleep9()
+    {
+        ShowEventPanel_ChapterOne(2, 10);
+    }
+
+    void ShenSheToSleep10()
+    {
+        ShowEventPanel_ChapterOne(2, 11);
+    }
+
+    void ShenSheToSleep11()
+    {
+        ShowEventPanel_ChapterOne(2, 12);
+    }
+
+    void ShenSheToSleep12()
+    {
+        ShowEventPanel_ChapterOne(2, 13);
+    }
+
+    void ShenSheToSleep13()
+    {
+        ShowEventPanel_ChapterOne(2, 14);
+    }
+
+    void ShenSheToSleep14()
+    {
+        ShowEventPanel_ChapterOne(2, 15);
+    }
+
+    void ShenSheToSleep15()
+    {
+        ShowEventPanel_ChapterOne(2, 16);
+    }
+    void ShenSheToSleep16()
+    {
+        ShowEventPanel_ChapterOne(2, 17);
+    }
+
+    void ShenSheToSleep17()
+    {
+        ShowEventPanel_ChapterOne(2, 18);
+    }
+
+    void ShenSheToSleep18()
+    {
+        ShowEventPanel_ChapterOne(2, 19);
+    }
+
+    void ShenSheToSleep19()
+    {
+        ShowEventPanel_ChapterOne(2, 20);
+    }
+
+    void ShenSheToSleep20()
+    {
+        ShowEventPanel_ChapterOne(2, 21);
+    }
+    void ShenSheToSleep21()
+    {
+        ShowEventPanel_ChapterOne(2, 22);
+    }
+
+    void ShenSheToSleep22()
+    {
+        ShowEventPanel_ChapterOne(2, 23);
+    }
+
+    void ShenSheToSleep23()
+    {
+        ShowEventPanel_ChapterOne(2, 24);
+    }
+
+    void ShenSheToSleep24()
+    {
+        ShowEventPanel_ChapterOne(2, 25);
+    }
+
+    void ShenSheToSleep25()
+    {
+        AudioManager.Instance.PlayEffect_Source("daHuLu", ShowShenSheToSleep_26);
+    }
+
+    void ShenSheToSleep26()
+    {
+        AudioManager.Instance.PlayEffect_Source("BirdSound", OnToDreamBirdSoundFished);
+        
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void ShenSheToSleep27()
+    {
+        ShowEventPanel_ChapterOne(2, 28);
+    }
+
+    void ShenSheToSleep28()
+    {
+        ShowEventPanel_ChapterOne(2, 29);
+    }
+
+    void ShenSheToSleep29()
+    {
+        ShowEventPanel_ChapterOne(2, 30);
+    }
+
+    void ShenSheToSleep30()
+    {
+        ShowEventPanel_ChapterOne(2, 31);
+    }
+
+    void ShenSheToSleep31()
+    {
+        ShowEventPanel_ChapterOne(2, 32);
+    }
+
+    void ShenSheToSleep32()
+    {
+        ShowEventPanel_ChapterOne(2, 33);
+    }
+
+    void ShenSheToSleep33()
+    {
+        ShowEventPanel_ChapterOne(2, 34);
+    }
+
+    void ShenSheToSleep34()
+    {
+        ShowEventPanel_ChapterOne(2, 35);
+     
+    }
+
+    void ShenSheToSleep35()
+    {
+        DiceManager.Instance.ShowDicePanel(4, 0.02f, SleepPressureCheck);
+    }
+    void ShenSheToSleep36()
+    {
+        ShowEventPanel_ChapterOne(2, 37);
+    }
+    void ShenSheToSleep37()
+    {
+        ShowEventPanel_ChapterOne(2, 38);
+    }
     #endregion
+    #endregion
+
+
+    #region 绑定一些杂项的方法
+    void ShowShenSheToSleep_26()
+    {
+        ShowEventPanel_ChapterOne(2, 26);
+        AudioManager.Instance.FadeOutBGM(2.0f);
+    }
+
+    void OnToDreamBirdSoundFished()
+    {
+        GameZaXiangManager.Instance.ShowCover();
+        CGManager.instance.ShowCGPanel("CG2");
+        AudioManager.Instance.PlayBg_Source("People",true,7.0f);
+        ShowEventPanel_ChapterOne(2, 27);
+    }
+
+    void SleepPressureCheck()
+    {
+        CharacterPropBase characterPropBase = CharacterPropManager.Instance.GetPlayerCureentProp();
+        float value = characterPropBase.preesure - DicePanel.diceValue;
+        CharacterPropManager.Instance.ChangePlayerCurrentProp(PropType.preesure, value, ShowShenSheToSleep_36);
+    }
+
+    void ShowShenSheToSleep_36()
+    {
+        ShowEventPanel_ChapterOne(2, 36);
+    }
+    #endregion 
 }

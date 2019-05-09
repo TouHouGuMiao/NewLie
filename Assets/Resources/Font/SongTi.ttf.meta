@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c77b04e953822324e8c7565cbdf4a60b
+timeCreated: 1557303345
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: HanWang SinSongThin-Gb5
+  fontNames:
+  - HanWang SinSongThin-Gb5
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

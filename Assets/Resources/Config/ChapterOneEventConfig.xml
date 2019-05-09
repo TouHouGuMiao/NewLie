@@ -3,7 +3,7 @@
     <id>0</id>
     <State>0</State>
     <name>空鹜怪谈</name>
-    <spriteName>Intranquil</spriteName>
+    <spriteName></spriteName>
     <index>0</index>
     <cout>23</cout>
     <Speak>
@@ -141,6 +141,60 @@
       <speak61>你的运气是</speak61>
   </Speak>
   </StoryData>
-  
+
+
+
+  <StoryData>
+    <id>2</id>
+    <State>0</State>
+    <name>空鹜之章——初</name>
+    <spriteName>Intranquil</spriteName>
+    <index>0</index>
+    <cout>7</cout>
+    <Speak>
+      <speak0>拖着疲惫的身体，你回到了神社。</speak0>
+      <sepak1>..........</sepak1>
+      <speak2>这是你做为新任巫女的第三天，</speak2>
+      <speak3>还没有享受完“新官上任”的喜悦，你就被突如其来的异变弄得焦头烂额。</speak3>
+      <speak4>“有什么东西在袭击人里的畜口。”</speak4>
+      <speak5>没错,</speak5>
+      <speak6>如今，每日早上天狗们的报纸就会贴遍整个村落——</speak6>
+      <speak7>“某某家受害，牛羊惨死！”，“对牲畜下手的凶手？直击现场！”</speak7>
+      <speak8>这样的新闻，一直占着报纸的头条。</speak8>
+      <speak9>当然，你心中明白，那群天狗并不在意人里会怎么样，他们只是为了满足自己的兴趣而在报道着这个事件。</speak9>
+      <speak10>对于你来说，他们只会妨碍你的调查——他们可不希望这个事件被立刻解决，不然明天的头条又要使他们绞尽脑汁。</speak10>
+      <sepak11>最近他们甚至开始煽动舆论来质问你的调查能力。</sepak11>
+      <speak12>不过，“目前没有人员伤亡，受害的只有人们饲养的畜口”，对你来说，这是现在唯一的好消息。</speak12>
+      <speak13>但人里已完全被一股不安的氛围所笼罩....</speak13>
+      <speak14>只要一天没有抓住凶手，这份不安就不会消散，天狗们漫天的号外也不会停止。</speak14>
+      <speak15>毕竟谁也不知道，凶手下一个目标是“畜口”，还是会变成“人类”....</speak15>
+      <speak16>相比这些，更糟糕的是——</speak16>
+      <speak17>这三天没有一个参拜客前来参拜神社，</speak17>
+      <speak18>塞钱箱里每天也只能收获几片落叶。</speak18>
+      <speak19>......</speak19>
+      <speak20>想到这你不禁在心里咒骂起来。</speak20>
+      <speak21>事实上，这三天你几乎就没有休息，</speak21>
+      <speak22>每天四处奔走寻找线索...</speak22>
+      <speak23>今天依旧一无所获，毫无头绪...</speak23>
+      <speak24>你也知道，再这样下去，人们的“信仰”将消失殆尽。</speak24>
+      <speak25>但现在，你实在太累了，需要好好休息一下......</speak25>
+      <speak26>伴随着几天以来的疲惫，你很快进入了梦乡....</speak26>
+      <speak27>美好的一天</speak27>
+      <speak28>繁华的人里</speak28>
+      <speak29>勤奋劳作的人们...</speak29>
+      <sepak30>你置身人里的街道。</sepak30>
+      <speak31>每个经过你身边的村民都会停下脚步，向你问好。</speak31>
+      <speak32>他们的话语中充满了对你的尊敬，眼神中透露着对你的信仰————</speak32>
+      <speak33>与现实中的质疑与不安不同。</speak33>
+      <speak34>梦里飘渺的信仰使你紧绷的精神稍感舒缓，心灵也得以在这几天的质疑声中略得藉慰。</speak34>
+      <speak35>（压力检测）*Pressure</speak35>
+      <speak36>几天积累的压力在梦中得以舒缓....</speak36>
+      <speak37>伴随着梦中的喧闹，你陶醉在了其中...</speak37>
+      <sepak38>......</sepak38>
+      <speak39>.....</speak39>
+      <speak40>等等！</speak40>
+      <speak41>（灵感检测）*Idea</speak41>
+    </Speak>
+  </StoryData>
 </Story>
 

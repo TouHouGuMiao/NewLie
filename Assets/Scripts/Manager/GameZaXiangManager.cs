@@ -21,6 +21,16 @@ public class GameZaXiangManager
 
     public void ShowCover()
     {
+        CoverPanel.duration = 2;
+        CoverPanel.needAuteHide = true;
+        GUIManager.ShowView("CoverPanel");
+      
+    }
+
+    public void ShowCover(float time,bool neddAuteHide)
+    {
+        CoverPanel.duration = time;
+        CoverPanel.needAuteHide = neddAuteHide;
         GUIManager.ShowView("CoverPanel");
     }
 }

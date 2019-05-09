@@ -58,11 +58,6 @@ public class InventoryPanel : IView
     #region 
 
 
-    private void OnItemHandBtnClick()
-    {
-        BattleCommoUIManager.Instance.ChangeBulletType(m_ItemData.id, m_ItemData.num.ToString());
-        PlayerControl.Instace.bulletPrefab = ResourcesManager.Instance.LoadBullet(m_ItemData.bulletName);
-    }
 
     private void OnChildItemClick_Go(GameObject go)
     {
@@ -209,11 +204,11 @@ public class InventoryPanel : IView
     {
         EventDelegate ItemBtnEvent = new global::EventDelegate(OnItemBtnClick);
         EventDelegate materialEvent = new global::EventDelegate(OnMaterialBtnClick);
-        EventDelegate ItemHandEvent = new global::EventDelegate(OnItemHandBtnClick);
+
 
         itemBtn.onClick.Add(ItemBtnEvent);
         materialBtn.onClick.Add(materialEvent);
-        itemHandBtn.onClick.Add(ItemHandEvent);
+
     }
 
 

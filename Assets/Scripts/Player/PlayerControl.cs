@@ -238,37 +238,6 @@ public class PlayerControl : CharacterPropBase {
 #region 动画帧事件
 
 
-public void UseAttack()
-    {
-        string name = bulletPrefab.name;
-        ItemData data = ItemDataManager.Instance.GetItemDataByBulletName(name);
-        if (name != "initBullet")
-        {
-           
-            if (data.num <= 0)
-            {
-                m_Animator.SetBool("Attack", false);
-                return;
-            }
-        }
- 
-        if (bulletPrefab == null)
-        {
-            Debug.LogError("bulletPrefab is null");
-            return;
-        }
- 
-        if (name != "initBullet")
-        {  
-            ItemDataManager.Instance.CutMaterialToHasMaterialList(data);
-            BattleCommoUIManager.Instance.ChangeBulletType(data.id,data.num.ToString());
-        }
-        GameObject go = Instantiate(bulletPrefab);
-        go.transform.position = this.transform.Find("firePoint").transform.position;
-        m_Animator.SetBool("Attack", false);
-    }
-
-
 
 
     #endregion
@@ -400,43 +369,10 @@ public void UseAttack()
     }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("NPC"))
-        {
-            BattleCommoUIManager.Instance.speakLabelAlpha.gameObject.SetActive(false);
-        }
-
-    }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("specialBullet"))
-        {
-            int id = CommonHelper.Str2Int(collision.gameObject.name);
-            ItemData data = ItemDataManager.Instance.GetItemDataByID(id);
-            List<ItemData> dataList = ItemDataManager.Instance.GetHasItemList();
-            ItemDataManager.Instance.AddItemToHasMaterialList(data);
-            Destroy(collision.gameObject);
-        }
 
-        if (collision.transform.name == "Stage0Scene2")
-        {
-            BattleCamera.Instance.isRightStop = false;
-            BattleCamera.Instance.isLeftStop = false;
-            BattleCommoUIManager.Instance.ShowBlackShade();
-            transform.position = new Vector3(-4.4f, -13.85f, 0);
-        }
-
-        if (collision.transform.name == "Stage0Scene3")
-        {
-            BattleCamera.Instance.isRightStop = false;
-            BattleCamera.Instance.isLeftStop = false;
-            BattleCommoUIManager.Instance.ShowBlackShade();
-            transform.position = new Vector3(-4.4f, -23.9f, 0);
-        }
-    }
+   
 
 
     private void OnParticleCollision(GameObject other)

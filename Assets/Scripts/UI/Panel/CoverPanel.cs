@@ -5,7 +5,8 @@ using UnityEngine;
 public class CoverPanel : IView
 {
     private TweenAlpha ta;
-
+    public static float duration=0;
+    public static bool needAuteHide = true;
     public CoverPanel()
     {
         m_Layer = Layer.CoverUI;
@@ -19,8 +20,10 @@ public class CoverPanel : IView
 
     protected override void OnShow()
     {
+        ta.enabled = true;
+        ta.duration = duration;
         ta.ResetToBeginning();
-        ta.enabled=true;
+     
     }
 
     protected override void OnDestroy()
@@ -36,6 +39,10 @@ public class CoverPanel : IView
 
     void HidePanel()
     {
+        if (!needAuteHide)
+        {
+            return;
+        }
         GUIManager.HideView("CoverPanel");
     }
 

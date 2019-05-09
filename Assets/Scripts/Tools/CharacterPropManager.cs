@@ -2,13 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void PropEventDelegate();
+
+public enum PropType
+{
+    Stature,
+    Power,
+    VIT,
+    Lucky,
+    IQ,
+    SkillPoint,
+    Money,
+    Idea,
+    WeiYan,
+    preesure,
+}
 /// <summary>
 /// 本类用来管理人物的属性值
 /// </summary>
 public class CharacterPropManager
 {
     private static CharacterPropManager _Instance = null;
-
+    
     public static CharacterPropManager Instance
     {
         get
@@ -16,67 +31,46 @@ public class CharacterPropManager
             if (_Instance == null)
             {
                 _Instance = new CharacterPropManager();
+                _Instance.Init();
             }
 
             return _Instance;
         }
     }
 
+    
+
+    private CharacterPropBase playerCurrentProp = new CharacterPropBase();
 
     public Dictionary<string,CharacterPropBase> CharacterPropDic=new Dictionary<string, CharacterPropBase> ();
+    public PropEventDelegate OnPropChangeFished=null;
 
-    public void InitCharacterDic()
+    public CharacterPropBase GetPlayerProp()
     {
-        GameObject reimuPrefab = null;
-        string path = "characters/reimu";
-        reimuPrefab = Resources.Load(path, typeof(GameObject)) as GameObject;
+        CharacterPropBase characterPropBase = new CharacterPropBase();
+        characterPropBase.preesure = 20;
+        return characterPropBase;
+    }  
 
-        if (reimuPrefab == null)
-        {
-            Debug.LogError("remimuPrefab is null");
-            return;
-        }
-
-        CharacterPropBase reimuProBase = reimuPrefab.GetComponent<CharacterPropBase>();
-        if (reimuProBase == null)
-        {
-            Debug.LogError("reimuProBase is null");
-            return;
-        }
-        CharacterPropDic.Add("reimu", reimuProBase);
-
-
-        GameObject marisaPrefab = null;
-        path = "characters/marisa";
-        marisaPrefab = Resources.Load(path, typeof(GameObject)) as GameObject;
-
-        if (marisaPrefab == null)
-        {
-            Debug.LogError("marisaPrefab is null");
-            return;
-        }
-
-        CharacterPropBase marisaProBase = marisaPrefab.GetComponent<CharacterPropBase>();
-        if (marisaProBase == null)
-        {
-            Debug.LogError("marisaProBase is null");
-            return;
-        }
-        CharacterPropDic.Add("marisa", marisaProBase);
+    public void Init()
+    {
+        playerCurrentProp.preesure = 10;
     }
 
-    public CharacterPropBase GetCharcaterDataByName(string name)
+    public CharacterPropBase GetPlayerCureentProp()
     {
-        CharacterPropBase data = null;
-
-        if(!CharacterPropDic.TryGetValue(name,out data))
-        {
-            Debug.LogError(name + "not in dic!");
-            return null;
-        }
-
-        return data;
-
+        return playerCurrentProp;
     }
+
+    public void ChangePlayerCurrentProp(PropType type,float value,PropEventDelegate hander)
+    {
+        if(type== PropType.preesure)
+        {
+            playerCurrentProp.preesure = value;
+            BattleUIPanel.ShowChangePressureSlider(hander);
+        }
+    }
+
+
 
 }

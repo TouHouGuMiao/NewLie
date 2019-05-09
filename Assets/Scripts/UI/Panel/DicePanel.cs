@@ -6,6 +6,9 @@ using UnityEngine;
 public class DicePanel : IView
 {
     public static int diceValue=10;
+    public static bool isPlural = false;
+    private List<DiceHander> diceHanderList = new List<DiceHander>();
+    private int[] diceValueArrary;
     public static DiceHander OnDiceRotateFished;
     private GameObject card;
     private GameObject Container;

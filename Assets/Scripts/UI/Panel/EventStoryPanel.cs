@@ -18,7 +18,8 @@ public class EventStoryPanel : IView
     private StoryHander lastHander=null;
     private Transform cardWidget;
 
-
+    private GameObject bg_GameObject;
+    
     private StoryData curData = new StoryData ();
 
     private TypewriterEffect writer;
@@ -31,7 +32,7 @@ public class EventStoryPanel : IView
     /// </summary>
 
 
-
+   
     private string addText = null;
 
     private static GameObject eventStoryPanel;
@@ -59,26 +60,71 @@ public class EventStoryPanel : IView
         cardWidget = this.GetChild("CardWidget");
         writer = speakLabel.GetComponent<TypewriterEffect>();
         eventStoryPanel = GUIManager.FindPanel("EventStoryPanel");
+        bg_GameObject = this.GetChild("BG").gameObject;
     }
 
 
 
     protected override void OnShow()
     {
-        for (int i = 0; i < cardWidget.transform.childCount; i++)
-        {
-            GameObject go = cardWidget.transform.GetChild(i).gameObject;
-            GameObject.Destroy(go);
-        }
 
-        if (data != null)
+        if (bg_GameObject.activeSelf && !data.SpeakList[data.index].Contains("*"))
         {
-            GameObject card = GameObject.Instantiate(ResourcesManager.Instance.LoadEventCard(data.modelName));
-            card.name = data.name;
-            card.transform.SetParent(cardWidget, false);
-            card.transform.localPosition = new Vector3(-11.09f, 2.27f, 26.2f);
+
             ShowTextAfterTp();
+
         }
+        else
+        {
+            for (int i = 0; i < cardWidget.transform.childCount; i++)
+            {
+                GameObject go = cardWidget.transform.GetChild(i).gameObject;
+                GameObject.Destroy(go);
+            }
+
+            if (data != null)
+            {
+                bool isSkillCheck = false;
+                string modelName = data.modelName;
+                if (data.SpeakList[data.index].Contains("*"))
+                {
+                    string[] sArray = data.SpeakList[data.index].Split('*');
+                    modelName = sArray[1];
+                    isSkillCheck = true;
+                }
+                GameObject card = GameObject.Instantiate(ResourcesManager.Instance.LoadEventCard(modelName));
+                card.name = data.name;
+                card.transform.SetParent(cardWidget, false);
+                TweenPosition tp = card.AddComponent<TweenPosition>();
+
+                if (isSkillCheck)
+                {
+                    card.transform.localPosition = new Vector3(0, -15f, 10f);
+                    tp.from = new Vector3(0, -15f, 10.0f);
+                    tp.to = new Vector3(-11.09f, 2.27f, 26.2f);
+                    TweenRotation tr = card.GetComponent<TweenRotation>();
+                    tr.enabled = true;
+                    tr.from = new Vector3(0, 0, 0);
+                    tr.to = new Vector3(0, 116, 0);
+           
+                    tr.ResetToBeginning();
+                }
+
+                else
+                {
+                    card.transform.localPosition = new Vector3(-20.0f, 2.27f, 26.2f);
+                    tp.from = new Vector3(-20.0f, 2.27f, 26.2f);
+                    tp.to = new Vector3(-11.09f, 2.27f, 26.2f);
+                }
+                tp.enabled = true;
+                tp.onFinished.Clear();
+                tp.ignoreTimeScale = false;
+                tp.duration = 1.0f;
+                tp.onFinished.Add(new EventDelegate(ShowTextAfterTp));
+                tp.ResetToBeginning();
+            }
+        }
+     
        
     }
 
@@ -89,6 +135,7 @@ public class EventStoryPanel : IView
 
     protected override void OnHide()
     {
+        bg_GameObject.SetActive(false);
         lastHander = null;
         speakLabel.text = "";
         speakLabel.enabled = false;
@@ -143,6 +190,11 @@ public class EventStoryPanel : IView
             //    eventSpriteName = dataList[0].spriteName;
             //}
             string text = data.SpeakList[data.index];
+            if (text.Contains("*"))
+            {
+                string[] sArrary = text.Split('*');
+                text = sArrary[0];
+            }
             if (text.Length > 60)
             {
                 
@@ -166,8 +218,18 @@ public class EventStoryPanel : IView
         //    speakLabel.text = text;
 
         //}
+        if(bg_GameObject.activeSelf==false )
+        {
+            bg_GameObject.SetActive(true);
+            TweenAlpha ta = bg_GameObject.GetComponent<TweenAlpha>();
+            ta.enabled = true;
+            ta.ResetToBeginning();
+          
+        }
         writer.ResetToBeginning();
         IEnumeratorManager.Instance.StartCoroutine(SetAcitveSpeakLabel_Delay());
+        curData = data;
+
     }
 
 

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public enum SkillType
@@ -21,7 +21,7 @@ public class Skill
         cardPrefab = ResourcesManager.Instance.LoadNomalCard(modelName);
     }
     public int point;
-
+    public static int CanUsePoints=80;
     public GameObject cardPrefab;
     public bool canUse=false;
 }
@@ -45,6 +45,10 @@ public class SkillData
 
     public string ModelName
     {
+        get;
+        set;
+    }
+     public int SkillPoints {
         get;
         set;
     }

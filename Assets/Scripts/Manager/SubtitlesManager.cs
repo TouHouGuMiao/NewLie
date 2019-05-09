@@ -172,8 +172,13 @@ public class SubtitlesManager
         data1.SubtitlesDic.Add(45, CreatCharacter_WeiYan0);
 
         data1.SubtitlesDic.Add(47, CreatCharacter_WeiYanReslut);
-    }
 
+        
+     
+    }
+    #region 车技能
+   
+  #endregion
 
     #region 车角色卡
     void CreatCharacter_Stature0()
@@ -408,6 +413,7 @@ public class SubtitlesManager
 
     #endregion
 }
+
 
 public class SubtitlesData
 {

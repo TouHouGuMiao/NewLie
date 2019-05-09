@@ -84,5 +84,15 @@
       <speak47>正在进行威严鉴定...</speak47>
    </Speak>
   </SubtitlesData>
+<SubtitlesData>
+  <id>2</id>
+  <name>初始车技能点</name>
+  <index>0</index>
+  <cout>2</cout>
+  <Speak>
+  <speak0>那么，开始决定你的专属技能吧</speak0>
+  <speak1></speak1>
+  </Speak>
+</SubtitlesData>
 </Subtitles>
 

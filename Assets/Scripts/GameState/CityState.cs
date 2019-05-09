@@ -8,7 +8,7 @@ public class CityState : GameState
     protected override void OnStart()
     {
         XMLDataManager.Instance.LoadXmlData();
-        GUIManager.ShowView("GameHelpPanel");
+       // GUIManager.ShowView("GameHelpPanel");
     }
 
     protected override void OnStop()

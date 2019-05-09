@@ -111,10 +111,14 @@ public class LoginPanel : IView
     void OnLoginBtnClick()
     {
         AudioManager.Instance.CloseBg_Source(); 
-        GameStateManager.LoadScene(4);
+
+        GameStateManager.LoadScene(2);//车人场景是2
+        //GameStateManager.LoadScene(4);
         GUIManager.ShowView("LoadingPanel");
-        LoadingPanel.LoadingName = "BattleUIPanel";
+        //LoadingPanel.LoadingName = "BattleUIPanel";
+        LoadingPanel.LoadingName = "PlayerPanel";
     }
+
 
     private List<Transform> m_PicList=new List<Transform> ();
     void OnLoginBtnHover(){//鼠标悬浮选项放大的事件

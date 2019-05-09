@@ -62,6 +62,7 @@ public class SurePropertyPanel : IView {
     private static GameObject cardWidget;
     private Transform expressWidget;
     private Transform playerPropResultWidget;
+    private UIButton endBtn;
 
     private static UILabel fristDice;
     private static UILabel secondDice;
@@ -143,6 +144,7 @@ public class SurePropertyPanel : IView {
         UIButton IQBtn = IQLabel.transform.Find("IQButton").GetComponent<UIButton>();
         UIButton luckyBtn = luckyLabel.transform.Find("luckyButton").GetComponent<UIButton>();
         UIButton weiYanBtn = weiYanLabel.transform.Find("weiYanButton").GetComponent<UIButton>();
+        endBtn = this.GetChild("EndBtn").GetComponent<UIButton>();
         fristDice = this.GetChild("fristDice").gameObject.GetComponent<UILabel>();
         secondDice = this.GetChild("secondDice").gameObject.GetComponent<UILabel>();
         thridDice = this.GetChild("thridDice").gameObject.GetComponent<UILabel>();
@@ -153,6 +155,7 @@ public class SurePropertyPanel : IView {
         IQBtn.onClick.Add(new EventDelegate(OnPropLabelWidgetBtnClick));
         luckyBtn.onClick.Add(new EventDelegate(OnPropLabelWidgetBtnClick));
         weiYanBtn.onClick.Add(new EventDelegate(OnPropLabelWidgetBtnClick));
+        endBtn.onClick.Add(new EventDelegate(OnClickEndBtn));
         statureCard = cardWidget.transform.Find("StatureCard").gameObject;
     }
      
@@ -454,6 +457,7 @@ public class SurePropertyPanel : IView {
         AudioManager.Instance.PlayEffect_Source("cardMove");
         if (IQ_Prop != 0 && stature_Prop != 0 && power_Prop != 0 && VIT_Prop != 0 && weiYan_Prop != 0 && lucky_Prop != 0)
         {
+            endBtn.gameObject.SetActive(true);
             cardWidget.gameObject.SetActive(false);
             playerPropResultWidget.gameObject.SetActive(true);
         }
@@ -859,6 +863,10 @@ public class SurePropertyPanel : IView {
             thridDice.text = "?";
             dice3 = 10;
         }
+    }
+    void OnClickEndBtn() {
+        GUIManager.HideView("SurePropertyPanel");
+        GUIManager.ShowView("SkillPanel");
     }
 
     public static void StatureCardBtnClick_ToSubtitles_0()

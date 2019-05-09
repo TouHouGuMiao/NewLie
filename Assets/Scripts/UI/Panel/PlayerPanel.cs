@@ -90,11 +90,13 @@ public class PlayerPanel : IView
 
     void OnSpeakPanelClick()
     {
-        if (islegal)
+        if (!islegal)
         {
             GUIManager.ShowView("CoverPanel");
             GUIManager.HideView("PlayerPanel");
-            GUIManager.ShowView("SurePropertyPanel");
+            //GUIManager.ShowView("SurePropertyPanel");
+           GUIManager.ShowView("SkillPanel");
+          
             //StoryEventManager.Instance.ShowEventPanel_ChapterOne(1, 0);
             //GameStateManager.LoadScene(4);
         }
@@ -122,80 +124,104 @@ public class PlayerPanel : IView
         }
     }
     private bool islegal = false;
+    void showError() {
+        if (errorSprite.activeInHierarchy == false)
+        {
+            errorSprite.SetActive(true);
+            islegal = true;
+            return;
+        }
+    }
+   
     void OnSubmit()
     {
         playerName = input.value;
-        bool isChinese_s = isChinese();
-        bool isEnglish_s = isEnglish();
+        bool isChinese_s = IsChinese();
+        bool isEnglish_s = IsEnglish();
+        bool isEmpty_s = IsEmptyName();
+        
         if (isChinese_s)
-        {          
-            if (playerName.Length <= 5 && (!playerName.Contains("灵梦")))
-            {
-               
-                if (succeseSprite.activeInHierarchy == false)
-                {
-                    succeseSprite.SetActive(true);
-                    islegal = true;
-                }
-            }
-            else
-            {
-                //Debug.LogError("重新再注册");
-                if (errorSprite.activeInHierarchy == false)
-                {
-                    errorSprite.SetActive(true);
-                    islegal = false;
-                    return;
-                }
-            }
-        }
-        else if (isEnglish_s)
         {
-            if (playerName.Length <= 6 && (!playerName.Contains("reimu")) && (!playerName.Contains("Reimu")))
+            if (isEmpty) {
+                Debug.LogError("cuuu");
+                showError();
+                return;
+            }
+        else if (playerName.Length <= 5 && (!playerName.Contains("灵梦")) && (!playerName.Contains("博丽")))
             {
+
                 if (succeseSprite.activeInHierarchy == false)
                 {
                     succeseSprite.SetActive(true);
-                    islegal = true;
-                }
-            }
-            else
-            {
-                if (errorSprite.activeInHierarchy == false)
-                {
-                    errorSprite.SetActive(true);
                     islegal = false;
-                    return;
                 }
             }
-        }
+        
+
         else
         {
-            Debug.Log(1111);
-            Debug.Log(playerName.Length);
-            
-                if ((!playerName.Contains("灵梦")) && (!playerName.Contains("reimu")) && (!playerName.Contains("Reimu"))&&playerName.Length<=6)
+            //Debug.LogError("重新再注册");
+            if (errorSprite.activeInHierarchy == false)
+            {
+                errorSprite.SetActive(true);
+                islegal = true;
+                return;
+            }
+        }
+    }     
+        else if (isEnglish_s)
+        {
+             if (isEmpty)
+            {
+                Debug.LogError("cuuu");
+                showError();
+                return;
+            }
+            else if (playerName.Length <= 6 &&(!playerName.Contains("reimu")) && (!playerName.Contains("Reimu")))
+            {
+                if (succeseSprite.activeInHierarchy == false)
                 {
-                
                     succeseSprite.SetActive(true);
-                    islegal = true;
-                    Debug.Log("111");
+                    islegal = false;
                 }
-            
-
-            
-                if (playerName.Contains("灵梦") || playerName.Contains("reimu") || playerName.Contains("Reimu"))
+            }
+            else
+            {
+                if (errorSprite.activeInHierarchy == false)
                 {
-                    if (errorSprite.activeInHierarchy == false)
-                    {
-                        errorSprite.SetActive(true);
-                        islegal = false;
-                        Debug.Log("222");
-                        return;
-                    }
-
+                    errorSprite.SetActive(true);
+                    islegal = true;
+                    return;
                 }
-            
+            }
+        }          
+       else
+        {
+            if (isEmpty)
+            {
+                Debug.LogError("cuuu");
+                showError();
+                return;
+            }
+            else if ((!playerName.Contains("灵梦")) && (!playerName.Contains("reimu")) && (!playerName.Contains("Reimu")) && playerName.Length <= 6)
+            {
+
+                succeseSprite.SetActive(true);
+                islegal = false;
+                Debug.Log("111");
+            }
+            if (playerName.Contains("灵梦") || playerName.Contains("reimu") || playerName.Contains("Reimu"))
+            {
+                if (errorSprite.activeInHierarchy == false)
+                {
+                    errorSprite.SetActive(true);
+                    islegal = true;
+                    Debug.Log("222");
+                    return;
+                }
+
+            }
+
         }
     }
        // Debug.Log("名字真好听");   
@@ -210,8 +236,14 @@ public class PlayerPanel : IView
     }
     private bool isAllChinese = false;
     private bool isAllEnglish = false;
-    bool isChinese() {
+    private bool isAllBlank = false;
+    private bool isEmpty = false;
+    bool IsChinese() {
         char[] textArry = playerName.ToCharArray();
+        if (textArry.Length == 0) {
+            isAllChinese = false;
+            return isAllChinese;
+        }
         for (int i = 0; i < textArry.Length; i++) {
             if (textArry[i] >= 0x4e00 && textArry[i] <= 0x9fbb)
             {
@@ -224,9 +256,14 @@ public class PlayerPanel : IView
         }
         return isAllChinese;
     }
-    bool isEnglish()
+    bool IsEnglish()
     {
         char[] textArry = playerName.ToCharArray();
+        if (textArry.Length == 0)
+        {
+            isAllEnglish = false;
+            return isAllEnglish;
+        }
         for (int i = 0; i < textArry.Length; i++)
         {
             if ((textArry[i] >= 'a' && textArry[i] <= 'z')||(textArry[i]>='A'&&textArry[i]<='Z'))
@@ -240,5 +277,36 @@ public class PlayerPanel : IView
             }
         }
         return isAllEnglish;
+    }
+    bool IsBlank() {
+        char[] textArry = playerName.ToCharArray();
+        if (textArry.Length == 0)
+        {
+            isAllBlank = false;
+            return isAllBlank;
+        }
+        for (int i = 0; i < textArry.Length; i++) {
+            if (textArry[i] == ' ')
+            {
+               isAllBlank = true;
+            }
+            else {
+                isAllBlank = false;
+                return isAllBlank;
+            }
+        }
+        return isAllBlank;
+    }
+    bool IsEmptyName() {
+        char[] textArry = playerName.ToCharArray();
+        if (textArry.Length == 0)
+        {
+            isEmpty = true;
+            return isEmpty;
+        }
+        else {
+            isEmpty = false;
+        }
+        return isEmpty;
     }
 }

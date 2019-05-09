@@ -80,6 +80,7 @@ public class UIButton : UIButtonColor
         add_button,
         minus_button
     }
+   
     public button_Class button_type;
     // Cached value
     [System.NonSerialized] UISprite mSprite;

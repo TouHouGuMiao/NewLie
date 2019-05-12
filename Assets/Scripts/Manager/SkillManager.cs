@@ -67,6 +67,50 @@ public class SkillManager
         Skill s5 = new Skill(data5.ID, data5.Name, data5.Des, data5.ModelName);
         m_SkillDataDic.Add(data5.ID, s5);
 
+        SkillData data6 = new SkillData();
+        data6.ID = 6;
+        data6.Name = "妖怪学";
+        data6.Des = "对妖怪的了解程度";
+        data6.ModelName = "name";
+        data6.SkillPoints = 0;
+        Skill s6 = new Skill(data6.ID, data6.Name, data6.Des, data6.ModelName);
+        m_SkillDataDic.Add(data6.ID, s6);
+
+        SkillData data7 = new SkillData();
+        data7.ID = 7;
+        data7.Name = "图书馆使用";
+        data7.Des = "对幻想乡的常识和为少数人知道的知识的掌握";
+        data7.ModelName = "name";
+        data7.SkillPoints = 0;
+        Skill s7 = new Skill(data7.ID, data7.Name, data7.Des, data7.ModelName);
+        m_SkillDataDic.Add(data7.ID, s7);
+
+        SkillData data8 = new SkillData();
+        data8.ID = 8;
+        data8.Name = "跟踪";
+        data8.Des = "某些特殊时候会起到意想不到的作用";
+        data8.ModelName = "name";
+        data8.SkillPoints = 0;
+        Skill s8 = new Skill(data8.ID, data8.Name, data8.Des, data8.ModelName);
+        m_SkillDataDic.Add(data8.ID, s8);
+
+        SkillData data9 = new SkillData();
+        data9.ID = 9;
+        data9.Name = "急救";
+        data9.Des = "在关键的时候能使自己免于失血过多死亡";
+        data9.ModelName = "name";
+        data9.SkillPoints = 0;
+        Skill s9 = new Skill(data9.ID, data9.Name, data9.Des, data9.ModelName);
+        m_SkillDataDic.Add(data9.ID, s9);
+
+        SkillData data10 = new SkillData();
+        data10.ID = 10;
+        data10.Name = "心理学";
+        data10.Des = "与人交谈时有一定几率洞穿对话者的真实意图";
+        data10.ModelName = "name";
+        data10.SkillPoints = 0;
+        Skill s10 = new Skill(data10.ID, data10.Name, data10.Des, data10.ModelName);
+        m_SkillDataDic.Add(data10.ID, s10);
     }
     public Dictionary<int,Skill> GetSkillDataInDic() {
         Dictionary<int,Skill> SkillDataDic = new Dictionary<int, Skill>();

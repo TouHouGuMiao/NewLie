@@ -38,4 +38,6 @@ public class CharacterPropBase:MonoBehaviour
     /// 威严
     /// </summary>
     public int WeiYan;
+
+    public float preesure;
 }

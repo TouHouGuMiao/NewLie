@@ -26,7 +26,8 @@ public class CGPanel : IView
     private UITexture mainCG;
     public static Texture2D CGTexutre;
     private Camera camera;
-
+    private Transform cover;
+    public static bool isNeedBlackCover=false;
     public CGPanel()
     {
         m_Layer = Layer.normal;
@@ -36,7 +37,7 @@ public class CGPanel : IView
     {
         mainCG = this.GetChild("MainCG").GetComponent<UITexture>();
         cgPanel = GUIManager.FindPanel("CGPanel");
-     
+        cover = this.GetChild("Cover");
     }
 
     protected override void OnShow()
@@ -44,10 +45,19 @@ public class CGPanel : IView
         if (camera == null)
         {
             camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
-            camera.gameObject.SetActive(false);
+    
         }
-
-        mainCG.mainTexture = CGTexutre;
+        if (isNeedBlackCover)
+        {
+            cover.gameObject.SetActive(true);
+            return;
+        }
+        else
+        {
+            cover.gameObject.SetActive(false);
+            mainCG.mainTexture = CGTexutre;
+        }
+      
         //mainCG.MakePixelPerfect();
     }
 
@@ -59,6 +69,7 @@ public class CGPanel : IView
     protected override void OnHide()
     {
         camera.gameObject.SetActive(true);
+        isNeedBlackCover = false; 
     }
 
     public override void Update()

@@ -29,7 +29,7 @@ public class DiceManager
     }
 
     /// <summary>
-    /// 第一个参数为骰子的面数，目前分为六面，十面
+    /// 第一个参数为骰子的面数，目前分为四面，六面，十面
     /// </summary>
     /// <param name="diceType"></param>
     /// <param name="rate"></param>
@@ -43,6 +43,11 @@ public class DiceManager
         else if (diceType == 10)
         {
             DiceNumerArray = GetIndexRandomNum(0, 9);
+        }
+
+        else if (diceType == 4)
+        {
+            DiceNumerArray = GetIndexRandomNum(1, 4);
         }
         DicePanel.DiceNumerArray = DiceNumerArray;
         DicePanel.rate = rate;

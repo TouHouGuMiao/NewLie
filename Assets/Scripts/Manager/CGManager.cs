@@ -29,9 +29,15 @@ public class CGManager
     {
         Texture2D texture = ResourcesManager.Instance.LoadCG(name);
         CGPanel.CGTexutre = texture;
+        CGPanel.isNeedBlackCover = false;
         GUIManager.ShowView("CGPanel");
     }
 
+    public void ShowBlackCover()
+    {
+        CGPanel.isNeedBlackCover = true;
+        GUIManager.ShowView("CGPanel");
+    }
 
     public void ChangeCG(string name)
     {

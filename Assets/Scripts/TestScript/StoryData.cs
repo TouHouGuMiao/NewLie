@@ -21,7 +21,7 @@ public class StoryData
 
     public int cout { get; set; }
 
-    public string spriteName { get; set; }
+    public string modelName { get; set; }
 
    
 }

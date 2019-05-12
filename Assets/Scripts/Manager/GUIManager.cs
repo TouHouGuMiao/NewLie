@@ -211,7 +211,7 @@ public static class GUIManager
         Transform child= panel.transform.FindRecursively(name);
         if (child == null)
         {
-            Debug.LogError("child is null");
+            Debug.LogError("child is null---"+name);
             return null;
         }
 

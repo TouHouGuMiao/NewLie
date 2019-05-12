@@ -9,8 +9,10 @@ public class AudioManager:MonoBehaviour
     public static AudioManager Instance;
     private AudioSource bg_Source;
     private AudioSource effect_Source;
+    private bool isEffectOnFished = false;
     private int dicIndex = 0;
     private Dictionary<int, KeyValuePair<float, AudioEventDelegate>> audioDelegateDic = new Dictionary<int, KeyValuePair<float, AudioEventDelegate>>();
+    public AudioEventDelegate OnEffectAudioPlayFinshed;
     private bool IsHnader
     {
         get
@@ -53,6 +55,7 @@ public class AudioManager:MonoBehaviour
         }
     }
 
+
     private void Awake()
     {
         Instance = this;
@@ -86,7 +89,30 @@ public class AudioManager:MonoBehaviour
             bg_Source.clip = clip;
             bg_Source.loop = isLoop;
             bg_Source.Play();
-            
+            bg_Source.volume = BgVolume;
+        }
+    }
+
+    public void PlayBg_Source(string name, bool isLoop,float fadeTime)
+    {
+        AudioClip clip = ResourcesManager.Instance.LoadAudioClip(name);
+        if (clip == null)
+        {
+            Debug.LogError("clip is null");
+            return;
+        }
+
+
+        if (clip != null)
+        {
+            audioDelegateDic.Clear();
+            dicIndex = 0;
+            bg_Source.clip = clip;
+            bg_Source.loop = isLoop;
+            bg_Source.volume = 0;
+            bg_Source.Play();
+       
+            FadeInBMG(fadeTime);
         }
     }
 
@@ -108,6 +134,27 @@ public class AudioManager:MonoBehaviour
 
         effect_Source.PlayOneShot(clip,effect_Source.volume);
     }
+
+    public void PlayEffect_Source(string name,AudioEventDelegate hander)
+    {
+        AudioClip clip = ResourcesManager.Instance.LoadAudioClip(name);
+        if (clip == null)
+        {
+            Debug.LogError("clip is null");
+            return;
+        }
+        if (clip != null)
+        {
+            effect_Source.clip = clip;
+            effect_Source.loop = false;
+            effect_Source.Play();
+            OnEffectAudioPlayFinshed = hander;
+            isEffectOnFished = true;
+        }
+
+    }
+
+
 
     public void PlayEffect_Source(string name,Vector3 position, float volume)
     {
@@ -135,15 +182,52 @@ public class AudioManager:MonoBehaviour
             Debug.LogError("bgmName has error,playerChenck,NowBGM is " + bg_Source.clip.name + "   InputBGMName is" + name);
             return;
         }
-
-        if (bg_Source.time > time)
-        {
-            Debug.LogError("needTime>bgmNowTime,playCheck!");
-            return;
-        }
+        //if (bg_Source.time > time)
+        //{
+        //    Debug.LogError("needTime>bgmNowTime,playCheck!");
+        //    return;
+        //}
         audioDelegateDic.Add(dicIndex,new KeyValuePair<float, AudioEventDelegate> (time,hander));
         dicIndex++;
     }
+
+    public void FadeOutBGM(float fadeTime)
+    {
+        IEnumeratorManager.Instance.StartCoroutine(FateOutBGM_IEnumerator(fadeTime));
+    }
+
+    IEnumerator FateOutBGM_IEnumerator(float fadeTime)
+    {
+        int count = (int)(fadeTime / 0.02f);
+        float rate = 1.0f / count;
+        float soundValue=BgVolume;
+        for (int i = 0; i < count; i++)
+        {
+            soundValue -= rate;
+            bg_Source.volume = soundValue;
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
+
+    private void FadeInBMG(float fadeTime)
+    {
+        IEnumeratorManager.Instance.StartCoroutine(FateInBGM_IEnumerator(fadeTime));
+    }
+
+    IEnumerator FateInBGM_IEnumerator(float fadeTime)
+    {
+        int count = (int)(fadeTime / 0.02f);
+        float rate = 1.0f / count;
+        float soundValue = 0;
+        for (int i = 0; i < count; i++)
+        {
+     
+            soundValue += rate;
+            bg_Source.volume = soundValue;
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
+
 
     private int index=100;
     private void Update()
@@ -169,6 +253,22 @@ public class AudioManager:MonoBehaviour
         {
             dicIndex = 0;
             audioDelegateDic.Clear();
+        }
+
+        if (effect_Source.clip != null)
+        {
+            if (isEffectOnFished)
+            {
+              
+                if (OnEffectAudioPlayFinshed != null)
+                {
+                    if (effect_Source.time >= (effect_Source.clip.length-0.1f))
+                    {
+                        OnEffectAudioPlayFinshed();
+                        isEffectOnFished = false;
+                    }      
+                }
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ public class PlayerControl : CharacterPropBase {
     public static PlayerState state = PlayerState.talk;
 
     public static PlayerControl Instace;
-    
+    public float speed;
 
     public GameObject bulletPrefab;
     private GameObject BagPanel;
@@ -62,10 +62,10 @@ public class PlayerControl : CharacterPropBase {
         //m_TP2 = yinYangYu2.GetComponent<TweenPosition>();
         m_HP = HP;
         //TPEffectSet();
-        WingmanData data = new WingmanData();
-        data.bulletName = "StarBullet";
-        data.tempTime = 0.5f;
-        WingmanManager.Instance.ShowWingman(data, 6);
+        //WingmanData data = new WingmanData();
+        //data.bulletName = "StarBullet";
+        //data.tempTime = 0.5f;
+        //WingmanManager.Instance.ShowWingman(data, 6);
         UpDataPlayerPro();
     }
 	
@@ -117,10 +117,10 @@ public class PlayerControl : CharacterPropBase {
             return;
         }
 
-        if (BattleCommoUIManager.Instance.IsBlackShade)
-        {
-            return;
-        }
+        //if (BattleCommoUIManager.Instance.IsBlackShade)
+        //{
+        //    return;
+        //}
         if (Input.GetKey(KeyCode.RightArrow))
         {
             if (Input.GetKey(KeyCode.LeftArrow))
@@ -128,32 +128,21 @@ public class PlayerControl : CharacterPropBase {
                 return;
             }
             this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, 0, this.transform.rotation.eulerAngles.z);
-            deltaTime += 1 * Time.deltaTime;
             AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
-            if (deltaTime >= 0.3f)
-            {
-                if (stateInfo.IsName("Base Layer.idle"))
-                {
-                    m_Animator.SetBool("move", true);
-                    m_Animator.SetBool("Move", true);
 
-                }
-            }
-            if (stateInfo.IsName("Base Layer.idle") || stateInfo.IsName("Base Layer.Move.MoveLoop") || stateInfo.IsName("Base Layer.Move.MoveBegin"))
+            if (stateInfo.IsName("Base Layer.loopIdle") || stateInfo.IsName("Base Layer.startIdle") || stateInfo.IsName("Base Layer.idle"))
             {
-                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * 5,Space.Self);
+                m_Animator.SetBool("isWalk", true);
             }
 
-
-
+            if (stateInfo.IsName("Base Layer.move"))
+            {
+                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
+            }
         }
 
-        else if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            m_Animator.SetBool("Move", false);
-            m_Animator.SetBool("move", false);
-            deltaTime = 0; 
-        }
+
+
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -163,38 +152,37 @@ public class PlayerControl : CharacterPropBase {
             }
             this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, 180, this.transform.rotation.eulerAngles.z);
             AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
-            deltaTime += 1 * Time.deltaTime;
-            if (deltaTime >= 0.3f)
+
+            if (stateInfo.IsName("Base Layer.loopIdle") || stateInfo.IsName("Base Layer.startIdle") || stateInfo.IsName("Base Layer.idle"))
             {
-                if (stateInfo.IsName("Base Layer.idle"))
-                {
-                    m_Animator.SetBool("move", true);
-                    m_Animator.SetBool("Move", true);
-                }
+                m_Animator.SetBool("isWalk", true);
             }
-         
-       
-                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * 5,Space.Self);
-            
-         
+
+            if (stateInfo.IsName("Base Layer.move"))
+            {
+                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
+            }
+
+
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+            {
+                return;
+            }
+            m_Animator.SetBool("isWalk", false);
         }
 
         else if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            m_Animator.SetBool("Move", false);
-            m_Animator.SetBool("move", false);
-            deltaTime = 0;
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+            {
+                return;
+            }
+            m_Animator.SetBool("isWalk", false);
         }
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        { 
-            transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * 5 ); ;
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * 5);
-        }
+    
 
         if (tempTime_Z < Time.time)
         {
@@ -248,37 +236,6 @@ public class PlayerControl : CharacterPropBase {
 
 
 #region 动画帧事件
-
-
-public void UseAttack()
-    {
-        string name = bulletPrefab.name;
-        ItemData data = ItemDataManager.Instance.GetItemDataByBulletName(name);
-        if (name != "initBullet")
-        {
-           
-            if (data.num <= 0)
-            {
-                m_Animator.SetBool("Attack", false);
-                return;
-            }
-        }
- 
-        if (bulletPrefab == null)
-        {
-            Debug.LogError("bulletPrefab is null");
-            return;
-        }
- 
-        if (name != "initBullet")
-        {  
-            ItemDataManager.Instance.CutMaterialToHasMaterialList(data);
-            BattleCommoUIManager.Instance.ChangeBulletType(data.id,data.num.ToString());
-        }
-        GameObject go = Instantiate(bulletPrefab);
-        go.transform.position = this.transform.Find("firePoint").transform.position;
-        m_Animator.SetBool("Attack", false);
-    }
 
 
 
@@ -412,43 +369,10 @@ public void UseAttack()
     }
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("NPC"))
-        {
-            BattleCommoUIManager.Instance.speakLabelAlpha.gameObject.SetActive(false);
-        }
-
-    }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("specialBullet"))
-        {
-            int id = CommonHelper.Str2Int(collision.gameObject.name);
-            ItemData data = ItemDataManager.Instance.GetItemDataByID(id);
-            List<ItemData> dataList = ItemDataManager.Instance.GetHasItemList();
-            ItemDataManager.Instance.AddItemToHasMaterialList(data);
-            Destroy(collision.gameObject);
-        }
 
-        if (collision.transform.name == "Stage0Scene2")
-        {
-            BattleCamera.Instance.isRightStop = false;
-            BattleCamera.Instance.isLeftStop = false;
-            BattleCommoUIManager.Instance.ShowBlackShade();
-            transform.position = new Vector3(-4.4f, -13.85f, 0);
-        }
-
-        if (collision.transform.name == "Stage0Scene3")
-        {
-            BattleCamera.Instance.isRightStop = false;
-            BattleCamera.Instance.isLeftStop = false;
-            BattleCommoUIManager.Instance.ShowBlackShade();
-            transform.position = new Vector3(-4.4f, -23.9f, 0);
-        }
-    }
+   
 
 
     private void OnParticleCollision(GameObject other)

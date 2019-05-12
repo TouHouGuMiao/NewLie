@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public enum SkillType
@@ -22,12 +22,8 @@ public class Skill
     }
     public int point;
     public static int CanUsePoints=80;
-    public virtual void Init()
-    {
-
-    }
-    private GameObject cardPrefab;
-    
+    public GameObject cardPrefab;
+    public bool canUse=false;
 }
 
 
@@ -52,7 +48,7 @@ public class SkillData
         get;
         set;
     }
-    public int SkillPoints {
+     public int SkillPoints {
         get;
         set;
     }

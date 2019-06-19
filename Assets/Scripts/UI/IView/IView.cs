@@ -13,6 +13,8 @@ public enum Layer
     System=60,
     Dice=70,
     Talk=80,
+    DiceCheck=90,
+    UseSkill=100,
 }
 
 public abstract  class IView

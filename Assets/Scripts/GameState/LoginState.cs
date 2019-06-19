@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +17,8 @@ public class LoginState : GameState
 
     protected override void OnLoadComplete(params object[] args)
     {
-       // GUIManager.ShowView("PlayerInfoPanel");
         GUIManager.ShowView("CoverPanel");
+
         //List<int> list = new List<int>();
         //list.Add(1);
         //list.Add(2);
@@ -30,10 +30,8 @@ public class LoginState : GameState
         //list.Add(8);
         //list.Add(9);
         //DiceManager.Instance.ShowDicePanel(list, 0.01f);
-        GUIManager.ShowView("BGStoryPanel");        
-        //GameStateManager.LoadScene(4);
-        //GUIManager.ShowView("BattleUIPanel");
-        // GUIManager.ShowView("BGStoryPanel");
+        //GUIManager.ShowView("BGStoryPanel");
+        GUIManager.ShowView("BGStoryPanel");
     }
 
 

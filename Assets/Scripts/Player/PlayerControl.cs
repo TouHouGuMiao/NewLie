@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +26,7 @@ public class PlayerControl : CharacterPropBase {
     private float tempTime_Z;
     private float tempTime_X;
 
-    private bool isOn;
+
 
     private Transform bulletCollider;
  
@@ -71,32 +71,18 @@ public class PlayerControl : CharacterPropBase {
 	
 	void Update ()
     {
-        //if (Input.GetKeyDown(KeyCode.Escape)&&SystemPanel.Bg_IsActive==false) {
+        if (Input.GetKeyDown(KeyCode.Escape)&&SystemPanel.Bg_IsActive==false) {
 
-        //    GUIManager.ShowView("SystemPanel");
-        //}
-        if (Input.GetKeyDown(KeyCode.Escape)&&isOn==false )
-        {
-            GUIManager.ShowView("SystemPanel");            
-            isOn = true;
-            
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isOn == true)
-        {
-            // GUIManager.HideView("BagPanel");
-            GUIManager.HideView("SystemPanel");
-            SystemPanel.Bg_IsActive = false;
-            isOn = false;            
+            GUIManager.ShowView("SystemPanel");
         }
         if (SystemPanel.Bg_IsActive==false)
         {
             CharacterControl();
         }
-        //if (Input.GetKeyDown(KeyCode.Escape) && SystemPanel.Bg_IsActive == true) {
-        //    GUIManager.HideView("BagPanel");
-        //    SystemPanel.Bg_IsActive = false;
-        //}
-       
+        if (Input.GetKeyDown(KeyCode.Escape) && SystemPanel.Bg_IsActive == true) {
+            GUIManager.HideView("BagPanel");
+            SystemPanel.Bg_IsActive = false;
+        }
         //YinYangYuControl();
         //UpDataPlayerPro();//测试用
     }
@@ -126,7 +112,7 @@ public class PlayerControl : CharacterPropBase {
         //    GUIManager.ShowView("SystemPanel");
         //}
 
-        if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak||CGPanel.IsCGPlay)
+        if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak||CGPanel.IsCGPlay||BattleCamera.Instance.isUseCamera)
         {
             return;
         }
@@ -338,6 +324,24 @@ public class PlayerControl : CharacterPropBase {
      
     }
 
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.CompareTag("Event"))
+        {
+            string name = other.gameObject.name;
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (EventStoryPanel.isEventSpeak || TalkPanel.isSpeak)
+                {
+                    return;
+                }
+                EventStateManager.Instance.GameEventTrigerManager(name);
+            }
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("NPC"))
@@ -358,16 +362,14 @@ public class PlayerControl : CharacterPropBase {
         if (other.CompareTag("Event"))
         {
             string name = other.gameObject.name;
-            int id = CommonHelper.Str2Int(name);
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (EventStoryPanel.isEventSpeak)
+                if (EventStoryPanel.isEventSpeak|| TalkPanel.isSpeak)
                 {
                     return;
                 }
-
-                StoryManager.Instacne.ShowEventStoryList(id);
+                EventStateManager.Instance.GameEventTrigerManager(name);            
             }
         }
 

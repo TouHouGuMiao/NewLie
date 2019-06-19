@@ -28,6 +28,7 @@ public class CGPanel : IView
     private Camera camera;
     private Transform cover;
     public static bool isNeedBlackCover=false;
+    public static float fadeDuration = 0;
     public CGPanel()
     {
         m_Layer = Layer.normal;
@@ -49,6 +50,11 @@ public class CGPanel : IView
         }
         if (isNeedBlackCover)
         {
+            TweenAlpha ta = cover.GetComponent<TweenAlpha>();
+            ta.enabled = true;
+            ta.from = 0 ;
+            ta.to = 1.0f;
+            ta.ResetToBeginning();
             cover.gameObject.SetActive(true);
             return;
         }

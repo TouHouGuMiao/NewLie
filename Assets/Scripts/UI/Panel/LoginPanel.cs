@@ -1,4 +1,3 @@
-﻿ 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -110,13 +109,14 @@ public class LoginPanel : IView
 
     void OnLoginBtnClick()
     {
-        AudioManager.Instance.CloseBg_Source(); 
+        AudioManager.Instance.CloseBg_Source();
 
-        GameStateManager.LoadScene(2);//车人场景是2
-       // GameStateManager.LoadScene(4);
+        /*GameStateManager.LoadScene(2)*/;//车人场景是2
+        GameStateManager.LoadScene(4);//stage0
         GUIManager.ShowView("LoadingPanel");
-        //LoadingPanel.LoadingName = "BattleUIPanel";
-        LoadingPanel.LoadingName = "PlayerPanel";
+        LoadingPanel.LoadingName = "BattleUIPanel";
+        //LoadingPanel.LoadingName = "SurePropertyPanel";
+        LoadingPanel.useCover = true;
     }
 
 
@@ -145,11 +145,6 @@ public class LoginPanel : IView
         Application.Quit();
 
     }
-    void OnClickSettingsBtn() {
-        GUIManager.HideView("LoginPanel");
-        GUIManager.ShowView("CoverPanel");
-        GUIManager.ShowView("SettingsPanel");
-    }
     void addDelegate() {
         EventDelegate OnLoginClick = new global::EventDelegate(OnLoginBtnClick);
         loginButton.onClick.Add(OnLoginClick);
@@ -160,9 +155,6 @@ public class LoginPanel : IView
 
         EventDelegate OnCloseBtn = new global::EventDelegate(OnCloseGameBtn);
         closeGameBtn.onClick.Add(OnCloseBtn);
-
-        EventDelegate OnSettingsBtn = new global::EventDelegate(OnClickSettingsBtn);
-        seetingsBtn.onClick.Add(OnSettingsBtn);
     }
 
     void ColorEgg()
@@ -325,6 +317,17 @@ public class LoginPanel : IView
 
 
 
-    
+    //void InitDimon() {
+    //    foreach (Transform child in m_PicList) {
+    //        GameObject go = GameObject.Find("Dimon");
+    //        GameObject go_Clone = GameObject.Instantiate(go);
+    //        go_Clone.transform.SetParent(gameChoice, false);
+    //        go_Clone.transform.localPosition = child.transform.localPosition + new Vector3(-950, -100, 0);
+
+    //        //GameObject.Instantiate(go, child.transform.localPosition+new Vector3(0,100,0), child.transform.localRotation);
+
+    //    }
+
+    //}
 }
  

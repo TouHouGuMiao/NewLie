@@ -12,7 +12,7 @@ public class SkillManager
             if (_instance == null)
             {
                 _instance = new SkillManager();
-                _instance.InitSkillData();
+                _instance.InitSkillData_1();
             }
             return _instance;
         }
@@ -38,7 +38,7 @@ public class SkillManager
         data2.ModelName = "name";
         data2.SkillPoints = 0;
         Skill s2 = new Skill(data2.ID, data2.Name, data2.Des, data2.ModelName);
-        m_SkillDataDic.Add(data2.ID, s2);
+        m_SkillDataDic.Add(data2.ID,s2);
 
         SkillData data3 = new SkillData();
         data3.ID = 3;
@@ -47,7 +47,7 @@ public class SkillManager
         data3.ModelName = "name";
         data3.SkillPoints = 0;
         Skill s3 = new Skill(data3.ID, data3.Name, data3.Des, data3.ModelName);
-        m_SkillDataDic.Add(data3.ID, s3);
+        m_SkillDataDic.Add(data3.ID,s3);
 
         SkillData data4 = new SkillData();
         data4.ID = 4;
@@ -56,7 +56,7 @@ public class SkillManager
         data4.ModelName = "name";
         data4.SkillPoints = 0;
         Skill s4 = new Skill(data4.ID, data4.Name, data4.Des, data4.ModelName);
-        m_SkillDataDic.Add(data4.ID, s4);
+        m_SkillDataDic.Add(data4.ID,s4);
 
         SkillData data5 = new SkillData();
         data5.ID = 5;
@@ -65,52 +65,10 @@ public class SkillManager
         data5.ModelName = "name";
         data5.SkillPoints = 0;
         Skill s5 = new Skill(data5.ID, data5.Name, data5.Des, data5.ModelName);
-        m_SkillDataDic.Add(data5.ID, s5);
+        m_SkillDataDic.Add(data5.ID,s5);
 
-        SkillData data6 = new SkillData();
-        data6.ID = 6;
-        data6.Name = "妖怪学";
-        data6.Des = "对妖怪的了解程度";
-        data6.ModelName = "name";
-        data6.SkillPoints = 0;
-        Skill s6 = new Skill(data6.ID, data6.Name, data6.Des, data6.ModelName);
-        m_SkillDataDic.Add(data6.ID, s6);
 
-        SkillData data7 = new SkillData();
-        data7.ID = 7;
-        data7.Name = "图书馆使用";
-        data7.Des = "对幻想乡的常识和为少数人知道的知识的掌握";
-        data7.ModelName = "name";
-        data7.SkillPoints = 0;
-        Skill s7 = new Skill(data7.ID, data7.Name, data7.Des, data7.ModelName);
-        m_SkillDataDic.Add(data7.ID, s7);
 
-        SkillData data8 = new SkillData();
-        data8.ID = 8;
-        data8.Name = "跟踪";
-        data8.Des = "某些特殊时候会起到意想不到的作用";
-        data8.ModelName = "name";
-        data8.SkillPoints = 0;
-        Skill s8 = new Skill(data8.ID, data8.Name, data8.Des, data8.ModelName);
-        m_SkillDataDic.Add(data8.ID, s8);
-
-        SkillData data9 = new SkillData();
-        data9.ID = 9;
-        data9.Name = "急救";
-        data9.Des = "在关键的时候能使自己免于失血过多死亡";
-        data9.ModelName = "name";
-        data9.SkillPoints = 0;
-        Skill s9 = new Skill(data9.ID, data9.Name, data9.Des, data9.ModelName);
-        m_SkillDataDic.Add(data9.ID, s9);
-
-        SkillData data10 = new SkillData();
-        data10.ID = 10;
-        data10.Name = "心理学";
-        data10.Des = "与人交谈时有一定几率洞穿对话者的真实意图";
-        data10.ModelName = "name";
-        data10.SkillPoints = 0;
-        Skill s10 = new Skill(data10.ID, data10.Name, data10.Des, data10.ModelName);
-        m_SkillDataDic.Add(data10.ID, s10);
     }
     public Dictionary<int,Skill> GetSkillDataInDic() {
         Dictionary<int,Skill> SkillDataDic = new Dictionary<int, Skill>();
@@ -169,7 +127,12 @@ public class SkillManager
     /// </summary>
     private Skill Listen;
 
+    /// <summary>
+    /// 灵感
+    /// </summary>
+    private Skill Idea;
 
+    private Skill Pressure;
     private Dictionary<int, Skill> SkillDic = new Dictionary<int, Skill>();
     private void InitSkillData_1()
     {
@@ -185,13 +148,18 @@ public class SkillManager
         Investigate.canUse = true;
         Listen = new Skill(5, "Listen", "", "Listen");
         Listen.canUse = true;
-
+        Idea = new Skill(6, "Idea", "", "Idea");
+        Idea.canUse = true;
+        Pressure = new Skill(7, "Pressure", "", "Pressure");
+        Pressure.canUse = true;
         SkillDic.Add(Placate.data.ID, Placate);
         SkillDic.Add(MonsterTheory.data.ID, MonsterTheory);
         SkillDic.Add(NaturalTheory.data.ID, NaturalTheory);
         SkillDic.Add(ThridEye.data.ID, ThridEye);
         SkillDic.Add(Investigate.data.ID, Investigate);
         SkillDic.Add(Listen.data.ID, Listen);
+        SkillDic.Add(Idea.data.ID, Idea);
+        SkillDic.Add(Pressure.data.ID, Pressure);
     }
 
     private Skill GetSkillById(int id)
@@ -217,8 +185,36 @@ public class SkillManager
         return List;
     }
 
-    public void ShowSkill()
+    public void ClearSkillUsePanel()
     {
+        SkillUsePanel.UpdataUseSkill(null);
+    }
+
+    public void UpdataAndShowSkillUsePanel(Dictionary<int,Dictionary<string, EventDelegate>> SkillIdWithHanderDic,bool mustCheck=false)
+    {
+        List<Skill> skillList = new List<Skill>();
+        GUIManager.ShowView("SkillUsePanel");   
+        if (SkillIdWithHanderDic.Count <=0)
+        {
+            SkillUsePanel.UpdataUseSkill(null);
+            return;
+        }
+
+        foreach (KeyValuePair<int, Dictionary<string, EventDelegate>> item in SkillIdWithHanderDic)
+        {
+            Skill skill = null;
+            if (!SkillDic.TryGetValue(item.Key, out skill))
+            {
+                Debug.LogError("not has this skill" + "__" + item.Key);
+            }
+            if (skill != null)
+            {
+                skill.TargetWithHanderDic = item.Value;
+                skillList.Add(skill);
+            }
+          
+        }
+        SkillUsePanel.UpdataUseSkill(skillList,mustCheck);
 
     }
     

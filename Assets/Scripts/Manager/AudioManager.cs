@@ -92,6 +92,7 @@ public class AudioManager:MonoBehaviour
         }
     }
 
+
     public void PlayBg_Source(string name, bool isLoop,float fadeTime)
     {
         AudioClip clip = ResourcesManager.Instance.LoadAudioClip(name);
@@ -120,6 +121,23 @@ public class AudioManager:MonoBehaviour
         bg_Source.clip = null;
     }
 
+
+    public void CloseEffect_Source()
+    {
+        effect_Source.clip = null;
+    }
+
+    public void PlayEffect_Source_NeedLoop(string name)
+    {
+        AudioClip clip = ResourcesManager.Instance.LoadAudioClip(name);
+
+        if (clip != null)
+        {
+            effect_Source.clip = clip;
+            effect_Source.loop = true;
+            effect_Source.Play();
+        }
+    }
 
     public void PlayEffect_Source(string name)
     {
@@ -192,10 +210,22 @@ public class AudioManager:MonoBehaviour
 
     public void FadeOutBGM(float fadeTime)
     {
-        IEnumeratorManager.Instance.StartCoroutine(FateOutBGM_IEnumerator(fadeTime));
+        IEnumeratorManager.Instance.StartCoroutine(FadeOutBGM_IEnumerator(fadeTime));
     }
 
-    IEnumerator FateOutBGM_IEnumerator(float fadeTime)
+
+    public void PauseBg_Source(float fadeTime)
+    {
+        IEnumeratorManager.Instance.StartCoroutine(FadeOutBGM_IEnumerator_Pause(fadeTime));
+    }
+
+
+    public void ContinueBg_Source(float fadeTime)
+    {
+        FadeInBMG(fadeTime);
+    }
+
+    IEnumerator FadeOutBGM_IEnumerator(float fadeTime)
     {
         int count = (int)(fadeTime / 0.02f);
         float rate = 1.0f / count;
@@ -206,18 +236,37 @@ public class AudioManager:MonoBehaviour
             bg_Source.volume = soundValue;
             yield return new WaitForSeconds(0.02f);
         }
+        
+    }
+
+    IEnumerator FadeOutBGM_IEnumerator_Pause(float fadeTime)
+    {
+        int count = (int)(fadeTime / 0.02f);
+        float rate = 1.0f / count;
+        float soundValue = BgVolume;
+        for (int i = 0; i < count; i++)
+        {
+            soundValue -= rate;
+            bg_Source.volume = soundValue;
+            yield return new WaitForSeconds(0.02f);
+        }
+        bg_Source.Pause();
+
     }
 
     private void FadeInBMG(float fadeTime)
     {
-        IEnumeratorManager.Instance.StartCoroutine(FateInBGM_IEnumerator(fadeTime));
+        IEnumeratorManager.Instance.StartCoroutine(FadeInBGM_IEnumerator(fadeTime));
     }
 
-    IEnumerator FateInBGM_IEnumerator(float fadeTime)
+    IEnumerator FadeInBGM_IEnumerator(float fadeTime)
     {
+
         int count = (int)(fadeTime / 0.02f);
         float rate = 1.0f / count;
         float soundValue = 0;
+        bg_Source.volume = 0;
+        bg_Source.Play();
         for (int i = 0; i < count; i++)
         {
      
@@ -225,6 +274,7 @@ public class AudioManager:MonoBehaviour
             bg_Source.volume = soundValue;
             yield return new WaitForSeconds(0.02f);
         }
+        
     }
 
 

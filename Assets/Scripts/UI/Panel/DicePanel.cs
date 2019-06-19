@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class DicePanel : IView
 {
+    /// <summary>
+    /// 掷单个骰子时骰子的取值
+    /// </summary>
     public static int diceValue=10;
+
     public static bool isPlural = false;
-    private List<DiceHander> diceHanderList = new List<DiceHander>();
-    private int[] diceValueArrary;
+    public static int diceNumber_Plural = 0;
+
     public static DiceHander OnDiceRotateFished;
     private GameObject card;
     private GameObject Container;
@@ -48,7 +52,6 @@ public class DicePanel : IView
 
     protected override void OnShow()
     {
-        diceValue = 10;
         GameObject panel = GUIManager.FindPanel("DicePanel");
         for (int i = 0; i < DiceNumerArray.Length; i++)
         {          
@@ -64,6 +67,8 @@ public class DicePanel : IView
             tp.delay = 0.2f * i + 0.2f;
             diceCard.name = go.name;
             diceCard.AddComponent<SlerpRun>().stopSlerp = true;
+            SlerpRun slerp = diceCard.GetComponent<SlerpRun>();
+            slerp.rate = rate;
             DiceCardDic.Add(DiceNumerArray[i], diceCard);
             if (i == DiceNumerArray.Length - 1)
             {
@@ -99,10 +104,22 @@ public class DicePanel : IView
     protected override void OnHide()
     {
         DestoryDiceCard();
-        if (OnDiceRotateFished != null)
+        if (!isPlural)
         {
-            OnDiceRotateFished();
+            if (OnDiceRotateFished != null)
+            {
+                OnDiceRotateFished();
+            }
+         
         }
+        else
+        {
+            slerpIndex = 0;
+            DiceCardDic.Clear();
+            DiceManager.Instance.ShowDiceCheckPanel(diceValue.ToString(), FromCurrentDiceToNextDice);
+            return;
+        }
+     
         Array.Clear(DiceNumerArray, 0, DiceNumerArray.Length);
         slerpIndex = 0;
         DiceCardDic.Clear();
@@ -541,4 +558,21 @@ public class DicePanel : IView
         AudioManager.Instance.PlayEffect_Source("cardMove");
     }
 
+    int diceIndex_Plural = 0;
+    void FromCurrentDiceToNextDice()
+    {
+        diceIndex_Plural++;
+        if (diceIndex_Plural <diceNumber_Plural)
+        {
+            DiceManager.Instance.ShowDicePanel(DiceNumerArray, 0.02f,true);
+        }
+
+        else
+        {
+            isPlural = false;
+            diceIndex_Plural = 0;
+            OnDiceRotateFished();
+        }
+     
+    }
 }

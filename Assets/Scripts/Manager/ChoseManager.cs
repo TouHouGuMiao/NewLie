@@ -79,6 +79,10 @@ public class ChoseManager
         ChoseData data4 = GetChsoeDataByID(4);
         data4.HanderDic.Add(0, KongWuGuaiTanTalkWithKongWu3_0);
         data4.HanderDic.Add(1, KongWuGuaiTanTalkWithKongWu3_1);
+
+        ChoseData data5 = GetChsoeDataByID(5);
+        data5.HanderDic.Add(0, SeeTheCumMing_0);
+        data5.HanderDic.Add(1, SeeTheCunMing_1);
     }
 
     #endregion
@@ -180,5 +184,23 @@ public class ChoseManager
     void KongWuGuaiTanTalkWithKongWu3_1() {
 
     }
+
+
+
+
+    #endregion
+
+    #region 村民来访
+    void SeeTheCumMing_0()
+    {
+
+    }
+
+    void SeeTheCunMing_1()
+    {
+
+    }
+
+
     #endregion
 }

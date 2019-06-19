@@ -7,6 +7,7 @@ public class CoverPanel : IView
     private TweenAlpha ta;
     public static float duration=1.0f;
     public static bool needAuteHide = true;
+    public static bool fadeIn=false;
     public CoverPanel()
     {
         m_Layer = Layer.CoverUI;
@@ -20,8 +21,20 @@ public class CoverPanel : IView
 
     protected override void OnShow()
     {
+
         ta.enabled = true;
         ta.duration = duration;
+        if (fadeIn)
+        {
+            ta.from = 0f;
+            ta.to = 1.0f;
+        }
+
+        else
+        {
+            ta.from = 1.0f;
+            ta.to = 0;
+        }
         ta.ResetToBeginning();
      
     }

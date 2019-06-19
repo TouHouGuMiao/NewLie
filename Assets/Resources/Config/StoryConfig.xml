@@ -17,5 +17,21 @@
       <speak8>2:不要再问了，我说过了你们都是那个女人的傀儡...*被绑住的妖怪</speak8>
     </Speak>
     </StoryData>
+
+
+  <StoryData>
+    <id>1</id>
+    <State>0</State>
+    <name>村民来访</name>
+    <index>0</index>
+    <cout>6</cout>
+    <Speak>
+      <speak0>1:博丽大人，在家吗？*？？</speak0>
+      <speak1>1:我是人里的村民，有很紧急的事情通知您！*村民</speak1>
+      <speak2>1:麻烦您开门！*村民</speak2>
+      <speak3>1:开门啊！！*村民</speak3>
+      <speak4>1:您..总算开门了!*村民</speak4>
+    </Speak>
+  </StoryData>
 </Story>
 

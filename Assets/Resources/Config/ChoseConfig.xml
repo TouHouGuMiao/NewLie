@@ -44,4 +44,13 @@
       <chose2>观察它</chose2>
     </choseList>
   </ChoseData>
+
+  <ChoseData>
+    <id>5</id>
+    <name>打量来访村民</name>
+    <choseList>
+      <chose1>询问来意</chose1>
+      <chose2>故作姿态</chose2>
+    </choseList>
+  </ChoseData>
 </Chose>

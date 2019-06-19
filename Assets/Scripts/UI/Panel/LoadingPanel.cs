@@ -8,6 +8,7 @@ public class LoadingPanel : IView
     private UISlider m_slider;
     private float loadPos;
     private float delta;
+    public static bool useCover=false;
 
     public LoadingPanel()
     {
@@ -84,8 +85,13 @@ public class LoadingPanel : IView
             GUIManager.HideView("LoadingPanel");
             if (LoadingName != null)
             {
+                if (useCover)
+                {
+                    GameZaXiangManager.Instance.ShowCover();
+                }
                 GUIManager.ShowView(LoadingName);
                 LoadingName = null;
+                useCover = false;
             }
         }
     }

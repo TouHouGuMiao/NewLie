@@ -9,60 +9,65 @@ public class SkillUsePanel : IView
         moveToUp=1,
         moveToDown=2,
     }
-
-    private ArrowState arrowState = ArrowState.moveToUp;
-    private List<Skill> skillList = new List<Skill>();
+    private static  UIGrid targetWidget;
+    private static ArrowState arrowState = ArrowState.moveToUp;
+    private static  List<Skill> skillList = new List<Skill>();
     private float radius=1.0f;
-    private Transform cardWidget;
-    private Transform arrow;
+    private static Transform cardWidget;
+    private static  Transform arrow;
+    private static  GameObject infoItem;
+    public SkillUsePanel()
+    {
+        m_Layer = Layer.UseSkill;
+    }
     protected override void OnStart()
     {
         arrow = this.GetChild("arrow");
         UIButton arrowBtn = arrow.GetComponent<UIButton>();
         arrowBtn.onClick.Add(new EventDelegate(OnUpArrowBtnClick));
         cardWidget = this.GetChild("CardWidget");
+        targetWidget = this.GetChild("TargetWidget").GetComponent<UIGrid>();
+        infoItem = this.GetChild("target").gameObject;
     }
 
     protected override void OnShow()
     {
-        skillList = SkillManager.Instance.CanUseSkillList();
-        SetSkillCardPos();
+
     }
 
-    void SetSkillCardPos()
+    static void SetSkillCardPos()
     {
         int count = skillList.Count;
         Vector2 centerPoint = new Vector2(0, 0);
         if (count == 0)
         {
-            Debug.LogError("skill Count has error");
+            cardWidget.DestroyChildren();
             return;
         }
-        float offset_x = 3.0f / (count-1);
-        float time_x = 1.0f / (count-1);
+        float offset_x = 3.0f / (count+1);
+        float time_x = 1.0f / (count+1);
         for (int i = 0; i < skillList.Count; i++)
         {
             GameObject go = GameObject.Instantiate(skillList[i].cardPrefab);
-            go.transform.SetParent(this.GetChild("CardWidget"), false);
+            go.transform.SetParent(cardWidget, false);
             go.name = skillList[i].data.Name;
+            DragSkillCard cardDrag = go.GetComponent<DragSkillCard>();
+            cardDrag.OnCardDragFished.Clear();
+            cardDrag.OnCardDragFished.Add( new EventDelegate (OnCardDragFished));
+            cardDrag.finshed_y = -1.5f;
             float sphere_x;
-            if (i == count - 1)
-            {
-                sphere_x = 0.5f;
-            }
-            else
-            {
-                sphere_x = -0.5f + i * time_x;
-            }
-         
+
+            sphere_x = -0.5f + (i+1) * time_x;
+
+
             float sphere_y = Mathf.Sqrt((1 - (sphere_x * sphere_x)));
             float go_y = -5.0f / sphere_y;
-            Vector2 vecPoint = new Vector2(sphere_x,sphere_y);
-            Vector2 oppositeVec = vecPoint-centerPoint ;
+            Vector2 vecPoint = new Vector2(sphere_x, sphere_y);
+            Vector2 oppositeVec = vecPoint - centerPoint;
             float angle = Mathf.Atan2(oppositeVec.x, oppositeVec.y) * Mathf.Rad2Deg;
-
+            go.tag = "SkillCard";
             go.transform.rotation = Quaternion.Euler(go.transform.rotation.x, 180, angle);
-            go.transform.localPosition = new Vector3(-1.5f+ i * offset_x, go_y, 5 + i * 0.04f);
+            go.transform.localPosition = new Vector3(-1.5f + (i+1) * offset_x, go_y, 5 + i * 0.04f);
         }
     }
 
@@ -77,7 +82,7 @@ public class SkillUsePanel : IView
     }
 
 
-    void OnUpArrowBtnClick()
+    static void OnUpArrowBtnClick()
     {
         TweenPosition arrow_Tp = arrow.GetComponent<TweenPosition>();
         TweenRotation arrow_RT = arrow.GetComponent<TweenRotation>();
@@ -116,4 +121,97 @@ public class SkillUsePanel : IView
         arrow_RT.ResetToBeginning();
     }
 
+    public static void UpdataUseSkill(List<Skill> m_SkillList,bool mustCheck=false)
+    {
+        if (m_SkillList == null)
+        {
+            skillList.Clear();
+        }
+        else
+        {
+            skillList = m_SkillList;
+        }
+
+        if (mustCheck)
+        {
+            arrowState = ArrowState.moveToUp;
+        }
+        else
+        {
+            arrowState = ArrowState.moveToDown;
+        }
+      
+        OnUpArrowBtnClick();
+        SetSkillCardPos();
+    }
+
+    static void OnCardDragFished()
+    {
+        arrowState = ArrowState.moveToDown;
+        OnUpArrowBtnClick();
+        DragSkillCard current = DragSkillCard.current;
+        string name = current.gameObject.name;
+        Skill skill = null;
+        for (int i = 0; i < skillList.Count; i++)
+        {
+            if (name == skillList[i].data.Name)
+            {
+                skill = skillList[i];
+            }
+        }
+        List<string> targetNameList = new List<string>();
+        foreach (string item in skill.TargetWithHanderDic.Keys)
+        {
+            targetNameList.Add(item);
+        }
+        int count = targetWidget.transform.childCount;
+        for (int i = 0; i < targetNameList.Count; i++)
+        {
+            GameObject go = null;
+            if (i < count)
+            {
+                go = targetWidget.transform.GetChild(i).gameObject;
+                UISprite sprite = go.transform.FindRecursively("Sprite").GetComponent<UISprite>();
+                sprite.spriteName = targetNameList[i];
+            }
+
+            else
+            {
+                go = GameObject.Instantiate(infoItem);
+                go.transform.SetParent(targetWidget.transform, false);
+            }
+            UIButton button = go.GetComponent<UIButton>();
+            button.onClick.Clear();
+            button.onClick.Add(skill.TargetWithHanderDic[targetNameList[i]]);
+            button.onClick.Add(new EventDelegate(OnTargetBtnClick));
+            UILabel nameLabel = go.transform.FindRecursively("nameLabel").GetComponent<UILabel>();
+            if (targetNameList[i] == "myself")
+            {
+                nameLabel.text = "自己";
+            }
+
+            else if(targetNameList[i]== "scene")
+            {
+                nameLabel.text = "环境";
+            }
+            go.name = targetNameList[i];
+            go.SetActive(true);
+        }
+
+        for (int i = targetWidget.transform.childCount-1; i >= targetNameList.Count; i--)
+        {
+            GameObject go = targetWidget.transform.GetChild(i).gameObject;
+            go.SetActive(false);
+        }
+        targetWidget.gameObject.SetActive(true);
+        targetWidget.Reposition();
+    }
+
+
+    static  void OnTargetBtnClick()
+    {
+        targetWidget.gameObject.SetActive(false);
+    }
+
+ 
 }

@@ -17,6 +17,7 @@ TagManager:
   - Event
   - DiceCard
   - UICamera
+  - SkillCard
   layers:
   - Default
   - TransparentFX
@@ -31,11 +32,11 @@ TagManager:
   - 3DUI
   - StaticUI
   - Prop3DUI
-  - 
+  - Skill3DUI
   - BG
-  - 
-  - 
-  - 
+  - Event3DUI
+  - Cover
+  - CameraCollider
   - 
   - 
   - 

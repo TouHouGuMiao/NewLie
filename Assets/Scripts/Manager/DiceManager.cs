@@ -21,10 +21,19 @@ public class DiceManager
     }
    
 
-    public void ShowDicePanel(int[]DiceNumerArray,float rate)
+    public void ShowDicePanel(int[]DiceNumerArray,float rate,bool isPlural=false)
     {
         DicePanel.DiceNumerArray = DiceNumerArray;
         DicePanel.rate = rate;
+        DicePanel.isPlural = isPlural;
+        GUIManager.ShowView("DicePanel");
+    }
+
+    public void ShowDicePanel(int[] DiceNumerArray, float rate,DiceHander hander)
+    {
+        DicePanel.DiceNumerArray = DiceNumerArray;
+        DicePanel.rate = rate;
+        DicePanel.OnDiceRotateFished = hander;
         GUIManager.ShowView("DicePanel");
     }
 
@@ -51,10 +60,33 @@ public class DiceManager
         }
         DicePanel.DiceNumerArray = DiceNumerArray;
         DicePanel.rate = rate;
+        DicePanel.isPlural = false;
         DicePanel.OnDiceRotateFished = hander;
         GUIManager.ShowView("DicePanel");
     }
+    public void ShowDicePanel(int diceType, float rate, DiceHander hander,int diceCount)
+    {
+        int[] DiceNumerArray = new int[diceType];
+        if (diceType == 6)
+        {
+            DiceNumerArray = GetIndexRandomNum(1, 6);
+        }
+        else if (diceType == 10)
+        {
+            DiceNumerArray = GetIndexRandomNum(0, 9);
+        }
 
+        else if (diceType == 4)
+        {
+            DiceNumerArray = GetIndexRandomNum(1, 4);
+        }
+        DicePanel.DiceNumerArray = DiceNumerArray;
+        DicePanel.rate = rate;
+        DicePanel.OnDiceRotateFished = hander;
+        DicePanel.isPlural = true;
+        DicePanel.diceNumber_Plural = diceCount;
+        GUIManager.ShowView("DicePanel");
+    }
 
     public int GetDiceValue()
     {
@@ -89,6 +121,13 @@ public class DiceManager
         }
         return result;
     }
+
+    public void ShowDiceCheckPanel(string cardName,DiceHander hander)
+    {
+        DiceCheckPanel.modelName = cardName;
+        DiceCheckPanel.OnDiceCardMoveFished = hander;
+        GUIManager.ShowView("DiceCheckPanel");
+    } 
 
     public void DepentClickSource(int diceNumber)
     {

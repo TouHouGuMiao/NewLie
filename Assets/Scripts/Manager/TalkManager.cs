@@ -103,12 +103,40 @@ public class TalkManager
         data.StoryHanderDic.Add(6, KongWuGuaiTan_InToCangKu2);
         data.StoryHanderDic.Add(7, KongWuGuaiTan_InToCangKu3);
         data.StoryHanderDic.Add(8, KongWuGuaiTan_InToCangKu4);
+
+        StoryData data1 = GetStoryDataById(1);
+        data1.StoryHanderDic.Add(0, CunMingLaiFang0);
+        data1.StoryHanderDic.Add(1, CunMingLaiFang1);
+        data1.StoryHanderDic.Add(2, CunMingLaiFang2);
+        data1.StoryHanderDic.Add(4, CunMingLaiFang4);
     }
 
 
     #endregion
 
 
+    #region 村民来访
+    void CunMingLaiFang0()
+    {
+        ShowTalkPanel(1, 1);
+    }
+
+    void CunMingLaiFang1()
+    {
+        ShowTalkPanel(1, 2);
+    }
+
+    void CunMingLaiFang2()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 26);
+    }
+
+    void CunMingLaiFang4()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 28);
+    }
+
+    #endregion
     #region 空鹜怪谈
     void KongWuGuaiTan0()
     {

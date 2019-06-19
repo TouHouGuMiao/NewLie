@@ -12,7 +12,7 @@ public class SkillManager
             if (_instance == null)
             {
                 _instance = new SkillManager();
-                _instance.InitSkillData();
+                _instance.InitSkillData_1();
             }
             return _instance;
         }
@@ -66,6 +66,8 @@ public class SkillManager
         data5.SkillPoints = 0;
         Skill s5 = new Skill(data5.ID, data5.Name, data5.Des, data5.ModelName);
         m_SkillDataDic.Add(data5.ID,s5);
+
+
 
     }
     public Dictionary<int,Skill> GetSkillDataInDic() {
@@ -125,7 +127,12 @@ public class SkillManager
     /// </summary>
     private Skill Listen;
 
+    /// <summary>
+    /// 灵感
+    /// </summary>
+    private Skill Idea;
 
+    private Skill Pressure;
     private Dictionary<int, Skill> SkillDic = new Dictionary<int, Skill>();
     private void InitSkillData_1()
     {
@@ -141,13 +148,18 @@ public class SkillManager
         Investigate.canUse = true;
         Listen = new Skill(5, "Listen", "", "Listen");
         Listen.canUse = true;
-
+        Idea = new Skill(6, "Idea", "", "Idea");
+        Idea.canUse = true;
+        Pressure = new Skill(7, "Pressure", "", "Pressure");
+        Pressure.canUse = true;
         SkillDic.Add(Placate.data.ID, Placate);
         SkillDic.Add(MonsterTheory.data.ID, MonsterTheory);
         SkillDic.Add(NaturalTheory.data.ID, NaturalTheory);
         SkillDic.Add(ThridEye.data.ID, ThridEye);
         SkillDic.Add(Investigate.data.ID, Investigate);
         SkillDic.Add(Listen.data.ID, Listen);
+        SkillDic.Add(Idea.data.ID, Idea);
+        SkillDic.Add(Pressure.data.ID, Pressure);
     }
 
     private Skill GetSkillById(int id)
@@ -173,8 +185,36 @@ public class SkillManager
         return List;
     }
 
-    public void ShowSkill()
+    public void ClearSkillUsePanel()
     {
+        SkillUsePanel.UpdataUseSkill(null);
+    }
+
+    public void UpdataAndShowSkillUsePanel(Dictionary<int,Dictionary<string, EventDelegate>> SkillIdWithHanderDic,bool mustCheck=false)
+    {
+        List<Skill> skillList = new List<Skill>();
+        GUIManager.ShowView("SkillUsePanel");   
+        if (SkillIdWithHanderDic.Count <=0)
+        {
+            SkillUsePanel.UpdataUseSkill(null);
+            return;
+        }
+
+        foreach (KeyValuePair<int, Dictionary<string, EventDelegate>> item in SkillIdWithHanderDic)
+        {
+            Skill skill = null;
+            if (!SkillDic.TryGetValue(item.Key, out skill))
+            {
+                Debug.LogError("not has this skill" + "__" + item.Key);
+            }
+            if (skill != null)
+            {
+                skill.TargetWithHanderDic = item.Value;
+                skillList.Add(skill);
+            }
+          
+        }
+        SkillUsePanel.UpdataUseSkill(skillList,mustCheck);
 
     }
     

@@ -107,24 +107,7 @@ public class TalkPanel : IView
 
         speakLabel.enabled = false;
 
-        if (data != null)
-        {
-
-            //if (data.Hander != null)
-            //{
-            //    data.Hander();
-            //}
-            StoryHander hander = null;
-            if (data.StoryHanderDic.TryGetValue(data.index, out hander))
-            {
-                hander();
-            }
-            data.index++;
-
-            data = null;
-
-
-        }
+     
     }
 
     
@@ -158,6 +141,11 @@ public class TalkPanel : IView
                     else if (!writer.isActive)
                     {
                         GUIManager.HideView("TalkPanel");
+                        StoryHander hander = null;
+                        if (data.StoryHanderDic.TryGetValue(data.index, out hander))
+                        {
+                            hander();
+                        }
                     }
                 }
             }

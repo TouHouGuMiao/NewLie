@@ -48,13 +48,14 @@ public class CharacterPropManager
     public CharacterPropBase GetPlayerProp()
     {
         CharacterPropBase characterPropBase = new CharacterPropBase();
-        characterPropBase.preesure = 20;
+        characterPropBase.preesure = 100;
+        characterPropBase.Idea = 100;
         return characterPropBase;
     }  
 
     public void Init()
     {
-        playerCurrentProp.preesure = 10;
+        playerCurrentProp.preesure = 100;
     }
 
     public CharacterPropBase GetPlayerCureentProp()

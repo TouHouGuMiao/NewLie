@@ -9,6 +9,8 @@ public enum SkillType
     skill3 = 3,
 }
 
+public delegate void SkillHander();
+
 public class Skill
 {
     public SkillData data = new SkillData();
@@ -20,6 +22,7 @@ public class Skill
         data.ModelName = modelName;
         cardPrefab = ResourcesManager.Instance.LoadNomalCard(modelName);
     }
+    public Dictionary<string, EventDelegate> TargetWithHanderDic = new Dictionary<string, EventDelegate>();
     public int point;
     public static int CanUsePoints=80;
     public GameObject cardPrefab;

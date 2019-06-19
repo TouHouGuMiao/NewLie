@@ -33,7 +33,7 @@ public class CGManager
         GUIManager.ShowView("CGPanel");
     }
 
-    public void ShowBlackCover()
+    public void ShowBlackCover(float fadeTime=0)
     {
         CGPanel.isNeedBlackCover = true;
         GUIManager.ShowView("CGPanel");

@@ -235,16 +235,18 @@ public class EventDelegate
 		}
 	}
 
-	public EventDelegate () { }
+    public EventDelegate() { }
 	public EventDelegate (Callback call) { Set(call); }
 	public EventDelegate (MonoBehaviour target, string methodName) { Set(target, methodName); }
 
-	/// <summary>
-	/// GetMethodName is not supported on some platforms.
-	/// </summary>
+
+
+    /// <summary>
+    /// GetMethodName is not supported on some platforms.
+    /// </summary>
 
 #if REFLECTION_SUPPORT
- #if !UNITY_EDITOR && NETFX_CORE
+#if !UNITY_EDITOR && NETFX_CORE
 	static string GetMethodName (Callback callback)
 	{
 		System.Delegate d = callback as System.Delegate;
@@ -256,8 +258,8 @@ public class EventDelegate
 		System.Delegate d = callback as System.Delegate;
 		return d != null && d.GetMethodInfo() != null;
 	}
- #else
-	static string GetMethodName (Callback callback) { return callback.Method.Name; }
+#else
+    static string GetMethodName (Callback callback) { return callback.Method.Name; }
 	static bool IsValid (Callback callback) { return callback != null && callback.Method != null; }
  #endif
 #else
@@ -295,12 +297,13 @@ public class EventDelegate
 	}
 
 	static int s_Hash = "EventDelegate".GetHashCode();
+    private DiceHander onDiceCardMoveFished;
 
-	/// <summary>
-	/// Used in equality operators.
-	/// </summary>
+    /// <summary>
+    /// Used in equality operators.
+    /// </summary>
 
-	public override int GetHashCode () { return s_Hash; }
+    public override int GetHashCode () { return s_Hash; }
 
 	/// <summary>
 	/// Set the delegate callback directly.

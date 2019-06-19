@@ -296,10 +296,10 @@ public class EventStoryPanel : IView
                             needHide = false;
                         }
              
-                        if (needHide)
-                        {                            
-                            GUIManager.HideView("EventStoryPanel");
-                        }
+                        //if (needHide)
+                        //{                            
+                        //    GUIManager.HideView("EventStoryPanel");
+                        //}
                     }
                 }
             }

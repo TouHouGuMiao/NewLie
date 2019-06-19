@@ -11,7 +11,7 @@ public class SlerpRun : MonoBehaviour {
     public bool stopSlerp=false;
     public bool isDrift=false;
     private float time = 0;
-    [HideInInspector]
+
     public float rate = 0.01f;
     [HideInInspector]
     public float radius =7;

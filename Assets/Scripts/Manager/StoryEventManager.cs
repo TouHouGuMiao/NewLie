@@ -232,6 +232,84 @@ public class StoryEventManager
         data.StoryHanderDic.Add(35, new StoryHander(ShenSheToSleep35));
         data.StoryHanderDic.Add(36, new StoryHander(ShenSheToSleep36));
         data.StoryHanderDic.Add(37, new StoryHander(ShenSheToSleep37));
+        data.StoryHanderDic.Add(38, new StoryHander(ShenSheToSleep38));
+        data.StoryHanderDic.Add(39, new StoryHander(ShenSheToSleep39));
+        data.StoryHanderDic.Add(40, new StoryHander(ShenSheToSleep40));
+        data.StoryHanderDic.Add(41, new StoryHander(ShenSheToSleep41));
+        data.StoryHanderDic.Add(42, new StoryHander(ShenSheToSleep42));
+        data.StoryHanderDic.Add(43, new StoryHander(ShenSheToSleep43));
+        data.StoryHanderDic.Add(44, new StoryHander(ShenSheToSleep44));
+        data.StoryHanderDic.Add(45, new StoryHander(ShenSheToSleep45));
+        data.StoryHanderDic.Add(46, new StoryHander(ShenSheToSleep46));
+        data.StoryHanderDic.Add(47, new StoryHander(ShenSheToSleep47));
+        data.StoryHanderDic.Add(48, new StoryHander(ShenSheToSleep48));
+        data.StoryHanderDic.Add(49, new StoryHander(ShenSheToSleep49));
+        data.StoryHanderDic.Add(50, new StoryHander(ShenSheToSleep50));
+        data.StoryHanderDic.Add(51, new StoryHander(ShenSheToSleep51));
+        data.StoryHanderDic.Add(52, new StoryHander(ShenSheToSleep52));
+        data.StoryHanderDic.Add(53, new StoryHander(ShenSheToSleep53));
+        data.StoryHanderDic.Add(54, new StoryHander(ShenSheToSleep54));
+        data.StoryHanderDic.Add(55, new StoryHander(ShenSheToSleep55));
+        data.StoryHanderDic.Add(56, new StoryHander(ShenSheToSleep56));
+        data.StoryHanderDic.Add(57, new StoryHander(ShenSheToSleep57));
+        data.StoryHanderDic.Add(58, new StoryHander(ShenSheToSleep58));
+        data.StoryHanderDic.Add(59, new StoryHander(ShenSheToSleep59));
+        data.StoryHanderDic.Add(60, new StoryHander(ShenSheToSleep60));
+        data.StoryHanderDic.Add(61, new StoryHander(ShenSheToSleep61));
+        data.StoryHanderDic.Add(62, new StoryHander(ShenSheToSleep62));
+        data.StoryHanderDic.Add(63, new StoryHander(ShenSheToSleep63));
+        data.StoryHanderDic.Add(64, new StoryHander(ShenSheToSleep64));
+        data.StoryHanderDic.Add(65, new StoryHander(ShenSheToSleep65));
+        data.StoryHanderDic.Add(66, new StoryHander(ShenSheToSleep66));
+        data.StoryHanderDic.Add(67, new StoryHander(ShenSheToSleep67));
+        data.StoryHanderDic.Add(68, new StoryHander(ShenSheToSleep68));
+        data.StoryHanderDic.Add(69, new StoryHander(ShenSheToSleep69));
+        data.StoryHanderDic.Add(70, new StoryHander(ShenSheToSleep70));
+        data.StoryHanderDic.Add(71, new StoryHander(ShenSheToSleep71));
+        data.StoryHanderDic.Add(72, new StoryHander(ShenSheToSleep72));
+        data.StoryHanderDic.Add(73, new StoryHander(ShenSheToSleep73));
+        data.StoryHanderDic.Add(74, new StoryHander(ShenSheToSleep74));
+        data.StoryHanderDic.Add(75, new StoryHander(ShenSheToSleep75));
+        data.StoryHanderDic.Add(76, new StoryHander(ShenSheToSleep76));
+        data.StoryHanderDic.Add(77, new StoryHander(ShenSheToSleep77));
+        data.StoryHanderDic.Add(78, new StoryHander(ShenSheToSleep78));
+        data.StoryHanderDic.Add(79, new StoryHander(ShenSheToSleep79));
+        data.StoryHanderDic.Add(80, new StoryHander(ShenSheToSleep80));
+
+        StoryData data1 = new StoryData();
+        data1 = GetChapterOneEventDataById(3);
+        data1.StoryHanderDic.Add(0, new StoryHander(CunMingLaiFang0));
+        data1.StoryHanderDic.Add(1, new StoryHander(CunMingLaiFang1));
+        data1.StoryHanderDic.Add(2, new StoryHander(CunMingLaiFang2));
+        data1.StoryHanderDic.Add(3, new StoryHander(CunMingLaiFang3));
+        data1.StoryHanderDic.Add(4, new StoryHander(CunMingLaiFang4));
+        data1.StoryHanderDic.Add(9, new StoryHander(CunMingLaiFang9));
+        data1.StoryHanderDic.Add(10, new StoryHander(CunMingLaiFang10));
+        data1.StoryHanderDic.Add(11, new StoryHander(CunMingLaiFang11));
+        data1.StoryHanderDic.Add(12, new StoryHander(CunMingLaiFang12));
+        data1.StoryHanderDic.Add(13, new StoryHander(CunMingLaiFang13));
+        data1.StoryHanderDic.Add(14, new StoryHander(CunMingLaiFang14));
+        data1.StoryHanderDic.Add(15, new StoryHander(CunMingLaiFang15));
+        data1.StoryHanderDic.Add(16, new StoryHander(CunMingLaiFang16));
+        data1.StoryHanderDic.Add(17, new StoryHander(CunMingLaiFang17));
+        data1.StoryHanderDic.Add(18, new StoryHander(CunMingLaiFang18));
+        data1.StoryHanderDic.Add(19, new StoryHander(CunMingLaiFang19));
+        data1.StoryHanderDic.Add(20, new StoryHander(CunMingLaiFang20));
+        data1.StoryHanderDic.Add(21, new StoryHander(CunMingLaiFang21));
+        data1.StoryHanderDic.Add(22, new StoryHander(CunMingLaiFang22));
+        data1.StoryHanderDic.Add(23, new StoryHander(CunMingLaiFang23));
+        data1.StoryHanderDic.Add(24, new StoryHander(CunMingLaiFang24));
+        data1.StoryHanderDic.Add(25, new StoryHander(CunMingLaiFang25));
+        data1.StoryHanderDic.Add(26, new StoryHander(CunMingLaiFang26));
+        data1.StoryHanderDic.Add(27, new StoryHander(CunMingLaiFang27));
+        data1.StoryHanderDic.Add(28, new StoryHander(CunMingLaiFang28));
+        data1.StoryHanderDic.Add(29, new StoryHander(CunMingLaiFang29));
+        data1.StoryHanderDic.Add(30, new StoryHander(CunMingLaiFang30));
+        data1.StoryHanderDic.Add(31, new StoryHander(CunMingLaiFang31));
+        data1.StoryHanderDic.Add(32, new StoryHander(CunMingLaiFang32));
+        data1.StoryHanderDic.Add(33, new StoryHander(CunMingLaiFang33));
+        data1.StoryHanderDic.Add(34, new StoryHander(CunMingLaiFang34));
+        data1.StoryHanderDic.Add(35, new StoryHander(CunMingLaiFang35));
     }
     #endregion
 
@@ -580,6 +658,7 @@ public class StoryEventManager
 
 
     #region 空鹜之章——初
+    #region 梦
     void ShenSheToSleep0()
     {
         ShowEventPanel_ChapterOne(2, 1);
@@ -759,7 +838,13 @@ public class StoryEventManager
 
     void ShenSheToSleep35()
     {
-        DiceManager.Instance.ShowDicePanel(4, 0.02f, SleepPressureCheck);
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+
+        Dictionary<string, EventDelegate> targetDic = new Dictionary<string, EventDelegate>();
+        targetDic.Add("myself", new EventDelegate (PressCheckInDream));
+        skillDic.Add(7, targetDic);
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic,true);
+        //SkillManager.Instance.UpdataAndShowSkillUsePanel(list);
     }
     void ShenSheToSleep36()
     {
@@ -767,13 +852,467 @@ public class StoryEventManager
     }
     void ShenSheToSleep37()
     {
+        AudioManager.Instance.CloseBg_Source();
         ShowEventPanel_ChapterOne(2, 38);
+    }
+
+    void ShenSheToSleep38()
+    {
+        AudioManager.Instance.PlayBg_Source("Envy", false, 2.0f);
+        ShowEventPanel_ChapterOne(2, 39);
+    }
+
+    void ShenSheToSleep39()
+    {
+        ShowEventPanel_ChapterOne(2, 40);
+    }
+
+    void ShenSheToSleep40()
+    {
+        ShowEventPanel_ChapterOne(2, 41);
+    }
+
+    void ShenSheToSleep41()
+    {
+        ShowEventPanel_ChapterOne(2, 42);
+        //DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_IdeaCheck, 2);
+    }
+
+    void ShenSheToSleep42()
+    {
+        ShowEventPanel_ChapterOne(2, 43);
+        
+    }
+
+    void ShenSheToSleep43()
+    {
+        ShowEventPanel_ChapterOne(2, 44);
+    }
+
+    void ShenSheToSleep44()
+    {
+        ShowEventPanel_ChapterOne(2, 45);
+    }
+
+    void ShenSheToSleep45()
+    {
+        ShowEventPanel_ChapterOne(2, 46);
+    }
+
+
+    void ShenSheToSleep46()
+    {
+        ShowEventPanel_ChapterOne(2, 47);
+    }
+
+
+    void ShenSheToSleep47()
+    {
+        ShowEventPanel_ChapterOne(2, 48);
+    }
+
+
+    void ShenSheToSleep48()
+    {
+        CGManager.instance.ShowBlackCover(1.0f);
+        ShowEventPanel_ChapterOne(2, 49);
+    }
+
+    void ShenSheToSleep49()
+    {
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+        Dictionary<string, EventDelegate> targetDic = new Dictionary<string, EventDelegate>();
+        targetDic.Add("scene", new EventDelegate(IdeaCheckInDream));
+
+        skillDic.Add(6, targetDic);
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic,true);
+    }
+
+    void ShenSheToSleep50()
+    {
+        ShowEventPanel_ChapterOne(2, 51);
+    }
+
+    void ShenSheToSleep51()
+    {
+        ShowEventPanel_ChapterOne(2, 52);
+    }
+
+    void ShenSheToSleep52()
+    {
+        ShowEventPanel_ChapterOne(2, 53);
+    }
+
+    void ShenSheToSleep53()
+    {
+        ShowEventPanel_ChapterOne(2, 54);
+    }
+
+    void ShenSheToSleep54()
+    {
+        ShowEventPanel_ChapterOne(2, 55);
+    }
+
+    void ShenSheToSleep55()
+    {
+        ShowEventPanel_ChapterOne(2, 56);
+    }
+
+    void ShenSheToSleep56()
+    {
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+        Dictionary<string, EventDelegate> targetDic_Investigate = new Dictionary<string, EventDelegate>();
+        Dictionary<string, EventDelegate> targetDic_Listen = new Dictionary<string, EventDelegate>();
+        targetDic_Listen.Add("scene", new EventDelegate(LisnCheckInDream));
+        targetDic_Investigate.Add("scene", new EventDelegate(InvestigateCheckInDream));
+
+        skillDic.Add(4, targetDic_Investigate);
+        skillDic.Add(5, targetDic_Listen);
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic,true);
+    }
+
+    void ShenSheToSleep57()
+    {
+        ShowEventPanel_ChapterOne(2, 58);
+        AudioManager.Instance.PlayEffect_Source("doll_2");
+    }
+
+    void ShenSheToSleep58()
+    {
+        ShowEventPanel_ChapterOne(2, 59);
+    }
+
+    void ShenSheToSleep59()
+    {
+        ShowEventPanel_ChapterOne(2, 60);
+    }
+
+    void ShenSheToSleep60()
+    {
+        ShowEventPanel_ChapterOne(2, 61);
+    }
+
+    void ShenSheToSleep61()
+    {
+        AudioManager.Instance.PlayEffect_Source("doll_3", ShowShenSheToSleep_62);
+    }
+
+    void ShenSheToSleep62()
+    {
+        ShowEventPanel_ChapterOne(2, 63);
+    }
+
+    void ShenSheToSleep63()
+    {
+        AudioManager.Instance.PlayBg_Source("WeAreDoll",false,2.0f);
+        ShowEventPanel_ChapterOne(2, 64);
+    }
+
+
+    void ShenSheToSleep64()
+    {
+        ShowEventPanel_ChapterOne(2, 65);
+    }
+    void ShenSheToSleep65()
+    {
+        ShowEventPanel_ChapterOne(2, 66);
+    }
+
+    void ShenSheToSleep66()
+    {
+        ShowEventPanel_ChapterOne(2, 67);
+    }
+
+    void ShenSheToSleep67()
+    {
+        ShowEventPanel_ChapterOne(2, 68);
+    }
+
+    void ShenSheToSleep68()
+    {
+        ShowEventPanel_ChapterOne(2, 69);
+    }
+
+    void ShenSheToSleep69()
+    {
+        ShowEventPanel_ChapterOne(2, 70);
+    }
+
+    void ShenSheToSleep70()
+    {
+        ShowEventPanel_ChapterOne(2, 71);
+    }
+
+    void ShenSheToSleep71()
+    {
+        ShowEventPanel_ChapterOne(2, 72);
+    }
+
+    void ShenSheToSleep72()
+    {
+        ShowEventPanel_ChapterOne(2, 73);
+        IEnumeratorManager.Instance.StartCoroutine(PlayDollEffectSource());
+    }
+
+    IEnumerator PlayDollEffectSource()
+    {
+        AudioManager.Instance.PlayEffect_Source("doll_1");
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.PlayEffect_Source("doll_3");
+        yield return new WaitForSeconds(1.0f);
+        AudioManager.Instance.PlayEffect_Source("doll_1");
+        yield return new WaitForSeconds(1.0f);
+        AudioManager.Instance.PlayEffect_Source("doll_2");
+        yield return new WaitForSeconds(2.0f);
+        AudioManager.Instance.PlayEffect_Source("doll_1");
+        yield return new WaitForSeconds(1.5f);
+        AudioManager.Instance.PlayEffect_Source("doll_3");
+    }
+
+    void ShenSheToSleep73()
+    {
+        ShowEventPanel_ChapterOne(2, 74);
+    }
+
+    void ShenSheToSleep74()
+    {
+        ShowEventPanel_ChapterOne(2, 75);
+    }
+
+    void ShenSheToSleep75()
+    {
+        ShowEventPanel_ChapterOne(2, 76);
+    }
+
+    void ShenSheToSleep76()
+    {
+        ShowEventPanel_ChapterOne(2, 77);
+    }
+
+    void ShenSheToSleep77()
+    {
+        ShowEventPanel_ChapterOne(2, 78);
+        CGManager.instance.ShowBlackCover(1.0f);
+    }
+
+    void ShenSheToSleep78()
+    {
+        ShowEventPanel_ChapterOne(2, 79);
+    }
+
+
+    void ShenSheToSleep79()
+    {
+        ShowEventPanel_ChapterOne(2, 80);
+        AudioManager.Instance.FadeOutBGM(1.5f);
+    }
+
+    void ShenSheToSleep80()
+    {
+        AudioManager.Instance.PlayEffect_Source("KnockDoor", ShowGoToStoreHouse0);
+    }
+    #endregion
+    #region 村民来访
+    void CunMingLaiFang0()
+    {
+        ShowEventPanel_ChapterOne(3, 1);
+    }
+
+    void CunMingLaiFang1()
+    {
+        ShowEventPanel_ChapterOne(3, 2);
+    }
+
+    void CunMingLaiFang2()
+    {
+        ShowEventPanel_ChapterOne(3, 3);
+
+    }
+
+    void CunMingLaiFang3()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, CunMingLaiFangPressureCheck,2);
+    }
+
+    void CunMingLaiFang4 ()
+    {
+        ShowEventPanel_ChapterOne(3, 9);
+    }
+
+    void CunMingLaiFang9()
+    {
+        ShowEventPanel_ChapterOne(3, 10);
+    }
+    void CunMingLaiFang10()
+    {
+        ShowEventPanel_ChapterOne(3, 11);
+    }
+
+
+    void CunMingLaiFang11()
+    {
+        TalkManager.Instance.ShowTalkPanel(1, 0);
+    }
+
+    void CunMingLaiFang12()
+    {
+        ShowEventPanel_ChapterOne(3, 13);
+    }
+
+    void CunMingLaiFang13()
+    {
+        ShowEventPanel_ChapterOne(3, 14);
+    }
+
+    void CunMingLaiFang14()
+    {
+        ShowEventPanel_ChapterOne(3, 15);
+    }
+
+    void CunMingLaiFang15()
+    {
+        ShowEventPanel_ChapterOne(3, 16);
+    }
+
+    void CunMingLaiFang16()
+    {
+        ShowEventPanel_ChapterOne(3, 17);
+    }
+
+    void CunMingLaiFang17()
+    {
+        ShowEventPanel_ChapterOne(3, 18);
+    }
+
+    void CunMingLaiFang18()
+    {
+        ShowEventPanel_ChapterOne(3, 19);
+       
+    }
+    void CunMingLaiFang19()
+    {
+        ShowEventPanel_ChapterOne(3, 20);
+    }
+
+    void CunMingLaiFang20()
+    {
+        ShowEventPanel_ChapterOne(3, 21);
+    }
+
+    void CunMingLaiFang21()
+    {
+        ShowEventPanel_ChapterOne(3, 22);
+    }
+
+    void CunMingLaiFang22()
+    {
+        ShowEventPanel_ChapterOne(3, 23);
+    }
+
+    void CunMingLaiFang23()
+    {
+        ShowEventPanel_ChapterOne(3, 24);
+    }
+
+    void CunMingLaiFang24()
+    {
+        ShowEventPanel_ChapterOne(3, 25);
+    }
+
+    void CunMingLaiFang25()
+    {
+        TalkManager.Instance.ShowTalkPanel(1, 0);
+        AudioManager.Instance.PlayEffect_Source("KnockDoor");
+    }
+
+    void CunMingLaiFang26()
+    {
+        EventStateManager.Instance.BeforeOpenDoor_XuZhang();
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void CunMingLaiFang27()
+    {
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void CunMingLaiFang28()
+    {
+        ShowEventPanel_ChapterOne(3, 29);
+    }
+
+    void CunMingLaiFang29()
+    {
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+        Dictionary<string, EventDelegate> ideaDic = new Dictionary<string, EventDelegate>();
+        ideaDic.Add("A", new EventDelegate(IdeaCheckInCunMingLaiFang));
+
+        skillDic.Add(6, ideaDic);
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic, true);
+    }
+
+    void CunMingLaiFang30()
+    {
+        ShowEventPanel_ChapterOne(3, 31);
+    }
+
+    void CunMingLaiFang31()
+    {
+        ShowEventPanel_ChapterOne(3, 32);
+    }
+
+    void CunMingLaiFang32()
+    {
+        ShowEventPanel_ChapterOne(3, 33);
+    }
+
+    void CunMingLaiFang33()
+    {
+        ShowEventPanel_ChapterOne(3, 34);
+    }
+
+    void CunMingLaiFang34()
+    {
+        ShowEventPanel_ChapterOne(3, 35);
+    }
+
+    void CunMingLaiFang35()
+    {
+        ChoseManager.Instance.ShowChosePanel(5);
     }
     #endregion
     #endregion
 
 
     #region 绑定一些杂项的方法
+
+    void CunMingLaiFangPressureCheck()
+    {
+        CharacterPropBase data = CharacterPropManager.Instance.GetPlayerProp();
+        if (DiceCheckPanel.diceValue >= data.preesure)
+        {
+            ShowEventPanel_ChapterOne(3, 4);
+            GUIManager.HideView("DiceCheckPanel");
+        }
+        else
+        {
+            DiceManager.Instance.ShowDicePanel(4, 0.01f, CunMingLaiFangPressureAdd);
+            GUIManager.HideView("DiceCheckPanel");
+        }
+    }
+
+    void CunMingLaiFangPressureAdd()
+    {
+        CharacterPropBase characterPropBase = CharacterPropManager.Instance.GetPlayerCureentProp();
+        float value = characterPropBase.preesure + DicePanel.diceValue;
+        CharacterPropManager.Instance.ChangePlayerCurrentProp(PropType.preesure, value, ShowCunMingLaiFang5);
+    }
+
+    void ShowCunMingLaiFang5()
+    {
+        ShowEventPanel_ChapterOne(3, 5);
+    }
+
     void ShowShenSheToSleep_26()
     {
         ShowEventPanel_ChapterOne(2, 26);
@@ -783,7 +1322,7 @@ public class StoryEventManager
     void OnToDreamBirdSoundFished()
     {
         GameZaXiangManager.Instance.ShowCover();
-        CGManager.instance.ShowCGPanel("CG2");
+        CGManager.instance.ShowCGPanel("DreamDoll");
         AudioManager.Instance.PlayBg_Source("People",true,7.0f);
         ShowEventPanel_ChapterOne(2, 27);
     }
@@ -799,5 +1338,97 @@ public class StoryEventManager
     {
         ShowEventPanel_ChapterOne(2, 36);
     }
-    #endregion 
+
+    void ShowShenSheToSleep_57()
+    {
+        ShowEventPanel_ChapterOne(2, 57);
+    }
+
+    void ShowShenSheToSleep_62()
+    {
+        ShowEventPanel_ChapterOne(2, 62);
+    }
+
+    void ShenSheToSleep_IdeaCheck()
+    {
+        CharacterPropBase data = CharacterPropManager.Instance.GetPlayerProp();
+        if (DiceCheckPanel.diceValue <= data.Idea)
+        {
+            ShowEventPanel_ChapterOne(2, 50);
+        }
+        AudioManager.Instance.PauseBg_Source(2.0f);
+        CGManager.instance.ShowCGPanel("DreamDoll");
+        GUIManager.HideView("DiceCheckPanel");
+    }
+
+    void ShenSheToSleep_ListenCheck()
+    {
+        CharacterPropBase data = CharacterPropManager.Instance.GetPlayerProp();
+        if (DiceCheckPanel.diceValue <= data.Idea)
+        {
+            AudioManager.Instance.PlayEffect_Source("doll_1", ShowShenSheToSleep_57);
+        }
+        //AudioManager.Instance.ContinueBg_Source(1.0f);
+        GUIManager.HideView("DiceCheckPanel");
+    }
+
+    void ShenSheToSleep_InvestigateCheck()
+    {
+        CharacterPropBase data = CharacterPropManager.Instance.GetPlayerProp();
+        if (DiceCheckPanel.diceValue <= data.Idea)
+        {
+            //ShowEventPanel_ChapterOne(2, 58);
+        }
+        AudioManager.Instance.ContinueBg_Source(1.0f);
+        GUIManager.HideView("DiceCheckPanel");
+    }
+
+
+    void ShowGoToStoreHouse0()
+    {
+        GUIManager.HideView("CGPanel");
+        GameZaXiangManager.Instance.ShowCover(1.0f, true);
+        ShowEventPanel_ChapterOne(3, 0);
+    }
+
+    void ShowEvent3_30()
+    {
+        ShowEventPanel_ChapterOne(3, 30);
+        GUIManager.HideView("DiceCheckPanel");
+    }
+
+    #endregion
+    #region 绑定技能方法
+    void PressCheckInDream()
+    {
+        DiceManager.Instance.ShowDicePanel(4, 0.02f, SleepPressureCheck);
+        SkillManager.Instance.ClearSkillUsePanel();
+    }
+
+    void IdeaCheckInDream()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_IdeaCheck, 2);
+        SkillManager.Instance.ClearSkillUsePanel();
+    }
+
+    void LisnCheckInDream()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_ListenCheck,2);
+        SkillManager.Instance.ClearSkillUsePanel();
+    }
+
+    void InvestigateCheckInDream()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_InvestigateCheck, 2);
+        SkillManager.Instance.ClearSkillUsePanel();
+    }
+
+    void IdeaCheckInCunMingLaiFang()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShowEvent3_30, 2);
+        SkillManager.Instance.ClearSkillUsePanel();
+    }
+
+    #endregion
+    #endregion
 }

@@ -22,7 +22,7 @@ public class BagPanel : IView
     private UIButton MaterialBtn;
     private UIButton ItemsBtn;//物品按钮
     private UIButton UseBtn;
-
+  
     //private GameObject secondLayer;
     private UIGrid ItemGrid;
     //private GameObject ItemWidget;
@@ -38,8 +38,7 @@ public class BagPanel : IView
 
 
     public bool isActive_1 = false;//用于记录背包是否update的变量
-
-
+  
     public BagPanel()
     {
         m_Layer = Layer.System;
@@ -509,7 +508,6 @@ public class BagPanel : IView
             {
                 index = 0;
                 btn = ItemsBtnControlList[index];
-
             }
             else
             {

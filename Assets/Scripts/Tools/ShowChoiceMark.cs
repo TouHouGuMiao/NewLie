@@ -6,6 +6,8 @@ public class ShowChoiceMark : MonoBehaviour {
     private UIButton m_Btn;
     private GameObject ChoiceMark;
     private GameObject go;
+
+    private bool isHover;
 	// Use this for initialization
 	void Start () {
       ChoiceMark = LoginPanel.GameChoice.transform.Find("markChoice").gameObject;
@@ -14,7 +16,9 @@ public class ShowChoiceMark : MonoBehaviour {
         m_Btn = gameObject.GetComponent<UIButton>();
         //Debug.LogError(11111);
     }
-	
+    void Play_EffectMusic() {
+        AudioManager.Instance.PlayEffect_Source("hover_2");      
+    }
 	// Update is called once per frame
 	void Update () {
        // Debug.Log(111);
@@ -23,15 +27,26 @@ public class ShowChoiceMark : MonoBehaviour {
             {
             if (go == null)
             {
-                InitChoiceMark();
+                if (isHover == true)
+                {
+                    Play_EffectMusic();
+                    InitChoiceMark();
+                    isHover = false;
+                }
             }
-            else {
-                go.transform.position = m_Btn.transform.position;
-                go.SetActive(true);
+            else
+            {
+                if (isHover == true)
+                {
+                    Play_EffectMusic();
+                    go.transform.position = m_Btn.transform.position;
+                    go.SetActive(true);
+                    isHover = false;
+                }
             }
             }
-            else if (m_Btn.state == UIButtonColor.State.Normal)
-        {
+            else if (m_Btn.state == UIButtonColor.State.Normal){
+            isHover = true;
             if (go == null)
             {
                 InitHideChoiceMark();

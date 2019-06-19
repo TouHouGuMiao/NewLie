@@ -184,16 +184,10 @@ public class ItemDataManager
     public List<ItemData> GetHasMaterialList()
     {
         List<ItemData> ItemDataList = new List<ItemData>();      
-            LoadItemXml("ItemConfig", ItemDataList);
-       
-       
-        int length = ItemDataList.Count;
-     
+        LoadItemXml("ItemConfig", ItemDataList);          
         for (int i = ItemDataList.Count-1; i >= 0; i--) {
             if (ItemDataList[i].itemType!=ItemType.material) {//解决方法，新建一个表，如果是这个数的话，加到这个表里，然后返回这个表
-                ItemDataList.Remove(ItemDataList[i]);
-               
-             
+                ItemDataList.Remove(ItemDataList[i]);   
             }
         }
         return ItemDataList;
@@ -407,11 +401,9 @@ public class ItemDataManager
                 case 20:data.itemType = ItemType.Item;
                     break;
                 case 30:data.itemType = ItemType.Equipment;
-                    break;
-            }
-            //Debug.Log("xxx");                                                                   
+                    break;   
+            }                                                                   
                 list.Add(data);
-        }
-        //Debug.Log(list.Count);
+        }      
     }
 }

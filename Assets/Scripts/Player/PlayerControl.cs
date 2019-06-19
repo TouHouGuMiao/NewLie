@@ -26,7 +26,7 @@ public class PlayerControl : CharacterPropBase {
     private float tempTime_Z;
     private float tempTime_X;
 
-
+    private bool isOn;
 
     private Transform bulletCollider;
  
@@ -71,18 +71,32 @@ public class PlayerControl : CharacterPropBase {
 	
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)&&SystemPanel.Bg_IsActive==false) {
+        //if (Input.GetKeyDown(KeyCode.Escape)&&SystemPanel.Bg_IsActive==false) {
 
-            GUIManager.ShowView("SystemPanel");
+        //    GUIManager.ShowView("SystemPanel");
+        //}
+        if (Input.GetKeyDown(KeyCode.Escape)&&isOn==false )
+        {
+            GUIManager.ShowView("SystemPanel");            
+            isOn = true;
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && isOn == true)
+        {
+            // GUIManager.HideView("BagPanel");
+            GUIManager.HideView("SystemPanel");
+            SystemPanel.Bg_IsActive = false;
+            isOn = false;            
         }
         if (SystemPanel.Bg_IsActive==false)
         {
             CharacterControl();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && SystemPanel.Bg_IsActive == true) {
-            GUIManager.HideView("BagPanel");
-            SystemPanel.Bg_IsActive = false;
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape) && SystemPanel.Bg_IsActive == true) {
+        //    GUIManager.HideView("BagPanel");
+        //    SystemPanel.Bg_IsActive = false;
+        //}
+       
         //YinYangYuControl();
         //UpDataPlayerPro();//测试用
     }

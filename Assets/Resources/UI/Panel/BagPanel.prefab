@@ -1005,7 +1005,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873904525005034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -369, y: 452, z: 0}
+  m_LocalPosition: {x: -402, y: 458, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4077579785423428}
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81807633ea807d4c8e3fff7e10c6000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: 0
+  movement: 1
   dragEffect: 2
   restrictWithinPanel: 1
   constrainOnDrag: 0
@@ -1257,7 +1257,7 @@ MonoBehaviour:
   verticalScrollBar: {fileID: 0}
   showScrollBars: 1
   customMovement: {x: 1, y: 0}
-  contentPivot: 0
+  contentPivot: 1
   scale: {x: 0, y: 0, z: 0}
   relativePositionOnReset: {x: 0, y: 0}
   centerOnChild: {fileID: 0}
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 8, y: -232, z: 428, w: 1036}
+  mClipRange: {x: 1, y: -210, z: 420, w: 515}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 6
   mSortingOrder: 0
@@ -1897,6 +1897,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114278352650059952
 MonoBehaviour:
@@ -1935,6 +1936,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114293261865660196
 MonoBehaviour:
@@ -2526,6 +2528,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114580961252247368
 MonoBehaviour:
@@ -2594,7 +2597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrangement: 1
   sorting: 0
-  pivot: 4
+  pivot: 1
   maxPerLine: 0
   cellWidth: 268.83
   cellHeight: 135
@@ -2910,6 +2913,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114889965693016052
 MonoBehaviour:
@@ -3059,6 +3063,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114917959731344416
 MonoBehaviour:
@@ -3232,6 +3237,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114972592189654716
 MonoBehaviour:
@@ -3327,4 +3333,5 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0

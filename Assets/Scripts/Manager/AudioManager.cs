@@ -81,7 +81,6 @@ public class AudioManager:MonoBehaviour
             return;
         }
 
-
         if (clip != null)
         {
             audioDelegateDic.Clear();
@@ -132,7 +131,7 @@ public class AudioManager:MonoBehaviour
             return;
         }
 
-        effect_Source.PlayOneShot(clip,effect_Source.volume);
+        effect_Source.PlayOneShot(clip,effect_Source.volume);       
     }
 
     public void PlayEffect_Source(string name,AudioEventDelegate hander)

@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4052750949588898
 Transform:
   m_ObjectHideFlags: 1
@@ -316,6 +316,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114806250249438584
 MonoBehaviour:

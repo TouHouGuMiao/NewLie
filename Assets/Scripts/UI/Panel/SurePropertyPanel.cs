@@ -208,7 +208,7 @@ public class SurePropertyPanel : IView {
         Transform expressWidget = this.GetChild("ExpressWidget");
         UISprite sprite = expressWidget.Find("Sprite").GetComponent<UISprite>();
         UILabel label = sprite.transform.Find("Label").GetComponent<UILabel>();
-        CameraManager.Instance.DrawUICameraLens(Vector3.zero, 0.7f, 0.08f);
+        CameraManager.Instance.DrawCameraLens(CameraManager.CameraEnum.UICmera,Vector3.zero, 0.7f, 0.08f);
    
   
         if (SureState == CreatSureState.Stature_State_Reslut)
@@ -358,7 +358,7 @@ public class SurePropertyPanel : IView {
       
         expressWidget.gameObject.SetActive(false);
 
-        CameraManager.Instance.DrawUICameraLens(Vector3.zero, 1, 0.08f);
+        CameraManager.Instance.DrawCameraLens( CameraManager.CameraEnum.UICmera,Vector3.zero, 1, 0.08f);
         Container.gameObject.SetActive(false);
         CardTweenPositionInit();
     }

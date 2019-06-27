@@ -53,4 +53,27 @@
       <chose2>故作姿态</chose2>
     </choseList>
   </ChoseData>
+  
+  <ChoseData>
+    <id>6</id>
+    <name>与来访村民激烈对视</name>
+    <choseList>
+      <chose1>告诉他，他是为了祈祷而来</chose1>
+      <chose2>告诉他，他是来找你商讨人生的</chose2>
+      <chose3>告诉他，他是来找你一起吃饭的</chose3>
+      <chose4>告诉他，他是因为他的家事来找你的</chose4>
+      <chose5>告诉他，他是来纳奉的</chose5>
+      <chose6>告诉他，他是因为异变的事来找你的</chose6>
+    </choseList>
+  </ChoseData>
+
+
+  <ChoseData>
+    <id>7</id>
+    <name>前往人里</name>
+    <choseList>
+      <chose1>前往人里</chose1>
+      <chose2>稍作停留</chose2>
+    </choseList>
+  </ChoseData>
 </Chose>

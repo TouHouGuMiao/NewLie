@@ -179,6 +179,22 @@ public class ResourcesManager
         return sprite;
     }
 
+
+    public Sprite LoadSprite(string name)
+    {
+        string path = "Sprite" + "/" + name;
+
+        Texture2D texture = Resources.Load(path) as Texture2D;
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        if (sprite == null)
+        {
+            Debug.LogError("sprite is null" + name);
+            return null;
+        }
+        return sprite;
+    }
+
+
     public Sprite LoadWingmanSprite(string name,int width = 128,int heigt= 128)
     {
         string path = "wingmanSprite" + "/" + name;

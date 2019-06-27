@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkillManager
 {
+
     private static SkillManager _instance = null;
     public static SkillManager Instance
     {
@@ -79,19 +80,19 @@ public class SkillManager
         SkillDataDic = m_SkillDataDic;
         return SkillDataDic;
     }
-    public Skill GetSkillDataById(int id) {
-        if (m_SkillDataDic == null) {
-            InitSkillData();
-        }
-        Skill skill = null;
-        Dictionary<int,Skill> SkillDataDic=new Dictionary<int, Skill>();
-        SkillDataDic = m_SkillDataDic;
-        if (!SkillDataDic.TryGetValue(id, out skill)) {
-            Debug.LogError("no data of "+id+" in DIC");
-            return null;
-        }
-        return skill;
-    }
+    //public Skill GetSkillDataById(int id) {
+    //    if (m_SkillDataDic == null) {
+    //        InitSkillData();
+    //    }
+    //    Skill skill = null;
+    //    Dictionary<int,Skill> SkillDataDic=new Dictionary<int, Skill>();
+    //    SkillDataDic = m_SkillDataDic;
+    //    if (!SkillDataDic.TryGetValue(id, out skill)) {
+    //        Debug.LogError("no data of "+id+" in DIC");
+    //        return null;
+    //    }
+    //    return skill;
+    //}
     public void UpDataSkillData(Skill s) {
         if (m_SkillDataDic == null) {
             InitSkillData();
@@ -162,7 +163,14 @@ public class SkillManager
         SkillDic.Add(Pressure.data.ID, Pressure);
     }
 
-    private Skill GetSkillById(int id)
+
+    public void MoveSkillInSkillUsePanel(int id)
+    {
+        SkillUsePanel.MoveSkillInPanel(id);
+       
+    }
+
+    public Skill GetSkillDataById(int id)
     {
         Skill skill = null;
         if(!SkillDic.TryGetValue(id,out skill))
@@ -187,10 +195,17 @@ public class SkillManager
 
     public void ClearSkillUsePanel()
     {
+        SkillUsePanel.ClearAllSkillList();
         SkillUsePanel.UpdataUseSkill(null);
     }
 
-    public void UpdataAndShowSkillUsePanel(Dictionary<int,Dictionary<string, EventDelegate>> SkillIdWithHanderDic,bool mustCheck=false)
+    /// <summary>
+    /// 第一个参数传入技能字典，第二个参数表示是否会跳出来让玩家检测，第三个参数表示是否和现在已添加的技能共存
+    /// </summary>
+    /// <param name="SkillIdWithHanderDic"></param>
+    /// <param name="mustCheck"></param>
+    /// <param name="isCoexist"></param>
+    public void UpdataAndShowSkillUsePanel(Dictionary<int,Dictionary<string, EventDelegate>> SkillIdWithHanderDic,bool mustCheck=false,bool isCoexist=false)
     {
         List<Skill> skillList = new List<Skill>();
         GUIManager.ShowView("SkillUsePanel");   
@@ -214,7 +229,7 @@ public class SkillManager
             }
           
         }
-        SkillUsePanel.UpdataUseSkill(skillList,mustCheck);
+        SkillUsePanel.UpdataUseSkill(skillList,mustCheck, isCoexist);
 
     }
     

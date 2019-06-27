@@ -18,7 +18,7 @@ public class EventStateManager
         }
     }
 
-    public void GameEventTrigerManager(string name)
+    public void GameEventSet(string name)
     {
         EventDelegate hander = null;
         if(!EventDic.TryGetValue(name,out hander))
@@ -34,6 +34,8 @@ public class EventStateManager
     void InitEventDic()
     {
         EventDic.Add("ShenShedoor", null);
+        EventDic.Add("ShenSheMoveScene", null);
+        EventDic.Add("CunZiInvestigate", null);
     }
 
    /// <summary>
@@ -43,6 +45,27 @@ public class EventStateManager
     {
         AudioManager.Instance.PlayEffect_Source_NeedLoop("KnockDoor");
         EventDic["ShenShedoor"] = new EventDelegate(PlayerOpenDoor_CunMingLaiFang);
+       
+    }
+
+    public void WhenSeeWithCunMingOver()
+    {
+        EventDic["ShenSheMoveScene"] = new EventDelegate(ShowEvent_GoToCunZi);
+    }
+
+    public void ShenSheMoveScene_SetNull()
+    {
+        EventDic["ShenSheMoveScene"] = null;
+    }
+
+    public void WhenGoToCunZi()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        player.transform.position = new Vector3(-10.54f, -37.16f, 0);
+        BattleCamera.Instance.SetBattleCameraRightStop(false);
+        BattleCamera.Instance.SetBattleCameraLetStop(false);
+        BattleCamera.Instance.SetCameraReturnPlayer(new Vector3 (3,2,0));
+        EventDic["CunZiInvestigate"] = new EventDelegate(ShowEvent_InCunZiAutoInves);
     }
 
     #region 剧情相关事件绑定
@@ -57,10 +80,57 @@ public class EventStateManager
         AudioManager.Instance.CloseEffect_Source();
     }
 
+    private void ShowEvent_InCunZiAutoInves()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 3);
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+        Dictionary<string, EventDelegate> ideaDic = new Dictionary<string, EventDelegate>();
+        ideaDic.Add("Sence", new EventDelegate(IdeaInCunziWhenFrist));
+        skillDic.Add(6, ideaDic);
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic, false, true);
+        EventDic["CunZiInvestigate"] =null;
+    }
+
+    private void ShowEvent_GoToCunZi()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 51);
+    }
+
+
     private void ShowTalk1_4()
     {
         TalkManager.Instance.ShowTalkPanel(1, 4);
     }
+
+
+
+    #endregion
+
+    #region 杂项方法绑定
+
+
+    void IdeaInCunZiWhenFrist_Result()
+    {
+        CharacterPropBase data = CharacterPropManager.Instance.GetPlayerProp();
+        if (data.Idea <= DiceCheckPanel.diceValue)
+        {
+            StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 4);         
+        }
+       
+    }
+
+    #endregion
+
+
+    #region 绑定技能方法
+
+    void IdeaInCunziWhenFrist()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, IdeaInCunZiWhenFrist_Result);
+        SkillManager.Instance.MoveSkillInSkillUsePanel(6);
+
+    }
+
 
     #endregion
 }

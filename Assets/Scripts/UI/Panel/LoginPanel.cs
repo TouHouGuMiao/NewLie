@@ -111,10 +111,11 @@ public class LoginPanel : IView
     {
         AudioManager.Instance.CloseBg_Source();
 
-        /*GameStateManager.LoadScene(2)*/;//车人场景是2
+        //GameStateManager.LoadScene(2);//车人场景是2
         GameStateManager.LoadScene(4);//stage0
         GUIManager.ShowView("LoadingPanel");
         LoadingPanel.LoadingName = "BattleUIPanel";
+       // LoadingPanel.LoadingName = "SkillPanel";
         //LoadingPanel.LoadingName = "SurePropertyPanel";
         LoadingPanel.useCover = true;
     }
@@ -137,9 +138,9 @@ public class LoginPanel : IView
         }
     }
 
-    void OnDeveloperBtnClick() {//开发人员界面显示
+    void OnDeveloperBtnClick() {//开发人员界面显示       
+        GUIManager.HideView("LoginPanel");
         GUIManager.ShowView("DeveloperPanel");
-        GUIManager.HideView("LoginPanel");       
     }
     void OnCloseGameBtn() {
         Application.Quit();
@@ -155,8 +156,13 @@ public class LoginPanel : IView
 
         EventDelegate OnCloseBtn = new global::EventDelegate(OnCloseGameBtn);
         closeGameBtn.onClick.Add(OnCloseBtn);
+        seetingsBtn.onClick.Add(new EventDelegate(OnSettingsBtnClick));
     }
-
+    void OnSettingsBtnClick() {
+        GUIManager.ShowView("CoverPanel");
+        GUIManager.HideView("LoginPanel");       
+        GUIManager.ShowView("SettingsPanel");
+    }
     void ColorEgg()
     {//彩蛋事件
         foreach (Transform child in m_go.transform)
@@ -230,30 +236,7 @@ public class LoginPanel : IView
         
         // Debug.Log("isAllboolVauletrue="+isAllboolVauletrue);
     }
-
-    //void ShowChoice()
-    //{
-    //    foreach (Transform child in m_PicList)
-    //    {
-    //        if (markChoice.activeInHierarchy == false)
-    //        {
-    //            markChoice.transform.position = child.transform.position;
-    //            markChoice.SetActive(true);
-    //        }
-    //        else
-    //        {
-    //            markChoice.SetActive(false);
-    //        }
-    //    }
-    //}
-    //void HideChoice()
-    //{
-    //    if (markChoice.activeInHierarchy == true)
-    //    {
-    //        markChoice.SetActive(false);
-    //    }
-    //}
-
+   
 
     void BGMSet()
     {
@@ -309,25 +292,6 @@ public class LoginPanel : IView
         particleSystem_Normal_1.gameObject.SetActive(false);
         sakuraParticle_1.gameObject.SetActive(true);
         sakuraParticle_2.gameObject.SetActive(true);
-    }
-
- 
-
-
-
-
-
-    //void InitDimon() {
-    //    foreach (Transform child in m_PicList) {
-    //        GameObject go = GameObject.Find("Dimon");
-    //        GameObject go_Clone = GameObject.Instantiate(go);
-    //        go_Clone.transform.SetParent(gameChoice, false);
-    //        go_Clone.transform.localPosition = child.transform.localPosition + new Vector3(-950, -100, 0);
-
-    //        //GameObject.Instantiate(go, child.transform.localPosition+new Vector3(0,100,0), child.transform.localRotation);
-
-    //    }
-
-    //}
+    }   
 }
  

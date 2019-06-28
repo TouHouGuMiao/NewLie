@@ -16,6 +16,9 @@ public class SkillUsePanel : IView
     private static Transform cardWidget;
     private static  Transform arrow;
     private static  GameObject infoItem;
+
+    public static Skill curSkill=null;
+
     public SkillUsePanel()
     {
         m_Layer = Layer.UseSkill;
@@ -159,6 +162,7 @@ public class SkillUsePanel : IView
                 skill = skillList[i];
             }
         }
+        curSkill = skill;
         List<string> targetNameList = new List<string>();
         foreach (string item in skill.TargetWithHanderDic.Keys)
         {

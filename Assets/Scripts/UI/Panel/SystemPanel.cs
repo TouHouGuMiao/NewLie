@@ -109,7 +109,7 @@ public class SystemPanel : IView
     void OnBacktoMenuClick() {
 
         BackMenuHide();                
-        GUIManager.ShowView("BGStoryPanel");
+        //GUIManager.ShowView("BGStoryPanel");
     }
     void BackMenuHide() {
         foreach (Transform child in ParentGo.transform)
@@ -130,7 +130,7 @@ public class SystemPanel : IView
                 GUIManager.HideView(goActiveList[j]);
             }
         }        
-        //GameStateManager.LoadScene(1);       
+        GameStateManager.LoadScene(1);       
     }
     void OnClickSkillBtn() {
         GUIManager.ShowView("SkillPanel");

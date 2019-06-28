@@ -129,6 +129,7 @@ public class TalkManager
     void CunMingLaiFang2()
     {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 26);
+        //CheckManager.Instance.ShowCheckPanel(2,CheckModel.normal,TestHander);
     }
 
     void CunMingLaiFang4()
@@ -171,5 +172,11 @@ public class TalkManager
     void KongWuGuaiTan_InToCangKu4() {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 56);
     }
-        #endregion
+    #endregion
+    #region 绑定一些琐碎的方法
+
+    void TestHander() {
+        Debug.LogError("Big Succeces");
+    }
+    #endregion
 }

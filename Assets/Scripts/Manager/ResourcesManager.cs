@@ -150,7 +150,15 @@ public class ResourcesManager
         }
         return effect;
     }
-
+    public GameObject LoadCheckCard(string name) {
+        string path = "Model" + "/" + "CheckCard" + "/" + name;
+        GameObject effect = Resources.Load(path) as GameObject;
+        if (effect == null) {
+            Debug.LogError("Model is null" + name);
+            return null;
+        }
+        return effect;
+    }
     public GameObject LoadDiceCard(string name)
     {
         string path = "Model" + "/" + "DiceCard" + "/"+ name;

@@ -85,7 +85,7 @@ public class DiceManager
         DicePanel.OnDiceRotateFished = hander;
         DicePanel.isPlural = true;
         DicePanel.diceNumber_Plural = diceCount;
-        GUIManager.ShowView("DicePanel");
+        GUIManager.ShowView("DicePanel");       
     }
 
     public int GetDiceValue()

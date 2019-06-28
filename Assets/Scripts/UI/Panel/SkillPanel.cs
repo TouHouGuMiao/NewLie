@@ -22,9 +22,8 @@ public class SkillPanel : IView
     private GameObject ErrorTips;
 
     private List<Vector3> backV_List = new List<Vector3>();
-    private List<Vector3> backR_List = new List<Vector3>();
-    private Dictionary<int, Skill> SkillDic;
-    public static int skillPoints=10;//技能职业加点
+    private List<Vector3> backR_List = new List<Vector3>();   
+    //public static int skillPoints=10;//技能职业加点
     int pointts;
     int currentPoints = 0;
 
@@ -40,8 +39,7 @@ public class SkillPanel : IView
     }
 
     protected override void OnShow()
-    {
-        SkillDic=SkillManager.Instance.GetSkillDataInDic();
+    {      
         cardContainer.gameObject.SetActive(false);
         //pointts = SkillPanel.skillPoints;    
         pointts = Skill.CanUsePoints;//总的点数

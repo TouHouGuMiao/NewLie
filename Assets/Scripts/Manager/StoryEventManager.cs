@@ -49,7 +49,7 @@ public class StoryEventManager
     /// <param name="index"></param>
     public void ShowEventPanel_ChapterOne(int id,int index=0)
     {
-         StoryData data = GetChapterOneEventDataById(id);
+        StoryData data = GetChapterOneEventDataById(id);
         data.index = index;
         EventStoryPanel.data = data;
         GUIManager.ShowView("EventStoryPanel");
@@ -1110,12 +1110,14 @@ public class StoryEventManager
     void ShenSheToSleep80()
     {
         AudioManager.Instance.PlayEffect_Source("KnockDoor", ShowGoToStoreHouse0);
+        
     }
     #endregion
     #region 村民来访
     void CunMingLaiFang0()
     {
         ShowEventPanel_ChapterOne(3, 1);
+        //CheckManager.Instance.ShowCheckPanel(2);
     }
 
     void CunMingLaiFang1()
@@ -1292,10 +1294,12 @@ public class StoryEventManager
         if (DiceCheckPanel.diceValue >= data.preesure)
         {
             ShowEventPanel_ChapterOne(3, 4);
+            Debug.LogError("过了");
             GUIManager.HideView("DiceCheckPanel");
         }
         else
         {
+            Debug.LogError("没过");
             DiceManager.Instance.ShowDicePanel(4, 0.01f, CunMingLaiFangPressureAdd);
             GUIManager.HideView("DiceCheckPanel");
         }
@@ -1307,7 +1311,7 @@ public class StoryEventManager
         float value = characterPropBase.preesure + DicePanel.diceValue;
         CharacterPropManager.Instance.ChangePlayerCurrentProp(PropType.preesure, value, ShowCunMingLaiFang5);
     }
-
+     
     void ShowCunMingLaiFang5()
     {
         ShowEventPanel_ChapterOne(3, 5);

@@ -105,7 +105,7 @@ public class DicePanel : IView
     {
         DestoryDiceCard();
         if (!isPlural)
-        {
+        {           
             if (OnDiceRotateFished != null)
             {
                 OnDiceRotateFished();
@@ -570,8 +570,8 @@ public class DicePanel : IView
         else
         {
             isPlural = false;
-            diceIndex_Plural = 0;
-            OnDiceRotateFished();
+            diceIndex_Plural = 0;          
+            CheckManager.Instance.ShowCheckPanel(SkillManager.Instance.Cur_Skill.data.ID, OnDiceRotateFished);
         }
      
     }

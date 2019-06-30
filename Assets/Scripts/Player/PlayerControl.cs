@@ -88,6 +88,7 @@ public class PlayerControl : CharacterPropBase {
     }
 
     float deltaTime = 0;
+
     void CharacterControl()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -383,14 +384,6 @@ public class PlayerControl : CharacterPropBase {
 
       
     }
-
-
-
-
-
-   
-
-
     private void OnParticleCollision(GameObject other)
     {
 

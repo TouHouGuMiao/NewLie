@@ -105,8 +105,8 @@ public class CheckPanel : IView {
             }
             }
     }
-    void OnDiceCheckCardFinished() {
-        if (DiceCheckPanel.diceValue >= s_Check.data.SkillPoints) {
+    void OnDiceCheckCardFinished() {//以后再加判断是否成功的语句
+        if (DiceCheckPanel.diceValue >= s_Check.data.SkillPoints) {//Key Word
             GameObject cardWidget = panel.transform.GetChild(2).gameObject;
             for (int i = 0; i < cardWidget.transform.childCount; i++) {
                 TweenPosition tp = cardWidget.transform.GetChild(i).GetComponent<TweenPosition>();

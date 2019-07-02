@@ -19,6 +19,7 @@ public class DicePanel : IView
     private float radius=7;
     public static float rate;
     public static int[] DiceNumerArray;
+    public static CheckLevel level;
     private static  GameObject dicePanel;
     private Dictionary<int, GameObject> DiceCardDic = new Dictionary<int, GameObject>();
     public DicePanel()
@@ -105,7 +106,7 @@ public class DicePanel : IView
     {
         DestoryDiceCard();
         if (!isPlural)
-        {
+        {           
             if (OnDiceRotateFished != null)
             {
                 OnDiceRotateFished();
@@ -570,8 +571,8 @@ public class DicePanel : IView
         else
         {
             isPlural = false;
-            diceIndex_Plural = 0;
-            OnDiceRotateFished();
+            diceIndex_Plural = 0;          
+            CheckManager.Instance.ShowCheckPanel(SkillManager.Instance.Cur_Skill.data.ID, OnDiceRotateFished,level);
         }
      
     }

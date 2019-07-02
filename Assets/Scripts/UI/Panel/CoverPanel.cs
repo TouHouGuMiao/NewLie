@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoverPanel : IView
 {
     private TweenAlpha ta;
-    public static float duration=0;
+    public static float duration=1.0f;
     public static bool needAuteHide = true;
     public static bool fadeIn=false;
     public static EventDelegate OnCoverFished;

@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CheckLevel {
+normal,
+difficult,
+SoDifficult
+}
 public class SkillManager
 {
-
     private static SkillManager _instance = null;
     public static SkillManager Instance
     {
@@ -14,8 +18,17 @@ public class SkillManager
             {
                 _instance = new SkillManager();
                 _instance.InitSkillData_1();
+                _instance.InitSkillData();
             }
             return _instance;
+        }
+    }
+
+    public Skill Cur_Skill
+    {
+        get
+        {
+            return SkillUsePanel.curSkill;   
         }
     }
 
@@ -149,8 +162,9 @@ public class SkillManager
         Investigate.canUse = true;
         Listen = new Skill(5, "Listen", "", "Listen");
         Listen.canUse = true;
-        Idea = new Skill(6, "Idea", "", "Idea");
+        Idea = new Skill(6, "Idea", "", "Idea");       
         Idea.canUse = true;
+        //Idea.data.SkillPoints = 13;
         Pressure = new Skill(7, "Pressure", "", "Pressure");
         Pressure.canUse = true;
         SkillDic.Add(Placate.data.ID, Placate);

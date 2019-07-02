@@ -22,9 +22,8 @@ public class SkillPanel : IView
     private GameObject ErrorTips;
 
     private List<Vector3> backV_List = new List<Vector3>();
-    private List<Vector3> backR_List = new List<Vector3>();
-    private Dictionary<int, Skill> SkillDic;
-    public static int skillPoints=10;//技能职业加点
+    private List<Vector3> backR_List = new List<Vector3>();   
+    //public static int skillPoints=10;//技能职业加点
     int pointts;
     int currentPoints = 0;
 
@@ -40,8 +39,7 @@ public class SkillPanel : IView
     }
 
     protected override void OnShow()
-    {
-        SkillDic=SkillManager.Instance.GetSkillDataInDic();
+    {      
         cardContainer.gameObject.SetActive(false);
         //pointts = SkillPanel.skillPoints;    
         pointts = Skill.CanUsePoints;//总的点数
@@ -189,12 +187,10 @@ public class SkillPanel : IView
         if (i >= cardContainer.transform.childCount - 1)
         {
             tp.onFinished.Add(new EventDelegate(ShowNextBtn));
-        }
-        else {
-            tp.onFinished.Add(new EventDelegate(PlayEffectMusic_2));
-        }
+        }     
     }
     void ShowNextBtn() {
+        NextSceneBtn.GetComponent<UIButton>().enabled = true;
         NextSceneBtn.SetActive(true);
     }
     void OpenOtherSkillCard_Tween(GameObject go)
@@ -223,85 +219,84 @@ public class SkillPanel : IView
         }
         return isAllCardBeClicked;
     }
-    void OnClickCompleteBtm() {
-        NextSceneBtn.GetComponent<UIButton>().enabled = false;
+    void OnClickCompleteBtm() {     
         AlphaCloseDes_Info();
         BackToSkillCardPos(currentGO);
         OpenAddCardEnabled();      
         Skill.CanUsePoints = pointts;
         if (currentGO.name.Contains("0"))
         {
-            Skill s = SkillManager.Instance.GetSkillDataById(1);
+            Skill s = SkillManager.Instance.GetSkillDataById(0);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
-            OnFinishCompleteBtn(1);
+            OnFinishCompleteBtn(0);
         }
         else if (currentGO.name.Contains("1"))
         {
-            Skill s = SkillManager.Instance.GetSkillDataById(2);
+            Skill s = SkillManager.Instance.GetSkillDataById(1);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);           
-            OnFinishCompleteBtn(2);
+            OnFinishCompleteBtn(1);
         }
         else if (currentGO.name.Contains("2"))
+        {
+            Skill s = SkillManager.Instance.GetSkillDataById(2);
+            s.data.SkillPoints = c_Point;
+            SkillManager.Instance.UpDataSkillData(s);
+            OnFinishCompleteBtn(2);
+        }
+        else if (currentGO.name.Contains("3"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(3);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(3);
         }
-        else if (currentGO.name.Contains("3"))
-        {
+        else if (currentGO.name.Contains("4")) {
             Skill s = SkillManager.Instance.GetSkillDataById(4);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(4);
         }
-        else if (currentGO.name.Contains("4")) {
+        else if (currentGO.name.Contains("5"))
+        {
             Skill s = SkillManager.Instance.GetSkillDataById(5);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(5);
         }
-        else if (currentGO.name.Contains("5"))
+        else if (currentGO.name.Contains("6"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(6);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(6);
         }
-        else if (currentGO.name.Contains("6"))
+        else if (currentGO.name.Contains("7"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(7);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(7);
         }
-        else if (currentGO.name.Contains("7"))
+        else if (currentGO.name.Contains("8"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(8);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(8);
         }
-        else if (currentGO.name.Contains("8"))
+        else if (currentGO.name.Contains("9"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(9);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(9);
         }
-        else if (currentGO.name.Contains("9"))
-        {
-            Skill s = SkillManager.Instance.GetSkillDataById(10);
-            s.data.SkillPoints = c_Point;
-            SkillManager.Instance.UpDataSkillData(s);
-            OnFinishCompleteBtn(10);
-        }
     }
     void OnFinishCompleteBtn(int id) {
         for (int i = 0; i < SkillNameContainer.transform.childCount; i++) {
-            if (i == id-1) {
+            if (i == id) {
                 SkillNameContainer.transform.GetChild(i).GetComponent<UILabel>().alpha = 0.4f;
                 return;
             }
@@ -310,7 +305,7 @@ public class SkillPanel : IView
     void OnTwiceChosePoints(int id) {
         for (int i = 0; i < SkillNameContainer.transform.childCount + 1; i++)
         {
-            if (i == id - 1)
+            if (i == id )
             {
                 SkillNameContainer.transform.GetChild(i).GetComponent<UILabel>().alpha = 1;
                 return;
@@ -320,43 +315,43 @@ public class SkillPanel : IView
     void LightName(GameObject go) {
         if (go.name.Contains("0"))
         {
-            OnTwiceChosePoints(1);
+            OnTwiceChosePoints(0);
         }
         else if (go.name.Contains("1"))
         {
-            OnTwiceChosePoints(2);
+            OnTwiceChosePoints(1);
         }
         else if (go.name.Contains("2"))
         {
-            OnTwiceChosePoints(3);
+            OnTwiceChosePoints(2);
         }
         else if (go.name.Contains("3"))
         {
-            OnTwiceChosePoints(4);
+            OnTwiceChosePoints(3);
         }
         else if (go.name.Contains("4"))
         {
-            OnTwiceChosePoints(5);
+            OnTwiceChosePoints(4);
         }
         else if (go.name.Contains("5"))
         {
-            OnTwiceChosePoints(6);
+            OnTwiceChosePoints(5);
         }
         else if (go.name.Contains("6"))
         {
-            OnTwiceChosePoints(7);
+            OnTwiceChosePoints(6);
         }
         else if (go.name.Contains("7"))
         {
-            OnTwiceChosePoints(8);
+            OnTwiceChosePoints(7);
         }
         else if (go.name.Contains("8"))
         {
-            OnTwiceChosePoints(9);
+            OnTwiceChosePoints(8);
         }
         else if (go.name.Contains("9"))
         {
-            OnTwiceChosePoints(10);
+            OnTwiceChosePoints(9);
         }
      
     }
@@ -400,60 +395,60 @@ public class SkillPanel : IView
         {
             MoveToScreenLeft();            
             CloseAllCardEnabeld();
-            UpdateSkillInfo(1);
+            UpdateSkillInfo(0);
         }
         else if (currentGO.name.Contains("1"))
         {
             MoveToScreenLeft();          
             CloseAllCardEnabeld();
-            UpdateSkillInfo(2);
+            UpdateSkillInfo(1);
         }
         else if (currentGO.name.Contains("2")) {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(3);
+            UpdateSkillInfo(2);
         }
         else if (currentGO.name.Contains("3"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(4);
+            UpdateSkillInfo(3);
         }
         else if (currentGO.name.Contains("4"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(5);
+            UpdateSkillInfo(4);
         }
         else if (currentGO.name.Contains("5"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(6);
+            UpdateSkillInfo(5);
         }
         else if (currentGO.name.Contains("6"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(7);
+            UpdateSkillInfo(6);
         }
         else if (currentGO.name.Contains("7"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(8);
+            UpdateSkillInfo(7);
         }
         else if (currentGO.name.Contains("8"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(9);
+            UpdateSkillInfo(8);
         }
         else if (currentGO.name.Contains("9"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(10);
+            UpdateSkillInfo(9);
         }
 
 
@@ -478,8 +473,7 @@ public class SkillPanel : IView
         SkillDesInfo.GetChild(0).GetComponent<UILabel>().text = s.data.Des;
        
     }
-    void AlphaShowDes_Info() {
-        NextSceneBtn.GetComponent<UIButton>().enabled = false;       
+    void AlphaShowDes_Info() {         
         TweenAlpha ta = ChanageSkillWidget.GetComponent<TweenAlpha>();
         ta.enabled = true;
         ta.delay = 0.2f;
@@ -487,8 +481,7 @@ public class SkillPanel : IView
         ta.onFinished.Clear();
         ta.from = 0;
         ta.to = 1;
-        ta.ResetToBeginning();
-        Debug.LogError("nmd");
+        ta.ResetToBeginning();       
     }
     void AlphaCloseDes_Info()
     {      
@@ -498,12 +491,10 @@ public class SkillPanel : IView
         ta.duration = 0.3f;
         ta.onFinished.Clear();
         ta.from = 1;
-        ta.to = 0;
-        Debug.LogError("cccc");
+        ta.to = 0;       
         ta.ResetToBeginning();
     }
-    void MoveToScreenLeft() {
-        NextSceneBtn.GetComponent<UIButton>().enabled = false;
+    void MoveToScreenLeft() {      
         Vector3 vt = new Vector3(-4.7f, 0.85f, 3.5f);
         Vector3 vr = new Vector3(0, 125, 0);
         TweenPosition tp = currentGO.GetComponent<TweenPosition>();
@@ -559,42 +550,44 @@ public class SkillPanel : IView
             TweenPosition tp = go.GetComponent<TweenPosition>();
             TweenRotation tr = go.GetComponent<TweenRotation>();
             if (go.name != currentGO.name)
-            {               
-                   
-                    tp.enabled = true;
-                    tp.from = go.transform.localPosition;
-                    tp.onFinished.Clear();
-                    tp.delay = i * 0.3f;
-                    tp.duration = 0.8f;
-                    tp.from = go.transform.localPosition;
-                    tp.to = new Vector3(5.5f, 12.3f + i * 0.1f, 80);
-                    tp.ResetToBeginning();
+            {
 
-                    
-                    tr.enabled = true;
-                    tr.delay = i * 0.2f;
-                    tr.duration = 0.8f;
-                    tr.onFinished.Clear();
-                    tr.from = go.transform.rotation.eulerAngles;
-                    tr.to = new Vector3(80, 0, 1.1722f);
-                    tr.ResetToBeginning();
-             
-                
+                tp.enabled = true;
+                tp.from = go.transform.localPosition;
+                tp.onFinished.Clear();
+                tp.delay = i * 0.3f;
+                tp.duration = 0.8f;
+                tp.from = go.transform.localPosition;
+                tp.to = new Vector3(5.5f, 12.3f + i * 0.1f, 80);
+                tp.ResetToBeginning();
+
+
+                tr.enabled = true;
+                tr.delay = i * 0.2f;
+                tr.duration = 0.8f;
+                tr.onFinished.Clear();
+                tr.from = go.transform.rotation.eulerAngles;
+                tr.to = new Vector3(80, 0, 1.1722f);
+                tr.ResetToBeginning();
+
+
             }
-             if (go.name == currentGO.name) {              
-                if (i >= cardContainer.transform.childCount-1)
+            if (go.name == currentGO.name)
+            {
+                if (i >= cardContainer.transform.childCount - 1)
                 {
                     tp = cardContainer.transform.GetChild(cardContainer.transform.childCount - 2).GetComponent<TweenPosition>();
-                    tp.onFinished.Add(new EventDelegate(AlphaShowDes_Info));                   
-                }                
+                    tp.onFinished.Add(new EventDelegate(AlphaShowDes_Info));
+                }
             }
             if (i >= cardContainer.transform.childCount - 1)
             {
                 tp.onFinished.Add(new EventDelegate(AlphaShowDes_Info));
 
-            }         
+            }
         }
-}
+
+    }
     void InitSkillCard()
     {
         startBtn.gameObject.SetActive(false);
@@ -669,9 +662,10 @@ public class SkillPanel : IView
         {
             return;
         }
-        for (int i = 0; i < cardContainer.transform.childCount; i++)
-        {
+        for (int i = 0; i < cardContainer.transform.childCount; i++){
+           // int index = i - 5;
             GameObject go = cardContainer.transform.GetChild(i).gameObject;
+           // GameObject go = cardContainer.transform.GetChild(index).gameObject;
             TweenPosition tp = go.GetComponent<TweenPosition>();
             TweenRotation tr = go.GetComponent<TweenRotation>();
             if (go.transform.localPosition.y < 12.75f)
@@ -739,21 +733,20 @@ public class SkillPanel : IView
                     tr.to = new Vector3(0, -150, 0);
                     tr.ResetToBeginning();
                 }
-            }
-
+            }          
             if (i >= cardContainer.transform.childCount - 6)
             {
-                
+
                 tp.onFinished.Add(new EventDelegate(CardMoveToScreen_2));
                 break;
-            }     
+            }
         }
-        
             isCardMoveToScreenOver = true;
     }
     void CardMoveToScreen_2() {
-        for (int j = 5; j < cardContainer.transform.childCount; j++) {
+        for (int j = 5; j < cardContainer.transform.childCount; j++) {      
             int index = j - 5;
+            //int index_1 = cardContainer.transform.childCount - 1 - j;
             GameObject go = cardContainer.transform.GetChild(j).gameObject;
             TweenPosition tp = go.GetComponent<TweenPosition>();
             TweenRotation tr = go.GetComponent<TweenRotation>();
@@ -826,9 +819,10 @@ public class SkillPanel : IView
                 
                 }
             }
-            if (j >= cardContainer.transform.childCount - 1) {      
-                tp.onFinished.Add(new EventDelegate(OnFinshedMoveToScreen));             
-            }
+            if (j >= cardContainer.transform.childCount - 1)
+            {
+                tp.onFinished.Add(new EventDelegate(OnFinshedMoveToScreen));
+            }          
         }
     }
     void OnFinshedMoveToScreen() {
@@ -856,16 +850,16 @@ public class SkillPanel : IView
     }
     void PlayEffectMusic_2() {
         AudioManager.Instance.PlayEffect_Source("cardMove");
-        NextSceneBtn.GetComponent<UIButton>().enabled = true;
+       // NextSceneBtn.GetComponent<UIButton>().enabled = true;
     }
     private GameObject currentGO;//用于得到当前是哪张技能卡片
     void OncClickSkillCard() {//点击卡片放大方法          
         list_Go.Clear();
+        NextSceneBtn.GetComponent<UIButton>().enabled = false;
         Vector3 vt = new Vector3(0.45f, 0.85f, 3.5f);
         Vector3 vr = new Vector3(0, 180, 0);
         GameObject gc = UIButton.current.gameObject;      
         AddGOToList();
-       
         for (int i = 0; i < list_Go.Count; i++) {
             if (gc.name == list_Go[i].name) {
                 list_Go.Remove(list_Go[i]);
@@ -881,8 +875,7 @@ public class SkillPanel : IView
         }
         for (int i = 0; i < cardContainer.transform.childCount; i++) {
             if (UIButton.current.name == cardContainer.transform.GetChild(i).name)
-            {
-                Debug.LogError("11111" + UIButton.current.name);
+            {                
                 index = i;
                 break;
             }         
@@ -961,7 +954,7 @@ public class SkillPanel : IView
     void SetChoseBtnStart() {
         choseSkillBtn.gameObject.SetActive(true);
         SkillNameContainer.SetActive(false);
-        NextSceneBtn.GetComponent<UIButton>().enabled = false;      
+       // NextSceneBtn.GetComponent<UIButton>().enabled = false;      
     }
     void SetChoseBtnClose() {
         choseSkillBtn.gameObject.SetActive(false);

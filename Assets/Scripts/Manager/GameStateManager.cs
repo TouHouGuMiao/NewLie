@@ -7,7 +7,7 @@ public class GameStateManager : MonoBehaviour
 {
     private static  Dictionary<string, GameState> GameStateDic;
     private static GameState m_CurState;
-
+  
     private void Start()
     {
         GameStateDic = new Dictionary<string, GameState>();

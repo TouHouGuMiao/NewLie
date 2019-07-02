@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +19,7 @@ public class SkillUsePanel : IView
     private static Transform cardWidget;
     private static  Transform arrow;
     private static  GameObject infoItem;
+    public static Skill curSkill;
     /// <summary>
     /// 记录所有已有Skill的List
     /// </summary>
@@ -216,6 +217,7 @@ public class SkillUsePanel : IView
                 skill = allSkillList[i];
             }
         }
+        curSkill=skill;
         List<string> targetNameList = new List<string>();
         foreach (string item in skill.TargetWithHanderDic.Keys)
         {

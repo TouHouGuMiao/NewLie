@@ -116,6 +116,13 @@ public class TalkManager
         data1.StoryHanderDic.Add(9, CunMingLaiFang9);
         data1.StoryHanderDic.Add(10, CunMingLaiFang10);
         data1.StoryHanderDic.Add(11, CunMingLaiFang11);
+
+        StoryData data2 = GetStoryDataById(2);
+        data2.StoryHanderDic.Add(0, GoToCunZi0);
+        data2.StoryHanderDic.Add(1, GoToCunZi1);
+        data2.StoryHanderDic.Add(2, GoToCunZi2);
+        data2.StoryHanderDic.Add(3, GoToCunZi3);
+        data2.StoryHanderDic.Add(4, GoToCunZi4);
     }
 
 
@@ -214,5 +221,33 @@ public class TalkManager
     void KongWuGuaiTan_InToCangKu4() {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(0, 56);
     }
-        #endregion
+    #endregion
+    #region 来到人里
+    void GoToCunZi0()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 7);
+        CameraManager.Instance.FeatureOver("cunMingA");
+    }
+
+    void GoToCunZi1()
+    {
+        ShowTalkPanel(2, 2);
+    }
+
+
+    void GoToCunZi2()
+    {
+        ShowTalkPanel(2, 3);
+    }
+
+    void GoToCunZi3()
+    {
+        ShowTalkPanel(2, 4);
+    }
+
+    void GoToCunZi4()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 8);
+    }
+    #endregion
 }

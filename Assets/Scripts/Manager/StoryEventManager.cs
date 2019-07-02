@@ -40,6 +40,7 @@ public class StoryEventManager
             Debug.LogError("chapterOneDic id has error!"+id);
         }
         return data;
+       
     }
 
     /// <summary>
@@ -327,7 +328,7 @@ public class StoryEventManager
         data1.StoryHanderDic.Add(46, new StoryHander(CunMingLaiFang46));
         data1.StoryHanderDic.Add(47, new StoryHander(CunMingLaiFang47));
         data1.StoryHanderDic.Add(48, new StoryHander(CunMingLaiFang48));
-
+        data1.StoryHanderDic.Add(49, new StoryHander(CunMingLaiFang49));
 
 
         data1.StoryHanderDic.Add(51, new StoryHander(CunMingLaiFang51));
@@ -339,6 +340,16 @@ public class StoryEventManager
         data2.StoryHanderDic.Add(1, GoToCunZi1);
         data2.StoryHanderDic.Add(2, GoToCunZi2);
         data2.StoryHanderDic.Add(3, GoToCunZi3);
+        data2.StoryHanderDic.Add(4, GoToCunZi4);
+        data2.StoryHanderDic.Add(5, GoToCunZi5);
+        data2.StoryHanderDic.Add(6, GoToCunZi6);
+        data2.StoryHanderDic.Add(7, GoToCunZi7);
+        data2.StoryHanderDic.Add(8, GoToCunZi8);
+        data2.StoryHanderDic.Add(9, GoToCunZi9);
+        data2.StoryHanderDic.Add(10, GoToCunZi10);
+        data2.StoryHanderDic.Add(11, GoToCunZi11);
+        data2.StoryHanderDic.Add(12, GoToCunZi12);
+        data2.StoryHanderDic.Add(13, GoToCunZi13);
     }
     #endregion
 
@@ -1419,7 +1430,9 @@ public class StoryEventManager
 
     void CunMingLaiFang49()
     {
-       
+        GameObject player = GameObject.FindWithTag("Player");
+        CameraManager.Instance.FeatureOver("Player");
+        GUIManager.HideView("EventStoryPanel");
     }
 
     void CunMingLaiFang51()
@@ -1457,7 +1470,8 @@ public class StoryEventManager
 
     void GoToCunZi3()
     {
-       
+        GameObject player = GameObject.FindWithTag("Player");
+        CameraManager.Instance.FeatureOver("Player");
         GUIManager.HideView("EventStoryPanel");
     }
 
@@ -1466,10 +1480,63 @@ public class StoryEventManager
         GUIManager.HideView("EventStoryPanel");
     }
 
+    void GoToCunZi5()
+    {
+        ShowEventPanel_ChapterOne(4, 6);
+        NPCAnimatorManager.Instance.PlayCharacterTweenScale(NPCAnimatorManager.BGEnmu.Village, "cunMingA",new EventDelegate (CunMingARotateFished));
+    }
+
+    void GoToCunZi6()
+    {
+        TalkManager.Instance.ShowTalkPanel(2, 0);
+    }
+
+    void GoToCunZi7()
+    {
+        TalkManager.Instance.ShowTalkPanel(2, 1);
+    }
+
+    void GoToCunZi8()
+    {
+        ShowEventPanel_ChapterOne(4, 9);
+    }
+
+    void GoToCunZi9()
+    {
+        ShowEventPanel_ChapterOne(4, 10);
+    }
+
+    void GoToCunZi10()
+    {
+        ShowEventPanel_ChapterOne(4, 11);
+    }
+
+    void GoToCunZi11()
+    {
+        ChoseManager.Instance.ShowChosePanel(8);
+    }
+
+    void GoToCunZi12()
+    {
+        CameraManager.Instance.Feature(  NPCAnimatorManager.BGEnmu.Village,"investigate");
+        ShowEventPanel_ChapterOne(4, 13);
+    }
+
+    void GoToCunZi13()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        CameraManager.Instance.FeatureOver("Player");
+    }
     #endregion
 
 
     #region 绑定一些杂项的方法
+
+    void CunMingARotateFished()
+    {
+        CameraManager.Instance.Feature(NPCAnimatorManager.BGEnmu.Village, "cunMingA", "investigate");
+        TalkManager.Instance.ShowTalkPanel(2, 0);
+    }
 
     void ShowEventInvestigate_CunMing()
     {
@@ -1638,8 +1705,9 @@ public class StoryEventManager
     void SeeWithCunMingOver_Investigate_A()
     {
         GameObject player = GameObject.FindWithTag("Player").gameObject;
-        CameraManager.Instance.Feature( CameraManager.FeatureMode.player, player, "test0");
+        CameraManager.Instance.Feature(  NPCAnimatorManager.BGEnmu.ShenShe,"investigate");
         //DiceManager.Instance.ShowDicePanel(10, 0.01f, ShowEventInvestigate_CunMing, 2);
+        ShowEventPanel_ChapterOne(3, 49);
         SkillManager.Instance.ClearSkillUsePanel();
     }
 

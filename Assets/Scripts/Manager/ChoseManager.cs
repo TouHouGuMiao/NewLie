@@ -95,6 +95,10 @@ public class ChoseManager
         ChoseData data7 = GetChsoeDataByID(7);
         data7.HanderDic.Add(0, GoToVillage_0);
         data7.HanderDic.Add(1, GoToVillage_1);
+
+        ChoseData data8 = GetChsoeDataByID(8);
+        data8.HanderDic.Add(0, AngryPeople_0);
+        data8.HanderDic.Add(1, AngryPeople_1 );
     }
 
     #endregion
@@ -262,5 +266,19 @@ public class ChoseManager
         GUIManager.HideView("ChosePanel");
         GUIManager.HideView("EventStoryPanel");
     }
+
+
+    #region 来到人里
+    void AngryPeople_0()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 12);
+    }
+
+    void AngryPeople_1()
+    {
+
+    }
+
+    #endregion
     #endregion
 }

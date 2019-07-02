@@ -36,6 +36,7 @@ public class EventStateManager
         EventDic.Add("ShenShedoor", null);
         EventDic.Add("ShenSheMoveScene", null);
         EventDic.Add("CunZiInvestigate", null);
+        EventDic.Add("CunMingShot", null);
     }
 
    /// <summary>
@@ -66,9 +67,21 @@ public class EventStateManager
         BattleCamera.Instance.SetBattleCameraLetStop(false);
         BattleCamera.Instance.SetCameraReturnPlayer(new Vector3 (3,2,0));
         EventDic["CunZiInvestigate"] = new EventDelegate(ShowEvent_InCunZiAutoInves);
+        EventDic["CunMingShot"] = new EventDelegate(CunMingShot);
     }
 
+
     #region 剧情相关事件绑定
+   /// <summary>
+   /// 
+   /// </summary>
+    private void CunMingShot()
+    {
+        BattleCamera.Instance.MoveCamera_StopWhenRectCashPlayerOrCollider(BattleCamera.MoveEnum.right, 1.0F, ShowCunMingShotOne);
+        EventDic["CunMingShot"] = null;
+    }
+
+
     /// <summary>
     /// 村民来访，玩家开门
     /// </summary>
@@ -80,9 +93,15 @@ public class EventStateManager
         AudioManager.Instance.CloseEffect_Source();
     }
 
+    private void ShowCunMingShotOne()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 5);
+    }
+
     private void ShowEvent_InCunZiAutoInves()
     {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 3);
+        CameraManager.Instance.Feature(  NPCAnimatorManager.BGEnmu.Village,"investigate");
         Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
         Dictionary<string, EventDelegate> ideaDic = new Dictionary<string, EventDelegate>();
         ideaDic.Add("Sence", new EventDelegate(IdeaInCunziWhenFrist));

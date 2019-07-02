@@ -283,6 +283,10 @@ public class StoryEventManager
         data1.StoryHanderDic.Add(2, new StoryHander(CunMingLaiFang2));
         data1.StoryHanderDic.Add(3, new StoryHander(CunMingLaiFang3));
         data1.StoryHanderDic.Add(4, new StoryHander(CunMingLaiFang4));
+        data1.StoryHanderDic.Add(5, new StoryHander(CunMingLaiFang5));
+        data1.StoryHanderDic.Add(6, new StoryHander(CunMingLaiFang6));
+        data1.StoryHanderDic.Add(7, new StoryHander(CunMingLaiFang7));
+        data1.StoryHanderDic.Add(8, new StoryHander(CunMingLaiFang8));
         data1.StoryHanderDic.Add(9, new StoryHander(CunMingLaiFang9));
         data1.StoryHanderDic.Add(10, new StoryHander(CunMingLaiFang10));
         data1.StoryHanderDic.Add(11, new StoryHander(CunMingLaiFang11));
@@ -310,6 +314,31 @@ public class StoryEventManager
         data1.StoryHanderDic.Add(33, new StoryHander(CunMingLaiFang33));
         data1.StoryHanderDic.Add(34, new StoryHander(CunMingLaiFang34));
         data1.StoryHanderDic.Add(35, new StoryHander(CunMingLaiFang35));
+        data1.StoryHanderDic.Add(36, new StoryHander(CunMingLaiFang36));
+        data1.StoryHanderDic.Add(37, new StoryHander(CunMingLaiFang37));
+        data1.StoryHanderDic.Add(38, new StoryHander(CunMingLaiFang38));
+        data1.StoryHanderDic.Add(39, new StoryHander(CunMingLaiFang39));
+        data1.StoryHanderDic.Add(40, new StoryHander(CunMingLaiFang40));
+        data1.StoryHanderDic.Add(41, new StoryHander(CunMingLaiFang41));
+        data1.StoryHanderDic.Add(42, new StoryHander(CunMingLaiFang42));
+        data1.StoryHanderDic.Add(43, new StoryHander(CunMingLaiFang43));
+        data1.StoryHanderDic.Add(44, new StoryHander(CunMingLaiFang44));
+        data1.StoryHanderDic.Add(45, new StoryHander(CunMingLaiFang45));
+        data1.StoryHanderDic.Add(46, new StoryHander(CunMingLaiFang46));
+        data1.StoryHanderDic.Add(47, new StoryHander(CunMingLaiFang47));
+        data1.StoryHanderDic.Add(48, new StoryHander(CunMingLaiFang48));
+
+
+
+        data1.StoryHanderDic.Add(51, new StoryHander(CunMingLaiFang51));
+
+
+
+        StoryData data2 = GetChapterOneEventDataById(4);
+        data2.StoryHanderDic.Add(0, GoToCunZi0);
+        data2.StoryHanderDic.Add(1, GoToCunZi1);
+        data2.StoryHanderDic.Add(2, GoToCunZi2);
+        data2.StoryHanderDic.Add(3, GoToCunZi3);
     }
     #endregion
 
@@ -1133,10 +1162,34 @@ public class StoryEventManager
 
     void CunMingLaiFang3()
     {
-        DiceManager.Instance.ShowDicePanel(10, 0.01f, CunMingLaiFangPressureCheck,2);
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, CunMingLaiFangPressureCheck,2, CheckLevel.normal);
     }
 
     void CunMingLaiFang4 ()
+    {
+        ShowEventPanel_ChapterOne(3, 9);
+    }
+
+    void CunMingLaiFang5()
+    {
+        ShowEventPanel_ChapterOne(3, 6);
+    }
+
+    void CunMingLaiFang6()
+    {
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+        Dictionary<string, EventDelegate> ideaDic = new Dictionary<string, EventDelegate>();
+        ideaDic.Add("myself", new EventDelegate (IdeaCheckWhenAwake));
+        skillDic.Add(6, ideaDic);
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic, true);
+    }
+
+    void CunMingLaiFang7()
+    {
+        ShowEventPanel_ChapterOne(3, 9);
+    }
+
+    void CunMingLaiFang8()
     {
         ShowEventPanel_ChapterOne(3, 9);
     }
@@ -1281,12 +1334,171 @@ public class StoryEventManager
     void CunMingLaiFang35()
     {
         ChoseManager.Instance.ShowChosePanel(5);
+
     }
+    void CunMingLaiFang36()
+    {
+        ShowEventPanel_ChapterOne(3, 37);
+    }
+
+    void CunMingLaiFang37()
+    {
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+        Dictionary<string, EventDelegate> listenDic = new Dictionary<string, EventDelegate>();
+        listenDic.Add("scene", new EventDelegate(CunMingLaiFangListenSence));
+        Dictionary<string, EventDelegate> InvestigateDic = new Dictionary<string, EventDelegate>();
+        InvestigateDic.Add("A", new EventDelegate(CunMingLaiFangInvestigateToCunMing));
+        Dictionary<string, EventDelegate> ThridEyeDic = new Dictionary<string, EventDelegate>();
+        ThridEyeDic.Add("A", new EventDelegate(CunMingLaiFangThridEye));
+
+
+        skillDic.Add(5, listenDic);
+        skillDic.Add(4, InvestigateDic);
+        skillDic.Add(3, ThridEyeDic);
+
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic, true);
+        ShowEventPanel_ChapterOne(3, 38);
+    }
+    void CunMingLaiFang38()
+    {
+        ChoseManager.Instance.ShowChosePanel(6)
+;    }
+    void CunMingLaiFang39()
+    {
+        TalkManager.Instance.ShowTalkPanel(1, 5);
+    }
+
+    void CunMingLaiFang40()
+    {
+        ShowEventPanel_ChapterOne(3, 41);
+    }
+
+    void CunMingLaiFang41()
+    {
+        TalkManager.Instance.ShowTalkPanel(1, 8);
+    }
+
+    void CunMingLaiFang42()
+    {
+        ShowEventPanel_ChapterOne(3, 43);
+    }
+
+    void CunMingLaiFang43()
+    {
+        ShowEventPanel_ChapterOne(3, 44);
+    }
+
+    void CunMingLaiFang44()
+    {
+        ShowEventPanel_ChapterOne(3, 45);
+    }
+
+    void CunMingLaiFang45()
+    {
+        ShowEventPanel_ChapterOne(3, 46);
+    }
+
+    void CunMingLaiFang46()
+    {
+        ShowEventPanel_ChapterOne(3, 47);
+    }
+
+    void CunMingLaiFang47()
+    {
+        ShowEventPanel_ChapterOne(3, 48);
+    }
+
+    void CunMingLaiFang48()
+    {
+        GUIManager.HideView("EventStoryPanel");
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+        Dictionary<string, EventDelegate> InvestigateDic = new Dictionary<string, EventDelegate>();
+        InvestigateDic.Add("A", new EventDelegate(SeeWithCunMingOver_Investigate_A));
+        skillDic.Add(5, InvestigateDic);
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic);
+        EventStateManager.Instance.WhenSeeWithCunMingOver();
+    }
+
+    void CunMingLaiFang49()
+    {
+       
+    }
+
+    void CunMingLaiFang51()
+    {
+        ChoseManager.Instance.ShowChosePanel(7);
+    }
+
     #endregion
+    #endregion
+
+
+    #region 来到人里
+    void GoToCunZi0()
+    {
+        ShowEventPanel_ChapterOne(4, 1);
+        SkillManager.Instance.ClearSkillUsePanel();
+    }
+
+
+    void GoToCunZi1()
+    {
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+        Dictionary<string, EventDelegate> ListenDic = new Dictionary<string, EventDelegate>();
+        ListenDic.Add("Scene", new EventDelegate(ListenInCunZiWhenFrist));
+        skillDic.Add(5, ListenDic);
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic, false);
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void GoToCunZi2()
+    {
+        GUIManager.HideView("EventStoryPanel");
+
+    }
+
+    void GoToCunZi3()
+    {
+       
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void GoToCunZi4()
+    {
+        GUIManager.HideView("EventStoryPanel");
+    }
+
     #endregion
 
 
     #region 绑定一些杂项的方法
+
+    void ShowEventInvestigate_CunMing()
+    {
+        CharacterPropBase data = CharacterPropManager.Instance.GetPlayerProp();
+        if (DiceCheckPanel.diceValue <= data.Investigate)
+        {
+            StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 49);
+        }
+        GUIManager.HideView("DiceCheckPanel");
+    }
+
+
+    void CunMingLaiFangListenSence()
+    {
+
+    }
+
+    void CunMingLaiFangInvestigateToCunMing()
+    {
+
+    }
+
+    void CunMingLaiFangThridEye()
+    {
+
+    }
+
 
     void CunMingLaiFangPressureCheck()
     {
@@ -1401,8 +1613,48 @@ public class StoryEventManager
         GUIManager.HideView("DiceCheckPanel");
     }
 
+    void IdeaCheckWhenAwake_Reslut()
+    {
+        //CharacterPropBase data = CharacterPropManager.Instance.GetPlayerProp();
+        Skill s = SkillManager.Instance.GetSkillDataById(6);
+        if (DiceCheckPanel.diceValue <=s.data.SkillPoints )//data.Idea
+        {
+            ShowEventPanel_ChapterOne(3, 7);
+        }
+        else
+        {
+            ShowEventPanel_ChapterOne(3, 8);
+        }
+        GUIManager.HideView("DiceCheckPanel");
+    }
+
     #endregion
     #region 绑定技能方法
+
+
+
+    void ListenInCunZiWhenFrist()
+    {
+        GameObject player = GameObject.FindWithTag("Player").gameObject;
+        ShowEventPanel_ChapterOne(4, 2);
+        SkillManager.Instance.MoveSkillInSkillUsePanel(5);
+    }
+
+    void SeeWithCunMingOver_Investigate_A()
+    {
+        GameObject player = GameObject.FindWithTag("Player").gameObject;
+        CameraManager.Instance.Feature( CameraManager.FeatureMode.player, player, "test0");
+        //DiceManager.Instance.ShowDicePanel(10, 0.01f, ShowEventInvestigate_CunMing, 2);
+        SkillManager.Instance.ClearSkillUsePanel();
+    }
+
+
+    void IdeaCheckWhenAwake()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, IdeaCheckWhenAwake_Reslut,2, CheckLevel.normal);
+        SkillManager.Instance.ClearSkillUsePanel();
+    }
+
     void PressCheckInDream()
     {
         DiceManager.Instance.ShowDicePanel(4, 0.02f, SleepPressureCheck);
@@ -1411,25 +1663,25 @@ public class StoryEventManager
 
     void IdeaCheckInDream()
     {
-        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_IdeaCheck, 2);
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_IdeaCheck, 2,CheckLevel.normal);
         SkillManager.Instance.ClearSkillUsePanel();
     }
 
     void LisnCheckInDream()
     {
-        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_ListenCheck,2);
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_ListenCheck,2, CheckLevel.normal);
         SkillManager.Instance.ClearSkillUsePanel();
     }
 
     void InvestigateCheckInDream()
     {
-        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_InvestigateCheck, 2);
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShenSheToSleep_InvestigateCheck, 2, CheckLevel.normal);
         SkillManager.Instance.ClearSkillUsePanel();
     }
 
     void IdeaCheckInCunMingLaiFang()
     {
-        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShowEvent3_30, 2);
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, ShowEvent3_30, 2, CheckLevel.normal);
         SkillManager.Instance.ClearSkillUsePanel();
     }
 

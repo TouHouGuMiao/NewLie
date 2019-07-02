@@ -64,7 +64,7 @@ public class DiceManager
         DicePanel.OnDiceRotateFished = hander;
         GUIManager.ShowView("DicePanel");
     }
-    public void ShowDicePanel(int diceType, float rate, DiceHander hander,int diceCount)
+    public void ShowDicePanel(int diceType, float rate, DiceHander hander,int diceCount,CheckLevel level)
     {
         int[] DiceNumerArray = new int[diceType];
         if (diceType == 6)
@@ -85,6 +85,7 @@ public class DiceManager
         DicePanel.OnDiceRotateFished = hander;
         DicePanel.isPlural = true;
         DicePanel.diceNumber_Plural = diceCount;
+        DicePanel.level = level;
         GUIManager.ShowView("DicePanel");       
     }
 

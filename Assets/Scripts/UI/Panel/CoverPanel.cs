@@ -8,6 +8,7 @@ public class CoverPanel : IView
     public static float duration=1.0f;
     public static bool needAuteHide = true;
     public static bool fadeIn=false;
+    public static EventDelegate OnCoverFished;
     public CoverPanel()
     {
         m_Layer = Layer.CoverUI;
@@ -24,6 +25,19 @@ public class CoverPanel : IView
 
         ta.enabled = true;
         ta.duration = duration;
+
+        if (OnCoverFished != null)
+        {
+            ta.onFinished.Clear();
+            ta.onFinished.Add(OnCoverFished);
+        }
+
+        else
+        {
+            ta.onFinished.Clear();
+            ta.onFinished.Add(new EventDelegate(HidePanel));
+        }
+
         if (fadeIn)
         {
             ta.from = 0f;

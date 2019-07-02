@@ -109,6 +109,13 @@ public class TalkManager
         data1.StoryHanderDic.Add(1, CunMingLaiFang1);
         data1.StoryHanderDic.Add(2, CunMingLaiFang2);
         data1.StoryHanderDic.Add(4, CunMingLaiFang4);
+        data1.StoryHanderDic.Add(5, CunMingLaiFang5);
+        data1.StoryHanderDic.Add(6, CunMingLaiFang6);
+        data1.StoryHanderDic.Add(7, CunMingLaiFang7);
+        data1.StoryHanderDic.Add(8, CunMingLaiFang8);
+        data1.StoryHanderDic.Add(9, CunMingLaiFang9);
+        data1.StoryHanderDic.Add(10, CunMingLaiFang10);
+        data1.StoryHanderDic.Add(11, CunMingLaiFang11);
     }
 
 
@@ -136,6 +143,42 @@ public class TalkManager
     {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 28);
     }
+
+    void CunMingLaiFang5()
+    {
+        ShowTalkPanel(1, 6);
+    }
+
+    void CunMingLaiFang6()
+    {
+        ShowTalkPanel(1, 7);
+    }
+
+    void CunMingLaiFang7()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 40);
+    }
+
+    void CunMingLaiFang8()
+    {
+        ShowTalkPanel(1, 9);
+    }
+
+    void CunMingLaiFang9()
+    {
+        ShowTalkPanel(1, 10);
+    }
+
+    void CunMingLaiFang10()
+    {
+        ShowTalkPanel(1, 11);
+    }
+
+    void CunMingLaiFang11()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 42);
+    }
+
 
     #endregion
     #region 空鹜怪谈

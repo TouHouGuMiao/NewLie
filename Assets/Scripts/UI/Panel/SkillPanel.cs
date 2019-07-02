@@ -226,77 +226,77 @@ public class SkillPanel : IView
         Skill.CanUsePoints = pointts;
         if (currentGO.name.Contains("0"))
         {
-            Skill s = SkillManager.Instance.GetSkillDataById(1);
+            Skill s = SkillManager.Instance.GetSkillDataById(0);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
-            OnFinishCompleteBtn(1);
+            OnFinishCompleteBtn(0);
         }
         else if (currentGO.name.Contains("1"))
         {
-            Skill s = SkillManager.Instance.GetSkillDataById(2);
+            Skill s = SkillManager.Instance.GetSkillDataById(1);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);           
-            OnFinishCompleteBtn(2);
+            OnFinishCompleteBtn(1);
         }
         else if (currentGO.name.Contains("2"))
+        {
+            Skill s = SkillManager.Instance.GetSkillDataById(2);
+            s.data.SkillPoints = c_Point;
+            SkillManager.Instance.UpDataSkillData(s);
+            OnFinishCompleteBtn(2);
+        }
+        else if (currentGO.name.Contains("3"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(3);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(3);
         }
-        else if (currentGO.name.Contains("3"))
-        {
+        else if (currentGO.name.Contains("4")) {
             Skill s = SkillManager.Instance.GetSkillDataById(4);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(4);
         }
-        else if (currentGO.name.Contains("4")) {
+        else if (currentGO.name.Contains("5"))
+        {
             Skill s = SkillManager.Instance.GetSkillDataById(5);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(5);
         }
-        else if (currentGO.name.Contains("5"))
+        else if (currentGO.name.Contains("6"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(6);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(6);
         }
-        else if (currentGO.name.Contains("6"))
+        else if (currentGO.name.Contains("7"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(7);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(7);
         }
-        else if (currentGO.name.Contains("7"))
+        else if (currentGO.name.Contains("8"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(8);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(8);
         }
-        else if (currentGO.name.Contains("8"))
+        else if (currentGO.name.Contains("9"))
         {
             Skill s = SkillManager.Instance.GetSkillDataById(9);
             s.data.SkillPoints = c_Point;
             SkillManager.Instance.UpDataSkillData(s);
             OnFinishCompleteBtn(9);
         }
-        else if (currentGO.name.Contains("9"))
-        {
-            Skill s = SkillManager.Instance.GetSkillDataById(10);
-            s.data.SkillPoints = c_Point;
-            SkillManager.Instance.UpDataSkillData(s);
-            OnFinishCompleteBtn(10);
-        }
     }
     void OnFinishCompleteBtn(int id) {
         for (int i = 0; i < SkillNameContainer.transform.childCount; i++) {
-            if (i == id-1) {
+            if (i == id) {
                 SkillNameContainer.transform.GetChild(i).GetComponent<UILabel>().alpha = 0.4f;
                 return;
             }
@@ -305,7 +305,7 @@ public class SkillPanel : IView
     void OnTwiceChosePoints(int id) {
         for (int i = 0; i < SkillNameContainer.transform.childCount + 1; i++)
         {
-            if (i == id - 1)
+            if (i == id )
             {
                 SkillNameContainer.transform.GetChild(i).GetComponent<UILabel>().alpha = 1;
                 return;
@@ -315,43 +315,43 @@ public class SkillPanel : IView
     void LightName(GameObject go) {
         if (go.name.Contains("0"))
         {
-            OnTwiceChosePoints(1);
+            OnTwiceChosePoints(0);
         }
         else if (go.name.Contains("1"))
         {
-            OnTwiceChosePoints(2);
+            OnTwiceChosePoints(1);
         }
         else if (go.name.Contains("2"))
         {
-            OnTwiceChosePoints(3);
+            OnTwiceChosePoints(2);
         }
         else if (go.name.Contains("3"))
         {
-            OnTwiceChosePoints(4);
+            OnTwiceChosePoints(3);
         }
         else if (go.name.Contains("4"))
         {
-            OnTwiceChosePoints(5);
+            OnTwiceChosePoints(4);
         }
         else if (go.name.Contains("5"))
         {
-            OnTwiceChosePoints(6);
+            OnTwiceChosePoints(5);
         }
         else if (go.name.Contains("6"))
         {
-            OnTwiceChosePoints(7);
+            OnTwiceChosePoints(6);
         }
         else if (go.name.Contains("7"))
         {
-            OnTwiceChosePoints(8);
+            OnTwiceChosePoints(7);
         }
         else if (go.name.Contains("8"))
         {
-            OnTwiceChosePoints(9);
+            OnTwiceChosePoints(8);
         }
         else if (go.name.Contains("9"))
         {
-            OnTwiceChosePoints(10);
+            OnTwiceChosePoints(9);
         }
      
     }
@@ -395,60 +395,60 @@ public class SkillPanel : IView
         {
             MoveToScreenLeft();            
             CloseAllCardEnabeld();
-            UpdateSkillInfo(1);
+            UpdateSkillInfo(0);
         }
         else if (currentGO.name.Contains("1"))
         {
             MoveToScreenLeft();          
             CloseAllCardEnabeld();
-            UpdateSkillInfo(2);
+            UpdateSkillInfo(1);
         }
         else if (currentGO.name.Contains("2")) {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(3);
+            UpdateSkillInfo(2);
         }
         else if (currentGO.name.Contains("3"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(4);
+            UpdateSkillInfo(3);
         }
         else if (currentGO.name.Contains("4"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(5);
+            UpdateSkillInfo(4);
         }
         else if (currentGO.name.Contains("5"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(6);
+            UpdateSkillInfo(5);
         }
         else if (currentGO.name.Contains("6"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(7);
+            UpdateSkillInfo(6);
         }
         else if (currentGO.name.Contains("7"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(8);
+            UpdateSkillInfo(7);
         }
         else if (currentGO.name.Contains("8"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(9);
+            UpdateSkillInfo(8);
         }
         else if (currentGO.name.Contains("9"))
         {
             MoveToScreenLeft();
             CloseAllCardEnabeld();
-            UpdateSkillInfo(10);
+            UpdateSkillInfo(9);
         }
 
 

@@ -13,10 +13,12 @@ public class CheckManager  {
     }
     public static bool isSucceced = false;//记录Check是否成功
     /*id 用来传递要使用的技能*/
-    public void ShowCheckPanel(int id,DiceHander hander) {
-        Skill s = SkillManager.Instance.GetSkillById(id);
+    public void ShowCheckPanel(int id,DiceHander hander,CheckLevel level) {
+        Skill s = SkillManager.Instance.GetSkillDataById(id);
         CheckPanel.s_Check = s;
         CheckPanel.hander = hander;
+        CheckPanel.level_CheckPanel = level;
         GUIManager.ShowView("CheckPanel");       
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,18 +11,30 @@ public class SkillUsePanel : IView
     }
     private static  UIGrid targetWidget;
     private static ArrowState arrowState = ArrowState.moveToUp;
+    /// <summary>
+    /// 用于传输数据的工具
+    /// </summary>
     private static  List<Skill> skillList = new List<Skill>();
     private float radius=1.0f;
     private static Transform cardWidget;
     private static  Transform arrow;
     private static  GameObject infoItem;
+    public static Skill curSkill;
+    /// <summary>
+    /// 记录所有已有Skill的List
+    /// </summary>
+    private static List<Skill> allSkillList = new List<Skill>();
 
-    public static Skill curSkill=null;
+    public static void ClearAllSkillList()
+    {
+        allSkillList.Clear();
+    }
 
     public SkillUsePanel()
     {
         m_Layer = Layer.UseSkill;
     }
+
     protected override void OnStart()
     {
         arrow = this.GetChild("arrow");
@@ -38,17 +50,27 @@ public class SkillUsePanel : IView
 
     }
 
-    static void SetSkillCardPos()
+    static void SetSkillCardPos(bool isCoexist)
     {
-        int count = skillList.Count;
-        Vector2 centerPoint = new Vector2(0, 0);
+        int count = 0;
+
+        if (isCoexist)
+        {
+            count = skillList.Count + cardWidget.childCount;
+        }
+
+        else
+        {
+            count = skillList.Count;
+        }
+      
+    
         if (count == 0)
         {
             cardWidget.DestroyChildren();
             return;
         }
-        float offset_x = 3.0f / (count+1);
-        float time_x = 1.0f / (count+1);
+       
         for (int i = 0; i < skillList.Count; i++)
         {
             GameObject go = GameObject.Instantiate(skillList[i].cardPrefab);
@@ -58,9 +80,26 @@ public class SkillUsePanel : IView
             cardDrag.OnCardDragFished.Clear();
             cardDrag.OnCardDragFished.Add( new EventDelegate (OnCardDragFished));
             cardDrag.finshed_y = -1.5f;
+           
+            go.tag = "SkillCard";
+         
+        }
+
+        GridCard(count);
+
+    }
+
+    private static  void GridCard(int count)
+    {
+        Vector2 centerPoint = new Vector2(0, 0);
+        float offset_x = 3.0f / (count + 1);
+        float time_x = 1.0f / (count + 1);
+        for (int i = 0; i < count; i++)
+        {
+            GameObject go = cardWidget.transform.GetChild(i).gameObject;
             float sphere_x;
 
-            sphere_x = -0.5f + (i+1) * time_x;
+            sphere_x = -0.5f + (i + 1) * time_x;
 
 
             float sphere_y = Mathf.Sqrt((1 - (sphere_x * sphere_x)));
@@ -68,9 +107,8 @@ public class SkillUsePanel : IView
             Vector2 vecPoint = new Vector2(sphere_x, sphere_y);
             Vector2 oppositeVec = vecPoint - centerPoint;
             float angle = Mathf.Atan2(oppositeVec.x, oppositeVec.y) * Mathf.Rad2Deg;
-            go.tag = "SkillCard";
             go.transform.rotation = Quaternion.Euler(go.transform.rotation.x, 180, angle);
-            go.transform.localPosition = new Vector3(-1.5f + (i+1) * offset_x, go_y, 5 + i * 0.04f);
+            go.transform.localPosition = new Vector3(-1.5f + (i + 1) * offset_x, go_y, 5 + i * 0.04f);
         }
     }
 
@@ -124,7 +162,7 @@ public class SkillUsePanel : IView
         arrow_RT.ResetToBeginning();
     }
 
-    public static void UpdataUseSkill(List<Skill> m_SkillList,bool mustCheck=false)
+    public static void UpdataUseSkill(List<Skill> m_SkillList,bool mustCheck=false,bool isCoexist=false)
     {
         if (m_SkillList == null)
         {
@@ -133,6 +171,23 @@ public class SkillUsePanel : IView
         else
         {
             skillList = m_SkillList;
+            for (int i = 0; i < m_SkillList.Count; i++)
+            {
+                bool needAdd = true;
+                for (int j = 0; j < allSkillList.Count; j++)
+                {
+                    if (allSkillList[j].data.Name == m_SkillList[i].data.Name)
+                    {
+                        allSkillList[j].TargetWithHanderDic = m_SkillList[i].TargetWithHanderDic;
+                        needAdd = false;
+                    }  
+                }
+                if (needAdd)
+                {
+                    allSkillList.Add(m_SkillList[i]);
+                }
+
+            }
         }
 
         if (mustCheck)
@@ -145,7 +200,7 @@ public class SkillUsePanel : IView
         }
       
         OnUpArrowBtnClick();
-        SetSkillCardPos();
+        SetSkillCardPos(isCoexist);
     }
 
     static void OnCardDragFished()
@@ -155,14 +210,14 @@ public class SkillUsePanel : IView
         DragSkillCard current = DragSkillCard.current;
         string name = current.gameObject.name;
         Skill skill = null;
-        for (int i = 0; i < skillList.Count; i++)
+        for (int i = 0; i < allSkillList.Count; i++)
         {
-            if (name == skillList[i].data.Name)
+            if (name == allSkillList[i].data.Name)
             {
-                skill = skillList[i];
+                skill = allSkillList[i];
             }
         }
-        curSkill = skill;
+        curSkill=skill;
         List<string> targetNameList = new List<string>();
         foreach (string item in skill.TargetWithHanderDic.Keys)
         {
@@ -217,5 +272,27 @@ public class SkillUsePanel : IView
         targetWidget.gameObject.SetActive(false);
     }
 
+    public static void MoveSkillInPanel(int id)
+    {
+        for (int i = 0; i < allSkillList.Count; i++)
+        {
+            if (allSkillList[i].data.ID == id)
+            {
+                allSkillList.Remove(allSkillList[i]);
+            }
+        }
+        int count = cardWidget.transform.childCount;
+        Skill skill = SkillManager.Instance.GetSkillDataById(id);
+        GameObject go = cardWidget.transform.Find(skill.data.Name).gameObject;
+        if (go == null)
+        {
+            Debug.LogError("Not has this skill");
+            return;
+        }
+        GameObject.Destroy(go);
+        count--;
+        GridCard(count);
+
+    }
  
 }

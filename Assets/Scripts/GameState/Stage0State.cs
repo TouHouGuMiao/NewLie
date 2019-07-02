@@ -17,7 +17,8 @@ public class Stage0State : GameState
 
     private void StartEvent()
     {
-        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3,25);
+        //StoryEventManager.Instance.ShowEventPanel_ChapterOne(3,48);
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 6);
         GUIManager.HideView("CoverPanel");   
     }
 

@@ -83,6 +83,18 @@ public class ChoseManager
         ChoseData data5 = GetChsoeDataByID(5);
         data5.HanderDic.Add(0, SeeTheCumMing_0);
         data5.HanderDic.Add(1, SeeTheCunMing_1);
+
+        ChoseData data6 = GetChsoeDataByID(6);
+        data6.HanderDic.Add(0, DuiSeeWithCunMing_0);
+        data6.HanderDic.Add(1, DuiSeeWithCunMing_1);
+        data6.HanderDic.Add(2, DuiSeeWithCunMing_2);
+        data6.HanderDic.Add(3, DuiSeeWithCunMing_3);
+        data6.HanderDic.Add(4, DuiSeeWithCunMing_4);
+        data6.HanderDic.Add(5, DuiSeeWithCunMing_5);
+
+        ChoseData data7 = GetChsoeDataByID(7);
+        data7.HanderDic.Add(0, GoToVillage_0);
+        data7.HanderDic.Add(1, GoToVillage_1);
     }
 
     #endregion
@@ -198,9 +210,57 @@ public class ChoseManager
 
     void SeeTheCunMing_1()
     {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 36);
+    }
+
+
+    void DuiSeeWithCunMing_0()
+    {
+
+    }
+
+    void DuiSeeWithCunMing_1()
+    {
+
+    }
+
+    void DuiSeeWithCunMing_2()
+    {
+
+    }
+
+    void DuiSeeWithCunMing_3()
+    {
+
+    }
+
+    void DuiSeeWithCunMing_4()
+    {
 
     }
 
 
+    void DuiSeeWithCunMing_5()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 39);
+    }
+
+
+    void GoToVillage_0()
+    {
+        OrderInterludePanel.m_Enum = InterludeEnum.wuNv;
+        EventStateManager.Instance.ShenSheMoveScene_SetNull();
+
+        GUIManager.ShowView("OrderInterludePanel");
+        GUIManager.HideView("ChosePanel");
+        GUIManager.HideView("EventStoryPanel");
+        GUIManager.HideView("SkillUsePanel");
+    }
+
+    void GoToVillage_1()
+    {
+        GUIManager.HideView("ChosePanel");
+        GUIManager.HideView("EventStoryPanel");
+    }
     #endregion
 }

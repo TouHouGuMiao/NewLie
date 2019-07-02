@@ -115,7 +115,7 @@ public class LoginPanel : IView
         GameStateManager.LoadScene(4);//stage0
         GUIManager.ShowView("LoadingPanel");
         LoadingPanel.LoadingName = "BattleUIPanel";
-       // LoadingPanel.LoadingName = "SkillPanel";
+        //LoadingPanel.LoadingName = "SkillPanel";
         //LoadingPanel.LoadingName = "SurePropertyPanel";
         LoadingPanel.useCover = true;
     }

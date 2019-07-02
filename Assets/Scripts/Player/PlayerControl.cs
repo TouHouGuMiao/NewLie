@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class PlayerControl : CharacterPropBase {
 
     public static PlayerState state = PlayerState.talk;
 
-    public static PlayerControl Instace;
+    public static PlayerControl Instance;
     public float speed;
 
     public GameObject bulletPrefab;
@@ -29,10 +29,17 @@ public class PlayerControl : CharacterPropBase {
 
 
     private Transform bulletCollider;
- 
+
+    #region 提供给外部对Animator的操作
+    public void PauseAnimator()
+    {
+        m_Animator.Stop();
+    }
 
 
-    
+    #endregion
+
+
 
     //private GameObject systemPanel;//控制SystemPanel的GameObject
 
@@ -44,7 +51,7 @@ public class PlayerControl : CharacterPropBase {
 
     private void Awake() 
     {
-        Instace = this;
+        Instance = this;
         //HandWithPlayer.Instance.Init(transform);
     }
 
@@ -88,7 +95,6 @@ public class PlayerControl : CharacterPropBase {
     }
 
     float deltaTime = 0;
-
     void CharacterControl()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -338,8 +344,14 @@ public class PlayerControl : CharacterPropBase {
                 {
                     return;
                 }
-                EventStateManager.Instance.GameEventTrigerManager(name);
+                EventStateManager.Instance.GameEventSet(name);
             }
+        }
+
+        if (other.gameObject.CompareTag("EventAtOnce"))
+        {
+            string name = other.gameObject.name;
+            EventStateManager.Instance.GameEventSet(name);
         }
     }
 
@@ -347,15 +359,15 @@ public class PlayerControl : CharacterPropBase {
     {
         if (other.CompareTag("NPC"))
         {
-            string name = other.gameObject.name;
-            int id = CommonHelper.Str2Int(name);
+   
             if (Input.GetKeyDown(KeyCode.E))
             {
                 if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak)
                 {
                     return;
                 }
-
+                string name = other.gameObject.name;
+                int id = CommonHelper.Str2Int(name);
                 StoryEventManager.Instance.ShowEventPanel_ChapterOne(id);
             }
         }
@@ -370,9 +382,15 @@ public class PlayerControl : CharacterPropBase {
                 {
                     return;
                 }
-                EventStateManager.Instance.GameEventTrigerManager(name);            
+                EventStateManager.Instance.GameEventSet(name);            
             }
         }
+        if (other.CompareTag("EventAtOnce"))
+        {
+            string name = other.gameObject.name;
+            EventStateManager.Instance.GameEventSet(name);
+        }
+
 
         if (other.CompareTag("Test"))
         {
@@ -384,6 +402,14 @@ public class PlayerControl : CharacterPropBase {
 
       
     }
+
+
+
+
+
+   
+
+
     private void OnParticleCollision(GameObject other)
     {
 

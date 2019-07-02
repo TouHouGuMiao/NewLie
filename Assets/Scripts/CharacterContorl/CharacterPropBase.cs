@@ -40,4 +40,6 @@ public class CharacterPropBase:MonoBehaviour
     public int WeiYan;
 
     public float preesure;
+
+    public int Investigate;
 }

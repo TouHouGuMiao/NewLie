@@ -39,8 +39,18 @@ public class GameZaXiangManager
     public void ShowCover_FadeIn(float time)
     {
         CoverPanel.duration = time;
-        GUIManager.ShowView("CoverPanel");
-        CoverPanel.fadeIn =  true;
+        CoverPanel.fadeIn = true;
         CoverPanel.needAuteHide = false;
+        GUIManager.ShowView("CoverPanel");
+    }
+
+    public void ShowCover_FadeIn(float time,EventDelegate OnFadeFished)
+    {
+        CoverPanel.duration = time;
+        CoverPanel.OnCoverFished = OnFadeFished;
+        CoverPanel.fadeIn = true;
+        CoverPanel.needAuteHide = false;
+        GUIManager.ShowView("CoverPanel");
+       
     }
 }

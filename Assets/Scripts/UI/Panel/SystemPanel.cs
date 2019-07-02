@@ -129,8 +129,9 @@ public class SystemPanel : IView
             {
                 GUIManager.HideView(goActiveList[j]);
             }
-        }        
-        GameStateManager.LoadScene(1);       
+        }
+        GameMain.isFirstStartGame = false;
+        GameStateManager.LoadScene(1);               
     }
     void OnClickSkillBtn() {
         GUIManager.ShowView("SkillPanel");
@@ -146,7 +147,7 @@ public class SystemPanel : IView
         if (UIButton.current.name.Contains("0"))
         {
             BackMenuHide();
-            GUIManager.ShowView("LoginPanel");
+            //GUIManager.ShowView("LoginPanel");
         }
         else if (UIButton.current.name.Contains("1"))
         {

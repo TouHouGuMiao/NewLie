@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameMain : MonoBehaviour
 {
-
+    public static bool isFirstStartGame = true;
     private void Awake()
     {
         AddSomeCompent();
@@ -12,8 +12,8 @@ public class GameMain : MonoBehaviour
 
     // Use this for initialization
     void Start () {
-  
-        DoSmoeSetting();
+        isFirstStartGame = true;
+        DoSmoeSetting();        
 	}
 	
     void AddSomeCompent()

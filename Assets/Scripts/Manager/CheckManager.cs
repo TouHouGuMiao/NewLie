@@ -18,7 +18,6 @@ public class CheckManager  {
         CheckPanel.s_Check = s;
         CheckPanel.hander = hander;
         CheckPanel.level_CheckPanel = level;
-        GUIManager.ShowView("CheckPanel");       
-        
+        GUIManager.ShowView("CheckPanel");                       
     }
 }

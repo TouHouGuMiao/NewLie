@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -137,7 +137,6 @@ public class ResourcesManager
         }
         return effect;
     }
-
     public GameObject LoadEventCollectionsCard(string name)
     {
         string path = "Model" + "/" + "EventsCollectionCard" + "/" + name;
@@ -150,6 +149,17 @@ public class ResourcesManager
         }
         return effect;
     }
+    public Material LoadMaterial(string name)
+    {
+        string path = "Materials" +"/"+ name;
+        Material material = Resources.Load(path) as Material;
+        if (material == null)
+        {
+            Debug.LogError("Material is null" + name);
+        }
+        return material;
+    }
+
     public GameObject LoadNomalCard(string name)
     {
         string path = "Model" + "/" + "Card" + "/" + name;

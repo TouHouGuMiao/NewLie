@@ -54,7 +54,7 @@ public class TalkPanel : IView
         speakLabel=this.GetChild("sperakLabel").GetComponent<UILabel>();
         writer = speakLabel.GetComponent<TypewriterEffect>();
         talkPanel = GUIManager.FindPanel("TalkPanel");
-        m_Sprite = this.GetChild("Sprite").GetComponent<UISprite>();
+        //m_Sprite = this.GetChild("Sprite").GetComponent<UISprite>();
     }
 
 
@@ -87,7 +87,7 @@ public class TalkPanel : IView
                 text = text.Substring(0, 60);
             }
             nameLabel.text = sArray2[1];
-            m_Sprite.spriteName = sArray[0];
+            //m_Sprite.spriteName = sArray[0];
             speakLabel.text = text;
             
         }

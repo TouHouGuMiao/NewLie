@@ -34,6 +34,18 @@ public class PlayerControl : CharacterPropBase {
     public void PauseAnimator()
     {
         m_Animator.Stop();
+       
+    }
+
+    public void PlayPlayerSkill(string name)
+    {
+        m_Animator.Play(name);
+
+    }
+
+    public void PlayIdle()
+    {
+        m_Animator.Play("loopIdle", 0, 0);
     }
 
 
@@ -391,14 +403,6 @@ public class PlayerControl : CharacterPropBase {
             EventStateManager.Instance.GameEventSet(name);
         }
 
-
-        if (other.CompareTag("Test"))
-        {
-            //List<StoryData> dataList = new List<StoryData>();
-            //dataList = StoryManager.Instacne.GetStage0State0List();  
-            //StoryManager.Instacne.ShowStoryList(dataList);
-            //Destroy(other);
-        }
 
       
     }

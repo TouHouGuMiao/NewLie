@@ -40,5 +40,21 @@
       <speak11>1:真的,,麻烦您了。*村民</speak11>
     </Speak>
   </StoryData>
+
+
+  <StoryData>
+    <id>2</id>
+    <State>0</State>
+    <name>初来人里</name>
+    <index>0</index>
+    <cout>6</cout>
+    <Speak>
+      <speak0>1:看巫女来了！*村民</speak0>
+      <speak1>1:巫女大人！！！处死这个凶手啊！*村民</speak1>
+      <speak2>1:一定要杀了它！！*</speak2>
+      <speak3>1:没有了那头牛，我们家以后要怎么过日子啊!!!*村民</speak3>
+      <speak4>1:巫女大人要替我们做主啊！*村民</speak4>
+    </Speak>
+  </StoryData>
 </Story>
 

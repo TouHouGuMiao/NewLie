@@ -8,7 +8,6 @@ TagManager:
   - Bullet
   - NPC
   - BaiMaoNPC
-  - Test
   - enemy
   - Story
   - specialBullet
@@ -18,6 +17,10 @@ TagManager:
   - DiceCard
   - UICamera
   - SkillCard
+  - EventAtOnce
+  - CanBlur
+  - ShenSheBG
+  - VillageBG
   layers:
   - Default
   - TransparentFX

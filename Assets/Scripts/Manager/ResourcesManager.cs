@@ -138,6 +138,18 @@ public class ResourcesManager
         return effect;
     }
 
+    public GameObject LoadEventCollectionsCard(string name)
+    {
+        string path = "Model" + "/" + "EventsCollectionCard" + "/" + name;
+
+        GameObject effect = Resources.Load(path) as GameObject;
+        if (effect == null)
+        {
+            Debug.LogError("Model is null" + name);
+            return null;
+        }
+        return effect;
+    }
     public GameObject LoadNomalCard(string name)
     {
         string path = "Model" + "/" + "Card" + "/" + name;
@@ -201,7 +213,15 @@ public class ResourcesManager
         }
         return sprite;
     }
-
+    public UISprite LoadEventSprite(string name) {
+        string path = "EventSprites" + "/" + name;
+        UISprite sprite = Resources.Load(path) as UISprite;
+        if (sprite == null) {
+            Debug.LogError("UISprite is null here" + name);
+            return null;
+        }
+        return sprite;
+    }
 
     public Sprite LoadWingmanSprite(string name,int width = 128,int heigt= 128)
     {

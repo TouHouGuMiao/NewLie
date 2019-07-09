@@ -83,8 +83,7 @@ public class LoginPanel : IView
         lieLogo = this.GetChild("LieLogo").gameObject;
         againGameBtn = this.GetChild("LoginButton (1)").GetComponent<UIButton>();
         seetingsBtn = this.GetChild("LoginButton (2)").GetComponent<UIButton>();
-        m_go = this.GetChild("ButtonGrid").gameObject;
-        changeWordPic = this.GetChild("ChangeWord").GetComponent<UISprite>();
+        m_go = this.GetChild("ButtonGrid").gameObject;      
         BackGround = this.GetChild("bg").gameObject;
         GameChoice = this.GetChild("GameChoice").gameObject;
        

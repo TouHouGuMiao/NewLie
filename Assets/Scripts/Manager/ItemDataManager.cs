@@ -369,13 +369,12 @@ public class ItemDataManager
     }
     
 
-   public void LoadItemXml(string pathName, List<ItemData> list) {
+   private void LoadItemXml(string pathName, List<ItemData> list) {
         string path = "Config";
         string text = ResourcesManager.Instance.LoadConfig(path,pathName).text;
 
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(text);
-
         XmlNode xmlNode = xmlDoc.SelectSingleNode("Item");
         XmlNodeList nodeList = xmlNode.ChildNodes;
 

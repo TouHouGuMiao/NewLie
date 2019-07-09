@@ -32,7 +32,7 @@ public class SystemPanel : IView
         ChooseBtnContainer = this.GetChild("ChooseBtnContainer").transform;
         SpriteControlContainer = this.GetChild("BtnControlWidget").transform;
       
-        AddEventBtn();
+       // AddEventBtn();
         AddDelegate();
        
     }
@@ -107,7 +107,6 @@ public class SystemPanel : IView
     }
 
     void OnBacktoMenuClick() {
-
         BackMenuHide();                
         //GUIManager.ShowView("BGStoryPanel");
     }
@@ -129,9 +128,7 @@ public class SystemPanel : IView
             {
                 GUIManager.HideView(goActiveList[j]);
             }
-        }
-        GameMain.isFirstStartGame = false;
-        GameStateManager.LoadScene(1);               
+        }                   
     }
     void OnClickSkillBtn() {
         GUIManager.ShowView("SkillPanel");
@@ -147,7 +144,9 @@ public class SystemPanel : IView
         if (UIButton.current.name.Contains("0"))
         {
             BackMenuHide();
-            //GUIManager.ShowView("LoginPanel");
+            GameMain.isFirstStartGame = false;
+            GameStateManager.LoadScene(1);
+            GUIManager.ShowView("LoginPanel");
         }
         else if (UIButton.current.name.Contains("1"))
         {
@@ -156,6 +155,15 @@ public class SystemPanel : IView
         }
         else if (UIButton.current.name.Contains("2")) {
 
+        }
+        else if (UIButton.current.name.Contains("3"))
+        {
+            BackMenuHide();
+            GUIManager.ShowView("CoverPanel");
+            //GUIManager.HideView("SystemPanel");
+           // GameMain.isFirstStartGame = false;
+            //GameStateManager.LoadScene(1);
+            GUIManager.ShowView("CardCollectionsPanel");
         }
     }
     void SetCardsRotation() {
@@ -175,7 +183,7 @@ public class SystemPanel : IView
             tp.delay = 0.5f * i;
             tp.onFinished.Clear();
             tp.from = go.transform.localPosition;
-            tp.to = new Vector3(-2.5f + i * 2.5f, 1, 3.5f);
+            tp.to = new Vector3(-5.0f + i * 3.5f, 1, 3.5f);
             tp.ResetToBeginning();
 
             TweenRotation tr = go.GetComponent<TweenRotation>();

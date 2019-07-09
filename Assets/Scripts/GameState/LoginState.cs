@@ -38,7 +38,6 @@ public class LoginState : GameState
         }
         else {
             GUIManager.ShowView("CoverPanel");
-            GUIManager.ShowView("LoginPanel");
         }
     }
 

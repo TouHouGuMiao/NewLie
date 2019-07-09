@@ -53,6 +53,11 @@ public class OnHoverRotate : MonoBehaviour {
             GameObject m_Go = go.transform.GetChild(2).gameObject;
             TweenRoate(m_Go);
         }
+        else if (m_Btn.name.Contains("3"))
+        {
+            GameObject m_Go = go.transform.GetChild(3).gameObject;
+            TweenRoate(m_Go);
+        }
     }
     void SureUpDateBtnBack()
     {
@@ -69,6 +74,11 @@ public class OnHoverRotate : MonoBehaviour {
         else if (m_Btn.name.Contains("2"))
         {
             GameObject m_Go = go.transform.GetChild(2).gameObject;
+            BackNull(m_Go);
+        }
+        else if (m_Btn.name.Contains("3"))
+        {
+            GameObject m_Go = go.transform.GetChild(3).gameObject;
             BackNull(m_Go);
         }
     }

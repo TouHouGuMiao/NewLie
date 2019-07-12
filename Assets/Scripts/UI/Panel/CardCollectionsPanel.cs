@@ -56,8 +56,13 @@ public class CardCollectionsPanel : IView {
     void CloseBtnEnabled() {
         nextBtn.enabled = false;
         lastBtn.enabled = false;
-        for (int i = 0; i < cardContainer.transform.childCount; i++) {
-            if (cardContainer.transform.GetChild(i).GetComponent<UIButton>().enabled == true) {
+        
+    }
+    void CloseCardClick() {
+        for (int i = 0; i < cardContainer.transform.childCount; i++)
+        {
+            if (cardContainer.transform.GetChild(i).GetComponent<UIButton>().enabled == true)
+            {
                 cardContainer.transform.GetChild(i).GetComponent<UIButton>().enabled = false;
             }
         }
@@ -66,6 +71,9 @@ public class CardCollectionsPanel : IView {
         ShowFirstInfo(6 * (page - 1));
         nextBtn.enabled = true;
         lastBtn.enabled = true;
+       
+    }
+    void StartCardClick() {
         for (int i = 0; i < cardContainer.transform.childCount; i++)
         {
             if (cardContainer.transform.GetChild(i).GetComponent<UIButton>().enabled == false)
@@ -133,10 +141,13 @@ public class CardCollectionsPanel : IView {
     }
     void OnClickLastPageBtn() {
         CloseBtnEnabled();
+        CloseCardClick();
         isActive = false;
         if (page == 1)
-        {           
-            StartBtnEnabled();
+        {
+            nextBtn.enabled = true;
+            lastBtn.enabled = false;
+            StartCardClick();
             return;
         }
         else {           
@@ -151,11 +162,14 @@ public class CardCollectionsPanel : IView {
         AudioManager.Instance.PlayEffect_Source("collectionsCard");
     }
     void OnClickNextPageBtn() {
-        CloseBtnEnabled(); 
+        CloseBtnEnabled();
+        CloseCardClick();
         isActive = false;
         if (page == MaxPage)
-        {            
-            StartBtnEnabled();
+        {
+            nextBtn.enabled = false;
+            lastBtn.enabled = true;
+            StartCardClick();
             return;
         }
         else

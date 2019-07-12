@@ -76,4 +76,13 @@
       <chose2>稍作停留</chose2>
     </choseList>
   </ChoseData>
+
+  <ChoseData>
+    <id>8</id>
+    <name>即将失控的人群</name>
+    <choseList>
+      <chose1>喊话</chose1>
+      <chose2>任由事态发展</chose2>
+    </choseList>
+  </ChoseData>
 </Chose>

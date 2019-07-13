@@ -37,7 +37,7 @@ public class LoginState : GameState
             GUIManager.ShowView("BGStoryPanel");
         }
         else {
-            GUIManager.ShowView("CoverPanel");
+            //GUIManager.ShowView("CoverPanel");
         }
     }
 

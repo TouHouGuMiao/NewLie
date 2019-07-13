@@ -63,7 +63,7 @@ public class BagPanel : IView
 
         //ItemDataManager.Instance.LoadItemXml(pathName,m_ItemList);
         // ItemDataManager.Instance.LoadItemXml("ItemConfig",m_ItemList);
-
+        SystemPanel.Bg_IsActive = true;
         EquipmentList = ItemDataManager.Instance.GetHasEquipList();
         MaterialList = ItemDataManager.Instance.GetHasMaterialList();
         ItemsList = ItemDataManager.Instance.GetHasItemsList();

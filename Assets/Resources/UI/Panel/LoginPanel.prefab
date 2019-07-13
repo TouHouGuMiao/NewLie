@@ -338,7 +338,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1235926064022070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 762, y: 50, z: 0}
+  m_LocalPosition: {x: 762, y: 51, z: 0}
   m_LocalScale: {x: 0.8409377, y: 0.8625002, z: 1}
   m_Children:
   - {fileID: 4965792277289550}
@@ -372,7 +372,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1182561869168032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4118426954479518}
@@ -425,7 +425,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1923231019805354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 827, y: 0, z: 0}
+  m_LocalPosition: {x: 827, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4253909143796224}
@@ -757,7 +757,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.7794254
+  aspectRatio: 1.7777778
   mType: 0
   mFillDirection: 4
   mFillAmount: 1

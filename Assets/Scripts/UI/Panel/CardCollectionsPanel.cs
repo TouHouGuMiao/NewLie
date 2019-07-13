@@ -27,6 +27,7 @@ public class CardCollectionsPanel : IView {
     protected override void OnShow()
     {
         // isActive = false;
+        SystemPanel.CardCollectionsIsActive = true;
         atla = ResourcesManager.Instance.LoadAtlas("EventSpritesAtlas");
         infoContainer.transform.GetChild(3).GetComponent<UISprite>().atlas = atla;
         page = 1;

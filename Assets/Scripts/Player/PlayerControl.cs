@@ -87,25 +87,28 @@ public class PlayerControl : CharacterPropBase {
         //WingmanManager.Instance.ShowWingman(data, 6);
         UpDataPlayerPro();
     }
-	
+    public static bool isFirstEsc = false;
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)&&SystemPanel.Bg_IsActive==false) {
+        if (Input.GetKeyDown(KeyCode.Escape)&&isFirstEsc==false) {
 
             GUIManager.ShowView("SystemPanel");
+            //SystemPanel.SystemPanelIsActive = true;
         }
-        if (SystemPanel.Bg_IsActive==false)
-        {
-            CharacterControl();
+        else if (Input.GetKeyDown(KeyCode.Escape) && isFirstEsc == true) {
+            GUIManager.HideView("SystemPanel");
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && SystemPanel.CardCollectionsIsActive == true) {
+            GUIManager.HideView("CardCollectionsPanel");
+            SystemPanel.CardCollectionsIsActive = false;
         }
         if (Input.GetKeyDown(KeyCode.Escape) && SystemPanel.Bg_IsActive == true) {
             GUIManager.HideView("BagPanel");
             SystemPanel.Bg_IsActive = false;
-        }
+        }        
         //YinYangYuControl();
         //UpDataPlayerPro();//测试用
     }
-
     float deltaTime = 0;
     void CharacterControl()
     {

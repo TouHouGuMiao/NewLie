@@ -10,13 +10,18 @@ public class SystemPanel : IView
     private UIButton SkillBtn;
     private Transform ParentGo;
     public static Transform ChooseBtnContainer;
-    private Transform SpriteControlContainer;   
-
+    private Transform SpriteControlContainer;
+    private static Transform systemPanel;
     public static bool Bg_IsActive = false;
     public static bool isOn = false;
+    public static bool CardCollectionsIsActive = false;
+    public static bool SystemPanelIsActive = false;
+    private UITexture systemBg;
+
     private List<Transform> goList = new List<Transform>();
     private List<string> goActiveList = new List<string>();
-    private List<GameObject> m_CardList = new List<GameObject>();//主要用来存储卡片物体
+    private List<GameObject> m_CardList = new List<GameObject>();//主要用来存储卡片物体       
+    private GameObject rightMark;
 
     public SystemPanel()
     {
@@ -25,12 +30,15 @@ public class SystemPanel : IView
 
     protected override void OnStart()
     {
+        systemPanel = GUIManager.FindPanel("SystemPanel").transform;
         ParentGo = GameObject.Find("UI Root").transform;      
         InventoryBtn = this.GetChild("InventoryBtn").GetComponent<UIButton>();
         BacktoMenuBtn = this.GetChild("BacktoMenuBtn").GetComponent<UIButton>();
         SkillBtn = this.GetChild("SkillBtn").GetComponent<UIButton>();
         ChooseBtnContainer = this.GetChild("ChooseBtnContainer").transform;
         SpriteControlContainer = this.GetChild("BtnControlWidget").transform;
+        rightMark = this.GetChild("RightShow").gameObject;
+        systemBg = this.GetChild("SystemBG").GetComponent<UITexture>();
       
        // AddEventBtn();
         AddDelegate();
@@ -38,8 +46,9 @@ public class SystemPanel : IView
     }
     protected override void OnShow()
     {
-       
+        PlayerControl.isFirstEsc = true;
         StartShowChooseBtn();
+        StartShowMark();
         GUIManager.HideView("BattleUIPanel");
         GUIManager.HideView("EventStoryPanel");
         GUIManager.HideView("CGPanel");
@@ -62,12 +71,15 @@ public class SystemPanel : IView
             SpriteControlContainer.gameObject.SetActive(false);
         }
         BackToNull();
-        isFinishedDown = false;      
-    }
+        HideRightMark();
+        isFinishedDown = false;
+        PlayerControl.isFirstEsc = false;
+        //SystemPanelIsActive = false;
+    }    
     public override void Update()
     {
-        
-    }
+
+    }   
     void TrasverAllChild() {
         for (int i = 0; i < ChooseBtnContainer.childCount; i++) {
             GameObject go = ChooseBtnContainer.GetChild(i).gameObject;
@@ -146,6 +158,7 @@ public class SystemPanel : IView
             BackMenuHide();
             GameMain.isFirstStartGame = false;
             GameStateManager.LoadScene(1);
+            GUIManager.ShowView("CoverPanel");
             GUIManager.ShowView("LoginPanel");
         }
         else if (UIButton.current.name.Contains("1"))
@@ -164,6 +177,7 @@ public class SystemPanel : IView
            // GameMain.isFirstStartGame = false;
             //GameStateManager.LoadScene(1);
             GUIManager.ShowView("CardCollectionsPanel");
+            CardCollectionsIsActive = true;
         }
     }
     void SetCardsRotation() {
@@ -174,16 +188,40 @@ public class SystemPanel : IView
         }
         }
     public static bool isFinishedDown;
+    void StartShowMark() {       
+        TweenPosition tp = rightMark.GetComponent<TweenPosition>();
+        tp.enabled = true;
+        tp.onFinished.Clear();
+        tp.duration = 0.3f;
+        tp.delay = 0.2f;
+        tp.from = tp.transform.localPosition;
+        tp.to = new Vector3(880, 0, 0);
+        tp.ResetToBeginning();
+
+        TweenAlpha ta = systemBg.GetComponent<TweenAlpha>();
+        ta.enabled = true;
+        ta.onFinished.Clear();
+        ta.duration = 0.3f;
+        ta.delay = 0.1f;
+        ta.from = 0;
+        ta.to = 0.94f;
+        ta.ResetToBeginning();
+    }
+    void HideRightMark() {        
+        rightMark.transform.localPosition = new Vector3(1300, 0, 0);
+        systemBg.alpha = 0;
+    }
+
     void StartShowChooseBtn() {
         for (int i = 0; i < ChooseBtnContainer.childCount; i++) {
             GameObject go = ChooseBtnContainer.GetChild(i).gameObject;
             TweenPosition tp = go.GetComponent<TweenPosition>();
             tp.enabled = true;
             tp.duration = 0.5f;
-            tp.delay = 0.5f * i;
+            tp.delay = 0.5f +0.3f* i;
             tp.onFinished.Clear();
             tp.from = go.transform.localPosition;
-            tp.to = new Vector3(-5.0f + i * 3.5f, 1, 3.5f);
+            tp.to = new Vector3(-8.0f + i * 3.0f, 0, 3.5f);
             tp.ResetToBeginning();
 
             TweenRotation tr = go.GetComponent<TweenRotation>();
@@ -241,7 +279,7 @@ public class SystemPanel : IView
         for (int i = 0; i < ChooseBtnContainer.childCount; i++)
         {
             GameObject go = ChooseBtnContainer.GetChild(i).gameObject;
-            go.transform.localPosition = new Vector3(-2.5f + i * 2.5f, 10, 3.5f);
+            go.transform.localPosition = new Vector3(-8.0f + i * 3.0f, 10, 3.5f);
             go.transform.localRotation = Quaternion.Euler(0, 180, 0);
 
         }

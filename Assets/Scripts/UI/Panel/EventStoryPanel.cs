@@ -275,9 +275,7 @@ public class EventStoryPanel : IView
                                 hander();
                                 lastHander = hander;
                                 needHide = false;
-                            }
-                           
-                   
+                            }                                            
                         }
 
                         if (TalkPanel.isSpeak)

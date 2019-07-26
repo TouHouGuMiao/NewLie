@@ -14,7 +14,7 @@ public class PlayerControl : CharacterPropBase {
     public static PlayerState state = PlayerState.talk;
 
     public static PlayerControl Instance;
-    public float speed;
+    public float speed=2;
 
     public GameObject bulletPrefab;
     private GameObject BagPanel;
@@ -69,10 +69,10 @@ public class PlayerControl : CharacterPropBase {
 
     void Start ()
     {
-        
        
-       // FindBagPanel();
+        // FindBagPanel();
         // systemPanel=this.transform.GetChild("")
+        Instance.GetComponent<SpriteRenderer>().receiveShadows = true;
         m_Animator = this.GetComponent<Animator>();
         bulletPrefab = ResourcesManager.Instance.LoadBullet("initBullet");
         //GameObject yinYangYu1 = transform.FindRecursively("YinYangYu1").gameObject;
@@ -105,9 +105,10 @@ public class PlayerControl : CharacterPropBase {
         if (Input.GetKeyDown(KeyCode.Escape) && SystemPanel.Bg_IsActive == true) {
             GUIManager.HideView("BagPanel");
             SystemPanel.Bg_IsActive = false;
-        }        
+        }
         //YinYangYuControl();
         //UpDataPlayerPro();//测试用
+        CharacterControl();
     }
     float deltaTime = 0;
     void CharacterControl()
@@ -149,7 +150,8 @@ public class PlayerControl : CharacterPropBase {
             {
                 return;
             }
-            this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, 0, this.transform.rotation.eulerAngles.z);
+            //this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, 0, this.transform.rotation.eulerAngles.z);
+            this.GetComponent<SpriteRenderer>().flipX = false;
             AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
 
             if (stateInfo.IsName("Base Layer.loopIdle") || stateInfo.IsName("Base Layer.startIdle") || stateInfo.IsName("Base Layer.idle"))
@@ -159,7 +161,7 @@ public class PlayerControl : CharacterPropBase {
 
             if (stateInfo.IsName("Base Layer.move"))
             {
-                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
+                this.transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
             }
         }
 
@@ -172,7 +174,8 @@ public class PlayerControl : CharacterPropBase {
             {
                 return;
             }
-            this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, 180, this.transform.rotation.eulerAngles.z);
+            //this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles.x, 180, this.transform.rotation.eulerAngles.z);
+            this.GetComponent<SpriteRenderer>().flipX = true;
             AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
 
             if (stateInfo.IsName("Base Layer.loopIdle") || stateInfo.IsName("Base Layer.startIdle") || stateInfo.IsName("Base Layer.idle"))
@@ -182,7 +185,7 @@ public class PlayerControl : CharacterPropBase {
 
             if (stateInfo.IsName("Base Layer.move"))
             {
-                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.Self);
+                this.transform.Translate(new Vector3(-1, 0, 0) * Time.deltaTime * speed, Space.Self);
             }
 
 
@@ -409,14 +412,6 @@ public class PlayerControl : CharacterPropBase {
 
       
     }
-
-
-
-
-
-   
-
-
     private void OnParticleCollision(GameObject other)
     {
 

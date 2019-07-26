@@ -217,6 +217,7 @@ public class SystemPanel : IView
             GameObject go = ChooseBtnContainer.GetChild(i).gameObject;
             TweenPosition tp = go.GetComponent<TweenPosition>();
             tp.enabled = true;
+
             tp.duration = 0.5f;
             tp.delay = 0.5f +0.3f* i;
             tp.onFinished.Clear();

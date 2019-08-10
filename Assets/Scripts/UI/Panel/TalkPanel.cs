@@ -61,6 +61,7 @@ public class TalkPanel : IView
 
     protected override void OnShow()
     {
+        writer.enabled = true;
         writer.ResetToBeginning();
         if (dataList.Count > 0)
         {

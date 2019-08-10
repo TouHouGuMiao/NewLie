@@ -200,7 +200,8 @@ public abstract class UITweener : MonoBehaviour
     /// <summary>
     /// Update the tweening factor and call the virtual update function.
     /// </summary>
-
+    public List<EventDelegate> OnStarted;
+    
     protected void DoUpdate ()
 	{
 		float delta = ignoreTimeScale && !useFixedUpdate ? Time.unscaledDeltaTime : Time.deltaTime;
@@ -214,7 +215,12 @@ public abstract class UITweener : MonoBehaviour
 		}
 
 		if (time < mStartTime) return;
-
+        if (OnStarted != null)
+        {
+            EventDelegate.Execute(OnStarted);
+            OnStarted.Clear();
+        }
+       
 		// Advance the sampling factor
 		mFactor += (duration == 0f) ? 1f : amountPerDelta * delta;
 

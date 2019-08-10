@@ -1,0 +1,40 @@
+<Story name="CharacterSpeak">
+  <StoryData>
+    <id>0</id>
+    <State>0</State>
+    <name>与一群村民对视</name>
+    <spriteName>null</spriteName>
+    <index>0</index>
+    <cout>0</cout>
+    <Speak>
+      <speak0>什么,巫女来了？</speak0>
+      <speak1>巫女大人，您..终于来了..</speak1>
+      <speak2>好像...有点道理。</speak2>
+      <speak3>了解现状？有什么好了解的，现状一目了然！！凶手需要处死，给大伙一个交代。大伙说是不是？</speak3>
+      <speak4>嗷————嗷！！</speak4>
+      <speak5>呜...嗯！</speak5>
+      <speak6>我的确....有点不冷静。</speak6>
+      <speak7>什么？？！你说我———不 冷 静？</speak7>
+      <speak8>嗯...</speak8>
+      <speak9>阿牟....你知道吗？..她是..她是..我们家唯一的...</speak9>
+      <speak10>别..别这样，我只是凑个热闹。</speak10>
+      <speak11>在此之前你先问问——大伙，同意不同意！</speak11>
+      <speak12>唔......！！</speak12>
+      <speak13>啊啊！！我一定要撕烂你的嘴！</speak13>
+      <speak14>呜...哇！.....对..对不起..</speak14>
+      <speak15>呜....哇哇啊啊，你明白什么,你明白阿牟什么！</speak15>
+      <speak16>好姐姐，别伤心了...</speak16>
+      <speak17>你这崽种，居然欺负无辜女人！</speak17>
+      <speak18>唔？！！！</speak18>
+      <speak19>喂....你冷静一点啊..</speak19>
+      <speak20>Wryyyyyyyyyyyyyyyyyyyyyy!</speak20>
+      <speak21>唔..哇啊啊啊啊啊啊啊！！</speak21>
+      <speak22>（抽泣）</speak22>
+      <speak23>（有点不妙）</speak23>
+      <speak24>“呜啊..”</speak24>
+      <speak25>“你怎么..怎么动手打人啊...”</speak25>
+      <speak26>“有本事和我打啊，废物！”</speak26>
+    </Speak>
+    </StoryData>
+</Story>
+

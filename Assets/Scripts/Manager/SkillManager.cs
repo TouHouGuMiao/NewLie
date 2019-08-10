@@ -18,7 +18,6 @@ public class SkillManager
             {
                 _instance = new SkillManager();
                 _instance.InitSkillData_1();
-                _instance.InitSkillData();
             }
             return _instance;
         }
@@ -146,27 +145,66 @@ public class SkillManager
     /// </summary>
     private Skill Idea;
 
+    /// <summary>
+    /// 说服
+    /// </summary>
+    private Skill Persuade;
+
+    /// <summary>
+    /// 谎
+    /// </summary>
+    private Skill Lie;
+
+    /// <summary>
+    /// 威胁
+    /// </summary>
+    private Skill Threaten;
+
+    /// <summary>
+    /// 暴力
+    /// </summary>
+    private Skill Violence;
+
+
     private Skill Pressure;
     private Dictionary<int, Skill> SkillDic = new Dictionary<int, Skill>();
     private void InitSkillData_1()
     {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
         Placate = new Skill(0,"Placate", "","Placate");
         Placate.canUse = true;
+        Placate.point = playerData.Placate;
         MonsterTheory = new Skill(1, "MonsterTheory", "", "MonsterTheory");
         MonsterTheory.canUse = true;
+        MonsterTheory.point = playerData.MonsterTheory;
         NaturalTheory = new Skill(2, "NaturalTheory", "", "NaturalTheory");
         NaturalTheory.canUse = true;
+        NaturalTheory.point = playerData.NaturalTheory;
         ThridEye = new Skill(3, "ThridEye", "", "ThridEye");
         ThridEye.canUse = true;
+        ThridEye.point = playerData.ThridEye;
         Investigate = new Skill(4, "Investigate", "", "Investigate");
         Investigate.canUse = true;
+        Investigate.point = playerData.Investigate;
         Listen = new Skill(5, "Listen", "", "Listen");
         Listen.canUse = true;
+        Listen.point = playerData.Listen;
         Idea = new Skill(6, "Idea", "", "Idea");       
         Idea.canUse = true;
+        Idea.point = playerData.Idea;
         //Idea.data.SkillPoints = 13;
         Pressure = new Skill(7, "Pressure", "", "Pressure");
         Pressure.canUse = true;
+        Pressure.point = playerData.Pressure;
+
+        Persuade = new Skill(8, "Persuade", "", "Persuade");
+        Persuade.point = playerData.Persuade;
+        Lie = new Skill(9, "Lie", "", "Lie");
+        Lie.point = playerData.Lie;
+        Threaten = new Skill(10, "Threaten", "", "Threaten");
+        Threaten.point = playerData.Lie;
+        Violence = new Skill(11, "Violence", "", "Violence");
+        Violence.point = playerData.Violence;
         SkillDic.Add(Placate.data.ID, Placate);
         SkillDic.Add(MonsterTheory.data.ID, MonsterTheory);
         SkillDic.Add(NaturalTheory.data.ID, NaturalTheory);
@@ -175,6 +213,10 @@ public class SkillManager
         SkillDic.Add(Listen.data.ID, Listen);
         SkillDic.Add(Idea.data.ID, Idea);
         SkillDic.Add(Pressure.data.ID, Pressure);
+        SkillDic.Add(Persuade.data.ID, Persuade);
+        SkillDic.Add(Lie.data.ID, Lie);
+        SkillDic.Add(Threaten.data.ID, Threaten);
+        SkillDic.Add(Violence.data.ID, Violence);
     }
 
 
@@ -215,6 +257,7 @@ public class SkillManager
 
     /// <summary>
     /// 第一个参数传入技能字典，第二个参数表示是否会跳出来让玩家检测，第三个参数表示是否和现在已添加的技能共存
+    /// 默认添加一个卡牌进入手牌
     /// </summary>
     /// <param name="SkillIdWithHanderDic"></param>
     /// <param name="mustCheck"></param>
@@ -223,7 +266,7 @@ public class SkillManager
     {
         List<Skill> skillList = new List<Skill>();
         GUIManager.ShowView("SkillUsePanel");   
-        if (SkillIdWithHanderDic.Count <=0)
+        if (SkillIdWithHanderDic == null||SkillIdWithHanderDic.Count <=0)
         {
             SkillUsePanel.UpdataUseSkill(null);
             return;
@@ -246,6 +289,52 @@ public class SkillManager
         SkillUsePanel.UpdataUseSkill(skillList,mustCheck, isCoexist);
 
     }
-    
+
+
+    /// <summary>
+    ///  第一个参数传入技能字典，第二个参数表示是否会跳出来让玩家检测，第三个参数表示是否和现在已添加的技能共存，该方法用于添加同名卡牌到手牌。
+    /// </summary>
+    /// <param name="SkillIdWithHanderDic"></param>
+    /// <param name="SkillCardCountDic"></param>
+    /// 表示添加技能卡牌到手牌数量的字典。
+    /// <param name="mustCheck"></param>
+    /// <param name="isCoexist"></param>
+    public void UpdataAndShowSkillUsePanel(Dictionary<int, Dictionary<string, EventDelegate>> SkillIdWithHanderDic,Dictionary<int,int>SkillCardCountDic, bool mustCheck = false, bool isCoexist = false)
+    {
+        List<Skill> skillList = new List<Skill>();
+        GUIManager.ShowView("SkillUsePanel");
+        if (SkillIdWithHanderDic == null || SkillIdWithHanderDic.Count <= 0)
+        {
+            SkillUsePanel.UpdataUseSkill(null);
+            return;
+        }
+
+        foreach (KeyValuePair<int, Dictionary<string, EventDelegate>> item in SkillIdWithHanderDic)
+        {
+            Skill skill = null;
+            int count = 0;
+            if (!SkillDic.TryGetValue(item.Key, out skill))
+            {
+                Debug.LogError("not has this skill" + "__" + item.Key);
+            }
+            if(!SkillCardCountDic.TryGetValue(item.Key,out count))
+            {
+                Debug.LogError("not has this skillCount" + "__" + item.Key);
+            }
+
+            if (skill != null)
+            {
+                skill.TargetWithHanderDic = item.Value;
+                for (int i = 0; i < count; i++)
+                {
+                    skillList.Add(skill);
+                }  
+              
+            }
+        }
+        SkillUsePanel.UpdataUseSkill(skillList, mustCheck, isCoexist);
+
+    }
+
 }
 

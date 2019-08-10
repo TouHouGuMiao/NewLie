@@ -12,7 +12,7 @@ public class CameraManager
     }
 
     /// <summary>
-    /// 特写角色在屏幕哪个位置
+    /// 特写主要角色在屏幕哪个位置
     /// </summary>
     public enum FeatureMode
     {
@@ -37,6 +37,12 @@ public class CameraManager
     private Camera m_UICamera=null;
     private static  Camera main_Camera = null;
     private float lerpTime = 0;
+
+    public Transform GetCurBG()
+    {
+        Transform tf = curBG;
+        return tf;
+    }
 
     #region 摄像机插值
     /// <summary>
@@ -106,7 +112,7 @@ public class CameraManager
     private IEnumerator CameraorthographicSizeLerp_IEnumerator(float start,float end,float rate,EventDelegate OnLerpished)
     {
         yield return new WaitForSeconds(0.01f);
-        main_Camera.orthographicSize = Mathf.Lerp(start, end, orthSizeLerpTime);
+        main_Camera.fieldOfView = Mathf.Lerp(start, end, orthSizeLerpTime);
 
         if (orthSizeLerpTime >1)
         {
@@ -126,7 +132,6 @@ public class CameraManager
     private Transform curBG;
     private void SetBlurNull()
     {
-        BattleCamera.Instance.needMoveWithPlayer = true;
         if (leftCharacter != null)
         {
             Rigidbody leftRgb = leftCharacter.GetComponent<Rigidbody>();
@@ -162,8 +167,65 @@ public class CameraManager
             }
         }
     }
-   
-    public void FeatureOver(string characterName,EventDelegate OnFeatureOver=null)
+    /// <summary>
+    /// 双人特写收尾/ 玩家与NPC
+    /// </summary>
+    /// <param name="OnFeatureOver"></param>
+    public void FeatureOver(EventDelegate OnFeatureOver = null, bool cameraWithPlayer = true)
+    {
+        TweenPosition leftTp = leftCharacter.GetComponent<TweenPosition>();
+        leftTp.enabled = true;
+        leftTp.onFinished.Clear();
+        leftTp.duration = 0.5f;
+        leftTp.delay = 0;
+        leftTp.onFinished.Add(new EventDelegate(PlayerControl.Instance.PlayIdle));
+        leftTp.from = leftCharacter.transform.position;
+        leftTp.to = savaPos_1;
+
+        TweenPosition rightTp = rightCharacter.GetComponent<TweenPosition>();
+        rightTp.enabled = true;
+        rightTp.onFinished.Clear();
+        rightTp.duration = 0.5f;
+        rightTp.delay = 0;
+        rightTp.from = rightCharacter.transform.localPosition;
+        rightTp.to = savaPos_2;
+        rightTp.onFinished.Add(new EventDelegate(SetNPCCharacterIdle));
+        rightTp.ResetToBeginning();
+        rightTp.onFinished.Add(new EventDelegate(SetBlurNull));
+
+        leftTp.ResetToBeginning();
+
+        TweenRotation cameraTR = main_Camera.GetComponent<TweenRotation>();
+        cameraTR.enabled = true;
+        float z = main_Camera.transform.rotation.eulerAngles.z;
+        float y = main_Camera.transform.rotation.eulerAngles.y;
+        if (z > 180)
+        {
+            z = z - 360;
+        }
+        if (y > 180)
+        {
+            y = y - 360;
+        }
+        cameraTR.from = new Vector3(0, y, z);
+        cameraTR.to = new Vector3(0, y, 0);
+        cameraTR.duration = 0.5F;
+        cameraTR.onFinished.Clear();
+        if (cameraWithPlayer)
+        {
+            cameraTR.onFinished.Add(new EventDelegate(SetCameraMoveWithPlayer));
+        }
+        cameraTR.onFinished.Add(OnFeatureOver);
+        cameraTR.ResetToBeginning();
+
+        float start = main_Camera.fieldOfView;
+
+
+        CameraorthographicSizeLerp(start, 135f, 0.05f);
+    }
+
+
+    public void FeatureOver(string characterName,EventDelegate OnFeatureOver=null, bool cameraWithPlayer = true)
     {
         GameObject character = null;
         if (characterName == "Player")
@@ -201,22 +263,37 @@ public class CameraManager
 
         TweenRotation cameraTR = main_Camera.GetComponent<TweenRotation>();
         cameraTR.enabled = true;
-        float z = main_Camera.transform.rotation.z;
+        float z = main_Camera.transform.rotation.eulerAngles.z;
+        float y = main_Camera.transform.rotation.eulerAngles.y;
         if (z > 180)
         {
             z = z - 360;
         }
-        cameraTR.from = new Vector3 (main_Camera.transform.rotation.eulerAngles.x, main_Camera.transform.rotation.eulerAngles.y,z);
-        cameraTR.to = new Vector3(0, 0, 0);
+        if (y > 180)
+        {
+            y = y - 360;
+        }
+        cameraTR.from = new Vector3(0, y, z);
+        cameraTR.to = new Vector3(0, y, 0);
+        cameraTR.onFinished.Clear();
+        if (cameraWithPlayer)
+        {
+            cameraTR.onFinished.Add(new EventDelegate(SetCameraMoveWithPlayer));
+        }
         cameraTR.duration = 0.5F;
         cameraTR.ResetToBeginning();
 
-        float start = main_Camera.orthographicSize;
+        float start = main_Camera.fieldOfView;
 
 
-        CameraorthographicSizeLerp(start, 3.5f, 0.05f);
+        CameraorthographicSizeLerp(start, 135f, 0.05f);
     }
 
+
+    private void SetCameraMoveWithPlayer()
+    {
+        BattleCamera.Instance.needMoveWithPlayer = true;
+    }
 
     private void SetNPCCharacterIdle()
     {
@@ -259,7 +336,7 @@ public class CameraManager
                     Material[] m_Materials = new Material[1];
                     m_Materials[0] = ResourcesManager.Instance.LoadMaterial("Blur");
                     render.materials = m_Materials;
-                    render.material.SetFloat("_BlurSize", 2);
+                    render.material.SetFloat("_BlurSize", 3);
                 }
 
                 else
@@ -279,7 +356,7 @@ public class CameraManager
 
 
         BattleCamera.Instance.needMoveWithPlayer = false;
-        main_Camera.orthographicSize = 2.0f;
+        main_Camera.fieldOfView = 120f;
 
         OnOnlyOneCharacterFeatureFished();
   
@@ -322,7 +399,7 @@ public class CameraManager
                     Material[] m_Materials = new Material[1];
                     m_Materials[0] = ResourcesManager.Instance.LoadMaterial("Blur");
                     render.materials = m_Materials;
-                    render.material.SetFloat("_BlurSize", 2);
+                    render.material.SetFloat("_BlurSize", 3);
                 }
 
                 else
@@ -340,20 +417,21 @@ public class CameraManager
 
 
         BattleCamera.Instance.needMoveWithPlayer = false;
-        CameraorthographicSizeLerp(3.5F, 2.0f, rate, new EventDelegate(OnOnlyOneCharacterFeatureFished));
+        CameraorthographicSizeLerp(135, 120f, rate, new EventDelegate(OnOnlyOneCharacterFeatureFished));
 
 
         savaPos_1 = player.transform.position;
         Rigidbody rgb = player.GetComponent<Rigidbody>();
         rgb.isKinematic = true;
         PlayerControl.Instance.PlayPlayerSkill(animatorName);
+
     }
 
 
     private void OnOnlyOneCharacterFeatureFished()
     {
         GameObject player = GameObject.FindWithTag("Player");
-        Vector3 screenVec = new Vector3(Screen.width / 4, 80, Mathf.Abs(main_Camera.transform.position.z));
+        Vector3 screenVec = new Vector3((Screen.width / 5)*2, 0.4F*Screen.height, Mathf.Abs(main_Camera.transform.position.z));
         TweenPosition characterTP = player.GetComponent<TweenPosition>();
         TweenRotation cameraTR = main_Camera.GetComponent<TweenRotation>();
 
@@ -361,8 +439,13 @@ public class CameraManager
         player.transform.position = targetVec;
 
         cameraTR.enabled = true;
-        cameraTR.from = new Vector3(0, 0, 0);
-        cameraTR.to = new Vector3(0, 0, 3);
+        Vector3 fromVec = new Vector3(0, main_Camera.transform.rotation.eulerAngles.y, 0);
+        if (fromVec.y > 180)
+        {
+            fromVec.y = fromVec.y - 360;
+        }
+        cameraTR.from = fromVec;
+        cameraTR.to = new Vector3(0, fromVec.y, 3);
         cameraTR.duration = 3;
         cameraTR.onFinished.Clear();
         cameraTR.ResetToBeginning();
@@ -386,12 +469,12 @@ public class CameraManager
         Vector3 screenVec = Vector3.zero;
         if (mode == FeatureMode.left)
         {
-           screenVec = new Vector3((Screen.width / 4) , 80, Mathf.Abs(main_Camera.transform.position.z));
+           screenVec = new Vector3((Screen.width / 4), 0.4F * Screen.height, Mathf.Abs(main_Camera.transform.position.z));
         }
 
         else if(mode== FeatureMode.right)
         {
-            screenVec = new Vector3((Screen.width / 4) * 3, 80, Mathf.Abs(main_Camera.transform.position.z));
+            screenVec = new Vector3((Screen.width / 4) * 3, 0.4F * Screen.height, Mathf.Abs(main_Camera.transform.position.z));
         }
         TweenPosition characterTP = featureCharacter.GetComponent<TweenPosition>();
         TweenRotation cameraTR = main_Camera.GetComponent<TweenRotation>();
@@ -399,10 +482,16 @@ public class CameraManager
         Vector3 targetVec = Camera.main.ScreenToWorldPoint(screenVec);
         targetVec = targetVec - curBG.transform.position;
         featureCharacter.transform.position = targetVec;
-
+    
         cameraTR.enabled = true;
-        cameraTR.from = new Vector3(0, 0, 0);
-      
+        Vector3 fromVec = new Vector3(0, main_Camera.transform.rotation.eulerAngles.y, 0);
+        if (fromVec.y > 180)
+        {
+            fromVec.y = fromVec.y - 360;
+        }
+        cameraTR.from = fromVec;
+
+
         cameraTR.duration = 3;
         cameraTR.onFinished.Clear();
         
@@ -415,7 +504,7 @@ public class CameraManager
       
         if (mode== FeatureMode.left)
         {
-            cameraTR.to = new Vector3(0, 0, 3);
+            cameraTR.to = new Vector3(0, fromVec.y, 3);
             characterTP.to = new Vector3(featureCharacter.transform.position.x + 1, featureCharacter.transform.position.y, 0);
             cameraTR.ResetToBeginning();
             characterTP.ResetToBeginning();
@@ -423,7 +512,7 @@ public class CameraManager
 
         else if(mode == FeatureMode.right)
         {
-            cameraTR.to = new Vector3(0, 0, -3);
+            cameraTR.to = new Vector3(0, fromVec.y, -3);
             characterTP.to = new Vector3(featureCharacter.transform.position.x - 1, featureCharacter.transform.position.y, 0);
             cameraTR.ResetToBeginning();
             characterTP.ResetToBeginning();
@@ -432,14 +521,85 @@ public class CameraManager
     }
 
     /// <summary>
-    /// 双人特写
+    /// 双人特写细节处理
+    /// </summary>
+    /// <param name="mode"></param>
+    private void OnOnlyOneCharacterFeatureFished(FeatureMode mode)
+    {
+        Vector3 screenVec_left = new Vector3((Screen.width / 4), 0.4F * Screen.height, Mathf.Abs(main_Camera.transform.position.z));
+        Vector3 screenVec_right = new Vector3((Screen.width / 4)*3, 0.4F * Screen.height, Mathf.Abs(main_Camera.transform.position.z));
+        TweenPosition leftTP = leftCharacter.GetComponent<TweenPosition>();
+        TweenPosition rightTP = rightCharacter.GetComponent<TweenPosition>();
+        TweenRotation cameraTR = main_Camera.GetComponent<TweenRotation>();
+
+
+        Vector3 leftTargetVec = Camera.main.ScreenToWorldPoint(screenVec_left);
+        if (leftCharacter.name != "Player")
+        {
+            Transform parentTF = leftCharacter.transform.parent;
+            leftTargetVec = leftTargetVec - parentTF.position;
+        }
+        Vector3 rightTargetVec = Camera.main.ScreenToWorldPoint(screenVec_right);
+        Transform parentTF_Right = rightCharacter.transform.parent;
+        rightTargetVec = rightTargetVec - parentTF_Right.position;
+
+        leftCharacter.transform.localPosition = leftTargetVec;
+        rightCharacter.transform.localPosition = rightTargetVec;
+
+
+        leftTP.enabled = true;
+        leftTP.from = leftTP.transform.localPosition;
+        leftTP.duration = 2.0f;
+        leftTP.ignoreTimeScale = false;
+        leftTP.onFinished.Clear();
+
+        rightTP.enabled = true;
+        rightTP.from = rightTP.transform.localPosition;
+        rightTP.duration = 2.0f;
+        rightTP.ignoreTimeScale = false;
+        rightTP.onFinished.Clear();
+
+
+        cameraTR.enabled = true;
+        cameraTR.onFinished.Clear();
+        Vector3 fromVec = new Vector3(0, main_Camera.transform.rotation.eulerAngles.y, main_Camera.transform.rotation.eulerAngles.z);
+        if (fromVec.y > 180)
+        {
+            fromVec.y = fromVec.y - 360;
+        }
+
+        if (fromVec.z > 180)
+        {
+            fromVec.z = fromVec.z - 360;
+        }
+        cameraTR.from = fromVec;
+        if (mode== FeatureMode.left)
+        {
+            leftTP.to = new Vector3(leftTargetVec.x + 0.6f, leftTargetVec.y, 0);
+            rightTP.to = new Vector3(rightTargetVec.x + 0.4f, rightTargetVec.y, 0);
+            cameraTR.to = new Vector3(0, fromVec.y, 3);
+        }
+
+        else if(mode == FeatureMode.right)
+        {
+            leftTP.to = new Vector3(leftTargetVec.x - 0.4f, leftTargetVec.y, 0);
+            rightTP.to = new Vector3(rightTargetVec.x - 0.6f, rightTargetVec.y, 0);
+            cameraTR.to = new Vector3(0, fromVec.y, -3);
+        }
+        leftTP.ResetToBeginning();
+        rightTP.ResetToBeginning();
+        cameraTR.ResetToBeginning();
+    }
+
+    /// <summary>
+    /// 双人特写（玩家与NPC  玩家固定在左，NPC固定在右
     /// </summary>
     /// <param name="bgEnum"></param>
     /// <param name="player"></param>
     /// <param name="player_AnimatorName"></param>
     /// <param name="npc"></param>
     /// <param name="Npc_AnimatorName"></param>
-    public void Feature(NPCAnimatorManager.BGEnmu bgEnum,string player_AnimatorName,GameObject npc,string Npc_AnimatorName)
+    public void Feature(FeatureMode mode,NPCAnimatorManager.BGEnmu bgEnum,string player_AnimatorName,string npcName,string Npc_AnimatorName)
     {
         Transform bg = null;
 
@@ -453,7 +613,51 @@ public class CameraManager
             bg = GameObject.FindWithTag("VillageBG").transform;
         }
         curBG = bg;
-      
+        GameObject player = GameObject.FindWithTag("Player");
+        leftCharacter = player;
+        GameObject npcCharacter = bg.transform.FindRecursively(npcName).gameObject;
+        rightCharacter = npcCharacter;
+        savaPos_1 = player.transform.position;
+        savaPos_2 = npcCharacter.transform.localPosition;
+        for (int i = 0; i < bg.transform.childCount; i++)
+        {
+            GameObject go = bg.transform.GetChild(i).gameObject;
+            SpriteRenderer render = go.GetComponent<SpriteRenderer>();
+            if (render != null)
+            {
+
+                if (go != player||go!=npcCharacter)
+                {
+                    Material[] m_Materials = new Material[1];
+                    m_Materials[0] = ResourcesManager.Instance.LoadMaterial("Blur");
+                    render.materials = m_Materials;
+                    render.material.SetFloat("_BlurSize", 3);
+                }
+
+                else
+                {
+                    Material[] m_Materials = new Material[1];
+                    m_Materials[0] = ResourcesManager.Instance.LoadMaterial("Normal");
+                    render.materials = m_Materials;
+
+                }
+            }
+        }
+        Material[] Materials = new Material[1];
+        Materials[0] = ResourcesManager.Instance.LoadMaterial("Normal");
+
+        player.GetComponent<SpriteRenderer>().materials= Materials;     
+        npcCharacter.GetComponent<SpriteRenderer>().materials = Materials;
+        BattleCamera.Instance.needMoveWithPlayer = false;
+        main_Camera.fieldOfView = 120f;
+        OnOnlyOneCharacterFeatureFished(mode);
+        Rigidbody playerRgb = player.transform.GetComponent<Rigidbody>();
+        playerRgb.isKinematic = true;
+        Rigidbody npcRgb = npcCharacter.transform.GetComponent<Rigidbody>();
+        npcRgb.isKinematic = true;
+        PlayerControl.Instance.PlayPlayerSkill(player_AnimatorName);
+        NPCAnimatorManager.Instance.PlayCharacterAnimator(npcCharacter, Npc_AnimatorName);
+        AudioManager.Instance.PlayEffect_Source("FeatureNormal");
     }
 
     /// <summary>
@@ -494,7 +698,7 @@ public class CameraManager
                     Material[] m_Materials = new Material[1];
                     m_Materials[0] = ResourcesManager.Instance.LoadMaterial("Blur");
                     render.materials = m_Materials;
-                    render.material.SetFloat("_BlurSize", 2);
+                    render.material.SetFloat("_BlurSize", 3);
                 }
 
                 else
@@ -511,7 +715,7 @@ public class CameraManager
 
 
         BattleCamera.Instance.needMoveWithPlayer = false;
-        main_Camera.orthographicSize = 2.0f;
+        main_Camera.fieldOfView = 120;
 
         OnOnlyOneCharacterFeatureFished(FeatureMode.right,character);
 

@@ -371,6 +371,7 @@ MonoBehaviour:
   callWhenFinished: 
   tp: {fileID: 0}
   cout: 0
+  OnStarted: []
   from: 0
   to: 1
 --- !u!114 &114564262634475414

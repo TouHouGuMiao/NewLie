@@ -20,7 +20,7 @@ public class TalkManager
     }
 
     private Dictionary<int, StoryData> StoryDataDic=new Dictionary<int, StoryData> ();
-
+  
     public void ShowTalkPanel(int id,int index=0)
     {
         StoryData data = GetStoryDataById(id);
@@ -121,8 +121,6 @@ public class TalkManager
         data2.StoryHanderDic.Add(0, GoToCunZi0);
         data2.StoryHanderDic.Add(1, GoToCunZi1);
         data2.StoryHanderDic.Add(2, GoToCunZi2);
-        data2.StoryHanderDic.Add(3, GoToCunZi3);
-        data2.StoryHanderDic.Add(4, GoToCunZi4);
     }
 
 
@@ -225,29 +223,130 @@ public class TalkManager
     #region 来到人里
     void GoToCunZi0()
     {
-        StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 7);
-        CameraManager.Instance.FeatureOver("cunMingA");
+        CameraManager.Instance.FeatureOver(new EventDelegate (OnCunMingShotFinshed_ArrangeNPCAndPlayer),false);
+        TableCardManager.Instance.ReplaceTable_ChildGroundCard(10);
+
     }
 
     void GoToCunZi1()
     {
-        ShowTalkPanel(2, 2);
+        CameraManager.Instance.FeatureOver(new EventDelegate (OnCunMingBAngry_0ChangePlayerPress),false);
+      
     }
-
 
     void GoToCunZi2()
     {
-        ShowTalkPanel(2, 3);
+        CameraManager.Instance.FeatureOver(new EventDelegate (OnCunMingC_Cry0ChangePlayerPress), false);
+      
     }
 
-    void GoToCunZi3()
+
+    #endregion
+
+    #region 杂项方法 
+
+    void OnCunMingBAngry_0ChangePlayerPress()
     {
-        ShowTalkPanel(2, 4);
+        BattleManager.Instance.ShowPlayerBattleSlider(3, OnCunMingBAngry_0Fished);
     }
 
-    void GoToCunZi4()
+    void OnCunMingC_Cry0ChangePlayerPress()
+    {
+        BattleManager.Instance.ShowPlayerBattleSlider(4, OnCunMingC_Cry_1Fished);
+    } 
+
+
+
+    void OnCunMingBAngry_0Fished()
+    {
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 7);
+    }
+
+    void OnCunMingC_Cry_1Fished()
     {
         StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 8);
     }
+
+    void OnCunMingShotFinshed_ArrangeNPCAndPlayer()
+    {
+        BattleCamera.Instance.needMoveWithPlayer = false;
+        Transform curBg = CameraManager.Instance.GetCurBG();
+        GameObject prefab = ResourcesManager.Instance.LoadCharacterPrefab("cunMing");
+        GameObject cunMingB = GameObject.Instantiate(prefab);
+        GameObject cunMingC = GameObject.Instantiate(prefab);
+        GameObject cunMingA = curBg.FindRecursively("cunMingA").gameObject;
+        GameObject player = GameObject.FindWithTag("Player");
+        cunMingB.name = "cunMingB";
+        cunMingB.transform.SetParent(curBg, false);
+        cunMingB.transform.rotation = Quaternion.Euler(0, 180, 0);
+        cunMingB.transform.localPosition = cunMingA.transform.localPosition + new Vector3(10, 0, 0);
+        cunMingC.name = "cunMingC";
+        cunMingC.transform.rotation = Quaternion.Euler(0, 180, 0);
+        cunMingC.transform.SetParent(curBg, false);
+        cunMingC.transform.localPosition = cunMingA.transform.localPosition + new Vector3(10, 0, 0);
+        GameObject mainCamera = GameObject.FindWithTag("MainCamera").gameObject;
+        Vector3 screenVec_Player = new Vector3((Screen.width / 5)*1.5F, 80, Mathf.Abs(mainCamera.transform.position.z));
+        Vector3 screenVec_CunMingA = new Vector3((Screen.width / 5) * 3.5F, 80, Mathf.Abs(mainCamera.transform.position.z));
+
+        Vector3 targetVec_Player = Camera.main.ScreenToWorldPoint(screenVec_Player);
+        targetVec_Player = new Vector3(targetVec_Player.x, player.transform.position.y, 0);
+        Vector3 targetVec_CunMingA = Camera.main.ScreenToWorldPoint(screenVec_CunMingA);
+        targetVec_CunMingA = targetVec_CunMingA - curBg.transform.position;
+        targetVec_CunMingA = new Vector3(targetVec_CunMingA.x, cunMingA.transform.localPosition.y, 0);
+        Vector3 targetVec_CunMingB = targetVec_CunMingA + new Vector3(1.2F, 0, 0);
+        Vector3 targetVec_CunMingC = targetVec_CunMingB + new Vector3(1.2F, 0, 0);
+
+
+        TweenPosition playerTP = player.GetComponent<TweenPosition>();
+        TweenPosition cunMingATP = cunMingA.GetComponent<TweenPosition>();
+        TweenPosition cunMingBTP = cunMingB.GetComponent<TweenPosition>();
+        TweenPosition cunMingCTP = cunMingC.GetComponent<TweenPosition>();
+        playerTP.enabled = true;
+        playerTP.from = player.transform.position;
+        playerTP.to = targetVec_Player;
+        playerTP.onFinished.Clear();
+        playerTP.ResetToBeginning();
+
+        cunMingATP.enabled = true;
+        cunMingATP.from = cunMingA.transform.localPosition;
+        cunMingATP.to = targetVec_CunMingA;
+        cunMingATP.onFinished.Clear();
+        cunMingATP.onFinished.Add(new EventDelegate(PlayAudioSou));
+        cunMingATP.ResetToBeginning();
+
+        cunMingBTP.enabled = true;
+        cunMingBTP.from = cunMingB.transform.localPosition;
+        cunMingBTP.to = targetVec_CunMingB;
+        cunMingBTP.delay = 0.4f;
+        cunMingBTP.onFinished.Clear();
+        cunMingBTP.onFinished.Add(new EventDelegate(PlayAudioSou));
+        cunMingBTP.ResetToBeginning();
+
+        cunMingCTP.enabled = true;
+        cunMingCTP.from = cunMingC.transform.localPosition;
+        cunMingCTP.to = targetVec_CunMingC;
+        cunMingCTP.delay = 0.8f;
+        cunMingCTP.onFinished.Clear();
+        cunMingCTP.onFinished.Add(new EventDelegate(PlayAudioSou));
+        cunMingCTP.onFinished.Add(new EventDelegate(PlayBattleBGMAndNextState));
+        cunMingCTP.ResetToBeginning();
+        BattleManager.Instance.ShowRoundStart();
+        AudioManager.Instance.PlayEffect_Source("startBattle");
+    }
+
+    void PlayAudioSou()
+    {
+        AudioManager.Instance.PlayEffect_Source("sou");
+    }
+
+    void PlayBattleBGMAndNextState()
+    {
+        AudioManager.Instance.PlayBg_Source("BattleNormal", true, 3.0f);
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(4, 6);
+        BattleManager.Instance.ShowPlayerBattleSlider(0);
+    }
+
+
+
     #endregion
 }

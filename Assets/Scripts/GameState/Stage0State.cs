@@ -18,7 +18,7 @@ public class Stage0State : GameState
     private void StartEvent()
     {
         //StoryEventManager.Instance.ShowEventPanel_ChapterOne(3,48);
-        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 6);
+        StoryEventManager.Instance.ShowEventPanel_ChapterOne(3, 48);
         GUIManager.HideView("CoverPanel");   
     }
 
@@ -26,7 +26,7 @@ public class Stage0State : GameState
     protected override void OnStart()
     {
         AudioManager.Instance.PlayEffect_Source("openDoor",StartEvent);
-        
+        GUIManager.ShowView("CardEffectPanel");
         //StoryManager.Instacne.ShowStoryList(StoryManager.Instacne.GetStage0State0List());
     }
 

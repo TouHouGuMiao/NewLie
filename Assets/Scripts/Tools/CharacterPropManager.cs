@@ -15,7 +15,7 @@ public enum PropType
     Money,
     Idea,
     WeiYan,
-    preesure,
+    Pressure,
 }
 /// <summary>
 /// 本类用来管理人物的属性值
@@ -48,14 +48,15 @@ public class CharacterPropManager
     public CharacterPropBase GetPlayerProp()
     {
         CharacterPropBase characterPropBase = new CharacterPropBase();
-        characterPropBase.preesure = 100;
+        characterPropBase.Pressure = 100;
         characterPropBase.Idea = 100;
         return characterPropBase;
     }  
 
     public void Init()
     {
-        playerCurrentProp.preesure = 100;
+        playerCurrentProp.Pressure = 100;
+        playerCurrentProp.Idea = 100;
     }
 
     public CharacterPropBase GetPlayerCureentProp()
@@ -65,9 +66,9 @@ public class CharacterPropManager
 
     public void ChangePlayerCurrentProp(PropType type,float value,PropEventDelegate hander)
     {
-        if(type== PropType.preesure)
+        if(type== PropType.Pressure)
         {
-            playerCurrentProp.preesure = value;
+            playerCurrentProp.Pressure =(int) value;
             BattleUIPanel.ShowChangePressureSlider(hander);
         }
     }

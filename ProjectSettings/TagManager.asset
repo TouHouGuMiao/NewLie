@@ -3,24 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - UIRoot
-  - Bullet
-  - NPC
-  - BaiMaoNPC
-  - enemy
-  - Story
-  - specialBullet
-  - rightLock
-  - leftLock
-  - Event
-  - DiceCard
-  - UICamera
-  - SkillCard
-  - EventAtOnce
-  - CanBlur
-  - ShenSheBG
-  - VillageBG
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -30,17 +13,17 @@ TagManager:
   - UI
   - 
   - 
-  - Warrior
-  - enemy
-  - 3DUI
-  - StaticUI
-  - Prop3DUI
-  - Skill3DUI
-  - BG
-  - Event3DUI
-  - Cover
-  - CameraCollider
-  - System3DUI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -57,22 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: warriorCenter
-    uniqueID: 4218145507
-    locked: 0
-  - name: warrior
-    uniqueID: 3472681633
-    locked: 0
-  - name: Bounds
-    uniqueID: 3210881169
-    locked: 0
-  - name: lizi
-    uniqueID: 3623501893
-    locked: 0
-  - name: cloud
-    uniqueID: 3151981251
-    locked: 0
-  - name: enemy
-    uniqueID: 377814961
     locked: 0

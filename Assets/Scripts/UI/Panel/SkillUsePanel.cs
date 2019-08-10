@@ -18,6 +18,7 @@ public class SkillUsePanel : IView
     private float radius=1.0f;
     private static Transform cardWidget;
     private static  Transform arrow;
+    private static Transform EffectWidget;
     private static  GameObject infoItem;
     public static Skill curSkill;
     /// <summary>
@@ -43,6 +44,7 @@ public class SkillUsePanel : IView
         cardWidget = this.GetChild("CardWidget");
         targetWidget = this.GetChild("TargetWidget").GetComponent<UIGrid>();
         infoItem = this.GetChild("target").gameObject;
+        EffectWidget = this.GetChild("EffectWidget");
     }
 
     protected override void OnShow()
@@ -92,7 +94,7 @@ public class SkillUsePanel : IView
     private static  void GridCard(int count)
     {
         Vector2 centerPoint = new Vector2(0, 0);
-        float offset_x = 3.0f / (count + 1);
+        float offset_x = 4.0f / (count + 1);
         float time_x = 1.0f / (count + 1);
         for (int i = 0; i < count; i++)
         {
@@ -108,7 +110,7 @@ public class SkillUsePanel : IView
             Vector2 oppositeVec = vecPoint - centerPoint;
             float angle = Mathf.Atan2(oppositeVec.x, oppositeVec.y) * Mathf.Rad2Deg;
             go.transform.rotation = Quaternion.Euler(go.transform.rotation.x, 180, angle);
-            go.transform.localPosition = new Vector3(-1.5f + (i + 1) * offset_x, go_y, 5 + i * 0.04f);
+            go.transform.localPosition = new Vector3(-2.0f + (i + 1) * offset_x, go_y, 5 + i * 0.04f);
         }
     }
 
@@ -138,7 +140,7 @@ public class SkillUsePanel : IView
             arrowState = ArrowState.moveToDown;
 
             cardWidget_Tp.from = cardWidget_Tp.transform.localPosition;
-            cardWidget_Tp.to = new Vector3(0, 2, 0);
+            cardWidget_Tp.to = new Vector3(0, 3.5f, -5);
 
             arrow_RT.from = arrow_RT.transform.rotation.eulerAngles;
             arrow_RT.to = new Vector3(0, 0, 180);
@@ -151,7 +153,7 @@ public class SkillUsePanel : IView
 
 
             cardWidget_Tp.from = cardWidget_Tp.transform.localPosition;
-            cardWidget_Tp.to = new Vector3(0, -1, 0);
+            cardWidget_Tp.to = new Vector3(0, -1, -5);
 
 
             arrow_RT.from = arrow_RT.transform.rotation.eulerAngles;
@@ -201,6 +203,68 @@ public class SkillUsePanel : IView
       
         OnUpArrowBtnClick();
         SetSkillCardPos(isCoexist);
+    }
+
+
+    public static void ShowGetUseCardEffect(List<Skill> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            GameObject prefab = ResourcesManager.Instance.LoadNomalCard(list[i].data.ModelName);
+            GameObject go = GameObject.Instantiate(prefab);
+            go.name = list[i].data.Name;
+            go.transform.SetParent(EffectWidget.transform, false);
+            go.GetComponent<DragSkillCard>().enabled = false;
+            go.transform.rotation = Quaternion.Euler(0,0,0);
+            TweenPosition tp = go.AddComponent<TweenPosition>();
+            tp.enabled = true;
+            tp.delay = 0.5f * i;
+            tp.duration = 1.5F;
+            tp.from = new Vector3(6.0f, 2.5f, 0.4f);
+            tp.to = new Vector3(1.3f*i*0.5f, 2.5f, 0.4f+0.1f*i);
+            tp.ResetToBeginning();
+            if (i >= list.Count-1)
+            {
+                tp.onFinished.Add(new EventDelegate(OnEffectCardOnFished));
+            }
+        }
+
+    }
+    private static  void OnEffectCardOnFished()
+    {
+        for (int i = 0; i < EffectWidget.transform.childCount; i++)
+        {
+            GameObject go = EffectWidget.transform.GetChild(i).gameObject;
+            TweenRotation tr = go.AddComponent<TweenRotation>();
+            tr.enabled = true;
+            tr.from = new Vector3(0, 0, 0);
+            tr.to = new Vector3(0, 180, 0);
+            tr.ResetToBeginning();
+            if (i >= EffectWidget.transform.childCount-1)
+            {
+                tr.onFinished.Add(new EventDelegate(OnEffectCardRotateFished));
+            }
+        }
+        
+    }
+
+    private static void OnEffectCardRotateFished()
+    {
+        for (int i = 0; i < EffectWidget.transform.childCount; i++)
+        {
+            GameObject go = EffectWidget.transform.GetChild(i).gameObject;
+            TweenPosition tp = go.AddComponent<TweenPosition>();
+            tp.enabled = true;
+            tp.onFinished.Clear();
+            tp.delay = i * 0.5f;
+            tp.from = tp.transform.localPosition;
+            tp.to = new Vector3(0, -15, tp.transform.localPosition.z);
+            tp.ResetToBeginning();
+            if (i >= EffectWidget.transform.childCount-1)
+            {
+                
+            }
+        }
     }
 
     static void OnCardDragFished()

@@ -31,7 +31,7 @@ public class EventStoryPanel : IView
     /// list 中 StoryData中的SpeakList的标志位
     /// </summary>
 
-
+    private bool canUseE=false;
    
     private string addText = null;
 
@@ -67,7 +67,8 @@ public class EventStoryPanel : IView
 
     protected override void OnShow()
     {
-
+        PlayerControl.Instance.PlayIdle();
+        canUseE = false;
         if (bg_GameObject.activeSelf && !data.SpeakList[data.index].Contains("*"))
         {
 
@@ -183,6 +184,8 @@ public class EventStoryPanel : IView
 
     private void ShowTextAfterTp()
     {
+        writer.enabled = true;
+        canUseE = true;
         if (data.cout > 0)
         {
             //if (dataList[0].spriteName != eventSpriteName)
@@ -244,84 +247,75 @@ public class EventStoryPanel : IView
 
         if (EventStoryPanel.isEventSpeak)
         {
-            if (TalkPanel.isSpeak ||ChosePanel.isChose)
+
+            if (canUseE)
             {
-                return;
-            }
-            if (addText == null)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (TalkPanel.isSpeak || ChosePanel.isChose)
                 {
+                    return;
+                }
+                if (addText == null)
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
 
-                    if (speakLabel.gameObject.activeSelf == false)
-                    {
-                        speakLabel.enabled = true;
-                        return;
-                    }
-                    if (writer.isActive)
-                    {
-                        writer.Finish();
-                
-                    }
-
-                    else if (!writer.isActive)
-                    {
-                        bool needHide = true;
-                        StoryHander hander = null;
-                        if (data.StoryHanderDic.TryGetValue(data.index, out hander))
+                        if (speakLabel.gameObject.activeSelf == false)
                         {
-                            if (lastHander != hander)
+                            speakLabel.enabled = true;
+                            return;
+                        }
+                        if (writer.isActive)
+                        {
+                            writer.Finish();
+
+                        }
+
+                        else if (!writer.isActive)
+                        {
+                            bool needHide = true;
+                            StoryHander hander = null;
+                            if (data.StoryHanderDic.TryGetValue(data.index, out hander))
                             {
-                                hander();
-                                lastHander = hander;
-                                needHide = false;
-                            }                                            
-                        }
-
-                        if (TalkPanel.isSpeak)
-                        {
-                            needHide = false;
-                        }
+                                if (lastHander != hander)
+                                {
+                                    hander();
+                                    lastHander = hander;
+                                    needHide = false;
+                                }
 
 
-                        if (InputPanel.IsInput)
-                        {
-                            needHide = false;
-                        }
+                            }
 
-                        if (DicePanel.IsDice)
-                        {
-                            needHide = false;
+
+                            //if (needHide)
+                            //{                            
+                            //    GUIManager.HideView("EventStoryPanel");
+                            //}
                         }
-             
-                        //if (needHide)
-                        //{                            
-                        //    GUIManager.HideView("EventStoryPanel");
-                        //}
                     }
                 }
-            }
 
-            if (addText != null)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (addText != null)
                 {
-                    if (speakLabel.gameObject.activeSelf == false)
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
-                        speakLabel.enabled = true;
-                        return;
-                    }
+                        if (speakLabel.gameObject.activeSelf == false)
+                        {
+                            speakLabel.enabled = true;
+                            return;
+                        }
 
-                    if (writer.isActive)
-                    {
-                        writer.Finish();
-                    }
+                        if (writer.isActive)
+                        {
+                            writer.Finish();
+                        }
 
-                    else if (!writer.isActive)
-                    {
-                        speakLabel.text = addText;
-                        writer.ResetToBeginning();
-                        addText = null;
+                        else if (!writer.isActive)
+                        {
+                            speakLabel.text = addText;
+                            writer.ResetToBeginning();
+                            addText = null;
+                        }
                     }
                 }
             }

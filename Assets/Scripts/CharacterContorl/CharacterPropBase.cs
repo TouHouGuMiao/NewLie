@@ -39,7 +39,26 @@ public class CharacterPropBase:MonoBehaviour
     /// </summary>
     public int WeiYan;
 
-    public float preesure;
 
     public int Investigate;
+
+    public int Placate;
+
+    public int MonsterTheory;
+
+    public int NaturalTheory;
+
+    public int ThridEye;
+
+    public int Listen;
+
+    public int Lie;
+
+    public int Threaten;
+
+    public int Violence;
+
+    public int Pressure;
+
+    public int Persuade;
 }

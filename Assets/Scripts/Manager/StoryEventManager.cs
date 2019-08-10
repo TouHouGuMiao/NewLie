@@ -346,10 +346,16 @@ public class StoryEventManager
         data2.StoryHanderDic.Add(7, GoToCunZi7);
         data2.StoryHanderDic.Add(8, GoToCunZi8);
         data2.StoryHanderDic.Add(9, GoToCunZi9);
-        data2.StoryHanderDic.Add(10, GoToCunZi10);
-        data2.StoryHanderDic.Add(11, GoToCunZi11);
-        data2.StoryHanderDic.Add(12, GoToCunZi12);
-        data2.StoryHanderDic.Add(13, GoToCunZi13);
+        data2.StoryHanderDic.Add(18, GoToCunZi18);
+        data2.StoryHanderDic.Add(21, GoToCunZi21);
+        data2.StoryHanderDic.Add(22, GoToCunZi22);
+        data2.StoryHanderDic.Add(24, GoToCunZi24);
+        data2.StoryHanderDic.Add(25, GoToCunZi25);
+        data2.StoryHanderDic.Add(28, GoToCunZi28);
+        data2.StoryHanderDic.Add(31, GoToCunZi31);
+        data2.StoryHanderDic.Add(41, GoToCunZi41);
+        data2.StoryHanderDic.Add(42, GoToCunZi42);
+        data2.StoryHanderDic.Add(43, GoToCunZi43);
     }
     #endregion
 
@@ -1427,7 +1433,7 @@ public class StoryEventManager
         InvestigateDic.Add("A", new EventDelegate(SeeWithCunMingOver_Investigate_A));
         skillDic.Add(5, InvestigateDic);
         SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic);
-        EventStateManager.Instance.WhenSeeWithCunMingOver();
+        EventStateManager.Instance.WhenSeeWithCunMingOver();   
     }
 
     void CunMingLaiFang49()
@@ -1484,59 +1490,413 @@ public class StoryEventManager
 
     void GoToCunZi5()
     {
-        ShowEventPanel_ChapterOne(4, 6);
+        GUIManager.HideView("EventStoryPanel");
         NPCAnimatorManager.Instance.PlayCharacterTweenScale(NPCAnimatorManager.BGEnmu.Village, "cunMingA",new EventDelegate (CunMingARotateFished));
+        NPCAnimatorManager.Instance.PlayCharacterAnimator(NPCAnimatorManager.BGEnmu.Village, "cunMingA", "rotate");
     }
 
     void GoToCunZi6()
     {
-        TalkManager.Instance.ShowTalkPanel(2, 0);
+        GUIManager.HideView("EventStoryPanel");
+        DialogManager.Instance.ShowDialogPanel(0, 0, NPCAnimatorManager.BGEnmu.Village, "cunMingB", DialogManager.DialogDirection.right);
     }
+
 
     void GoToCunZi7()
     {
-        TalkManager.Instance.ShowTalkPanel(2, 1);
+        GUIManager.HideView("EventStoryPanel");
+        NPCAnimatorManager.Instance.PlayCharacterTweenScale(NPCAnimatorManager.BGEnmu.Village, CameraManager.FeatureMode.right, "cunMingC", new EventDelegate(CunMingC_Cry_0));
     }
 
     void GoToCunZi8()
     {
-        ShowEventPanel_ChapterOne(4, 9);
+        GUIManager.HideView("EventStoryPanel");
+        NPCAnimatorManager.Instance.PlayCharacterTweenScale(NPCAnimatorManager.BGEnmu.Village, CameraManager.FeatureMode.left, "player", new EventDelegate (PlayerInCunZiMove_0));
+
     }
+
 
     void GoToCunZi9()
     {
-        ShowEventPanel_ChapterOne(4, 10);
-    }
-
-    void GoToCunZi10()
-    {
-        ShowEventPanel_ChapterOne(4, 11);
-    }
-
-    void GoToCunZi11()
-    {
         ChoseManager.Instance.ShowChosePanel(8);
+
+        Dictionary<int, Dictionary<string, EventDelegate>> skillDic = new Dictionary<int, Dictionary<string, EventDelegate>>();
+        Dictionary<string, EventDelegate> InvestigateDic = new Dictionary<string, EventDelegate>();
+        InvestigateDic.Add("A", new EventDelegate(SeeWithCunMings_OneRound_Investigate_A));
+        InvestigateDic.Add("B", new EventDelegate(SeeWithCunMings_OneRound_Investigate_B));
+        InvestigateDic.Add("C", new EventDelegate(SeeWithCunMings_OneRound_Investigate_C));
+        Dictionary<string, EventDelegate> IdeaDic = new Dictionary<string, EventDelegate>();
+        IdeaDic.Add("myself", new EventDelegate(SeeWithCunMings_OneRound_Idea));
+
+
+        Dictionary<string, EventDelegate> PersuadeDic = new Dictionary<string, EventDelegate>();
+        PersuadeDic.Add("A", new EventDelegate(SeeWithCunMings_OneRound_Persuade_A));
+        PersuadeDic.Add("B", new EventDelegate(SeeWithCunMings_OneRound_Persuade_B));
+        PersuadeDic.Add("C", new EventDelegate(SeeWithCunMings_OneRound_Persuade_C));
+    
+        Dictionary<string, EventDelegate> ThreatenDic = new Dictionary<string, EventDelegate>();
+        ThreatenDic.Add("A", new EventDelegate(SeeWithCunMings_OneRound_Threaten_A));
+        ThreatenDic.Add("B", new EventDelegate(SeeWithCunMings_OneRound_Threaten_B));
+        ThreatenDic.Add("C", new EventDelegate(SeeWithCunMings_OneRound_Threaten_C));
+
+
+        skillDic.Add(4, InvestigateDic);
+        skillDic.Add(6, IdeaDic);
+
+        skillDic.Add(8, PersuadeDic);
+
+        skillDic.Add(10, ThreatenDic);
+        Dictionary<int, int> skillCountDic = new Dictionary<int, int>();
+        skillCountDic.Add(4, 3);
+        skillCountDic.Add(6, 1);
+        skillCountDic.Add(8, 1);
+        skillCountDic.Add(10, 1);
+        SkillManager.Instance.UpdataAndShowSkillUsePanel(skillDic, skillCountDic, false, false);
+
+        List<string> cardNameList = new List<string>();
+        cardNameList.Add("Blaster-red");
+        cardNameList.Add("Blaster-red");
+        cardNameList.Add("Blaster-red");
+        cardNameList.Add("Blaster-red");
+        cardNameList.Add("Blaster-red");
+        cardNameList.Add("Blaster-red");
+        cardNameList.Add("Blaster-red");
+        TableCardManager.Instance.ShowHandCardChouKa(cardNameList);
     }
 
-    void GoToCunZi12()
+    void GoToCunZi18()
     {
-        CameraManager.Instance.Feature(  NPCAnimatorManager.BGEnmu.Village,"investigate");
-        ShowEventPanel_ChapterOne(4, 13);
+
+        CameraManager.Instance.FeatureOver(new EventDelegate (OnOneRound_Persuade_A_FreatureFished),false);
+        GUIManager.HideView("EventStoryPanel");
+        
     }
 
-    void GoToCunZi13()
+    void GoToCunZi21()
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        CameraManager.Instance.FeatureOver("Player");
+        CameraManager.Instance.FeatureOver(new EventDelegate(OnOneRound_Persuade_B_FreatureFished), false);
+        GUIManager.HideView("EventStoryPanel");
     }
+
+    void GoToCunZi22()
+    {
+
+       
+    }
+
+    void GoToCunZi24()
+    {
+        CameraManager.Instance.FeatureOver(new EventDelegate(OnOneRound_Persuade_C_FreatureFished), false);
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void GoToCunZi25()
+    {
+        CameraManager.Instance.FeatureOver(new EventDelegate(OnOneRound_Threaten_A_Freatureished), false);
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void GoToCunZi28()
+    {
+        CameraManager.Instance.FeatureOver(new EventDelegate(OnOneRound_Threaten_B_Freatureished), false);
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void GoToCunZi31()
+    {
+        CameraManager.Instance.FeatureOver(new EventDelegate(OnOneRound_Threaten_C_Freatureished), false);
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void GoToCunZi36()
+    {
+      
+    }
+
+    void GoToCunZi41()
+    {
+        CameraManager.Instance.FeatureOver(new EventDelegate(OnOneRound_Violence_A_Freatureished), false);
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void GoToCunZi42()
+    {
+        CameraManager.Instance.FeatureOver(new EventDelegate(OnOneRound_Violence_B_Freatureished), false);
+        GUIManager.HideView("EventStoryPanel");
+    }
+
+    void GoToCunZi43()
+    {
+        CameraManager.Instance.FeatureOver(new EventDelegate(OnOneRound_Violence_C_Freatureished), false);
+        GUIManager.HideView("EventStoryPanel");
+    }
+
     #endregion
 
 
     #region 绑定一些杂项的方法
 
+    void SeeWithCunMing_OneRound_Violence_C_Reslut()
+    {
+        ShowEventPanel_ChapterOne(4, 43);
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.left, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingC", "investigate");
+    }
+    void OnOneRound_Violence_C_Freatureished()
+    {
+     
+       DialogManager.Instance.ShowDialogPanel(0, 24, NPCAnimatorManager.BGEnmu.Village, "cunMingC", DialogManager.DialogDirection.right);
+     
+    }
+
+
+    void SeeWithCunMing_OneRound_Violence_B_Reslut()
+    {
+        ShowEventPanel_ChapterOne(4, 42);
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.left, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingB", "investigate");
+    }
+
+
+    void OnOneRound_Violence_B_Freatureished()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
+
+        if (DiceCheckPanel.diceValue <= (playerData.Persuade)/2)
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 20, NPCAnimatorManager.BGEnmu.Village, "cunMingB", DialogManager.DialogDirection.right);
+        }
+
+        else
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 21, NPCAnimatorManager.BGEnmu.Village, "cunMingB", DialogManager.DialogDirection.right);
+        }
+    }
+
+    void SeeWithCunMing_OneRound_Violence_A_Reslut()
+    {
+        ShowEventPanel_ChapterOne(4, 41);
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.left, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingA", "investigate");
+    }
+
+    void OnOneRound_Violence_A_Freatureished()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
+
+        if (DiceCheckPanel.diceValue <= (playerData.Persuade))
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 18, NPCAnimatorManager.BGEnmu.Village, "cunMingA", DialogManager.DialogDirection.right);
+        }
+
+        else
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 19, NPCAnimatorManager.BGEnmu.Village, "cunMingA", DialogManager.DialogDirection.right);
+        }
+    }
+
+    void SeeWithCunMing_OneRound_Threaten_C_Reslut()
+    {
+        ShowEventPanel_ChapterOne(4, 31);
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.left, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingC", "investigate");
+    }
+
+    void OnOneRound_Threaten_C_Freatureished()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
+
+        if (DiceCheckPanel.diceValue <= (playerData.Persuade))
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 14, NPCAnimatorManager.BGEnmu.Village, "cunMingC", DialogManager.DialogDirection.right);
+        }
+
+        else
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 15, NPCAnimatorManager.BGEnmu.Village, "cunMingC", DialogManager.DialogDirection.right);
+        }
+    }
+
+    void SeeWithCunMing_OneRound_Threaten_B_Reslut()
+    {
+        ShowEventPanel_ChapterOne(4, 28);
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.left, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingB", "investigate");
+    }
+
+    void OnOneRound_Threaten_B_Freatureished()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
+
+        if (DiceCheckPanel.diceValue <= (playerData.Persuade)/2)
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 12, NPCAnimatorManager.BGEnmu.Village, "cunMingB", DialogManager.DialogDirection.right);
+        }
+
+        else
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 13, NPCAnimatorManager.BGEnmu.Village, "cunMingB", DialogManager.DialogDirection.right);
+        }
+    }
+
+    void SeeWithCunMing_OneRound_Threaten_A_Reslut()
+    {
+        ShowEventPanel_ChapterOne(4, 25);
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.left, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingA", "investigate");
+    }
+
+    void OnOneRound_Threaten_A_Freatureished()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
+
+        if (DiceCheckPanel.diceValue <= (playerData.Persuade) )
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 10, NPCAnimatorManager.BGEnmu.Village, "cunMingA", DialogManager.DialogDirection.right);
+        }
+
+        else
+        {
+            DialogManager.Instance.ShowDialogPanel(0,11, NPCAnimatorManager.BGEnmu.Village, "cunMingA", DialogManager.DialogDirection.right);
+        }
+    }
+
+    void SeeWithCunMing_OneRound_Persuade_C_Reslut()
+    {
+        ShowEventPanel_ChapterOne(4, 24);
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.left, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingC", "investigate");
+    }
+
+    void OnOneRound_Persuade_C_FreatureFished()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
+
+        if (DiceCheckPanel.diceValue <= (playerData.Persuade) / 2)
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 8, NPCAnimatorManager.BGEnmu.Village, "cunMingC", DialogManager.DialogDirection.right);
+        }
+
+        else
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 9, NPCAnimatorManager.BGEnmu.Village, "cunMingC", DialogManager.DialogDirection.right);
+        }
+    }
+
+    void SeeWithCunMing_OneRound_Persuade_B_Reslut()
+    {
+        ShowEventPanel_ChapterOne(4, 21);
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.left, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingB", "investigate");
+    }
+
+    void OnOneRound_Persuade_B_FreatureFished()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
+
+        if (DiceCheckPanel.diceValue <= (playerData.Persuade)/2)
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 6, NPCAnimatorManager.BGEnmu.Village, "cunMingB", DialogManager.DialogDirection.right);
+        }
+
+        else
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 7, NPCAnimatorManager.BGEnmu.Village, "cunMingB", DialogManager.DialogDirection.right);
+        }
+    }
+    void OnOneRound_Persuade_A_FreatureFished()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
+
+        if (DiceCheckPanel.diceValue <= (playerData.Persuade)/2)
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 2, NPCAnimatorManager.BGEnmu.Village, "cunMingA", DialogManager.DialogDirection.right);
+        }
+
+        else
+        {
+            DialogManager.Instance.ShowDialogPanel(0, 3, NPCAnimatorManager.BGEnmu.Village, "cunMingA", DialogManager.DialogDirection.right);
+        }
+    }
+
+    void SeeWithCunMings_OneRound_Persuade_A_Reslut()
+    {
+        ShowEventPanel_ChapterOne(4, 18);
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.left, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingA", "investigate");
+
+
+    }
+
+    void SeeWithCunMings_OneRound_Investigate_C_Reslut()
+    {
+
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerProp();
+
+        if (DiceCheckPanel.diceValue <= playerData.Investigate)
+        {
+            ShowEventPanel_ChapterOne(4, 16);
+        }
+        else
+        {
+            ShowEventPanel_ChapterOne(4, 17);
+        }
+    }
+
+    void SeeWithCunMings_OneRound_Investigate_B_Reslut()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerCureentProp();
+
+        if (DiceCheckPanel.diceValue <= playerData.Investigate)
+        {
+            ShowEventPanel_ChapterOne(4, 14);
+        }
+        else
+        {
+            ShowEventPanel_ChapterOne(4, 15);
+        }
+    }
+
+    void SeeWithCunMings_OneRound_Investigate_A_Reslut()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerCureentProp();
+
+        if (DiceCheckPanel.diceValue <= playerData.Investigate)
+        {
+            ShowEventPanel_ChapterOne(4, 12);
+        }
+        else
+        {
+            ShowEventPanel_ChapterOne(4, 13);
+        }
+    }
+
+    void SeeWithCunMings_OneRound_Idea_Result()
+    {
+        CharacterPropBase playerData = CharacterPropManager.Instance.GetPlayerCureentProp();
+
+        if (DiceCheckPanel.diceValue <= playerData.Idea)
+        {
+            ShowEventPanel_ChapterOne(4, 10);
+        }
+
+        else
+        {
+            ShowEventPanel_ChapterOne(4, 11);
+        }
+    }
+
+    void PlayerInCunZiMove_0()
+    {
+        ShowEventPanel_ChapterOne(4,9);
+    }
+
+    void CunMingC_Cry_0()
+    {
+        CameraManager.Instance.Feature(CameraManager.FeatureMode.right, NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingC", "investigate");
+        TalkManager.Instance.ShowTalkPanel(2, 2);
+    }
+
+ 
+
+      
+   
+
     void CunMingARotateFished()
     {
-        CameraManager.Instance.Feature(NPCAnimatorManager.BGEnmu.Village, "cunMingA", "investigate");
+    
+        CameraManager.Instance.Feature( CameraManager.FeatureMode.right,NPCAnimatorManager.BGEnmu.Village, "investigate", "cunMingA", "investigate");
         TalkManager.Instance.ShowTalkPanel(2, 0);
     }
 
@@ -1570,7 +1930,7 @@ public class StoryEventManager
     void CunMingLaiFangPressureCheck()
     {
         CharacterPropBase data = CharacterPropManager.Instance.GetPlayerProp();
-        if (DiceCheckPanel.diceValue >= data.preesure)
+        if (DiceCheckPanel.diceValue >= data.Pressure)
         {
             ShowEventPanel_ChapterOne(3, 4);
             Debug.LogError("过了");
@@ -1587,8 +1947,8 @@ public class StoryEventManager
     void CunMingLaiFangPressureAdd()
     {
         CharacterPropBase characterPropBase = CharacterPropManager.Instance.GetPlayerCureentProp();
-        float value = characterPropBase.preesure + DicePanel.diceValue;
-        CharacterPropManager.Instance.ChangePlayerCurrentProp(PropType.preesure, value, ShowCunMingLaiFang5);
+        float value = characterPropBase.Pressure + DicePanel.diceValue;
+        CharacterPropManager.Instance.ChangePlayerCurrentProp(PropType.Pressure, value, ShowCunMingLaiFang5);
     }
      
     void ShowCunMingLaiFang5()
@@ -1613,8 +1973,8 @@ public class StoryEventManager
     void SleepPressureCheck()
     {
         CharacterPropBase characterPropBase = CharacterPropManager.Instance.GetPlayerCureentProp();
-        float value = characterPropBase.preesure - DicePanel.diceValue;
-        CharacterPropManager.Instance.ChangePlayerCurrentProp(PropType.preesure, value, ShowShenSheToSleep_36);
+        float value = characterPropBase.Pressure - DicePanel.diceValue;
+        CharacterPropManager.Instance.ChangePlayerCurrentProp(PropType.Pressure, value, ShowShenSheToSleep_36);
     }
 
     void ShowShenSheToSleep_36()
@@ -1698,6 +2058,84 @@ public class StoryEventManager
     #endregion
     #region 绑定技能方法
 
+    void SeeWithCunMings_OneRound_Violence_C()
+    {
+        SeeWithCunMing_OneRound_Violence_C_Reslut();
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Violence_B()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMing_OneRound_Violence_B_Reslut, 2, CheckLevel.normal);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Violence_A()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMing_OneRound_Violence_A_Reslut, 2, CheckLevel.normal);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Threaten_C()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMing_OneRound_Threaten_C_Reslut, 2, CheckLevel.normal);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Threaten_B()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMing_OneRound_Threaten_B_Reslut, 2, CheckLevel.difficult);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Threaten_A()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMing_OneRound_Threaten_A_Reslut, 2, CheckLevel.normal);
+        GUIManager.HideView("ChosePanel");
+      
+    }
+
+    void SeeWithCunMings_OneRound_Persuade_C()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMing_OneRound_Persuade_C_Reslut, 2, CheckLevel.difficult);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Persuade_B()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMing_OneRound_Persuade_B_Reslut, 2, CheckLevel.difficult);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Persuade_A()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMings_OneRound_Persuade_A_Reslut, 2, CheckLevel.difficult);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Investigate_C()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMings_OneRound_Investigate_C_Reslut, 2, CheckLevel.normal);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Investigate_B()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMings_OneRound_Investigate_B_Reslut, 2, CheckLevel.normal);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Investigate_A()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f, SeeWithCunMings_OneRound_Investigate_A_Reslut, 2, CheckLevel.normal);
+        GUIManager.HideView("ChosePanel");
+    }
+
+    void SeeWithCunMings_OneRound_Idea()
+    {
+        DiceManager.Instance.ShowDicePanel(10, 0.01f,SeeWithCunMings_OneRound_Idea_Result, 2, CheckLevel.normal);
+        GUIManager.HideView("ChosePanel");
+    }
 
 
     void ListenInCunZiWhenFrist()

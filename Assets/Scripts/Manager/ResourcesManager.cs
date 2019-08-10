@@ -98,6 +98,19 @@ public class ResourcesManager
     }
 
 
+    public GameObject LoadCharacterPrefab(string name)
+    {
+        string path = "CharcaterPrefab" + "/" + name;
+        GameObject prefab = Resources.Load(path, typeof(GameObject)) as GameObject;
+
+        if (prefab == null)
+        {
+            Debug.LogError("prefab is null"+ name);
+            return null;
+        }
+        return prefab;
+    }
+
     public AudioClip LoadAudioClip(string name)
     {
         string path = "Audio" + "/" + name;

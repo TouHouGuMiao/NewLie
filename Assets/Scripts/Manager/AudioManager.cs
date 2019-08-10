@@ -61,6 +61,7 @@ public class AudioManager:MonoBehaviour
         Instance = this;
 
         bg_Source = this.gameObject.AddComponent<AudioSource>();
+        bg_Source.volume = 0.3F;
         effect_Source = this.gameObject.AddComponent<AudioSource>();
 
         bg_Source.loop = true;
@@ -71,6 +72,10 @@ public class AudioManager:MonoBehaviour
         effect_Source.playOnAwake = false;
     }
 
+    private void Start()
+    {
+        bg_Source.volume = 0.6F;
+    }
 
     public void PlayBg_Source(string name,bool isLoop)
     {
@@ -109,8 +114,6 @@ public class AudioManager:MonoBehaviour
             dicIndex = 0;
             bg_Source.clip = clip;
             bg_Source.loop = isLoop;
-            bg_Source.volume = 0;
-            bg_Source.Play();
        
             FadeInBMG(fadeTime);
         }
@@ -261,16 +264,16 @@ public class AudioManager:MonoBehaviour
 
     IEnumerator FadeInBGM_IEnumerator(float fadeTime)
     {
-
-        int count = (int)(fadeTime / 0.02f);
-        float rate = 1.0f / count;
+        float curentVolume = bg_Source.volume;
         float soundValue = 0;
-        bg_Source.volume = 0;
         bg_Source.Play();
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < 10000; i++)
         {
-     
-            soundValue += rate;
+            if (soundValue >= curentVolume)
+            {
+                yield break;
+            }
+            soundValue += 0.01f;
             bg_Source.volume = soundValue;
             yield return new WaitForSeconds(0.02f);
         }

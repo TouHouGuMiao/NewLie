@@ -9513,6 +9513,7 @@ MonoBehaviour:
   callWhenFinished: 
   tp: {fileID: 0}
   cout: 0
+  OnStarted: []
   from: {x: 0, y: 10, z: 3.5}
   to: {x: 0, y: 10, z: 3.5}
   worldSpace: 0
@@ -10389,6 +10390,7 @@ MonoBehaviour:
   callWhenFinished: 
   tp: {fileID: 0}
   cout: 0
+  OnStarted: []
   from: {x: 0, y: 180, z: 0}
   to: {x: 0, y: 180, z: 0}
   quaternionLerp: 0
@@ -10841,6 +10843,7 @@ MonoBehaviour:
   callWhenFinished: 
   tp: {fileID: 0}
   cout: 0
+  OnStarted: []
   from: {x: -0, y: 180, z: 0}
   to: {x: -0, y: 180, z: 0}
   quaternionLerp: 0
@@ -10886,6 +10889,7 @@ MonoBehaviour:
   callWhenFinished: 
   tp: {fileID: 0}
   cout: 0
+  OnStarted: []
   from: {x: 2.5, y: 10, z: 3.5}
   to: {x: 2.5, y: 10, z: 3.5}
   worldSpace: 0
@@ -11020,6 +11024,7 @@ MonoBehaviour:
   callWhenFinished: 
   tp: {fileID: 0}
   cout: 0
+  OnStarted: []
   from: {x: -2.5, y: 10, z: 3.5}
   to: {x: -2.5, y: 10, z: 3.5}
   worldSpace: 0
@@ -11093,6 +11098,7 @@ MonoBehaviour:
   callWhenFinished: 
   tp: {fileID: 0}
   cout: 0
+  OnStarted: []
   from: {x: 0, y: 180, z: 0}
   to: {x: 0, y: 180, z: 0}
   quaternionLerp: 0

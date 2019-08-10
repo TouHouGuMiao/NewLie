@@ -81,8 +81,9 @@
     <id>8</id>
     <name>即将失控的人群</name>
     <choseList>
-      <chose1>喊话</chose1>
-      <chose2>任由事态发展</chose2>
+      <chose1>向村民A询问</chose1>
+      <chose2>向村民B询问</chose2>
+      <chose3>向村民C询问</chose3>
     </choseList>
   </ChoseData>
 </Chose>

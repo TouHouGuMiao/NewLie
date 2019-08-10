@@ -90,7 +90,7 @@ public class TypewriterEffect : MonoBehaviour
 		Finish();
 		mReset = true;
 		mActive = true;
-		mNextChar = 0f;
+		//mNextChar = 0f;
 		mCurrentOffset = 0;
 		Update();
 	}
@@ -135,6 +135,7 @@ public class TypewriterEffect : MonoBehaviour
 			mLabel = GetComponent<UILabel>();
 			mFullText = mLabel.processedText;
 			mFade.Clear();
+            mLabel.text = "";
             mNextChar = 0.0f;
 			if (keepFullDimensions && scrollView != null) scrollView.UpdatePosition();
 		}

@@ -65,7 +65,7 @@ public class EventStateManager
         player.transform.position = new Vector3(-10.54f, -37.16f, 0);
         BattleCamera.Instance.SetBattleCameraRightStop(false);
         BattleCamera.Instance.SetBattleCameraLetStop(false);
-        BattleCamera.Instance.SetCameraReturnPlayer(new Vector3 (3,2,0));
+        BattleCamera.Instance.SetCameraReturnPlayer(new Vector3 (3,0.7f,0));
         EventDic["CunZiInvestigate"] = new EventDelegate(ShowEvent_InCunZiAutoInves);
         EventDic["CunMingShot"] = new EventDelegate(CunMingShot);
     }
@@ -78,6 +78,7 @@ public class EventStateManager
     private void CunMingShot()
     {
         BattleCamera.Instance.MoveCamera_StopWhenRectCashPlayerOrCollider(BattleCamera.MoveEnum.right, 1.0F, ShowCunMingShotOne);
+        SkillManager.Instance.ClearSkillUsePanel();
         EventDic["CunMingShot"] = null;
     }
 

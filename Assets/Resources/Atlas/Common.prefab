@@ -43,8 +43,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: f067c82f11e77bb41a92f2cc04047552, type: 2}
   mSprites:
   - name: baoshi
-    x: 567
-    y: 976
+    x: 3163
+    y: 3982
     width: 35
     height: 32
     borderLeft: 0
@@ -56,8 +56,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: baoshibeijing
-    x: 605
-    y: 1213
+    x: 2149
+    y: 2428
     width: 101
     height: 96
     borderLeft: 0
@@ -69,8 +69,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: beib-spbz
-    x: 993
-    y: 1790
+    x: 2251
+    y: 2428
     width: 28
     height: 25
     borderLeft: 0
@@ -82,8 +82,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: BTN_FanHuiJianTou
-    x: 403
-    y: 974
+    x: 2780
+    y: 3977
     width: 47
     height: 34
     borderLeft: 0
@@ -95,8 +95,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: Buttons
-    x: 0
-    y: 1538
+    x: 2049
+    y: 3586
     width: 487
     height: 510
     borderLeft: 0
@@ -108,8 +108,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 0
   - name: ChipRank_0
-    x: 105
-    y: 1209
+    x: 2223
+    y: 2569
     width: 99
     height: 100
     borderLeft: 0
@@ -121,8 +121,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChipRank_1
-    x: 205
-    y: 1209
+    x: 2323
+    y: 2569
     width: 99
     height: 100
     borderLeft: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChipRank_2
-    x: 305
-    y: 1209
+    x: 2423
+    y: 2569
     width: 99
     height: 100
     borderLeft: 0
@@ -147,8 +147,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChipRank_3
-    x: 405
-    y: 1209
+    x: 2049
+    y: 2323
     width: 99
     height: 100
     borderLeft: 0
@@ -160,8 +160,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ChipRank_4
-    x: 505
-    y: 1209
+    x: 2049
+    y: 2424
     width: 99
     height: 100
     borderLeft: 0
@@ -173,8 +173,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: dialog
-    x: 0
-    y: 1398
+    x: 2049
+    y: 3182
     width: 300
     height: 139
     borderLeft: 0
@@ -186,8 +186,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: duihuanbi
-    x: 0
-    y: 236
+    x: 3435
+    y: 4027
     width: 39
     height: 38
     borderLeft: 0
@@ -199,8 +199,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: dunpai
-    x: 0
-    y: 10
+    x: 2896
+    y: 3979
     width: 37
     height: 33
     borderLeft: 0
@@ -212,8 +212,8 @@ MonoBehaviour:
     paddingTop: 6
     paddingBottom: 6
   - name: emaoshan
-    x: 988
-    y: 1220
+    x: 2501
+    y: 2074
     width: 35
     height: 45
     borderLeft: 0
@@ -224,9 +224,22 @@ MonoBehaviour:
     paddingRight: 5
     paddingTop: 0
     paddingBottom: 0
+  - name: floor
+    x: 0
+    y: 2048
+    width: 2048
+    height: 2048
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: gonghuibi_01
-    x: 72
-    y: 1064
+    x: 2467
+    y: 2124
     width: 60
     height: 53
     borderLeft: 0
@@ -238,8 +251,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: gongjian
-    x: 983
-    y: 1324
+    x: 3265
+    y: 3978
     width: 39
     height: 42
     borderLeft: 0
@@ -251,8 +264,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 1
   - name: gongxunbi_01
-    x: 682
-    y: 1011
+    x: 3111
+    y: 4015
     width: 51
     height: 50
     borderLeft: 0
@@ -264,8 +277,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: HuaBian1
-    x: 888
-    y: 975
+    x: 3353
+    y: 3988
     width: 41
     height: 38
     borderLeft: 0
@@ -277,8 +290,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 4
   - name: ICON_BaGua
-    x: 515
-    y: 1010
+    x: 3008
+    y: 4014
     width: 51
     height: 51
     borderLeft: 0
@@ -290,8 +303,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 3
   - name: ICON_BingYing
-    x: 969
-    y: 1143
+    x: 2725
+    y: 4002
     width: 54
     height: 63
     borderLeft: 0
@@ -303,8 +316,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 1
   - name: ICON_DunPaiheJian
-    x: 229
-    y: 1003
+    x: 2317
+    y: 2048
     width: 56
     height: 58
     borderLeft: 0
@@ -316,8 +329,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 2
   - name: Icon_expbz
-    x: 696
-    y: 1367
+    x: 2418
+    y: 3324
     width: 61
     height: 30
     borderLeft: 0
@@ -329,8 +342,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: Icon_HuoTuiTB
-    x: 342
-    y: 1012
+    x: 2149
+    y: 2051
     width: 60
     height: 49
     borderLeft: 0
@@ -342,8 +355,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ICON_MengZhuTuBiao
-    x: 758
-    y: 1369
+    x: 3102
+    y: 4068
     width: 60
     height: 28
     borderLeft: 0
@@ -355,8 +368,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ICON_ShuangJian
-    x: 246
-    y: 1125
+    x: 2234
+    y: 2302
     width: 89
     height: 81
     borderLeft: 0
@@ -368,8 +381,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ICON_WenHao
-    x: 936
-    y: 1017
+    x: 3265
+    y: 4021
     width: 44
     height: 44
     borderLeft: 0
@@ -381,8 +394,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ICON_Zheng
-    x: 897
-    y: 1139
+    x: 2388
+    y: 2178
     width: 71
     height: 67
     borderLeft: 0
@@ -394,8 +407,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: ItemRank_0
-    x: 182
-    y: 973
+    x: 2678
+    y: 3977
     width: 46
     height: 88
     borderLeft: 25
@@ -407,8 +420,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ItemRank_1
-    x: 88
-    y: 973
+    x: 2478
+    y: 2746
     width: 46
     height: 88
     borderLeft: 25
@@ -420,8 +433,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ItemRank_2
-    x: 41
-    y: 973
+    x: 2631
+    y: 3977
     width: 46
     height: 88
     borderLeft: 25
@@ -433,8 +446,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ItemRank_3
-    x: 485
-    y: 1082
+    x: 2537
+    y: 3977
     width: 46
     height: 88
     borderLeft: 25
@@ -446,8 +459,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ItemRank_4
-    x: 135
-    y: 973
+    x: 2584
+    y: 3977
     width: 46
     height: 88
     borderLeft: 23
@@ -459,8 +472,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: jiahao
-    x: 0
-    y: 197
+    x: 3435
+    y: 3988
     width: 38
     height: 38
     borderLeft: 0
@@ -472,8 +485,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: jian
-    x: 0
-    y: 275
+    x: 2185
+    y: 2526
     width: 37
     height: 41
     borderLeft: 0
@@ -485,8 +498,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: jiantou
-    x: 161
-    y: 1063
+    x: 2780
+    y: 4012
     width: 59
     height: 53
     borderLeft: 0
@@ -498,8 +511,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: jingjibi_01
-    x: 837
-    y: 1014
+    x: 3214
+    y: 4018
     width: 50
     height: 47
     borderLeft: 0
@@ -511,8 +524,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: JS_shlwz
-    x: 0
-    y: 1310
+    x: 2168
+    y: 2778
     width: 204
     height: 56
     borderLeft: 0
@@ -524,8 +537,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lingdibi_01
-    x: 734
-    y: 1011
+    x: 2479
+    y: 3182
     width: 51
     height: 50
     borderLeft: 0
@@ -537,8 +550,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mark
-    x: 834
-    y: 1538
+    x: 2490
+    y: 2434
     width: 39
     height: 56
     borderLeft: 0
@@ -550,8 +563,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: PHB_dierming
-    x: 963
-    y: 1074
+    x: 2445
+    y: 2055
     width: 55
     height: 64
     borderLeft: 0
@@ -563,8 +576,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: PHB_disanming
-    x: 819
-    y: 1063
+    x: 2388
+    y: 2055
     width: 56
     height: 64
     borderLeft: 0
@@ -576,8 +589,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: PHB_diyiming
-    x: 741
-    y: 1063
+    x: 2460
+    y: 2181
     width: 57
     height: 64
     borderLeft: 0
@@ -588,9 +601,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: pressArrow
+    x: 2317
+    y: 2246
+    width: 92
+    height: 55
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 1
   - name: shalouTB
-    x: 41
-    y: 926
+    x: 3310
+    y: 4019
     width: 42
     height: 46
     borderLeft: 0
@@ -602,8 +628,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shizijia
-    x: 0
-    y: 119
+    x: 3475
+    y: 4027
     width: 36
     height: 38
     borderLeft: 0
@@ -615,8 +641,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 3
   - name: ShuZiKuang
-    x: 536
-    y: 1088
+    x: 2402
+    y: 3014
     width: 123
     height: 45
     borderLeft: 24
@@ -628,8 +654,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 3
   - name: TY_AnNiuDiWen
-    x: 755
-    y: 1847
+    x: 2049
+    y: 3060
     width: 248
     height: 67
     borderLeft: 0
@@ -641,8 +667,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_BaiSeFaGuang
-    x: 884
-    y: 1922
+    x: 2049
+    y: 2835
     width: 125
     height: 126
     borderLeft: 0
@@ -654,8 +680,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: TY_BianJiaoHuaWen
-    x: 936
-    y: 975
+    x: 2949
+    y: 3977
     width: 42
     height: 41
     borderLeft: 0
@@ -667,8 +693,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_BiaoTiDiKuang
-    x: 663
-    y: 1330
+    x: 2251
+    y: 2454
     width: 238
     height: 36
     borderLeft: 0
@@ -680,8 +706,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_BiaoTiKuang
-    x: 646
-    y: 1430
+    x: 2298
+    y: 3068
     width: 204
     height: 59
     borderLeft: 169
@@ -693,8 +719,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_BiaoTiWenZiBanner
-    x: 488
-    y: 1676
+    x: 2316
+    y: 3477
     width: 210
     height: 108
     borderLeft: 198
@@ -706,8 +732,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_BiaoZhunTouXiangDiSe
-    x: 0
-    y: 1207
+    x: 2373
+    y: 2732
     width: 104
     height: 102
     borderLeft: 0
@@ -719,8 +745,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: TY_BiaoZhunTouXiangWaiKuang
-    x: 876
-    y: 1609
+    x: 2415
+    y: 2855
     width: 107
     height: 106
     borderLeft: 0
@@ -732,8 +758,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_Black
-    x: 749
-    y: 1738
+    x: 2527
+    y: 3560
     width: 4
     height: 4
     borderLeft: 1
@@ -745,8 +771,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_Bosswaikuang
-    x: 755
-    y: 1716
+    x: 2049
+    y: 2704
     width: 118
     height: 130
     borderLeft: 0
@@ -758,8 +784,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_DanYao
-    x: 342
-    y: 973
+    x: 2478
+    y: 2707
     width: 47
     height: 38
     borderLeft: 0
@@ -771,8 +797,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_DaoJuDiKuang
-    x: 699
-    y: 1696
+    x: 2479
+    y: 3233
     width: 49
     height: 88
     borderLeft: 22
@@ -784,8 +810,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_DaoJuKuangDiWen
-    x: 488
-    y: 1785
+    x: 2049
+    y: 3322
     width: 266
     height: 263
     borderLeft: 0
@@ -797,8 +823,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_DengJiKuang
-    x: 456
-    y: 973
+    x: 2481
+    y: 3324
     width: 45
     height: 41
     borderLeft: 0
@@ -810,8 +836,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_DiKuang
-    x: 707
-    y: 1215
+    x: 2049
+    y: 2228
     width: 95
     height: 94
     borderLeft: 43
@@ -823,8 +849,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_DuiHao
-    x: 897
-    y: 1072
+    x: 2317
+    y: 2107
     width: 65
     height: 66
     borderLeft: 0
@@ -836,8 +862,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_DuiHuaKuang
-    x: 488
-    y: 1554
+    x: 2316
+    y: 3355
     width: 164
     height: 121
     borderLeft: 29
@@ -849,8 +875,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_fbtipsd
-    x: 336
-    y: 1171
+    x: 2324
+    y: 2348
     width: 199
     height: 35
     borderLeft: 0
@@ -862,8 +888,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_FenGeXian
-    x: 205
-    y: 1311
+    x: 2374
+    y: 2969
     width: 150
     height: 2
     borderLeft: 64
@@ -875,8 +901,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_GuDaiHuaWenWaiKuang
-    x: 403
-    y: 1009
+    x: 2896
+    y: 4013
     width: 52
     height: 52
     borderLeft: 40
@@ -888,8 +914,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_HengXiangJianTou
-    x: 336
-    y: 1064
+    x: 2149
+    y: 2101
     width: 65
     height: 106
     borderLeft: 0
@@ -901,8 +927,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_HongSeWenZiDiKuang
-    x: 0
-    y: 951
+    x: 2481
+    y: 3366
     width: 40
     height: 110
     borderLeft: 0
@@ -914,8 +940,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_HongSeXuYing
-    x: 396
-    y: 1333
+    x: 2251
+    y: 2491
     width: 266
     height: 33
     borderLeft: 0
@@ -927,8 +953,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_hsbtk
-    x: 301
-    y: 1484
+    x: 2049
+    y: 3128
     width: 344
     height: 53
     borderLeft: 311
@@ -940,8 +966,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_HuangSeJinDuTiao
-    x: 0
-    y: 81
+    x: 3111
+    y: 3977
     width: 36
     height: 37
     borderLeft: 11
@@ -953,8 +979,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_HuangSeJinDuTiaoDiKuang
-    x: 694
-    y: 1135
+    x: 3353
+    y: 4027
     width: 42
     height: 38
     borderLeft: 14
@@ -966,8 +992,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_HuaWenDiKuang
-    x: 536
-    y: 1134
+    x: 2374
+    y: 2972
     width: 157
     height: 39
     borderLeft: 70
@@ -979,8 +1005,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_jbbzda
-    x: 286
-    y: 1007
+    x: 2840
+    y: 4011
     width: 55
     height: 54
     borderLeft: 0
@@ -992,8 +1018,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_JianBianBeiJing
-    x: 0
-    y: 440
+    x: 2537
+    y: 3366
     width: 6
     height: 510
     borderLeft: 3
@@ -1005,8 +1031,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_JianTou01
-    x: 565
-    y: 1368
+    x: 2465
+    y: 2674
     width: 66
     height: 29
     borderLeft: 0
@@ -1018,8 +1044,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_JiNengDiKuang
-    x: 851
-    y: 1401
+    x: 2049
+    y: 2050
     width: 88
     height: 88
     borderLeft: 0
@@ -1031,8 +1057,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_JiNengWaiKuang
-    x: 72
-    y: 1118
+    x: 2049
+    y: 2139
     width: 88
     height: 88
     borderLeft: 30
@@ -1044,8 +1070,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_jsdbz
-    x: 301
-    y: 1400
+    x: 2049
+    y: 2670
     width: 330
     height: 33
     borderLeft: 136
@@ -1057,8 +1083,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_juanzhoushang
-    x: 741
-    y: 1128
+    x: 2234
+    y: 2140
     width: 77
     height: 78
     borderLeft: 0
@@ -1070,8 +1096,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_juanzhouxia
-    x: 819
-    y: 1128
+    x: 2234
+    y: 2061
     width: 77
     height: 78
     borderLeft: 0
@@ -1083,8 +1109,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_jytdk
-    x: 993
-    y: 1768
+    x: 2280
+    y: 2432
     width: 25
     height: 21
     borderLeft: 8
@@ -1096,8 +1122,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_jytjy
-    x: 699
-    y: 1681
+    x: 2415
+    y: 2840
     width: 22
     height: 14
     borderLeft: 5
@@ -1109,8 +1135,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_kdtyxk
-    x: 888
-    y: 1014
+    x: 2489
+    y: 2254
     width: 47
     height: 47
     borderLeft: 12
@@ -1122,8 +1148,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_KongTouXiangKuang
-    x: 653
-    y: 1574
+    x: 2121
+    y: 2568
     width: 101
     height: 101
     borderLeft: 0
@@ -1135,8 +1161,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_lansesmb
-    x: 515
-    y: 975
+    x: 3060
+    y: 3978
     width: 35
     height: 34
     borderLeft: 0
@@ -1148,8 +1174,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_LiangSeHuangBianNeiKuang
-    x: 786
-    y: 1011
+    x: 3163
+    y: 4015
     width: 50
     height: 50
     borderLeft: 16
@@ -1161,8 +1187,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_LvSeJinDuTiao
-    x: 722
-    y: 1681
+    x: 2517
+    y: 3167
     width: 18
     height: 14
     borderLeft: 5
@@ -1174,8 +1200,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_LvSeJinDuTiaoDiKuang
-    x: 893
-    y: 1371
+    x: 3267
+    y: 4070
     width: 31
     height: 26
     borderLeft: 11
@@ -1187,8 +1213,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_LvSeJinDuTiaoWaiKuang
-    x: 876
-    y: 1561
+    x: 2394
+    y: 3134
     width: 122
     height: 47
     borderLeft: 64
@@ -1200,8 +1226,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 0
   - name: TY_max
-    x: 660
-    y: 1062
+    x: 2317
+    y: 2174
     width: 70
     height: 71
     borderLeft: 0
@@ -1213,8 +1239,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 0
   - name: TY_MingChengHongSeDi
-    x: 993
-    y: 1816
+    x: 3237
+    y: 4066
     width: 29
     height: 30
     borderLeft: 10
@@ -1226,8 +1252,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_MingZiDiSe
-    x: 0
-    y: 1062
+    x: 2049
+    y: 2525
     width: 71
     height: 144
     borderLeft: 0
@@ -1239,8 +1265,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_NeiKuang
-    x: 0
-    y: 158
+    x: 3396
+    y: 3986
     width: 38
     height: 38
     borderLeft: 15
@@ -1252,8 +1278,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_QianSeNeiKuang
-    x: 0
-    y: 399
+    x: 3310
+    y: 3978
     width: 40
     height: 40
     borderLeft: 12
@@ -1265,8 +1291,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_rwfgk
-    x: 0
-    y: 317
+    x: 3396
+    y: 4025
     width: 38
     height: 40
     borderLeft: 15
@@ -1278,8 +1304,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_shangsjt
-    x: 286
-    y: 975
+    x: 2840
+    y: 3979
     width: 41
     height: 31
     borderLeft: 0
@@ -1291,8 +1317,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_ShuZiXianShiKuang001
-    x: 902
-    y: 1323
+    x: 2223
+    y: 2525
     width: 80
     height: 43
     borderLeft: 20
@@ -1304,8 +1330,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 2
   - name: TY_sjdcxdw
-    x: 989
-    y: 1276
+    x: 2503
+    y: 3094
     width: 33
     height: 33
     borderLeft: 10
@@ -1317,8 +1343,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_sjjs
-    x: 646
-    y: 1490
+    x: 2049
+    y: 3012
     width: 352
     height: 47
     borderLeft: 0
@@ -1330,8 +1356,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_srk
-    x: 755
-    y: 1539
+    x: 2410
+    y: 2246
     width: 78
     height: 55
     borderLeft: 21
@@ -1343,8 +1369,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_starhdz
-    x: 567
-    y: 1009
+    x: 3060
+    y: 4013
     width: 50
     height: 52
     borderLeft: 0
@@ -1356,8 +1382,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_SuoXiaoYinYing
-    x: 0
-    y: 1367
+    x: 2537
+    y: 4066
     width: 564
     height: 30
     borderLeft: 0
@@ -1369,8 +1395,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_TIPS
-    x: 161
-    y: 1117
+    x: 2149
+    y: 2294
     width: 84
     height: 89
     borderLeft: 15
@@ -1382,8 +1408,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_TouXiangDiKuang
-    x: 755
-    y: 1595
+    x: 2294
+    y: 2841
     width: 120
     height: 120
     borderLeft: 0
@@ -1395,8 +1421,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_TouXiangWaiKuang
-    x: 755
-    y: 1915
+    x: 2350
+    y: 3188
     width: 128
     height: 133
     borderLeft: 44
@@ -1408,8 +1434,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_tubiaodikuang
-    x: 0
-    y: 44
+    x: 3008
+    y: 3977
     width: 36
     height: 36
     borderLeft: 17
@@ -1421,8 +1447,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_wdph
-    x: 803
-    y: 1222
+    x: 2335
+    y: 2384
     width: 184
     height: 43
     borderLeft: 30
@@ -1434,8 +1460,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_wdphred
-    x: 618
-    y: 1020
+    x: 2121
+    y: 2526
     width: 63
     height: 41
     borderLeft: 0
@@ -1447,8 +1473,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_WenBenDiKuang
-    x: 0
-    y: 358
+    x: 3214
+    y: 3977
     width: 40
     height: 40
     borderLeft: 12
@@ -1460,8 +1486,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_WenZiBanner
-    x: 205
-    y: 1314
+    x: 2168
+    y: 2725
     width: 190
     height: 52
     borderLeft: 0
@@ -1473,8 +1499,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_xbtdw
-    x: 536
-    y: 1174
+    x: 2324
+    y: 2315
     width: 204
     height: 32
     borderLeft: 0
@@ -1486,8 +1512,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_xbtlbx
-    x: 488
-    y: 1550
+    x: 2298
+    y: 3064
     width: 132
     height: 3
     borderLeft: 0
@@ -1499,8 +1525,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_xdktyd
-    x: 940
-    y: 1404
+    x: 2149
+    y: 2208
     width: 83
     height: 85
     borderLeft: 14
@@ -1512,8 +1538,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_xdw
-    x: 803
-    y: 1266
+    x: 2149
+    y: 2384
     width: 185
     height: 43
     borderLeft: 0
@@ -1525,8 +1551,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_XiaoBingTouXiangKuang
-    x: 874
-    y: 1721
+    x: 2175
+    y: 2836
     width: 118
     height: 125
     borderLeft: 0
@@ -1538,8 +1564,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_XiaoJianTou
-    x: 1004
-    y: 1894
+    x: 2522
+    y: 3456
     width: 14
     height: 20
     borderLeft: 0
@@ -1551,8 +1577,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_XiaoJinDuTiao
-    x: 819
-    y: 1367
+    x: 3163
+    y: 4066
     width: 36
     height: 30
     borderLeft: 12
@@ -1564,8 +1590,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_XiaoJinDuTiaoDiKuang
-    x: 856
-    y: 1367
+    x: 3200
+    y: 4066
     width: 36
     height: 30
     borderLeft: 16
@@ -1577,8 +1603,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_XingXing
-    x: 981
-    y: 1019
+    x: 2381
+    y: 2526
     width: 41
     height: 42
     borderLeft: 0
@@ -1590,8 +1616,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_XuanKuangDK
-    x: 7
-    y: 886
+    x: 3475
+    y: 3995
     width: 31
     height: 31
     borderLeft: 0
@@ -1603,8 +1629,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 1
   - name: TY_XuanKuangDuiHao
-    x: 7
-    y: 918
+    x: 2503
+    y: 3061
     width: 33
     height: 32
     borderLeft: 0
@@ -1616,8 +1642,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 4
   - name: TY_ybbzda
-    x: 618
-    y: 977
+    x: 2323
+    y: 2526
     width: 57
     height: 42
     borderLeft: 0
@@ -1629,8 +1655,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_yibianjuanjiao
-    x: 876
-    y: 1540
+    x: 2168
+    y: 2704
     width: 62
     height: 20
     borderLeft: 31
@@ -1642,8 +1668,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_yidongjiantou
-    x: 632
-    y: 1367
+    x: 2423
+    y: 2538
     width: 63
     height: 30
     borderLeft: 0
@@ -1655,8 +1681,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: TY_YuanXingDiKuang
-    x: 402
-    y: 1088
+    x: 2234
+    y: 2219
     width: 82
     height: 82
     borderLeft: 0
@@ -1668,8 +1694,8 @@ MonoBehaviour:
     paddingTop: 3
     paddingBottom: 5
   - name: TY_ZhuBiaoTiKuangBeiJingGuang
-    x: 301
-    y: 1434
+    x: 2049
+    y: 2962
     width: 324
     height: 49
     borderLeft: 0
@@ -1681,8 +1707,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: TY_ZiYuanDiKuang
-    x: 456
-    y: 1015
+    x: 2949
+    y: 4019
     width: 58
     height: 46
     borderLeft: 20
@@ -1694,8 +1720,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: WZ_BOSS
-    x: 246
-    y: 1067
+    x: 2388
+    y: 2120
     width: 78
     height: 57
     borderLeft: 0
@@ -1707,8 +1733,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 3
   - name: WZ_ZhanDouLi
-    x: 646
-    y: 1404
+    x: 2373
+    y: 2706
     width: 95
     height: 25
     borderLeft: 0
@@ -1720,8 +1746,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 3
   - name: WZTY_ZhanLi
-    x: 742
-    y: 1404
+    x: 2380
+    y: 2678
     width: 84
     height: 25
     borderLeft: 0
@@ -1733,8 +1759,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 3
   - name: XiaLaTiaoCaoTY
-    x: 749
-    y: 1764
+    x: 2527
+    y: 3565
     width: 3
     height: 20
     borderLeft: 0
@@ -1746,8 +1772,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: XiaLaTiaoTabTY
-    x: 749
-    y: 1743
+    x: 2531
+    y: 3565
     width: 3
     height: 20
     borderLeft: 0
@@ -1759,8 +1785,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: YSZ_ZhanDouLi
-    x: 653
-    y: 1545
+    x: 2316
+    y: 3326
     width: 101
     height: 28
     borderLeft: 0
@@ -1772,8 +1798,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: yuyankuangjiantou
-    x: 837
-    y: 973
+    x: 2487
+    y: 2528
     width: 44
     height: 40
     borderLeft: 0
@@ -1785,8 +1811,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ZhanDouLiDiBan
-    x: 984
-    y: 1616
+    x: 2537
+    y: 3877
     width: 34
     height: 99
     borderLeft: 18

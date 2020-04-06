@@ -135,10 +135,10 @@ public class PlayerControl : CharacterPropBase {
         //    GUIManager.ShowView("SystemPanel");
         //}
 
-        if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak||CGPanel.IsCGPlay||BattleCamera.Instance.isUseCamera)
-        {
-            return;
-        }
+        //if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak||CGPanel.IsCGPlay||BattleCamera.Instance.isUseCamera)
+        //{
+        //    return;
+        //}
 
         //if (BattleCommoUIManager.Instance.IsBlackShade)
         //{
@@ -375,39 +375,39 @@ public class PlayerControl : CharacterPropBase {
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("NPC"))
-        {
+        //if (other.CompareTag("NPC"))
+        //{
    
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak)
-                {
-                    return;
-                }
-                string name = other.gameObject.name;
-                int id = CommonHelper.Str2Int(name);
-                StoryEventManager.Instance.ShowEventPanel_ChapterOne(id);
-            }
-        }
+        //    if (Input.GetKeyDown(KeyCode.E))
+        //    {
+        //        if (TalkPanel.isSpeak||EventStoryPanel.isEventSpeak)
+        //        {
+        //            return;
+        //        }
+        //        string name = other.gameObject.name;
+        //        int id = CommonHelper.Str2Int(name);
+        //        StoryEventManager.Instance.ShowEventPanel_ChapterOne(id);
+        //    }
+        //}
 
-        if (other.CompareTag("Event"))
-        {
-            string name = other.gameObject.name;
+        //if (other.CompareTag("Event"))
+        //{
+        //    string name = other.gameObject.name;
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (EventStoryPanel.isEventSpeak|| TalkPanel.isSpeak)
-                {
-                    return;
-                }
-                EventStateManager.Instance.GameEventSet(name);            
-            }
-        }
-        if (other.CompareTag("EventAtOnce"))
-        {
-            string name = other.gameObject.name;
-            EventStateManager.Instance.GameEventSet(name);
-        }
+        //    if (Input.GetKeyDown(KeyCode.E))
+        //    {
+        //        if (EventStoryPanel.isEventSpeak|| TalkPanel.isSpeak)
+        //        {
+        //            return;
+        //        }
+        //        EventStateManager.Instance.GameEventSet(name);            
+        //    }
+        //}
+        //if (other.CompareTag("EventAtOnce"))
+        //{
+        //    string name = other.gameObject.name;
+        //    EventStateManager.Instance.GameEventSet(name);
+        //}
 
 
       

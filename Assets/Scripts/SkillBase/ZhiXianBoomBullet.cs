@@ -41,7 +41,7 @@ public class ZhiXianBoomBullet : BulletBase
             go.transform.position = pointVec;
            
             ZhiXianBullet buttle = go.GetComponent<ZhiXianBullet>();
-            buttle.m_Type = BulletBase.BulletTpye.emptyBullet;
+
 
             buttle.targetVec = targetPos;
         }

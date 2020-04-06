@@ -26,7 +26,7 @@ public class MarisaSphere
             go.transform.position = pointVec;
             Vector2 targetVec = new Vector2(radius * Mathf.Cos((angle+30)* Mathf.Deg2Rad), radius * Mathf.Sin((angle+30)*Mathf.Deg2Rad));
             ZhiXianBullet buttle = go.GetComponent<ZhiXianBullet>();
-            buttle.m_Type = BulletBase.BulletTpye.emptyBullet;
+
            
             buttle.targetVec = targetVec;
         }

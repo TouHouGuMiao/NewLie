@@ -150,6 +150,20 @@ public class ResourcesManager
         }
         return effect;
     }
+
+
+    public GameObject LoadBattleCard(string name)
+    {
+        string path = "Model" + "/" + "BattleCard" + "/" + name;
+
+        GameObject effect = Resources.Load(path) as GameObject;
+        if (effect == null)
+        {
+            Debug.LogError("Model is null" + name);
+            return null;
+        }
+        return effect;
+    }
     public GameObject LoadEventCollectionsCard(string name)
     {
         string path = "Model" + "/" + "EventsCollectionCard" + "/" + name;

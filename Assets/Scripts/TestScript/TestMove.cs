@@ -5,28 +5,47 @@ using UnityEngine;
 public class TestMove : MonoBehaviour {
 
     public float speed;
+    public Rigidbody rgb;
+    public float rotate;
+    private GameObject enmey;
+    private bool aroundWithEnemy=false;
+    void Start()
+    {
+        enmey = GameObject.FindWithTag("enemy");
+    }
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (!aroundWithEnemy)
         {
-            if (transform.rotation.eulerAngles.y != 0)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            this.transform.Translate(1.0f * Time.deltaTime * speed, 0, 0,Space.World) ;
+            transform.Rotate(0, -rotate * Time.deltaTime, 0, Space.World);
+            float angle = transform.rotation.eulerAngles.y;
+            rgb.velocity = new Vector3(speed * Mathf.Cos(-angle * Mathf.Deg2Rad), 0, speed * Mathf.Sin(-angle * Mathf.Deg2Rad));
         }
-
-
-        if (Input.GetKey(KeyCode.A))
+        else
         {
-            if (transform.rotation.eulerAngles.y != 180)
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-            this.transform.Translate(-1.0f * Time.deltaTime * speed, 0,0,Space.World) ;
+            transform.RotateAround(enmey.transform.position, new Vector3(0, 1, 0),30*Time.deltaTime);
         }
-
-      
     }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.name == "chaoWo")
+        {
+            if (!aroundWithEnemy)
+            {
+                Rigidbody rgb = gameObject.GetComponent<Rigidbody>();
+                Vector3 tempVec = enmey.transform.position - transform.position;
+                float angle = Mathf.Atan2(tempVec.z, tempVec.x)*Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(90, angle, 0);
+                rgb.velocity = new Vector3(0, 0, 0);
+                aroundWithEnemy = true;
+            }          
+        }
+    }
+
+
+
+    
+
 }

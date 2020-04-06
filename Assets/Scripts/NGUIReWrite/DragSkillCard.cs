@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class DragSkillCard : UIDragObject {
     public static DragSkillCard current;
-    private Vector3 startPos;
+    public Vector3 startPos;
     public float finshed_y = 0;
     public List<EventDelegate> OnCardDragFished;
+    public List<EventDelegate> OnDragStart;
+    public DragDenpent dragDenpent = DragDenpent.byY;
+    public string keyCodeName;
+    public enum DragDenpent
+    {
+        byY,
+        byLockKeyCode,
+    }
     private void Awake()
     {
 
@@ -15,7 +23,7 @@ public class DragSkillCard : UIDragObject {
 
     private void Start()
     {
-        startPos = this.transform.localPosition;
+        
     }
 
     protected override void OnPress(bool pressed)
@@ -23,11 +31,33 @@ public class DragSkillCard : UIDragObject {
         base.OnPress(pressed);
         if (GetMPress())
         {
-            
+            startPos = this.transform.localPosition;
+            if (OnDragStart != null)
+            {
+                current = this;
+                EventDelegate.Execute(OnDragStart);
+                current = null;
+            }
         }
         else
         {
-            if (gameObject.transform.localPosition.y >= finshed_y)
+            if(dragDenpent == DragDenpent.byY)
+            {
+                if (gameObject.transform.localPosition.y >= finshed_y)
+                {
+                    if (OnCardDragFished != null)
+                    {
+                        current = this;
+                        EventDelegate.Execute(OnCardDragFished);
+                        current = null;
+                    }
+                    else
+                    {
+                        transform.localPosition = startPos;
+                    }
+                }
+            }
+            else if(dragDenpent == DragDenpent.byLockKeyCode)
             {
                 if (OnCardDragFished != null)
                 {
@@ -35,11 +65,28 @@ public class DragSkillCard : UIDragObject {
                     EventDelegate.Execute(OnCardDragFished);
                     current = null;
                 }
+                else
+                {
+                    transform.localPosition = startPos;
+                }
             }
-            transform.localPosition = startPos;
         }
     }
 
+    public void ReturnStartVec()
+    {
+        transform.localPosition = startPos;
+    }
+
+    void OnTriggerStay(Collider collider) 
+    {
+        if (collider.gameObject.tag == "BattleCard")
+        {
+            return;
+        }
+        keyCodeName = collider.name;
+
+    }
 
 
 }

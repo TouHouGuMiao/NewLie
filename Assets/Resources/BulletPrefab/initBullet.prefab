@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4723103610740316}
   - component: {fileID: 212519147303323678}
-  - component: {fileID: 114288428321245410}
-  m_Layer: 0
+  - component: {fileID: 65670346016531022}
+  - component: {fileID: 54516970584217354}
+  m_Layer: 8
   m_Name: initBullet
-  m_TagString: Untagged
+  m_TagString: LingZha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,30 +35,40 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504794479850760}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.49, y: -1.97, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 6.9618816, y: -4.840647, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114288428321245410
-MonoBehaviour:
+--- !u!54 &54516970584217354
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504794479850760}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 2
+--- !u!65 &65670346016531022
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504794479850760}
+  m_Material: {fileID: 13400000, guid: 631ed6bbf081b0b4db22dcb315f137a7, type: 2}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54aec9c567bea734cb1a2770e0c8932e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionEffect: {fileID: 0}
-  aritiveTime: 0
-  m_Angle: 0
-  delayTime: 0
-  m_Type: 0
-  targetVec: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.64, y: 0.3, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212519147303323678
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,8 +98,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1084086127
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a0b34896761354849811e4eb7bdc622a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

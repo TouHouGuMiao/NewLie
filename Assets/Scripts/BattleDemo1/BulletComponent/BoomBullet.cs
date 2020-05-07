@@ -35,8 +35,8 @@ public class BoomBullet : MonoBehaviour {
 			go.SetActive(true);
 			BulletBaseComponent bbc = go.GetComponent<BulletBaseComponent>();
 			Rigidbody rgb = go.GetComponent<Rigidbody>();
-			bbc.speed = m_Bbc.speed * 3f;
-			bbc.power = m_Bbc.power/2;
+			bbc.speed = m_Bbc.speed * 2f;
+			bbc.power = m_Bbc.power;
 			float angle = i * tempAngle;
 			rgb.velocity = new Vector3(bbc.speed * Mathf.Cos(angle * Mathf.Deg2Rad), 0, bbc.speed * Mathf.Sin(angle * Mathf.Deg2Rad));
 			bbc.velocity = rgb.velocity;

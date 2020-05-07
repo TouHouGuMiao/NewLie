@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 128a13553c02d5f46847f435158cb1b3
+timeCreated: 1587522493
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: FZLiBian-S02S
+  fontNames:
+  - FZLiBian-S02S
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

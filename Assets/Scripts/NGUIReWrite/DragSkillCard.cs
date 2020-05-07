@@ -10,6 +10,8 @@ public class DragSkillCard : UIDragObject {
     public List<EventDelegate> OnDragStart;
     public DragDenpent dragDenpent = DragDenpent.byY;
     public string keyCodeName;
+    public bool useByKeyCode = false;
+    public KeyCode keyCode;
     public enum DragDenpent
     {
         byY,
@@ -23,7 +25,7 @@ public class DragSkillCard : UIDragObject {
 
     private void Start()
     {
-        
+        gameObject.AddComponent<UIDragObject>();
     }
 
     protected override void OnPress(bool pressed)
@@ -85,7 +87,6 @@ public class DragSkillCard : UIDragObject {
             return;
         }
         keyCodeName = collider.name;
-
     }
 
 

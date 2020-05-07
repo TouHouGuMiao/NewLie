@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CardBase 
 {
-    public CardBase()
-    {
-        prefab = ResourcesManager.Instance.LoadBattleCard(id.ToString());
-    }
     public enum CardUseType
     {
         roundUse,
@@ -18,8 +14,20 @@ public class CardBase
         bullet,
         layUp,
         atOnce,
+        many,
     }
 
+    public enum BulletType
+    {
+        One,
+        Three,
+        Five,
+        SanHua,
+        NotBullet,
+    }
+
+    public bool CanDraw = true;
+    public bool isInit = false;
     public enum BulletColor
     {
         red,
@@ -35,6 +43,11 @@ public class CardBase
         SR,
         SSR,
     }
+
+  
+
+
+
     public int id;
     public string name;
     public string des;
@@ -43,10 +56,20 @@ public class CardBase
     public float mass;
     public float power;
     public int count;
+    public int countMax;
     public BulletColor bulletColor;
     public CardUseType cardUseType = CardUseType.battleUse;
     public int cost;
+    public float scale = 1;
     public List<EventDelegate> CardSpeicalEvent=new List<EventDelegate> ();
     public SpeicalCardType speicalCardType = SpeicalCardType.bullet;
     public List<CardBase> LevevUpList = new List<CardBase>();
+    public BulletType bulletType = BulletType.NotBullet;
+    public StoryRank storyRank = StoryRank.No;
+    public WindRank windRank = WindRank.No;
+
+    public void LoadPrefab()
+    {
+        prefab = ResourcesManager.Instance.LoadBattleCard(id.ToString());
+    }
 }

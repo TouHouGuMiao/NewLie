@@ -91,8 +91,9 @@ GameObject:
   - component: {fileID: 114859848816311674}
   - component: {fileID: 114089534750643914}
   - component: {fileID: 65048600891038806}
-  - component: {fileID: 54093247056752966}
-  - component: {fileID: 114256640917969776}
+  - component: {fileID: 54234948994497228}
+  - component: {fileID: 114865417111976578}
+  - component: {fileID: 114604476889018932}
   m_Layer: 10
   m_Name: 7
   m_TagString: BattleCard
@@ -193,7 +194,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1141831682193542}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000004371139}
-  m_LocalPosition: {x: 0, y: -0, z: 493.00003}
+  m_LocalPosition: {x: 0, y: 0, z: 493}
   m_LocalScale: {x: 180, y: 180, z: 180}
   m_Children:
   - {fileID: 4490799967563748}
@@ -368,7 +369,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e9caddafeb3075c41b68c624b60499b9, type: 2}
+  - {fileID: 2100000, guid: ea194f5e92a1c46458ab957e6af71105, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -459,7 +460,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1027414121358128}
   m_Mesh: {fileID: 4300000, guid: 52a518e6e7b0094479c79fa96c8af41b, type: 3}
---- !u!54 &54093247056752966
+--- !u!54 &54234948994497228
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -506,11 +507,15 @@ MonoBehaviour:
   momentumAmount: 0
   scale: {x: 1, y: 1, z: 0}
   scrollWheelFactor: 0
+  startPos: {x: 0, y: 0, z: 0}
   finshed_y: 0
   OnCardDragFished: []
+  OnDragStart: []
   dragDenpent: 0
   keyCodeName: 
---- !u!114 &114256640917969776
+  useByKeyCode: 0
+  keyCode: 0
+--- !u!114 &114604476889018932
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -518,7 +523,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1141831682193542}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d166255cacf07b4292b8402b3ddefc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 04d1b7c9e9a19a24ab67123a43c6544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   method: 0
@@ -553,9 +558,10 @@ MonoBehaviour:
   tp: {fileID: 0}
   cout: 0
   OnStarted: []
-  from: {x: 0, y: -0, z: 493.00003}
-  to: {x: 0, y: -0, z: 493.00003}
-  worldSpace: 0
+  pingPangOnce: 0
+  from: {x: -0, y: 180, z: 0}
+  to: {x: -0, y: 180, z: 0}
+  quaternionLerp: 0
 --- !u!114 &114852577552145322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -574,24 +580,24 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 2
       time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 0.5
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.49846506
-      value: 1.9590104
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
     - serializedVersion: 2
       time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 1
-    m_PostInfinity: 1
+      value: 0
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+    m_PreInfinity: 2
+    m_PostInfinity: 2
     m_RotationOrder: 4
   ignoreTimeScale: 0
   delay: 1
@@ -605,6 +611,7 @@ MonoBehaviour:
   tp: {fileID: 0}
   cout: 0
   OnStarted: []
+  pingPangOnce: 0
   from: {x: 0.9, y: 0.9, z: 0.9}
   to: {x: 1, y: 1, z: 1}
   updateTable: 0
@@ -624,6 +631,8 @@ MonoBehaviour:
   pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   duration: 0.2
+  OnHoverStart: []
+  OnHoverFished: []
   dragHighlight: 0
   hoverSprite: 
   pressedSprite: 
@@ -636,3 +645,50 @@ MonoBehaviour:
   onClick: []
   button_type: 0
   id: 0
+--- !u!114 &114865417111976578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1141831682193542}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d166255cacf07b4292b8402b3ddefc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  method: 0
+  style: 0
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ignoreTimeScale: 1
+  delay: 0
+  duration: 1
+  steeperCurves: 0
+  tweenGroup: 0
+  useFixedUpdate: 0
+  onFinished: []
+  eventReceiver: {fileID: 0}
+  callWhenFinished: 
+  tp: {fileID: 0}
+  cout: 0
+  OnStarted: []
+  pingPangOnce: 0
+  from: {x: 0, y: 0, z: 493}
+  to: {x: 0, y: 0, z: 493}
+  worldSpace: 0

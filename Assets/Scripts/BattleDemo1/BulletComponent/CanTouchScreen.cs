@@ -16,13 +16,11 @@ public class CanTouchScreen : MonoBehaviour {
 		set;
 	}
 	void Start () {
-        GameObject xiangKuang = GameObject.FindWithTag("XiangKuang");
+        GameObject xiangKuang = GameObject.FindWithTag("xiangKuang");
         up = xiangKuang.transform.Find("Up").gameObject;
         down = xiangKuang.transform.Find("Down").gameObject;
         left = xiangKuang.transform.Find("Left").gameObject;
         right = xiangKuang.transform.Find("Right").gameObject;
-      
-
     }
 	
 	// Update is called once per frame

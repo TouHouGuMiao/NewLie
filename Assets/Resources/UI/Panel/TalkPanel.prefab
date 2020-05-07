@@ -270,7 +270,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 6.027397
   keepCrispWhenShrunk: 0
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 12800000, guid: 966dda38900ac0d4795ec4e32375131c, type: 3}
   mFont: {fileID: 0}
   mText: 
   mFontSize: 30
@@ -338,7 +338,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 5.375
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 12800000, guid: 966dda38900ac0d4795ec4e32375131c, type: 3}
   mFont: {fileID: 0}
   mText: "\u8C14\u8C14"
   mFontSize: 30
@@ -405,7 +405,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3001
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

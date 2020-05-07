@@ -40,8 +40,21 @@ public class AudioManager:MonoBehaviour
             bg_Source.volume = value;
         }
     }
-
-
+    public void LerpBGVolme(float value, float time)
+    {
+        StartCoroutine(LerpBGVolmeIEnuamtor(value, time));
+    }
+    public IEnumerator LerpBGVolmeIEnuamtor(float value,float time)
+    {
+        int count = (int)(time / 0.05f);
+        float deltaValue = (value-BgVolume) / count;
+        for (int i = 0; i < count; i++)
+        {
+            yield return new WaitForSeconds(0.05f);
+            BgVolume += deltaValue;
+        }
+       
+    }
     public float EffectVolume
     {
         get
@@ -213,13 +226,13 @@ public class AudioManager:MonoBehaviour
 
     public void FadeOutBGM(float fadeTime)
     {
-        IEnumeratorManager.Instance.StartCoroutine(FadeOutBGM_IEnumerator(fadeTime));
+        RoundRule.Instance.StartCoroutine(FadeOutBGM_IEnumerator(fadeTime));
     }
 
 
     public void PauseBg_Source(float fadeTime)
     {
-        IEnumeratorManager.Instance.StartCoroutine(FadeOutBGM_IEnumerator_Pause(fadeTime));
+        RoundRule.Instance.StartCoroutine(FadeOutBGM_IEnumerator_Pause(fadeTime));
     }
 
 
@@ -259,7 +272,7 @@ public class AudioManager:MonoBehaviour
 
     private void FadeInBMG(float fadeTime)
     {
-        IEnumeratorManager.Instance.StartCoroutine(FadeInBGM_IEnumerator(fadeTime));
+        RoundRule.Instance.StartCoroutine(FadeInBGM_IEnumerator(fadeTime));
     }
 
     IEnumerator FadeInBGM_IEnumerator(float fadeTime)

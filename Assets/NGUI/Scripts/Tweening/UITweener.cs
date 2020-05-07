@@ -201,7 +201,9 @@ public abstract class UITweener : MonoBehaviour
     /// Update the tweening factor and call the virtual update function.
     /// </summary>
     public List<EventDelegate> OnStarted;
-    
+
+	public bool pingPangOnce=false;
+
     protected void DoUpdate ()
 	{
 		float delta = ignoreTimeScale && !useFixedUpdate ? Time.unscaledDeltaTime : Time.deltaTime;
@@ -239,7 +241,13 @@ public abstract class UITweener : MonoBehaviour
 			{
 				mFactor = 1f - (mFactor - Mathf.Floor(mFactor));
 				mAmountPerDelta = -mAmountPerDelta;
-                if(PingPangOneStop != null)
+				if (pingPangOnce)
+				{
+					mFactor = Mathf.Clamp01(mFactor);
+					Sample(mFactor, true);
+					enabled = false;
+				}
+				if (PingPangOneStop != null)
                 {
                     PingPangOneStop(tp);
 
@@ -252,6 +260,7 @@ public abstract class UITweener : MonoBehaviour
 				mFactor = -mFactor;
 				mFactor -= Mathf.Floor(mFactor);
 				mAmountPerDelta = -mAmountPerDelta;
+			
                 if (PingPangTwoStop != null)
                 {
                     PingPangTwoStop(tp);

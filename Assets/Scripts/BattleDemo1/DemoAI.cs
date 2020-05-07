@@ -24,6 +24,7 @@ public class DemoAI : MonoBehaviour {
 		self = gameObject.AddComponent<Self>();
 		superEgo = gameObject.AddComponent<SuperEgo>();
 		boomOfRose = gameObject.AddComponent<BoomOfRose>();
+		UseBoomOfHeadEasy();
 		//StartTestAI();
 	}
 

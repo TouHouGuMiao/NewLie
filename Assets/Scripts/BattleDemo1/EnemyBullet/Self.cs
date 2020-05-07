@@ -31,8 +31,9 @@ public class Self : MonoBehaviour {
 
 	private IEnumerator ShotIEnumerator()
 	{
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < 80; i++)
 		{
+			yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
 			yield return new WaitForSeconds(0.5f);
 			Shot();
 		}
@@ -51,7 +52,7 @@ public class Self : MonoBehaviour {
 			go.transform.SetChildLayer(LayerMask.NameToLayer("EnemyBullet"));
 			BulletBaseComponent bbc = go.GetComponent<BulletBaseComponent>();
 			Rigidbody rgb = go.GetComponent<Rigidbody>();
-
+			rgb.mass = 20;
 			bbc.speed = 2;
 			bbc.power = 10;
 			float angle = (i * tempAngle)+6;

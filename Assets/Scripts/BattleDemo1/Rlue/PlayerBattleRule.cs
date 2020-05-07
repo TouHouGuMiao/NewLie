@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 public enum BullteType
 {
@@ -22,20 +23,28 @@ public class PlayerBattleRule : MonoBehaviour {
 	private GameObject bulletPrefab;
 	public GameObject bulletParent;
 	public float speed = 500;
-
 	public static PlayerBattleRule Instance;
 	public Vector3 targetVec;
+	/// <summary>
+	/// E的技能数据
+	/// </summary>
+	private CardBase attackData;
 	// Use this for initialization
 
-    void Awake()
+	void Awake()
 	{
 		Instance = this;
 	}
 	void Start () {
-
+		attackData = BattleCardManager.intance.GetCardBaseDataById(13);
+		//AudioManager.Instance.PlayBg_Source("miniaturegarden", true, 3);
+		//AudioManager.Instance.BgVolume = 0.3f;
 		player = this.gameObject;
 		animator = this.GetComponent<Animator>();
 		firePoint = gameObject.transform.Find("firePoint");
+		Transform enemy = GameObject.FindWithTag("enemy").transform;
+		//DemoAI ai = enemy.GetComponent<DemoAI>();
+		//ai.UseFatherDream();
 	}
 
 	public bool IsReduceTime()
@@ -127,7 +136,6 @@ public class PlayerBattleRule : MonoBehaviour {
 				rb.velocity = velocity;
 			}	
 		}
-		Time.timeScale = 1;
 		timeScale = 1;
 	}
 
@@ -225,12 +233,38 @@ public class PlayerBattleRule : MonoBehaviour {
 	public void ReduceTime()
 	{
 		bulletState = BulletState.reduceTime;
-		Time.timeScale = 0.1f;
+		//Time.timeScale = 0.1f;
 		StartCoroutine(LerpReduceTime());
 	}
 
+	public void ReduceTime(float time)
+	{
+		if (!isLerp)
+		{
+			StopAllCoroutines();
+			bulletState = BulletState.reduceTime;
+			StartCoroutine(LerpReduceTime());
+		}
+		AudioManager.Instance.PlayEffect_Source("reduceTimeAduio", OnReduceTimeAudioFished);
+	}
+
+	private void OnReduceTimeAudioFished()
+	{
+		isLerp = false;
+		bulletState = BulletState.nomal;
+		HandCardPanel.canUseSpace = true;
+		AudioManager.Instance.ContinueBg_Source(1.0f);
+	}
+
+	
+
+	/// <summary>
+	/// 判断是否在Lerp中
+	/// </summary>
+	private bool isLerp = false;
 	IEnumerator LerpReduceTime()
 	{
+		isLerp = true;
 		float lerpTemp = 0;
 
 		for (int i = 0; i < 50; i++)
@@ -240,10 +274,10 @@ public class PlayerBattleRule : MonoBehaviour {
 			{
 				GameObject go = bulletParent.transform.GetChild(j).gameObject;
 				Rigidbody rb = go.GetComponent<Rigidbody>();
-				rb.drag = Mathf.Lerp(10, 0, lerpTemp);
+				BulletBaseComponent bbc = go.GetComponent<BulletBaseComponent>();
+				rb.drag = Mathf.Lerp(6, 0, lerpTemp);
 			}
 			yield return new WaitForSeconds(0.01f);
-			
 		}
 	}
 
@@ -259,11 +293,14 @@ public class PlayerBattleRule : MonoBehaviour {
 		for (int i = 0; i < 50; i++)
 		{
 			lerpTemp += 0.02f;
+			if (go == null)
+			{
+				continue;
+			}
 			Rigidbody rb = go.GetComponent<Rigidbody>();
-			rb.drag = Mathf.Lerp(10, 0, lerpTemp);
+			rb.drag = Mathf.Lerp(6, 0, lerpTemp);
 
 			yield return new WaitForSeconds(0.01f);
-			
 		}
 	}
 
@@ -364,7 +401,13 @@ public class PlayerBattleRule : MonoBehaviour {
 		bbc.power = 20;
 	}
 
-	
+
+
+	public void NormalAttack()
+	{
+		EventDelegate.Execute(attackData.CardSpeicalEvent);
+	}
+
 		 
 
 

@@ -146,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1159600711012212}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
-  m_LocalPosition: {x: 745, y: -451, z: 0}
+  m_LocalPosition: {x: 426, y: -271, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4772639887578812}
@@ -173,7 +173,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599211322788210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -336, z: 0}
+  m_LocalPosition: {x: 0, y: -156, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4325165013475538}
@@ -187,7 +187,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1343178351143412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4161591614254064}
@@ -245,7 +245,7 @@ MonoBehaviour:
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1
+  aspectRatio: 0.02
 --- !u!114 &114250947788993086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -284,7 +284,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -413,6 +413,7 @@ MonoBehaviour:
   callWhenFinished: 
   tp: {fileID: 0}
   cout: 0
+  OnStarted: []
   from: 1
   to: 0
 --- !u!114 &114875362496290022
@@ -454,7 +455,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 5.4761906
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 12800000, guid: 966dda38900ac0d4795ec4e32375131c, type: 3}
   mFont: {fileID: 0}
   mText: Loading...
   mFontSize: 49
@@ -513,14 +514,14 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0, g: 0, b: 0, a: 1}
   mPivot: 4
-  mWidth: 4100
-  mHeight: 2160
+  mWidth: 3460
+  mHeight: 1800
   mDepth: -1
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.0185184
+  aspectRatio: 1.8981482
   mType: 1
   mFillDirection: 4
   mFillAmount: 1

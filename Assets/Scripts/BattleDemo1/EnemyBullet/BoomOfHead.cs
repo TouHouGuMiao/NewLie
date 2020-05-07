@@ -35,9 +35,9 @@ public class BoomOfHead : MonoBehaviour {
 		int sign = 1;
 
 
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 4; i++)
 		{
-
+			yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
 			sign = sign * -1;
 
 			StartCoroutine(UseThisNotSpeicalCardDiffcult_IEnumerator(sign));
@@ -50,6 +50,7 @@ public class BoomOfHead : MonoBehaviour {
 
 	IEnumerator UseThisNotSpeicalCardDiffcult_IEnumerator(int sign)
 	{
+		yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
 		float radius = 0.5f;
 		float deltaAngle = (-25 * sign);
 		float angle = 0;
@@ -61,6 +62,7 @@ public class BoomOfHead : MonoBehaviour {
 		float deltaLerp = (1.0F / count);
 		for (int i = 0; i < 20; i++)
 		{
+			yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
 			yield return new WaitForSeconds(delayTime);
 			Vector3 boomVec = new Vector3(enemy.transform.position.x + (radius * Mathf.Cos(angle * Mathf.Deg2Rad)), enemy.transform.position.y, (enemy.transform.position.z + (radius * Mathf.Sin(angle * Mathf.Deg2Rad))));
 			Boom(boomVec,diffcultPrefab);
@@ -74,14 +76,14 @@ public class BoomOfHead : MonoBehaviour {
 	private IEnumerator BoomOfHandEasy()
 	{
 		int sign = 1;
-		
-			
-			for (int i = 0; i < 2; i++)
-			{
-				
-				sign = sign * -1;
+		yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
 
-				StartCoroutine(UseThisNotSpeicalCard_IEnumerator(sign));
+		for (int i = 0; i < 1; i++)
+		{
+			yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
+			sign = sign * -1;
+
+			StartCoroutine(UseThisNotSpeicalCard_IEnumerator(sign));
 			yield return new WaitForSeconds(5);
 		}
 		
@@ -125,8 +127,9 @@ public class BoomOfHead : MonoBehaviour {
 			go.transform.SetChildLayer(LayerMask.NameToLayer("EnemyBullet"));
 			BulletBaseComponent bbc = go.GetComponent<BulletBaseComponent>();
 			Rigidbody rgb = go.GetComponent<Rigidbody>();
-			
-			bbc.speed = 2;
+            rgb.mass = 10;
+
+            bbc.speed = 2;
 			bbc.power = 10;
 			float angle = i * tempAngle;
 			rgb.velocity = new Vector3(bbc.speed * Mathf.Cos(angle * Mathf.Deg2Rad), 0, bbc.speed * Mathf.Sin(angle * Mathf.Deg2Rad));

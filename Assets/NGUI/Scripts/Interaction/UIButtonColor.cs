@@ -3,6 +3,7 @@
 // Copyright © 2011-2017 Tasharen Entertainment Inc
 //-------------------------------------------------
 
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -206,13 +207,32 @@ public class UIButtonColor : UIWidgetContainer
 	/// <summary>
 	/// Set the hover state.
 	/// </summary>
-
-	protected virtual void OnHover (bool isOver)
+	public List<EventDelegate> OnHoverStart=new List<EventDelegate>();
+	public List<EventDelegate> OnHoverFished=new List<EventDelegate>();
+	protected virtual void OnHover(bool isOver)
 	{
 		if (isEnabled)
 		{
 			if (!mInitDone) OnInit();
 			if (tweenTarget != null) SetState(isOver ? State.Hover : State.Normal, false);
+			if (isOver)
+			{
+				if (OnHoverStart != null)
+				{
+					UIButton.current = transform.GetComponent<UIButton>();
+					EventDelegate.Execute(OnHoverStart);
+				}
+				UIButton.current = null;
+			}
+			else
+			{
+				if (OnHoverFished != null)
+				{
+					UIButton.current = transform.GetComponent<UIButton>();
+					EventDelegate.Execute(OnHoverFished);
+				}
+				UIButton.current = null;
+			}
 		}
 	}
 

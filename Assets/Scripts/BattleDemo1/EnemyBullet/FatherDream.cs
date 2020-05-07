@@ -45,8 +45,9 @@ public class FatherDream : MonoBehaviour {
 	{
 		for (int i = 0; i < 4; i++)
 		{
+			yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
 			StartCoroutine(ShotZhiXianBuleBullet());
-			yield return new WaitForSeconds(7.0f);
+			yield return new WaitForSeconds(4f);
 		}
 	}
 
@@ -60,7 +61,7 @@ public class FatherDream : MonoBehaviour {
 			go.GetComponent<BlueZhiXianBullet>().point = pointList[i];
 			yield return new WaitForSeconds(0.5f);
 		}
-		StartCoroutine(ShotBoomBullet());
+		//StartCoroutine(ShotBoomBullet());
 	}
 
 	IEnumerator ShotBoomBullet()

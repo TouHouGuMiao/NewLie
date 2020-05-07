@@ -18,6 +18,11 @@ public class BreakShotBullet : MonoBehaviour {
 		
 	
 	}
+	private void MoveToLingFuKu()
+	{
+
+		RoundRule.Instance.AddLingFuToKu(BulletBaseComponent.current.cardBase);
+	}
 	void Start () {
 		bbc = this.GetComponent<BulletBaseComponent>();
 	}
@@ -30,6 +35,8 @@ public class BreakShotBullet : MonoBehaviour {
 			GameObject child = transform.GetChild(0).gameObject;
 			child.transform.SetParent(bulletParent, true);
 			BulletBaseComponent childBBC = child.GetComponent<BulletBaseComponent>();
+			childBBC.cardBase = bbc.cardBase;
+			childBBC.OnBulletDead.Add(new EventDelegate(MoveToLingFuKu));
 			float angle = -(child.transform.eulerAngles.y) * Mathf.Deg2Rad;
 			Rigidbody rgb = child.GetComponent<Rigidbody>();
 			rgb.velocity = new Vector3(bbc.speed * Mathf.Cos(angle), 0, bbc.speed * Mathf.Sin(angle));

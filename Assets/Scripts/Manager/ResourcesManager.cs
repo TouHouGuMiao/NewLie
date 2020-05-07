@@ -58,6 +58,12 @@ public class ResourcesManager
         return go;
     }
 
+    public GameObject LoadTableCard(string name)
+    {
+        GameObject go = LoadPrefab(name, "TableCard");
+        return go;
+    }
+
     private GameObject LoadPrefab(string name,string path)
     {
         string m_path = path + "/" + name;
@@ -250,6 +256,21 @@ public class ResourcesManager
         }
         return sprite;
     }
+
+    public Sprite LoadNumberSprite(string name)
+    {
+        string path = "Texture" + "/"+ "Number" + "/" + name;
+
+        Texture2D texture = Resources.Load(path) as Texture2D;
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        if (sprite == null)
+        {
+            Debug.LogError("sprite is null" + name);
+            return null;
+        }
+        return sprite;
+    }
+
     public UISprite LoadEventSprite(string name) {
         string path = "EventSprites" + "/" + name;
         UISprite sprite = Resources.Load(path) as UISprite;

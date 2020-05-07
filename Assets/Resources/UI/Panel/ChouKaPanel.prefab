@@ -304,6 +304,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114097884789786172
 MonoBehaviour:
@@ -398,7 +399,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 3.1666667
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 12800000, guid: 966dda38900ac0d4795ec4e32375131c, type: 3}
   mFont: {fileID: 0}
   mText: "\u53EC\u5524"
   mFontSize: 36
@@ -465,7 +466,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -572,6 +573,7 @@ MonoBehaviour:
   callWhenFinished: 
   tp: {fileID: 0}
   cout: 0
+  OnStarted: []
   from: 1
   to: 0
 --- !u!114 &114540961178044694
@@ -762,4 +764,5 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0

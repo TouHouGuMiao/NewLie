@@ -115,10 +115,11 @@ public class UIDragObject : MonoBehaviour
 	void FindPanel ()
 	{
 		panelRegion = (target != null) ? UIPanel.Find(target.transform.parent) : null;
-        if (panelRegion.name == "SkillUsePanel")
-        {
-            panelRegion = null;
-        }
+
+        //if (panelRegion.name == "SkillUsePanel"&&panelRegion!=null)
+        //{
+        //    panelRegion = null;
+        //}
 		if (panelRegion == null) restrictWithinPanel = false;
 	}
 

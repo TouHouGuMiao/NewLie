@@ -23,6 +23,7 @@ public class BoomOfRose : MonoBehaviour {
 	{
 		for (int i = 0; i < 30; i++)
 		{
+			yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
 			if (i % 2 == 0)
 			{
 				ShotYellowBoom(enemy.transform.position);

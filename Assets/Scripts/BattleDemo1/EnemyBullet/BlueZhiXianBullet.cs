@@ -66,17 +66,18 @@ public class BlueZhiXianBullet : MonoBehaviour {
 
 	IEnumerator ShotIEnumerator()
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 2; i++)
 		{
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(0.3f);
 			GameObject go = GameObject.Instantiate(prefab);
 			go.transform.SetParent(bulletParent, false);
 			go.transform.position = point.transform.position;
 			go.layer = LayerMask.NameToLayer("EnemyBullet");
 			go.transform.SetChildLayer(LayerMask.NameToLayer("EnemyBullet"));
+			go.AddComponent<TestDragComopment>();
 			BulletBaseComponent bbc = go.GetComponent<BulletBaseComponent>();
 			float angle = Mathf.Atan2(targetVec.z, targetVec.x);
-			bbc.speed = 15;
+			bbc.speed = 2;
 			bbc.velocity = new Vector3(bbc.speed * Mathf.Cos(angle), 0, bbc.speed * Mathf.Sin(angle));
 			bbc.power = 1;
 			Rigidbody rgb = go.GetComponent<Rigidbody>();

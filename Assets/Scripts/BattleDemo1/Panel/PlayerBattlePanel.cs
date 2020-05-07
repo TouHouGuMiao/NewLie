@@ -14,16 +14,17 @@ public class PlayerBattlePanel : MonoBehaviour {
 	public static UILabel pvalueLabel;
 	public static UILabel timeLabel;
 
-	
-	
+	private UIButton drawBtn;
 	// Use this for initialization
 	void Awake()
 	{
+		//drawBtn = transform.FindRecursively("drawBtn").GetComponent<UIButton>();
+		//drawBtn.onClick.Add(new EventDelegate(OnDrawBtnClick));
 		playerAttirbute = GameObject.FindWithTag("Player").GetComponent<AttributeBase>();
 		hpSlider = transform.Find("HPSlider").GetComponent<UISlider>();
 		mpSlider = transform.Find("MPSlider").GetComponent<UISlider>();
-		startBattleBtn = transform.FindRecursively("battleStart").GetComponent<UIButton>();
-		startBattleBtn.onClick.Add(new EventDelegate(OnRoundStartBtnClick));
+		//startBattleBtn = transform.FindRecursively("battleStart").GetComponent<UIButton>();
+		//startBattleBtn.onClick.Add(new EventDelegate(OnRoundStartBtnClick));
 		currentCost = transform.FindRecursively("currentCost").GetComponent<UILabel>();
 		maxCost = transform.FindRecursively("costMax").GetComponent<UILabel>();
 		countLabel = transform.FindRecursively("countLabel").GetComponent<UILabel>();
@@ -32,6 +33,17 @@ public class PlayerBattlePanel : MonoBehaviour {
 		timeLabel = gameObject.transform.FindRecursively("timeLabel").GetComponent<UILabel>();
 	
 	}
+
+	public static void CloseTimelabel()
+	{
+		timeLabel.gameObject.SetActive(false);
+	}
+
+	public static void ShowTimeLabel()
+	{
+		timeLabel.gameObject.SetActive(true);
+	}
+
 	public static void ShowBulletCount(int count)
 	{
 		countLabel.text = count.ToString();
@@ -68,10 +80,10 @@ public class PlayerBattlePanel : MonoBehaviour {
 		countLabel.transform.position = tempVec;
 	}
 
-	private void OnRoundStartBtnClick()
+	public void OnRoundStartBtnClick()
 	{
 		HandCardPanel.OnRoundBattleStart();
-		startBattleBtn.gameObject.SetActive(false);
+		//startBattleBtn.gameObject.SetActive(false);
 		GameObject enemy = GameObject.FindWithTag("enemy");
 		DemoAI ai = enemy.GetComponent<DemoAI>();
 		if (RoundRule.Instance.roundCount == 1)
@@ -82,31 +94,31 @@ public class PlayerBattlePanel : MonoBehaviour {
 		else if (RoundRule.Instance.roundCount == 2)
 		{
 			ai.UseCarouselNormal();
-			RoundRule.Instance.SetNextRoundTime(12);
+			RoundRule.Instance.SetNextRoundTime(19);
 		}
 
 		else if (RoundRule.Instance.roundCount == 3)
 		{
 			ai.UseFatherDream();
-			RoundRule.Instance.SetNextRoundTime(30);
+			RoundRule.Instance.SetNextRoundTime(22);
 		}
 		else if (RoundRule.Instance.roundCount == 4)
 		{
 
 			ai.UseCarouselDiffcult();
-			RoundRule.Instance.SetNextRoundTime(12);
+			RoundRule.Instance.SetNextRoundTime(20);
 		}
 
 		else if (RoundRule.Instance.roundCount == 5)
 		{
 			ai.UseDiffcultBoomOfHead();
-			RoundRule.Instance.SetNextRoundTime(12);
+			RoundRule.Instance.SetNextRoundTime(25);
 		}
 
 		else if (RoundRule.Instance.roundCount == 6)
 		{
 			ai.UseBoomOfRose();
-			RoundRule.Instance.SetNextRoundTime(12);
+			RoundRule.Instance.SetNextRoundTime(35);
 		}
 
 
@@ -119,20 +131,29 @@ public class PlayerBattlePanel : MonoBehaviour {
 		else if (RoundRule.Instance.roundCount == 8)
 		{
 			ai.UseSelf();
-			RoundRule.Instance.SetNextRoundTime(12);
+			RoundRule.Instance.SetNextRoundTime(45);
 		}
 
 		else if (RoundRule.Instance.roundCount == 9)
 		{
 			ai.UseSuperEgo();
-			RoundRule.Instance.SetNextRoundTime(12);
+			RoundRule.Instance.SetNextRoundTime(50);
 		}
 	}
+	public void OnDrawBtnClick()
+	{
+		if (HandCardPanel.handList.Count >= 7)
+		{
+			return;
+		}
+		HandCardPanel.DrawCard(1);
+	}
+
 
 	public static void ShowHandCardPanel()
 	{
 		HandCardPanel.ShowHandGrid();
-		startBattleBtn.gameObject.SetActive(true);
+		//startBattleBtn.gameObject.SetActive(true);
 	}
 
 
@@ -148,6 +169,8 @@ public class PlayerBattlePanel : MonoBehaviour {
 		float deta = value / playerAttirbute.MaxMP;
 		mpSlider.value += deta;
 	}
+
+
 
 	public static void UpdatePValueLabel(int value)
 	{

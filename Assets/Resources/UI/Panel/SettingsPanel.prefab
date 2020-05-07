@@ -846,7 +846,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.0833333
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 12800000, guid: 966dda38900ac0d4795ec4e32375131c, type: 3}
   mFont: {fileID: 0}
   mText: "\u8FD4\u56DE"
   mFontSize: 70
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 1
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 12800000, guid: 966dda38900ac0d4795ec4e32375131c, type: 3}
   mFont: {fileID: 0}
   mText: 
   mFontSize: 40

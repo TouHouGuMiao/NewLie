@@ -406,7 +406,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 12.5
   keepCrispWhenShrunk: 0
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 12800000, guid: 966dda38900ac0d4795ec4e32375131c, type: 3}
   mFont: {fileID: 0}
   mText: 
   mFontSize: 30

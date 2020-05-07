@@ -51,16 +51,17 @@ public class Carousel : MonoBehaviour
 
     IEnumerator ShotDiffcultIEnumator()
     {
-        if (shotCount >= 1000)
+        yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
+        if (shotCount >= 350)
         {
             yield break;
         }
-
+        yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
         if (shotCount % 100 == 0 && shotCount >= 100)
         {
             yield return new WaitForSeconds(1f);
         }
-
+        yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
         if (shotCount % temp == 0)
         {
             yield return new WaitForSeconds(0.05f);
@@ -69,6 +70,7 @@ public class Carousel : MonoBehaviour
         yield return new WaitForSeconds(0.01F);
         for (int i = 0; i < pointList.Count; i++)
         {
+            yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
             GameObject point = pointList[i];
             GameObject go = GameObject.Instantiate(redAndBlackPrefab);
             go.transform.position = new Vector3(point.transform.position.x, GameObject.FindWithTag("enemy").transform.position.y, point.transform.position.z);
@@ -92,6 +94,7 @@ public class Carousel : MonoBehaviour
         }
         for (int i = 0; i < pointList.Count; i++)
         {
+            yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
             GameObject point = pointList[i];
             float angle = Mathf.Atan2(point.transform.localPosition.z, point.transform.localPosition.x) * Mathf.Rad2Deg;
             angle += deltaAngle;
@@ -106,25 +109,26 @@ public class Carousel : MonoBehaviour
     }
 
 
-
+    private float easyDelatAngle = 2.0f;
     IEnumerator ShotEasyIEnumator()
     {
-        if (shotCount >= 600)
+        if (shotCount >= 300)
         {
             yield break;
         }
-
-        if (shotCount % 100==0&&shotCount>=100)
+        yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
+        if (shotCount % 50==0&&shotCount>=50)
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
         }
-
+        yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
         if (shotCount % temp == 0)
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
             index = 0;
         }
         yield return new WaitForSeconds(0.01F);
+        yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
         for (int i = 0; i < pointList.Count; i++)
         {
             GameObject point = pointList[i];
@@ -148,11 +152,12 @@ public class Carousel : MonoBehaviour
             bbc.SetVelocity();
 
         }
+        yield return new WaitWhile(PlayerBattleRule.Instance.IsReduceTime);
         for (int i = 0; i < pointList.Count; i++)
         {
             GameObject point = pointList[i];
             float angle = Mathf.Atan2(point.transform.localPosition.z, point.transform.localPosition.x) * Mathf.Rad2Deg;
-            angle += deltaAngle;
+            angle += easyDelatAngle;
             point.transform.localPosition = new Vector3(radius * Mathf.Cos(angle * Mathf.Deg2Rad), 0, radius * Mathf.Sin(angle * Mathf.Deg2Rad));
         }
 

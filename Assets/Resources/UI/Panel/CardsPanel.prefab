@@ -810,7 +810,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3008
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3004
+  startingRenderQueue: 3008
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -1147,6 +1147,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114405818811464216
 MonoBehaviour:
@@ -1486,7 +1487,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 2.2272727
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 12800000, guid: 966dda38900ac0d4795ec4e32375131c, type: 3}
   mFont: {fileID: 0}
   mText: "\u742A\u9732\u8BFA"
   mFontSize: 25
@@ -1772,7 +1773,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3005
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -1809,6 +1810,7 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
 --- !u!114 &114845412266152110
 MonoBehaviour:
@@ -1849,7 +1851,7 @@ MonoBehaviour:
   keepAspectRatio: 0
   aspectRatio: 5.625
   keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  mTrueTypeFont: {fileID: 12800000, guid: 966dda38900ac0d4795ec4e32375131c, type: 3}
   mFont: {fileID: 0}
   mText: "\u8FD4\u56DE"
   mFontSize: 39
@@ -2087,4 +2089,5 @@ MonoBehaviour:
   pixelSnap: 0
   isActive_Button: 0
   onClick: []
+  button_type: 0
   id: 0
